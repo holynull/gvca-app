@@ -24,6 +24,10 @@ const routes: Routes = [
                 loadChildren: () => import('../assignment/assignment.module').then(m => m.AssignmentModule)
             },
             {
+                path: 'mine',
+                loadChildren: () => import('../mine/mine.module').then(m => m.MineModule)
+            },
+            {
                 path: '',
                 redirectTo: '/tabs/home',
                 pathMatch: 'full'

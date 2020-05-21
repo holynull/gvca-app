@@ -25,6 +25,10 @@ const routes: Routes = [
     {
         path: 'attend',
         loadChildren: () => import('./attend/attend.module').then(m => m.AttendModule)
+    },
+    {
+        path: 'mine',
+        loadChildren: () => import('./mine/mine.module').then(m => m.MineModule)
     }
 ];
 @NgModule({
