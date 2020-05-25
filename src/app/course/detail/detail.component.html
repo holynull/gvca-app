@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" [routerLink]="['/tabs/course']" routerDirection="back">
+            <span class="btn_back"></span>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="course_video">
+        <img src="assets/images/video_pic.jpg" alt="课程视频">
+        <div class="detail_sub_menu">
+            <a (click)="selectTab(1)" [ngClass]="{active: curTab===1}">目录<i></i></a>
+            <a (click)="selectTab(2)" [ngClass]="{active: curTab===2}">介绍<i></i></a>
+        </div>
+    </div>
+    <div class="detail_panels">
+        <div class="detail_panel1" [hidden]="curTab!==1">
+            <div class="detail_tip">
+                <span>共<i>2</i>课</span>
+                <a href="javascript:;" class="btn_alldown"><i></i>全部下载</a>
+            </div>
+            <div class="detail_list">
+                <ul>
+                    <li class="clearfix">
+                        <div class="detail_c">
+                            <h3>第二节 会计核算与督导（1）</h3>
+                            <p>时长02:26:38</p>
+                        </div>
+                        <div class="detail_btns">
+                            <a href="javascript:;" class="detail_btn_play"></a>
+                            <a href="javascript:;" class="detail_btn_down"></a>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="detail_c">
+                            <h3>第二节 会计核算与督导（2）</h3>
+                            <p>时长02:26:38</p>
+                        </div>
+                        <div class="detail_btns">
+                            <a href="javascript:;" class="detail_btn_play"></a>
+                            <a href="javascript:;" class="detail_btn_down"></a>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="detail_c">
+                            <h3>第二节 会计核算与督导（3）</h3>
+                            <p>时长02:26:38</p>
+                        </div>
+                        <div class="detail_btns">
+                            <a href="javascript:;" class="detail_btn_play"></a>
+                            <a href="javascript:;" class="detail_btn_down"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="detail_panel2" [hidden]="curTab!==2">
+            <p>测绘地理信息技术专业为校企共建专业，学生入学后与甘肃伯骊江3D打印科技有限公司签订“3D科技班”协议，企业定期派客座教授、高层管理人员和技术人员为学生举办专业讲座，提供寒、暑假勤工俭学机会。学生毕业后满足条件者即可赴甘肃伯骊江3D打印科技有限公司就业，学生入学时即签订就业保证合同，100%高薪就业，企业不另收取费用。
+            </p>
+            　　<p>
+                甘肃伯骊江3D打印科技有限公司以西安交通大学快速制造国家工程研究中心主任中国工程院院士卢秉恒教授团队、西部战区陆军信息工程科技创新工作站及解放军某部队博士后科研工作站王家耀院士及全国人大代表、西部战区陆军信息工程科技创新工作站管理委员会执行主任、少将王明孝带领的高端技术团队为技术支撑，在政府、部队高度重视和社会各界的大力支持下，已建成西北地区规模最大、技术水平最高、设备最为齐全的综合型3D科技技术服务平台，并重点建设创新创意设计与展示中心、地理信息技术及产品制造中心、三维打印与数据处理中心、三维检测与逆向设计中心、增材制造（3D打印）材料研发中心、快速模具中心、三维打印体验与培训中心、成果转化与孵化中心“八大中心”。
+            </p>
+            <p>测绘地理信息技术专业为校企共建专业，学生入学后与甘肃伯骊江3D打印科技有限公司签订“3D科技班”协议，企业定期派客座教授、高层管理人员和技术人员为学生举办专业讲座，提供寒、暑假勤工俭学机会。学生毕业后满足条件者即可赴甘肃伯骊江3D打印科技有限公司就业，学生入学时即签订就业保证合同，100%高薪就业，企业不另收取费用。
+            </p>
+        </div>
+    </div>
+</ion-content>

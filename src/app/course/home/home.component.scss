@@ -1,10 +1,4 @@
-ion-toolbar {
-    --background: #01204f;
-
-    ion-title {
-        --color: #fff;
-    }
-}
+@import '../../../pub.scss';
 
 .sub_menu {
     height: 2.8rem;
@@ -33,12 +27,11 @@ ion-toolbar {
 
 /*内容*/
 .panels {
-    overflow-y: scroll;
-    width: 100%;
+    // width: 100%;
 }
 
 .panels>div.panel1 {
-    display: block;
+    // display: block;
 }
 
 .list_item {

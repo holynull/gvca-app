@@ -1,0 +1,153 @@
+@import '../../../pub.scss';
+
+/*课程详情*/
+.course_video {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+
+    img {
+        width: 100%;
+    }
+}
+
+.detail_sub_menu {
+    height: 2.8rem;
+    line-height: 2.8rem;
+    background: #ffffff;
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+}
+
+.detail_sub_menu a {
+    width: 50%;
+    float: left;
+    color: #101010;
+    font-size: .9rem;
+    position: relative;
+}
+
+.detail_sub_menu a.active i {
+    background: #0d6db9;
+    height: 2px;
+    width: 2rem;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 1rem);
+}
+
+.detail_tip {
+    background: #f5f6f6;
+    height: 2.1rem;
+    padding: 0 .6rem;
+    line-height: 2rem;
+}
+
+.detail_tip span {
+    color: #4f4f4f;
+    font-size: .55rem;
+}
+
+.detail_tip span i {
+    color: #cc0000;
+}
+
+a.btn_alldown {
+    background: #0d6db9;
+    border-radius: .2rem;
+    color: #fff;
+    font-size: .5rem;
+    float: right;
+    height: 1.4rem;
+    width: 4rem;
+    margin-top: .3rem;
+    line-height: 1.4rem;
+}
+
+a.btn_alldown i {
+    background: url(assets/images/icon_download.png);
+    width: .7rem;
+    height: .7rem;
+    float: left;
+    background-size: contain;
+    margin-top: .3rem;
+    margin-right: .1rem;
+    margin-left: .4rem;
+}
+
+/*课程详情——课件列表*/
+.detail_list {
+    padding: 0 .6rem;
+}
+
+.detail_list li {
+    border-bottom: 1px solid #ededed;
+    height: 3rem;
+}
+
+.detail_c {
+    width: 80%;
+    float: left;
+}
+
+.detail_c h3 {
+    color: #333;
+    font-size: .9rem;
+    height: 1.5rem;
+    overflow: hidden;
+    line-height: 1.8rem;
+    font-weight: normal;
+    background: url(assets/images/detail_iconlesson.png) no-repeat 0 center;
+    background-size: .8rem;
+    padding-left: 1.1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.detail_c p {
+    color: #999;
+    font-size: .55rem;
+    padding-left: 1.1rem;
+}
+
+.detail_btns {
+    float: right;
+    margin-top: .65rem;
+}
+
+a.detail_btn_play {
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url(assets/images/detail_iconplay.png);
+    background-size: contain;
+    display: inline-block;
+    margin-right: .2rem;
+}
+
+a.detail_btn_down {
+    width: 1.2rem;
+    height: 1.2rem;
+    background: url(assets/images/detail_icondown.png);
+    background-size: contain;
+    display: inline-block;
+}
+
+/*课程详情——课程介绍*/
+.detail_panel2 {
+    padding: .6rem .8rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.detail_panel2 p {
+    color: #333;
+    font-size: .7rem;
+    line-height: 1.5rem;
+    text-indent: 2em;
+    margin-bottom: 1rem;
+}
