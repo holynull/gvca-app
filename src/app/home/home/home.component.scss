@@ -1,1 +1,11 @@
-@import '../../../pub.scss'
+// @import '../../../pub.scss';
+.clockin{
+    width: 1.6rem;
+    height: 1.6rem;
+    background: url(assets/images/icon_clockin.png) no-repeat;  
+    background-size: contain;
+    position: absolute;
+    top: .8rem;
+    right: .5rem;
+    z-index: 9;
+  }

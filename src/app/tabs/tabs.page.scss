@@ -1,1 +1,76 @@
+.bot_menu {
+    background: #fff;
+}
 
+.bot_menu a {
+    text-align: center;
+    box-sizing: border-box;
+    width: 1.5rem;
+    height: 1.7rem;
+}
+
+.bot_menu a i {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+}
+
+.bot_menu ion-label {
+    font-size: .55rem;
+    font-weight: normal;
+    color: #666666;
+}
+
+.bot_menu ion-label.active {
+    color: #01204f;
+}
+
+.bot_menu a i.bot_menu1 {
+    background: url(assets/images/bot_menu1_n.png);
+    background-size: contain;
+}
+
+.bot_menu a i.bot_menu2 {
+    background: url(assets/images/bot_menu2_n.png);
+    background-size: contain;
+}
+
+.bot_menu a i.bot_menu3 {
+    background: url(assets/images/bot_menu3_n.png);
+    background-size: contain;
+}
+
+.bot_menu a i.bot_menu4 {
+    background: url(assets/images/bot_menu4_n.png);
+    background-size: contain;
+}
+
+.bot_menu a i.bot_menu5 {
+    background: url(assets/images/bot_menu5_n.png);
+    background-size: contain;
+}
+
+.bot_menu a.active i.bot_menu1 {
+    background: url(assets/images/bot_menu1_a.png);
+    background-size: contain;
+}
+
+.bot_menu a.active i.bot_menu2 {
+    background: url(assets/images/bot_menu2_a.png);
+    background-size: contain;
+}
+
+.bot_menu a.active i.bot_menu3 {
+    background: url(assets/images/bot_menu3_a.png);
+    background-size: contain;
+}
+
+.bot_menu a.active i.bot_menu4 {
+    background: url(assets/images/bot_menu4_a.png);
+    background-size: contain;
+}
+
+.bot_menu a.active i.bot_menu5 {
+    background: url(assets/images/bot_menu5_a.png);
+    background-size: contain;
+}

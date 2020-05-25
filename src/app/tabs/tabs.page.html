@@ -1,29 +1,38 @@
-<ion-tabs>
-
+<ion-tabs #tabs (ionTabsDidChange)="tabChanged($event)">
     <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-            <ion-icon name="triangle"></ion-icon>
-            <ion-label>首页</ion-label>
+        <ion-tab-button tab="home" class="bot_menu">
+            <a [ngClass]="{active: curTab==='home'}">
+                <i class="bot_menu1"></i>
+            </a>
+            <ion-label [ngClass]="{active: curTab==='home'}">首页</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="course">
-            <ion-icon name="ellipse"></ion-icon>
-            <ion-label>课程</ion-label>
+        <ion-tab-button tab="course" class="bot_menu">
+            <a [ngClass]="{active: curTab==='course'}">
+                <i class="bot_menu2"></i>
+            </a>
+            <ion-label [ngClass]="{active: curTab==='course'}">课程</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="exam">
-            <ion-icon name="square"></ion-icon>
-            <ion-label>考试</ion-label>
+        <ion-tab-button tab="exam" class="bot_menu">
+            <a [ngClass]="{active: curTab==='exam'}">
+                <i class="bot_menu3"></i>
+            </a>
+            <ion-label [ngClass]="{active: curTab==='exam'}">考试</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="assignment">
-            <ion-icon name="square"></ion-icon>
-            <ion-label>作业</ion-label>
+        <ion-tab-button tab="assignment" class="bot_menu">
+            <a [ngClass]="{active: curTab==='assignment'}">
+                <i class="bot_menu4"></i>
+            </a>
+            <ion-label [ngClass]="{active: curTab==='assignment'}">作业</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="mine">
-            <ion-icon name="square"></ion-icon>
-            <ion-label>我的</ion-label>
+        <ion-tab-button tab="mine" class="bot_menu">
+            <a [ngClass]="{active: curTab==='mine'}">
+                <i class="bot_menu5"></i>
+            </a>
+            <ion-label [ngClass]="{active: curTab==='mine'}">我的</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
 

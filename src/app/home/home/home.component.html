@@ -1,10 +1,11 @@
-<ion-header>
-    <ion-toolbar>
-
-    </ion-toolbar>
-</ion-header>
-<ion-content>
-    <p>
-        home works!
-    </p>
+<ion-content fullscreen="true">
+    <ion-slides mode='ios' #slides pager="true" [options]="slideOpts">
+        <ion-slide>
+            <img src="assets/images/index_banner.jpg" />
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/images/index_banner2.jpg" />
+        </ion-slide>
+    </ion-slides>
+    <i class="clockin"></i>
 </ion-content>
