@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title">
+	在线课程
+</div>
+<div class="sub_menu">
+	<a href="javascript:;" class="active">基本素质<i></i></a>
+	<a href="javascript:;">专业教学<i></i></a>
+	<a href="javascript:;">素质拓展<i></i></a>
+</div>
+<div class="panels">
+	<div class="panel1">
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel2">
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+		<div class="list_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<p>于老师</p>
+				<a href="course_detail.html" class="btn_study">进入学习</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel3">
+		<div class="xx_choose">
+			<form action="">
+				<ul>
+					<li><input type="checkbox" id="course1" checked=""><label for="course1">选修课一</label></li>
+					<li><input type="checkbox" id="course2"><label for="course2">选修课二</label></li>
+					<li><input type="checkbox" id="course3"><label for="course3">选修课三</label></li>
+					<li><input type="checkbox" id="course4"><label for="course4">选修课四</label></li>
+				</ul>
+				<p class="tip_txt">请在以上选修课中任意选择四个课程</p>
+				<a href="javascript:;" class="btn_submit">确定</a>
+			</form>
+			<div class="dialog">
+				<p>您选择的课程是：</p>
+				<ul>
+					<li><i></i>选修课一</li>
+					<li><i></i>选修课三</li>
+				</ul>
+				<div>
+					<a href="javascript:;" class="btn_reset">重选</a>
+					<a href="javascript:;" class="btn_submit1">确定</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<div class="bot_menu">
+	<a href="index.html"><i class="bot_menu1"></i><p>首页</p></a>
+	<a href="javascript:;" class="active"><i class="bot_menu2"></i><p>课程</p></a>
+	<a href="exam.html"><i class="bot_menu3"></i><p>考试</p></a>
+	<a href="homework.html"><i class="bot_menu4"></i><p>作业</p></a>
+	<a href="own.html"><i class="bot_menu5"></i><p>我的</p></a>
+</div>
+
+<script>
+$(document).ready(function(){
+	$(".sub_menu a").click(function(){
+		var index = $(this).index();
+		$(this).addClass("active").siblings("a").removeClass("active");
+		$(".panels>div").eq(index).show().siblings("div").hide();
+	});
+
+
+	$(".btn_submit").click(function(){
+		$(".dialog").show();
+	});
+	$(".btn_reset").click(function(){
+		$(".dialog").hide();
+	});
+})
+</script>
+</body>
+</html>
