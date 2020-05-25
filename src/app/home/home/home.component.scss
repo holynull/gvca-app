@@ -1,4 +1,3 @@
-// @import '../../../pub.scss';
 .clockin {
     width: 1.6rem;
     height: 1.6rem;
@@ -36,7 +35,7 @@
 .index_msg a {
     float: left;
     color: #666;
-    font-size: .8rem;
+    font-size: .85rem;
     line-height: 1.8rem;
     display: inline-block;
     height: 1.95rem;
@@ -48,4 +47,72 @@
     word-wrap: normal;
     text-align: left;
     margin-left: .5rem;
+}
+
+.space {
+    height: .4rem;
+    background: #f4f2f2;
+}
+
+/*首页中间*/
+.index_box {
+    background: #fff;
+    padding: .4rem;
+    box-sizing: border-box;
+}
+
+.index_box a {
+    background: #f9f9f9;
+    border-radius: .2rem;
+    width: calc(50% - .2rem);
+    float: left;
+    text-align: center;
+    padding: 1.1rem 0;
+    box-sizing: border-box;
+    margin-bottom: .4rem;
+}
+
+.index_box a:nth-child(2n) {
+    float: right;
+}
+
+.index_box a:last-child {
+    margin-bottom: 0;
+}
+
+.index_box a i {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-bottom: .2rem;
+    display: inline-block;
+}
+
+.index_box a p {
+    color: #666;
+    font-size: .9rem;
+}
+
+.index_box a i.index_icon1 {
+    background: url(assets/images/index_icon01.png);
+    background-size: contain;
+}
+
+.index_box a i.index_icon2 {
+    background: url(assets/images/index_icon02.png);
+    background-size: contain;
+}
+
+.index_box a i.index_icon3 {
+    background: url(assets/images/index_icon03.png);
+    background-size: contain;
+}
+
+.index_box a i.index_icon4 {
+    background: url(assets/images/index_icon04.png);
+    background-size: contain;
+}
+
+.index_box a i.index_icon5 {
+    background: url(assets/images/index_icon05.png);
+    background-size: contain;
 }
