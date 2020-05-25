@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
     slideOpts = {
@@ -22,8 +22,17 @@ export class HomeComponent implements OnInit {
             clickable: true,
         },
     };
-  constructor() { }
+    noticeOpts = {
+        speed: 400,
+        loop: true,
+        autoplay: {
+            delay: 5000, // 1秒切换一次
+            disableOnInteraction: false
+        }, // 可选选项，自动滑动
+        direction: 'vertical',
+    };
+    constructor() { }
 
-  ngOnInit() {}
+    ngOnInit() { }
 
 }

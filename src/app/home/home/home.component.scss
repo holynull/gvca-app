@@ -1,11 +1,51 @@
 // @import '../../../pub.scss';
-.clockin{
+.clockin {
     width: 1.6rem;
     height: 1.6rem;
-    background: url(assets/images/icon_clockin.png) no-repeat;  
+    background: url(assets/images/icon_clockin.png) no-repeat;
     background-size: contain;
     position: absolute;
     top: .8rem;
     right: .5rem;
     z-index: 9;
-  }
+}
+
+/*首页新闻*/
+.index_msg {
+    height: 2.1rem;
+    background: #fff;
+
+    ion-slides {
+        ion-slide {
+            height: 1.95rem;
+            padding-left: 0;
+        }
+    }
+}
+
+.index_msg i {
+    float: left;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-block;
+    background: url(assets/images/icon_msg.png) no-repeat;
+    background-size: contain;
+    margin: .3rem .4rem 0 .6rem;
+}
+
+.index_msg a {
+    float: left;
+    color: #666;
+    font-size: .8rem;
+    line-height: 1.8rem;
+    display: inline-block;
+    height: 1.95rem;
+    line-height: 1.95rem;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-align: left;
+    margin-left: .5rem;
+}
