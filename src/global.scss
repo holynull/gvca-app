@@ -61,30 +61,41 @@ a:hover {
     height: 0;
 }
 
-input[type=checkbox]  {  
-    display: inline-block;  
-    vertical-align: middle;  
-    width: .8rem;  
-    height: .8rem;  
-    margin-left: 6px; 
-    margin-right: 6px; 
-    -webkit-appearance: none;  
-    background-color: transparent;  
-    border: 0;  
-    outline: 0 !important;  
-}  
-input[type=checkbox]:after  {  
-    content: "";  
-    display:block;  
+input[type=checkbox] {
+    display: inline-block;
+    vertical-align: middle;
+    width: .8rem;
+    height: .8rem;
+    margin-left: 6px;
+    margin-right: 6px;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    outline: 0 !important;
+}
+
+input[type=checkbox]:after {
+    content: "";
+    display: block;
     width: .8rem;
     height: .8rem;
     border: 1px solid #d6d6d6;
     background-color: #fff;
     box-sizing: border-box;
     border-radius: 2px;
-}  
-input[type=checkbox]:checked:after  {  
-    background:#01204f url(assets/images/icon_check.png);  
+}
+
+input[type=checkbox]:checked:after {
+    background: #01204f url(assets/images/icon_check.png);
     background-size: contain;
-    border:none;
-} 
+    border: none;
+}
+
+.confirm-course-choidce-dialog {
+    // 选课程对话框的自定义样式
+    --width: 16rem;
+    --height: 8rem;
+    --border-radius: .2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 @Component({
     selector: 'app-home',
@@ -9,11 +11,35 @@ export class HomeComponent implements OnInit {
 
     curTab = 1;
 
-    constructor() { }
+    constructor(
+        private modalCtrl: ModalController,
+    ) { }
 
     ngOnInit() { }
 
     select(tab) {
         this.curTab = tab;
+    }
+    async presentConfirm(callBackOk: Function) {
+        const modal = await this.modalCtrl.create({
+            component: ConfirmComponent,
+            cssClass: 'confirm-course-choidce-dialog',
+            backdropDismiss: false,
+            componentProps: {
+                'firstName': 'Douglas',
+                'lastName': 'Adams',
+                'middleInitial': 'N'
+            }
+        });
+        await modal.present();
+        const res = await modal.onWillDismiss();
+        if (res.data && res.data.pressOk) {
+            callBackOk();
+        }
+    }
+    confirm() {
+        this.presentConfirm(() => {
+            console.log("press ok");
+        });
     }
 }
