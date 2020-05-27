@@ -23,7 +23,7 @@ export class ExamineComponent implements OnInit {
             showBackdrop: true,
             backdropDismiss: true,
             componentProps: {
-                title: "模拟题库",
+                title: "考试题库",
             }
         });
         await dialog.present();
