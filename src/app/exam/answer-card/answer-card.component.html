@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons (click)="close()" slot="start">
+            <ion-button>
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>答题卡</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="card_content">
+        <h3>单选</h3>
+        <div class="card_numbers clearfix">
+            <a href="javascript:;" class="done">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+            <a href="javascript:;">5</a>
+            <a href="javascript:;">6</a>
+            <a href="javascript:;">7</a>
+        </div>
+        <h3>多选</h3>
+        <div class="card_numbers clearfix">
+            <a href="javascript:;">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+            <a href="javascript:;">5</a>
+            <a href="javascript:;">6</a>
+            <a href="javascript:;">7</a>
+            <a href="javascript:;">8</a>
+        </div>
+        <h3>判断</h3>
+        <div class="card_numbers clearfix">
+            <a href="javascript:;">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+            <a href="javascript:;">5</a>
+        </div>
+    </div>
+    <div class="card_tip">
+        <div>
+            <i class="done">&nbsp;</i><span>已做</span><em>|</em><i></i><span>未做</span>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="full">交卷</ion-button>
+    </ion-toolbar>
+</ion-footer>

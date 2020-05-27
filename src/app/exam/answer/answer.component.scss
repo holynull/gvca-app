@@ -1,0 +1,69 @@
+@import '../../../pub.scss';
+
+i.answer-card {
+    background: url(assets/images/icon_answer_card.png) no-repeat;
+    background-size: contain;
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: 0.3s linear all;
+}
+
+.exam_tip span {
+    color: #999;
+}
+
+.exam_tip span i {
+    font-size: .7rem;
+    margin-right: .6rem;
+}
+
+.exam_tip em {
+    color: #01204f;
+    font-size: .55rem;
+    font-style: normal;
+    margin-left: .6rem;
+}
+
+.detail_tip {
+    background: #f5f6f6;
+    height: 2.5rem;
+    padding: 0 .6rem;
+    line-height: 2.5rem;
+}
+
+.detail_tip span {
+    color: #4f4f4f;
+    font-size: .55rem;
+}
+
+.detail_tip span i {
+    color: #cc0000;
+}
+
+.exam_subject {
+    color: #333;
+    font-size: .9rem;
+    margin: 1rem .6rem .4rem;
+}
+
+.exam_options {
+    margin: 0 .8rem;
+}
+
+.exam_options a {
+    color: #333;
+    border: 1px solid #ededed;
+    padding: .6rem;
+    font-size: .8rem;
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+    margin: .4rem 0;
+    border-radius: .2rem;
+}
+
+.exam_options a.active {
+    color: #fff;
+    border: none;
+    background: #0d6db9;
+}

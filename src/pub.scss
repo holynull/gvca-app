@@ -1,18 +1,28 @@
 // 公共样式
+ion-header {
+    ion-toolbar {
+        --background: #01204f; // 头部背景颜色
+        --min-height: 3.5rem;
 
-ion-toolbar {
-    --background: #01204f; // 头部背景颜色
-    --min-height: 3.5rem;
+        ion-title {
+            --color: #ffffff; // 头部字体颜色
+        }
 
-    ion-title {
-        --color: #ffffff; // 头部字体颜色
+        span.btn_back {
+            width: 1.6rem;
+            height: 1.6rem;
+            background: url(assets/images/icon_back.png) no-repeat;
+            background-size: contain;
+            margin: .75rem auto .75rem .5rem;
+        }
     }
+}
 
-    span.btn_back {
-        width: 1.6rem;
-        height: 1.6rem;
-        background: url(assets/images/icon_back.png) no-repeat;
-        background-size: contain;
-        margin: .75rem auto .75rem .5rem;
+ion-footer {
+    ion-toolbar {
+        ion-button {
+            --background: #01204f;
+            --background-activated-opacity: 0.3;
+        }
     }
 }

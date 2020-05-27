@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SimulationComponent } from './simulation/simulation.component';
 import { ExamineComponent } from './examine/examine.component';
+import { AnswerComponent } from './answer/answer.component';
 
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'simulation', component: SimulationComponent },
     { path: 'examine', component: ExamineComponent },
+    { path: 'answer', component: AnswerComponent },
 ];
 
 @NgModule({

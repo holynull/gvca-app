@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PopMenuComponent } from './pop-menu/pop-menu.component';
 import { SimulationComponent } from './simulation/simulation.component';
 import { ExamineComponent } from './examine/examine.component';
+import { AnswerComponent } from './answer/answer.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ExamineComponent } from './examine/examine.component';
         PopMenuComponent,
         SimulationComponent,
         ExamineComponent,
+        AnswerComponent,
     ],
     imports: [
         CommonModule,
