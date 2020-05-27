@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/tabs/exam']" routerDirection="back">
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>成绩单</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="exam_success">
+        <p class="icon_success"></p>
+        <!-- <p>恭喜你，成功完成本次练习！</p> -->
+        <p>恭喜你，成功完成本次模考！</p>
+        <!-- <p>恭喜你，成功完成本次考试！</p> -->
+        <div class="exam_score">
+            <div>
+                <dt><i>80</i>/100</dt>
+                <dd>当前得分</dd>
+            </div>
+            <em></em>
+            <div>
+                <dt><i>200</i>/1020</dt>
+                <dd>当前排名</dd>
+            </div>
+        </div>
+    </div>
+    <div class="exam_space"></div>
+    <div class="card_content">
+        <h3>答题卡
+            <div class="card_tip1 fr">
+                <i class="right">&nbsp;</i><span>正确</span><i class="wrong"></i><span>错误</span><i></i><span>未做</span>
+            </div>
+        </h3>
+        <div class="card_numbers clearfix">
+            <a href="javascript:;" class="right">1</a>
+            <a href="javascript:;" class="wrong">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+            <a href="javascript:;">5</a>
+            <a href="javascript:;">6</a>
+            <a href="javascript:;">7</a>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="full">查看错题解析</ion-button>
+    </ion-toolbar>
+</ion-footer>

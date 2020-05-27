@@ -9,6 +9,7 @@ import { PopMenuComponent } from './pop-menu/pop-menu.component';
 import { SimulationComponent } from './simulation/simulation.component';
 import { ExamineComponent } from './examine/examine.component';
 import { AnswerComponent } from './answer/answer.component';
+import { ScoreComponent } from './score/score.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AnswerComponent } from './answer/answer.component';
         SimulationComponent,
         ExamineComponent,
         AnswerComponent,
+        ScoreComponent,
     ],
     imports: [
         CommonModule,

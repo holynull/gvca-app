@@ -1,0 +1,137 @@
+@import '../../../pub.scss';
+
+/*得分*/
+.icon_success {
+    background: url(assets/images/icon_success.png);
+    background-size: contain;
+    width: 2rem;
+    height: 2rem;
+    margin: 2rem auto 1.4rem;
+}
+
+.exam_success p {
+    text-align: center;
+}
+
+.exam_score {
+    width: 17rem;
+    height: 3.5rem;
+    border-radius: .2rem;
+    border: 1px solid #ededed;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.exam_score div {
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding: .75rem 0;
+    box-sizing: border-box;
+    color: #999;
+    font-size: .7rem;
+}
+
+.exam_score div:last-child {
+    width: calc(50% - 1px);
+}
+
+.exam_score div dt {
+    font-size: .55rem;
+}
+
+.exam_score div dt i {
+    font-size: .9rem;
+    color: #cc0000;
+}
+
+.exam_score div dd {
+    font-size: .45rem;
+}
+
+.exam_score em {
+    height: 1.5rem;
+    border-left: 1px solid #ddd;
+    float: left;
+    margin: 1rem 0;
+}
+
+.exam_space {
+    background: #ebebeb;
+    height: .4rem;
+    width: 100%;
+}
+
+.card_content {
+    padding: .5rem .8rem;
+}
+
+.card_content h3 {
+    font-size: .9rem;
+    color: #333;
+    margin: .5rem 0;
+    font-weight: normal;
+}
+
+.card_numbers a {
+    width: 2.8rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    border: 1px dashed #d2d2d2;
+    color: #3f3f3f;
+    font-size: .9rem;
+    text-align: center;
+    float: left;
+    margin: .4rem .9rem .4rem 0;
+}
+
+.card_numbers a:nth-child(6n) {
+    margin-right: 0;
+}
+
+.card_numbers a.done,
+.card_numbers a.right {
+    border: 1px dashed #0d6db9;
+    color: #0d6db9;
+    background: #d4ecff;
+}
+
+.card_numbers a.wrong {
+    color: #ffb64d;
+    border: 1px dashed #ffb64d;
+    background: #ffedd3;
+}
+
+.card_tip1 i {
+    width: 1.1rem;
+    height: .9rem;
+    border: 1px dashed #d2d2d2;
+    margin-right: .4rem;
+    margin-left: .4rem;
+    float: left;
+    margin-top: .08rem;
+}
+
+.card_tip1 i.right {
+    border: 1px dashed #0d6db9;
+    background: #d4ecff;
+}
+
+.card_tip1 span {
+    float: left;
+    color: #999;
+    font-size: .8rem;
+}
+
+.card_tip1 i.right+span {
+    color: #0d6db9;
+}
+
+.card_tip1 i.wrong {
+    border: 1px dashed #ffb64d;
+    background: #ffedd3;
+}
+
+.card_tip1 i.wrong+span {
+    color: #ffb64d;
+}

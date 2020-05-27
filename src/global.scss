@@ -61,6 +61,35 @@ a:hover {
     height: 0;
 }
 
+i {
+    font-style: normal;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.bgf8 {
+    background: #f8f8f8;
+}
+
+.bgff {
+    background: #fff;
+}
+
+.relative {
+    position: relative;
+}
+
+.space {
+    height: .4rem;
+    background: #f4f2f2;
+}
+
 input[type=checkbox] {
     display: inline-block;
     vertical-align: middle;
