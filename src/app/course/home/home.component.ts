@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     async presentConfirm(callBackOk: Function) {
         const modal = await this.modalCtrl.create({
             component: ConfirmComponent,
-            cssClass: 'confirm-course-choidce-dialog',
+            cssClass: 'modal-dialog',
             backdropDismiss: false,
             componentProps: {
                 'firstName': 'Douglas',

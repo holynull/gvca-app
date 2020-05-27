@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{title}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">
+                <i class="active"></i>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="top_submenu" style="display: block;">
+		<ul>
+			<li class="top_sub_lx" (click)="nav(1)" [ngClass]="{active: title==='练习题库'}">练习题库<i></i></li>
+			<li class="top_sub_test" (click)="nav(2)" [ngClass]="{active: title==='模拟题库'}">模拟题库<i></i></li>
+			<li class="top_sub_exam" (click)="nav(3)" [ngClass]="{active: title==='考试题库'}">考试题库<i></i></li>
+		</ul>
+	</div>
+</ion-content>

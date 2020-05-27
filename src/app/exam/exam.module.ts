@@ -5,11 +5,17 @@ import { ExamRoutingModule } from './exam-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { PopMenuComponent } from './pop-menu/pop-menu.component';
+import { SimulationComponent } from './simulation/simulation.component';
+import { ExamineComponent } from './examine/examine.component';
 
 
 @NgModule({
     declarations: [
         HomeComponent,
+        PopMenuComponent,
+        SimulationComponent,
+        ExamineComponent,
     ],
     imports: [
         CommonModule,

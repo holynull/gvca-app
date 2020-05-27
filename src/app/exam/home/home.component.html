@@ -1,3 +1,32 @@
-<p>
-  home works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>练习题库</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="openPopMenu()">
+                <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="exam_list">
+        <ul>
+            <li>课程一<em></em><span><i>6</i>/152</span></li>
+            <div class="exam_sublist">
+                <ul>
+                    <li><i></i>知识点一<a href="javascript:;" class="done"></a><span>(10)</span></li>
+                    <li><i></i>知识点二<a href="javascript:;"></a><span>(6)</span></li>
+                    <li><i></i>知识点三<a href="javascript:;"></a><span>(8)</span></li>
+                </ul>
+            </div>
+            <li>课程二<em></em><span><i>5</i>/80</span></li>
+            <div class="exam_sublist">
+                <ul>
+                    <li><i></i>知识点一<a href="javascript:;" class="done"></a><span>(10)</span></li>
+                    <li><i></i>知识点二<a href="javascript:;"></a><span>(6)</span></li>
+                </ul>
+            </div>
+            <li>课程三<em></em><span><i>10</i>/120</span></li>
+        </ul>
+    </div>
+</ion-content>

@@ -1,0 +1,30 @@
+.dialog {
+    background: #fff;
+    padding: .6rem .8rem;
+    margin: auto;
+}
+
+.dialog>p {
+    font-size: .55rem;
+    color: #666;
+}
+
+.exam_dialog {}
+
+.exam_dialog>p {
+    text-align: center;
+}
+
+.exam_dialog>p span {
+    color: #cc0000;
+}
+
+.exam_dialog a.btn_ok {
+    background: #01204f;
+    color: #fff;
+    font-size: .6rem;
+    padding: .1rem .6rem;
+    display: inline-block;
+    border-radius: 1rem;
+    margin: .5rem .2rem;
+}

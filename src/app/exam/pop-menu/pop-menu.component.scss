@@ -1,0 +1,56 @@
+@import '../../../pub.scss';
+
+ion-button {
+    i {
+        background: url(assets/images/icon_exam_arrow.png) no-repeat;
+        background-size: contain;
+        width: 1.6rem;
+        height: 1.6rem;
+        transition: 0.3s linear all;
+        transform: rotate(180deg);
+    }
+}
+
+/*考试顶部下拉*/
+.top_submenu {
+    background: #f5f6f6;
+}
+
+.top_submenu li {
+    border-bottom: 1px solid #e6e6e6;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: .9rem;
+    padding-left: 1.9rem;
+    color: #333;
+    text-align: left;
+}
+
+.top_submenu li.top_sub_lx {
+    background: url(assets/images/icon_exam_lx.png) no-repeat .5rem center;
+    background-size: 1.2rem;
+}
+
+.top_submenu li.top_sub_test {
+    background: url(assets/images/icon_exam_test.png) no-repeat .5rem center;
+    background-size: 1.2rem;
+}
+
+.top_submenu li.top_sub_exam {
+    background: url(assets/images/icon_exam_exam.png) no-repeat .5rem center;
+    background-size: 1.2rem;
+}
+
+.top_submenu li.active {
+    color: #01204f;
+}
+
+.top_submenu li.active i {
+    width: 1.6rem;
+    height: 1.6rem;
+    background: url(assets/images/icon_exam_gou.png);
+    background-size: contain;
+    float: right;
+    margin-right: .6rem;
+    margin-top: .7rem;
+}
