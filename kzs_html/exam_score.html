@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/exam.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title exam_title relative">
+	<a href="exam.html" class="btn_back"></a>
+	成绩单
+</div>
+<div class="exam_report">
+	<div class="exam_success">
+		<p class="icon_success"></p>
+		<!-- <p>恭喜你，成功完成本次练习！</p> -->
+		<p>恭喜你，成功完成本次模考！</p>
+		<!-- <p>恭喜你，成功完成本次考试！</p> -->
+		<div class="exam_score">
+			<div>
+				<dt><i>80</i>/100</dt>
+				<dd>当前得分</dd>
+			</div>
+			<em></em>
+			<div>
+				<dt><i>200</i>/1020</dt>
+				<dd>当前排名</dd>
+			</div>
+		</div>
+	</div>
+	<div class="exam_space"></div>
+	<div class="card_content">
+		<h3>答题卡
+			<div class="card_tip1 fr">
+				<i class="right">&nbsp;</i><span>正确</span><i class="wrong"></i><span>错误</span><i></i><span>未做</span>
+			</div>	
+		</h3>
+		<div class="card_numbers clearfix">
+			<a href="javascript:;" class="right">1</a>
+			<a href="javascript:;" class="wrong">2</a>
+			<a href="javascript:;">3</a>
+			<a href="javascript:;">4</a>
+			<a href="javascript:;">5</a>
+			<a href="javascript:;">6</a>
+			<a href="javascript:;">7</a>
+		</div>
+	</div>
+</div>
+<a href="exam_report.html" class="exam_btn_report">查看错题解析</a>
+
+</body>
+</html>

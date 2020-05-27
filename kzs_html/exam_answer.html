@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/exam.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title exam_title relative">
+	<a href="javascript:history.go(-1);" class="btn_back"></a>
+	知识点或试卷名
+	<a href="javascript:;" class="btn_answer_card"></a>
+</div>
+<div class="detail_tip exam_tip">
+	<span><i>第1题</i>|&#12288;共50题</span><em>(单选)</em>
+</div>
+<div class="exam_subject">
+	下列选项中，正确的一项是（    ）
+</div>
+<div class="exam_options clearfix">
+	<a href="javascript:;" class="active"><i>A.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
+	<a href="javascript:;"><i>B.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
+	<a href="javascript:;"><i>C.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
+	<a href="javascript:;"><i>D.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
+	</ul>
+</div>
+
+<!-- 答题卡 -->
+<div class="exam_card">
+	<div class="top_title exam_title relative">
+		<a href="javascript:;" class="btn_back"></a>
+		答题卡
+	</div>
+	<div class="card_content">
+		<h3>单选</h3>
+		<div class="card_numbers clearfix">
+			<a href="javascript:;" class="done">1</a>
+			<a href="javascript:;">2</a>
+			<a href="javascript:;">3</a>
+			<a href="javascript:;">4</a>
+			<a href="javascript:;">5</a>
+			<a href="javascript:;">6</a>
+			<a href="javascript:;">7</a>
+		</div>
+		<h3>多选</h3>
+		<div class="card_numbers clearfix">
+			<a href="javascript:;">1</a>
+			<a href="javascript:;">2</a>
+			<a href="javascript:;">3</a>
+			<a href="javascript:;">4</a>
+			<a href="javascript:;">5</a>
+			<a href="javascript:;">6</a>
+			<a href="javascript:;">7</a>
+			<a href="javascript:;">8</a>
+		</div>
+		<h3>判断</h3>
+		<div class="card_numbers clearfix">
+			<a href="javascript:;">1</a>
+			<a href="javascript:;">2</a>
+			<a href="javascript:;">3</a>
+			<a href="javascript:;">4</a>
+			<a href="javascript:;">5</a>
+		</div>
+	</div>
+	<div class="card_tip">
+		<div>
+			<i class="done">&nbsp;</i><span>已做</span><em>|</em><i></i><span>未做</span>
+		</div>		
+	</div>
+	<a href="javascript:;" class="exam_btn_submit">交卷</a>
+</div>
+<script>
+$(document).ready(function(){	
+    $(".btn_answer_card").click(function() {
+        $(".exam_card").show();
+	});
+
+	$(".btn_back").click(function(){
+		$(".exam_card").hide();
+	});
+
+});
+</script>
+</body>
+</html>

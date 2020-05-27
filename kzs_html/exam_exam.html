@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/exam.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title exam_title relative">
+	考试题库 <i></i>
+	</a>
+	<div class="top_submenu">
+		<ul>
+			<li class="top_sub_lx">练习题库<i></i></li>
+			<li class="top_sub_test">模拟题库<i></i></li>
+			<li class="top_sub_exam active">考试题库<i></i></li>
+		</ul>
+	</div>
+
+</div>
+<div class="exam_sublist exam_test">
+	<ul>
+		<li><i></i>2020测绘地理模拟试卷一<a href="javascript:;" class="done"></a></li>
+		<li><i></i>2020测绘地理模拟试卷二<a href="javascript:;"></a></li>
+		<li><i></i>2020测绘地理模拟试卷三<a href="javascript:;"></a></li>
+	</ul>
+</div>
+
+
+<div class="bot_menu">
+	<a href="index.html"><i class="bot_menu1"></i><p>首页</p></a>
+	<a href="course.html"><i class="bot_menu2"></i><p>课程</p></a>
+	<a href="javascript:;" class="active"><i class="bot_menu3"></i><p>考试</p></a>
+	<a href="homework.html"><i class="bot_menu4"></i><p>作业</p></a>
+	<a href="own.html"><i class="bot_menu5"></i><p>我的</p></a>
+</div>
+<div class="dialog exam_dialog">
+	<p>请先完成<span>5套模拟题库</span>，<br>
+再来考试哦~</p>
+	<p><a href="javascript:;" class="btn_ok">好的</a></p>
+</div>
+<script>
+$(document).ready(function(){
+	$(".exam_dialog").show();
+	$(".exam_title>i").click(function(){
+		$(this).toggleClass("active");
+		$(".top_submenu").slideToggle();
+	});
+
+	$(".top_sub_lx").click(function(){
+		$(location).attr("href","exam.html");
+	});
+	$(".top_sub_test").click(function(){
+		$(location).attr("href","exam_test.html");
+	});	
+
+	$(".btn_ok").click(function(){		
+		$(".exam_dialog").hide();
+		$(location).attr("href","exam_test.html");
+	});
+})
+</script>
+</body>
+</html>

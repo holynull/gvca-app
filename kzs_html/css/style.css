@@ -23,6 +23,9 @@ content: " ";
 clear: both;
 height: 0;
 }
+i{
+  font-style: normal;
+}
 .fl{float: left;}
 .fr{float: right;}
 .bgf8{
@@ -422,7 +425,7 @@ a.btn_back{
   background-size: contain;
   position: absolute;
   top: .8rem;
-  left: .5rem;
+  left: .4rem;
   z-index: 9;
 }
 .detail_sub_menu{
@@ -546,4 +549,132 @@ a.detail_btn_down{
   font-size: .55rem;
   line-height: 1.1rem;
   text-indent: 2em;
+}
+
+/*离线课件*/
+.down_title a.btn_back{
+  top: .5rem;
+}
+.deownload_menu{
+  height: 2.2rem;
+  line-height: 2.2rem;
+  border-bottom: 1px solid #efefef;
+  text-align:center;
+}
+.deownload_menu a{
+  width: 50%;
+  float: left;
+  color: #101010;
+  font-size: .7rem;
+  position: relative;
+}
+.deownload_menu a.active{
+  color: #01204f;
+}
+.deownload_menu a.active i{
+  background: #0d6db9;
+  height: 2px;
+  width: 2rem;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 1rem);
+}
+.deownload_menu a span{
+  color: #cc0000;
+}
+.progress_bg{
+  background-color: #e6e6e6;
+  border-radius: 2px;
+  height: 4px;
+  width: 100%;
+}
+.progress_down{
+  background-color: #0d6db9;
+  border-radius: 2px;
+  height: 4px;
+}
+progress{
+ width: 100%;
+ height: 4px;
+ color:#f00;
+ background:#EFEFF4;
+ border-radius: 0.1rem;
+}
+/* 表示总长度背景色 */
+progress::-webkit-progress-bar{     
+background-color: #e6e6e6;
+border-radius: 0.2rem;
+}
+ /* 表示已完成进度背景色 */
+progress::-webkit-progress-value{
+ background: #0d6db9;
+ border-radius: 0.2rem; 
+}
+
+.down_item{
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 1rem;
+}
+.down_item span{
+  color: #999;
+  font-size: .55rem;
+}
+
+.top_title a.btn_edit{
+  color: #d0e4ff;
+  font-size: .55rem;
+  position: absolute;
+  top:0;
+  right: .6rem;
+}
+.down_item input[type=checkbox]{
+  float:left;
+  margin-left: -.3rem;
+  margin-top: 1.7rem;
+  margin-right: .5rem;
+}
+.bot_btns{
+  background: #fff;
+  height: 2.5rem;
+  box-shadow: 0 -2px 5px rgba(0,0,0,.1);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: none;
+}
+.bot_btns a{
+  width: 50%;
+  float: left;
+  text-align: center;
+  padding: .75rem 0;
+  box-sizing: border-box;
+  color: #666;
+  font-size: .7rem;
+}
+.bot_btns a.btn_del{
+  color: #cc0000;
+  width: calc(50% - 1px);
+}
+.bot_btns a.btn_del i{
+  font-style: normal;
+}
+.bot_btns em{
+  height: .8rem;
+  border-left:1px solid #ddd;
+  float: left;
+  margin:.85rem 0;
+}
+
+.phone_memory{
+  background: #f1f1f1;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  color: #999;
+  font-size: .55rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
