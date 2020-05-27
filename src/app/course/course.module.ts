@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { DetailComponent } from './detail/detail.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { DownloadComponent } from './download/download.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
         HomeComponent,
         DetailComponent,
         ConfirmComponent,
+        DownloadComponent,
     ],
     imports: [
         CommonModule,
