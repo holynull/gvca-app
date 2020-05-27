@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,17 @@ import { Router } from '@angular/router';
 })
 export class AnswerCardComponent implements OnInit {
 
-    constructor(private modalCtrl: ModalController, private router: Router) { }
+    title: string;
+
+    from: string;
+
+    constructor(private modalCtrl: ModalController,
+        private router: Router,
+        private navParams: NavParams,
+    ) {
+        this.title = this.navParams.data.title;
+        this.from = this.navParams.data.from;
+    }
 
     ngOnInit() { }
     close() {
@@ -18,6 +28,10 @@ export class AnswerCardComponent implements OnInit {
 
     submit() {
         this.modalCtrl.dismiss();
-        this.router.navigate(['/exam/score']);
+        if (this.from && this.from === 'report') {
+            // this.router.navigate(['/exam/report'], { queryParams: { title: this.title } });
+        } else { // 交卷
+            this.router.navigate(['/exam/score'], { queryParams: { title: this.title } });
+        }
     }
 }

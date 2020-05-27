@@ -1,0 +1,131 @@
+@import '../../../pub.scss';
+
+i.answer-card {
+    background: url(assets/images/icon_answer_card.png) no-repeat;
+    background-size: contain;
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: 0.3s linear all;
+}
+
+.exam_tip span {
+    color: #999;
+}
+
+.exam_tip span i {
+    font-size: .7rem;
+    margin-right: .6rem;
+}
+
+.exam_tip em {
+    color: #01204f;
+    font-size: .55rem;
+    font-style: normal;
+    margin-left: .6rem;
+}
+
+.detail_tip {
+    background: #f5f6f6;
+    height: 2.5rem;
+    padding: 0 .6rem;
+    line-height: 2.5rem;
+}
+
+.detail_tip span {
+    color: #4f4f4f;
+    font-size: .55rem;
+}
+
+.detail_tip span i {
+    color: #cc0000;
+}
+
+.exam_subject {
+    color: #333;
+    font-size: .9rem;
+    margin: 1rem .6rem .4rem;
+}
+
+.exam_options {
+    margin: 0 .8rem;
+}
+
+.exam_options a {
+    color: #333;
+    border: 1px solid #ededed;
+    padding: .6rem;
+    font-size: .8rem;
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+    margin: .4rem 0;
+    border-radius: .2rem;
+}
+
+.exam_options a.active {
+    color: #fff;
+    border: none;
+    background: #0d6db9;
+}
+
+.exam_options a.right {
+    border: none;
+    background: #d4ecff;
+}
+
+.exam_options a.right em {
+    width: .7rem;
+    height: .7rem;
+    background: url(assets/images/icon_exam_right.png);
+    background-size: contain;
+    float: right;
+    margin-top: .15rem;
+}
+
+.exam_options a.wrong {
+    border: none;
+    background: #ffedd3;
+}
+
+.exam_options a.wrong em {
+    width: .7rem;
+    height: .7rem;
+    background: url(assets/images/icon_exam_wrong.png);
+    background-size: contain;
+    float: right;
+    margin-top: .15rem;
+}
+
+.exam_report_c {
+    padding: 0 .8rem;
+    margin-top: 1rem;
+}
+
+.exam_report_c h3 {
+    color: #333;
+    font-size: .9rem;
+    font-weight: normal;
+    margin-bottom: .5rem;
+}
+
+.exam_report_c li {
+    width: 50%;
+    float: left;
+    color: #3f3f3f;
+    font-size: .9rem;
+    margin-bottom: .4rem;
+}
+
+.exam_report_c li.right {
+    color: #0d6db9;
+}
+
+.exam_report_c li.wrong {
+    color: #ffb64d;
+}
+
+.exam_report_c p {
+    color: #3f3f3f;
+    font-size: .7rem;
+    line-height: 170%;
+}

@@ -46,6 +46,6 @@
 </ion-content>
 <ion-footer>
     <ion-toolbar>
-        <ion-button expand="full">查看错题解析</ion-button>
+        <ion-button expand="full" [routerLink]="['/exam/report']" [queryParams]="{title:title}" >查看错题解析</ion-button>
     </ion-toolbar>
 </ion-footer>
