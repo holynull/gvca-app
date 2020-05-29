@@ -11,6 +11,7 @@ import { ExamineComponent } from './examine/examine.component';
 import { AnswerComponent } from './answer/answer.component';
 import { ScoreComponent } from './score/score.component';
 import { ReportComponent } from './report/report.component';
+import { AnswerCardComponent } from './answer-card/answer-card.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ReportComponent } from './report/report.component';
         AnswerComponent,
         ScoreComponent,
         ReportComponent,
+        AnswerCardComponent,
     ],
     imports: [
         CommonModule,

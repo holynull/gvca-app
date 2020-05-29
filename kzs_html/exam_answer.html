@@ -25,6 +25,7 @@
 </div>
 <div class="detail_tip exam_tip">
 	<span><i>第1题</i>|&#12288;共50题</span><em>(单选)</em>
+	<span class="countdown">1:45:30</span>
 </div>
 <div class="exam_subject">
 	下列选项中，正确的一项是（    ）
@@ -36,7 +37,7 @@
 	<a href="javascript:;"><i>D.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
 	</ul>
 </div>
-
+<div class="exam_hand">下一题右滑</div>
 <!-- 答题卡 -->
 <div class="exam_card">
 	<div class="top_title exam_title relative">
@@ -89,6 +90,10 @@ $(document).ready(function(){
 
 	$(".btn_back").click(function(){
 		$(".exam_card").hide();
+	});
+
+	$(".exam_options a").click(function(){
+		$(this).toggleClass("active").siblings().removeClass("active");
 	});
 
 });

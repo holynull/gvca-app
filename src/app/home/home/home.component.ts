@@ -38,10 +38,10 @@ export class HomeComponent implements OnInit {
         direction: 'vertical',
     };
 
-    @ViewChild('bannerSlides', null)
+    @ViewChild('bannerSlides', {})
     bannerSlides: IonSlides;
 
-    @ViewChild('noticeSlides', null)
+    @ViewChild('noticeSlides', {})
     noticeSlides: IonSlides;
 
     constructor(

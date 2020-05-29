@@ -8,7 +8,7 @@ import { IonTabs } from '@ionic/angular';
 })
 export class TabsPage {
 
-    @ViewChild('tabs', null)
+    @ViewChild('tabs', {})
     tabs: IonTabs
 
     curTab: string

@@ -24,6 +24,11 @@ i.answer-card {
     margin-left: .6rem;
 }
 
+.exam_tip span.countdown {
+    float: right;
+    width: 4rem;
+}
+
 .detail_tip {
     background: #f5f6f6;
     height: 2.5rem;
@@ -66,4 +71,20 @@ i.answer-card {
     color: #fff;
     border: none;
     background: #0d6db9;
+    border: 1px solid #0d6db9;
+}
+
+.exam_hand {
+    height: 2rem;
+    width: 7rem;
+    position: absolute;
+    z-index: 99;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 1rem;
+    right: -.9rem;
+    color: #fff;
+    font-size: .9rem;
+    line-height: 2rem;
+    padding-left: .9rem;
+    bottom: 6rem;
 }
