@@ -15,16 +15,30 @@ ion-header {
             background-size: contain;
             margin: .75rem auto .75rem .5rem;
         }
+
+        span.btn_close {
+            width: 1.6rem;
+            height: 1.6rem;
+            background: url(assets/images/icon_close.png) no-repeat;
+            background-size: contain;
+            margin: .75rem auto .75rem .5rem;
+        }
     }
 }
 
 ion-footer {
     ion-toolbar {
-        --background: #01204f;
+        // --background: #01204f;
+        --padding-top: .8rem;
+        --padding-bottom: .8rem;
+        --padding-start: .8rem;
+        --padding-end: .8rem;
 
         ion-button {
+            width: 100%;
             --background: #01204f;
             --background-activated-opacity: 0.3;
+            --border-radius: 1.5rem;
         }
     }
 }

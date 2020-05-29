@@ -120,18 +120,18 @@ input[type=checkbox]:checked:after  {
 /*首页中间*/
 .index_box{
   background: #fff;
-  padding: .4rem;
+  padding: .6rem;
   box-sizing: border-box;
 }
 .index_box a{
   background: #f9f9f9;
   border-radius: .2rem;
-  width: calc( 50%  - .2rem);
+  width: calc( 50%  - .3rem);
   float: left;
   text-align: center;
-  padding: 1.1rem 0;
+  padding: .9rem 0;
   box-sizing: border-box;
-  margin-bottom: .4rem;
+  margin-bottom: .6rem;
 }
 .index_box a:nth-child(2n){
   float: right;

@@ -1,0 +1,23 @@
+@import '../../../pub.scss';
+
+.homework_tip {
+    height: 2rem;
+    padding: 0 .6rem;
+    line-height: 2rem;
+    color: #cc0000;
+    font-size: .9rem;
+    background: #f5f6f6 url(assets/images/icon_tip.png) no-repeat .7rem;
+    background-size: 1rem;
+    padding-left: 2rem;
+}
+
+.mine_box {
+    padding: .8rem;
+    overflow-x: hidden;
+}
+
+.mine_box>img {
+    border-radius: .4rem;
+    margin: .4rem;
+    box-sizing: border-box;
+}

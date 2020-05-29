@@ -1,30 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UploadComponent } from '../upload/upload.component';
-import { MyWorkComponent } from '../my-work/my-work.component';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    selector: 'app-my-work',
+    templateUrl: './my-work.component.html',
+    styleUrls: ['./my-work.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class MyWorkComponent implements OnInit {
 
     constructor(private modalCtrl: ModalController) { }
 
     ngOnInit() { }
 
+    close() {
+        this.modalCtrl.dismiss();
+    }
+
     async toUpload() {
+        // this.modalCtrl.dismiss();
         const modal = await this.modalCtrl.create({
             component: UploadComponent,
-            componentProps: {
-            }
-        });
-        await modal.present();
-    }
-    async toMyWork() {
-        const modal = await this.modalCtrl.create({
-            component: MyWorkComponent,
             componentProps: {
             }
         });

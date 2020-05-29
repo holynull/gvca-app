@@ -1,0 +1,65 @@
+@import '../../../pub.scss';
+
+.btn-submit {
+    color: #fff;
+    font-size: .8rem;
+}
+
+.homework_box {
+    min-height: 8rem;
+    margin: .6rem;
+}
+
+.homework_box p {
+    color: #999;
+    font-size: .55rem;
+}
+
+.homework_btns {
+    border-bottom: 1px solid #ededed;
+    margin: .6rem;
+}
+
+.homework_btns i {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 1.1rem;
+    display: inline-block;
+}
+
+.homework_btns i.homework_img {
+    background: url(assets/images/icon_image.png);
+    background-size: contain;
+}
+
+.homework_btns i.homework_audio {
+    background: url(assets/images/icon_audio.png);
+    background-size: contain;
+}
+
+.homework_box li {
+    width: 3.5rem;
+    float: left;
+    position: relative;
+    margin: .5rem 1.1rem .3rem .2rem;
+}
+
+.homework_box li:nth-child(4n) {
+    margin-right: 0;
+}
+
+.homework_box li img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: .4rem;
+}
+
+.homework_box li a.homework_close {
+    background: url(assets/images/homework_close.png);
+    background-size: contain;
+    position: absolute;
+    width: .7rem;
+    height: .7rem;
+    top: -.2rem;
+    right: -.2rem;
+}

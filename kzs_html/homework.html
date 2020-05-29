@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/homework.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title">
+	作业
+</div>
+<div class="homework_list">
+	
+		<div class="list_item clearfix">
+			<p class="week">星期三</p>
+			<p class="date">5月20日</p>
+			<div>
+				<h3>《语文》书45页生词写两遍<a href="javascript:;" class="btn_do btn_todo">去完成</a></h3>
+				<p>1. 46页课文预习，大声朗读3遍<br>
+2. 45页生词听写两遍</p>				
+			</div>
+		</div>	
+		<div class="list_item clearfix">
+			<p class="week">星期二</p>
+			<p class="date">5月19日</p>
+			<div>
+				<h3> 生词写两遍<a href="javascript:;" class="btn_did">待批改</a></h3>
+				<p>1. 46页课文预习，大声朗读3遍<br>
+2. 45页生词听写两遍</p>				
+			</div>
+		</div>	
+		<div class="list_item clearfix">
+			<p class="week">星期一</p>
+			<p class="date">5月18日</p>
+			<div>
+				<h3> 生词写两遍<a href="javascript:;" class="btn_do btn_modify">去修正</a></h3>
+				<p>1. 46页课文预习，大声朗读3遍<br>
+2. 45页生词听写两遍</p>				
+			</div>
+		</div>	
+		<div class="list_item clearfix">
+			<p class="week">星期日</p>
+			<p class="date">5月17日</p>
+			<div>
+				<h3> 生词写两遍<a href="javascript:;" class="btn_did">A+</a></h3>
+				<p>1. 46页课文预习，大声朗读3遍<br>
+2. 45页生词听写两遍</p>				
+			</div>
+		</div>
+	
+</div>
+
+<div class="bot_menu">
+	<a href="index.html"><i class="bot_menu1"></i><p>首页</p></a>
+	<a href="course.html" ><i class="bot_menu2"></i><p>课程</p></a>
+	<a href="exam.html"><i class="bot_menu3"></i><p>考试</p></a>
+	<a href="javascript:;" class="active"><i class="bot_menu4"></i><p>作业</p></a>
+	<a href="own.html"><i class="bot_menu5"></i><p>我的</p></a>
+</div>
+
+<!-- 上传作业 -->
+<div class="homework_upload">
+	<div class="top_title homework_title relative">
+			<a href="javascript:;" class="btn_close"></a>
+			上传作业
+			<a href="javascript:;" class="homework_submit">提交</a>
+	</div>
+	<div class="homework_box">
+		<p>根据老师的要求来完成作业吧~</p>
+		<ul class="clearfix">
+			<li><img src="images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
+			<li><img src="images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
+			<li><img src="images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
+			<li><img src="images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
+			<li><img src="images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
+		</ul>
+	</div>
+	<div class="homework_btns">
+		<i class="homework_img"></i>
+		<i class="homework_audio"></i>
+	</div>
+
+	<div class="background_bg">
+		<div class="image_upload">
+			<div class="btn_photograph">拍照</div>
+			<div class="btn_album">从相册选择</div>
+			<div class="space"></div>
+			<div class="btn_cancel">取消</div>
+		</div>
+	</div>
+</div>
+
+<!-- 我完成的作业 -->
+<div class="homework_mine">
+	<div class="top_title homework_title relative">
+			<a href="javascript:;" class="btn_close"></a>
+			我完成的作业
+	</div>
+	<div class="homework_tip">
+		作业需修正，请重新提交！
+	</div>
+	<div class="mine_box">
+		<img src="images/homework_pic1.jpg" alt="">		
+		<img src="images/homework_pic1.jpg" alt="">		
+		<img src="images/homework_pic1.jpg" alt="">		
+	</div>
+	<div class="mine_bot">
+		<a href="javascript:;" class="btn_modify_mine">修改作业</a>
+	</div>	
+</div>
+
+<script>
+$(document).ready(function(){
+
+	var _height = $(window).height() - $(".bot_menu").height() - $(".top_title").height() -1;
+	$(".homework_list").css({"height":_height, "overflow-y": "auto" });
+
+	var _height1 = $(window).height() - $(".mine_bot").height() - $(".top_title").height() - $(".homework_tip").height();	
+	$(".mine_box").css({"height":_height1, "overflow-y": "auto" });
+
+
+	$(".btn_todo").click(function(){
+		$(".homework_upload").show();
+	});
+	$(".btn_modify").click(function(){
+		$(".homework_mine").show();
+	});
+	$(".btn_close").click(function(){
+		$(".homework_upload,.homework_mine").hide();
+	});
+
+	$(".homework_img").click(function(){
+		$(".background_bg").show();
+	});
+	$(".btn_cancel").click(function(){
+		$(".background_bg").hide();
+	});
+
+	$(".homework_close").click(function(){
+		$(this).parents("li").remove();
+	});
+
+	$(".btn_modify_mine").click(function(){
+		$(".homework_mine").hide();
+		$(".homework_upload").show();
+	});
+	
+});
+</script>
+</body>
+</html>

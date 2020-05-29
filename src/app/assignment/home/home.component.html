@@ -1,3 +1,46 @@
-<p>
-  home works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>作业</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="homework_list">
+
+        <div class="list_item clearfix">
+            <p class="week">星期三</p>
+            <p class="date">5月20日</p>
+            <div>
+                <h3>《语文》书45页生词写两遍<a (click)="toUpload()" class="btn_do btn_todo">去完成</a></h3>
+                <p>1. 46页课文预习，大声朗读3遍<br>
+                    2. 45页生词听写两遍</p>
+            </div>
+        </div>
+        <div class="list_item clearfix">
+            <p class="week">星期二</p>
+            <p class="date">5月19日</p>
+            <div>
+                <h3> 生词写两遍<a href="javascript:;" class="btn_did">待批改</a></h3>
+                <p>1. 46页课文预习，大声朗读3遍<br>
+                    2. 45页生词听写两遍</p>
+            </div>
+        </div>
+        <div class="list_item clearfix">
+            <p class="week">星期一</p>
+            <p class="date">5月18日</p>
+            <div>
+                <h3> 生词写两遍<a (click)="toMyWork()" class="btn_do btn_modify">去修正</a></h3>
+                <p>1. 46页课文预习，大声朗读3遍<br>
+                    2. 45页生词听写两遍</p>
+            </div>
+        </div>
+        <div class="list_item clearfix">
+            <p class="week">星期日</p>
+            <p class="date">5月17日</p>
+            <div>
+                <h3> 生词写两遍<a href="javascript:;" class="btn_did">A+</a></h3>
+                <p>1. 46页课文预习，大声朗读3遍<br>
+                    2. 45页生词听写两遍</p>
+            </div>
+        </div>
+    </div>
+</ion-content>

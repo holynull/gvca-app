@@ -151,3 +151,10 @@ input[type=checkbox]:checked:after {
         }
     }
 }
+
+.my-action-sheet {
+    .action-sheet-button {
+        font-size: 1rem;
+        color: #333;
+    }
+}

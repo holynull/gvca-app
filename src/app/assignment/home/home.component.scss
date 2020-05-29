@@ -1,0 +1,86 @@
+@import '../../../pub.scss';
+
+/*作业*/
+.homework_list:before {
+    content: "";
+    display: table;
+}
+
+.homework_list .list_item {
+    background: #fff;
+    padding: .2rem;
+}
+
+.homework_list .list_item div {
+    background: #f9f9f9;
+    border-radius: .2rem;
+    padding: .45rem;
+    box-sizing: border-box;
+    width: 100%;
+    float: none;
+    margin-top: .2rem;
+}
+
+.homework_list p.week {
+    color: #999;
+    font-size: .55rem;
+}
+
+.homework_list p.date {
+    color: #101010;
+    font-size: .8rem;
+}
+
+.homework_list .list_item h3 {
+    background: url(assets/images/icon_work.png) no-repeat 0 center;
+    background-size: 1rem;
+    color: #01204f;
+    font-size: .9rem;
+    height: 1.6rem;
+    line-height: 1.7rem;
+    overflow: hidden;
+    font-weight: bold;
+    padding-left: 1.3rem;
+    border-bottom: 1px solid #ededed;
+    margin-bottom: .4rem;
+}
+
+.homework_list .list_item a.btn_do {
+    background: #0d6db9;
+    color: #fff;
+    font-size: .6rem;
+    float: right;
+    border-radius: .45rem;
+    width: 3rem;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    text-align: center;
+    font-weight: normal;
+    margin-top: .4rem
+}
+
+.homework_list .list_item p {
+    color: #333;
+    font-size: .6rem;
+}
+
+.homework_list .list_item a.btn_did {
+    background: url(assets/images/icon_homework_arrow.png) no-repeat right;
+    background-size: 1rem;
+    color: #01204f;
+    font-size: .55rem;
+    float: right;
+    height: .9rem;
+    line-height: .9rem;
+    font-weight: normal;
+    margin-top: .4rem;
+    padding-right: .8rem;
+}
+
+.list_item {
+    background: #f9f9f9;
+    border-radius: .2rem;
+    padding: .45rem;
+    box-sizing: border-box;
+    margin: .6rem;
+}

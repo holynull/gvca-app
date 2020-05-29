@@ -1,0 +1,215 @@
+@charset "utf-8";
+/*作业*/
+.homework_list:before{
+  content:"";
+  display:table;
+}
+.homework_list .list_item{
+  background: #fff;
+  padding: .2rem;
+}
+.homework_list .list_item div{
+  background: #f9f9f9;
+  border-radius: .2rem;
+  padding: .45rem;
+  box-sizing: border-box;
+  width: 100%;
+  float: none;
+  margin-top: .2rem;
+}
+.homework_list p.week{
+  color: #999;
+  font-size: .55rem;
+}
+.homework_list p.date{
+  color: #101010;
+  font-size: .8rem;
+}
+.homework_list .list_item h3 {
+  background: url(../images/icon_work.png) no-repeat 0 center;
+  background-size: 1rem; 
+  color: #01204f;
+  font-size: .7rem;
+  height: 1.6rem;
+  line-height: 1.7rem;
+  overflow: hidden;
+  font-weight: bold;
+  padding-left: 1.3rem;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: .4rem;
+}
+.homework_list .list_item a.btn_do {
+  background: #0d6db9;
+  color: #fff;
+  font-size: .45rem;
+  float: right;    
+  border-radius: .45rem;
+  width: 2.2rem;
+  height: .9rem;
+  line-height: .9rem;
+  text-align: center;
+  font-weight: normal;
+  margin-top: .4rem
+}
+.homework_list .list_item p{
+  color: #333;
+  font-size: .6rem;
+}
+.homework_list .list_item a.btn_did {
+  background: url(../images/icon_homework_arrow.png) no-repeat right;
+  background-size: 1rem;
+  color: #01204f;
+  font-size: .55rem;
+  float: right;   
+  height: .9rem;
+  line-height: .9rem;
+  font-weight: normal;
+  margin-top: .4rem;
+  padding-right:.8rem;
+}
+
+/*上传作业*/
+.homework_upload,.homework_mine{
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.btn_close{
+  width: 1.2rem;
+  height: 1.2rem;
+  background: url(../images/icon_close.png) no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: .5rem;
+  left: .4rem;
+  z-index: 9;
+}
+.homework_submit{
+  color: #fff;
+  font-size: .6rem;
+  right: .8rem;
+  top:0;
+  position: absolute;
+}
+.homework_box{
+  min-height: 8rem;
+  margin: .6rem; 
+}
+.homework_box p{
+  color: #999;
+  font-size: .55rem;
+}
+.homework_btns{
+  border-bottom: 1px solid #ededed;
+  margin: .6rem; 
+}
+.homework_btns i{
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: .4rem;
+  display: inline-block;
+}
+.homework_btns i.homework_img{
+  background: url(../images/icon_image.png);
+  background-size: contain;
+}
+.homework_btns i.homework_audio{
+  background: url(../images/icon_audio.png);
+  background-size: contain;
+}
+
+.background_bg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  background: rgba(0,0,0,.2);
+  display: none;
+}
+.image_upload{
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.image_upload div{
+  height: 2.2rem;
+  line-height: 2.2rem;
+  color: #333;
+  font-size: .7rem;
+  text-align: center;
+  border-bottom: 1px solid #ebebeb;
+}
+.image_upload div.space{
+  height: .4rem;
+  background: #f4f2f2;
+}
+.homework_box li{
+  width: 3.5rem;
+  float: left;
+  position: relative;
+  margin: .5rem .8rem .3rem .2rem;
+}
+.homework_box li:nth-child(4n){
+  margin-right: 0;
+}
+.homework_box li img{
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: .4rem;
+}
+.homework_box li a.homework_close{
+  background: url(../images/homework_close.png);
+  background-size: contain;
+  position: absolute;
+  width: .7rem;
+  height: .7rem;
+  top: -.2rem;
+  right: -.2rem;
+}
+
+/*我完成的作业*/
+.homework_tip{ 
+  height: 2rem;
+  padding: 0 .6rem;
+  line-height: 2rem;
+  color: #cc0000;
+  font-size: .7rem;
+  background: #f5f6f6 url(../images/icon_tip.png) no-repeat .7rem;
+  background-size: 1rem;
+  padding-left: 2rem;
+}
+.mine_box{
+  padding: .8rem;
+  overflow-x: hidden;
+}
+.mine_box>img{
+  width: 17.15rem;
+  height: 10.3rem;
+  border-radius: .4rem;
+  margin: .4rem;
+  box-sizing: border-box;
+}
+.mine_bot{  
+  position: absolute;
+  bottom:0;
+  height: 3.2rem;
+  background:#fff;
+  width: 100%;
+}
+a.btn_modify_mine{
+  background:#01204f;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  width: 94%;
+  margin: .5rem auto .5rem;
+  border-radius: 1.1rem;
+  color: #fff;
+  font-size: .8rem;
+  display: block;
+  text-align: center;
+}
