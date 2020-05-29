@@ -1,0 +1,161 @@
+.own_top {
+    background: url(assets/images/own_topbg.png) no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 15.7rem;
+}
+
+.own_top:before {
+    content: "";
+    display: table;
+}
+
+.own_head {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+    margin: 2.2rem auto .6rem;
+    overflow: hidden;
+}
+
+.own_head img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.own_top h3 {
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.own_top h3 i.niname_edit {
+    background: url(assets/images/own_edit.png);
+    background-size: contain;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -.1rem 0 0 .3rem;
+}
+
+.own_count {
+    position: absolute;
+    width: 20rem;
+    height: 4.1rem;
+    background: #fff;
+    border-radius: .6rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+    left: 1.7rem;
+    margin-top: 1.2rem;
+}
+
+.own_count div {
+    float: left;
+    width: 25%;
+    text-align: center;
+    border-right: 1px solid #ebebeb;
+    box-sizing: border-box;
+}
+
+.own_count div:last-child {
+    border-right: none;
+}
+
+.own_count h2 {
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #cc0000;
+}
+
+.own_count p {
+    font-size: .45rem;
+    color: #999;
+}
+
+.own_list {
+    width: 20rem;
+    background: #fff;
+    border-radius: .6rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+    margin: 1.2rem auto .6rem;
+    padding: .2rem .6rem;
+    box-sizing: border-box;
+}
+
+.own_list li a {
+    border-bottom: 1px solid #ebebeb;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    color: #333;
+    font-size: .9rem;
+    display: block;
+}
+
+.own_list li:last-child a {
+    border-bottom: none;
+}
+
+.own_list li a i {
+    width: 1.6rem;
+    height: 1.6rem;
+    float: left;
+    margin-top: .4rem;
+    margin-right: .4rem;
+}
+
+.own_list li.own_lesson a i {
+    background: url(assets/images/own_lesson.png);
+    background-size: contain;
+}
+
+.own_list li.own_download a i {
+    background: url(assets/images/own_download.png);
+    background-size: contain;
+}
+
+.own_list li.own_score a i {
+    background: url(assets/images/own_score.png);
+    background-size: contain;
+}
+
+.own_list li.own_homework a i {
+    background: url(assets/images/own_homework.png);
+    background-size: contain;
+}
+
+.own_list li.own_clockin a i {
+    background: url(assets/images/own_clockin.png);
+    background-size: contain;
+}
+
+.own_list li.own_clear a i {
+    background: url(assets/images/own_clear.png);
+    background-size: contain;
+}
+
+.own_list li.own_setup a i {
+    background: url(assets/images/own_setup.png);
+    background-size: contain;
+}
+
+.own_list li a span {
+    float: right;
+    color: #999;
+    font-size: .7rem;
+    background: url(assets/images/own_arrow.png) no-repeat right;
+    background-size: 1rem;
+    padding-right: 1rem;
+}
+
+.own_list1 {
+    margin-top: .8rem;
+    margin-bottom: 3.4rem;
+}
+
+.own_list li.own_exit a {
+    text-align: center;
+}
