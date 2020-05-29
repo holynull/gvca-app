@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, GestureController } from '@ionic/angular';
 import { AnswerCardComponent } from '../answer-card/answer-card.component';
 import { interval } from 'rxjs';
+import { createGesture, Gesture } from '@ionic/core';
 
 @Component({
     selector: 'app-answer',
@@ -10,6 +11,9 @@ import { interval } from 'rxjs';
     styleUrls: ['./answer.component.scss'],
 })
 export class AnswerComponent implements OnInit {
+
+    @ViewChild('content', {})
+    ionContent: ElementRef;
 
     title: string;
     // 倒计时总秒数
@@ -19,7 +23,21 @@ export class AnswerComponent implements OnInit {
     m: string = '00'; // 倒计时分钟
     s: string = '00'; // 倒计时秒
 
-    constructor(private activeRoute: ActivatedRoute, private modalCtrl: ModalController) {
+    slideFromRight: Gesture;
+
+    constructor(private activeRoute: ActivatedRoute, private modalCtrl: ModalController, private gestureCtrl: GestureController) {
+        setTimeout(() => {
+            this.slideFromRight = this.gestureCtrl.create({
+                el: this.ionContent.nativeElement,
+                threshold: 15,
+                gestureName: 'slide-from-right',
+                direction: 'x',
+                onMove: ev => this.onGestureMove(ev),
+                onStart: ev => this.onGestureStart(ev),
+                onEnd: ev => this.onGestureEnd(ev),
+            }, true);
+            this.slideFromRight.enable();
+        }, 0);
         this.activeRoute.queryParams.subscribe(params => {
             if (params && params.title) {
                 this.title = params.title;
@@ -27,7 +45,40 @@ export class AnswerComponent implements OnInit {
         });
     }
 
+    onGestureMove(ev) {
+        // console.log(ev);
+    }
+    onGestureStart(ev) {
+        // console.log(ev);
+    }
+
+    allowTrigger(ev) {
+        let time = ev.currentTime - ev.startTime;
+        let span = Math.abs(ev.currentX - ev.startX);
+        return span > 20
+    }
+    onGestureEnd(ev) {
+        console.log(ev);
+        if (ev.startX > ev.currentX) {
+            if (this.allowTrigger(ev)) {
+                this.next();
+            }
+        } else {
+            if (this.allowTrigger(ev)) {
+                this.prev();
+            }
+        }
+    }
+
+    next() {
+        console.log('下一题');
+    };
+
+    prev() {
+        console.log('上一题');
+    }
     ngOnInit() {
+
         this.getTime(this.seconds);
         let timer = interval(1000).subscribe(n => {
             let left = this.seconds - n;
