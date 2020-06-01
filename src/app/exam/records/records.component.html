@@ -1,0 +1,91 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/tabs/mine']" routerDirection="back">
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>考试记录</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="deownload_menu exam_menu">
+        <a (click)="changeTab(1)" [ngClass]="{active: curTab===1}">在线练习<i></i></a>
+        <a (click)="changeTab(2)" [ngClass]="{active: curTab===2}">模拟题库<i></i></a>
+        <a (click)="changeTab(3)" [ngClass]="{active: curTab===3}">考试题库<i></i></a>
+    </div>
+    <div class="panels">
+        <div class="panel1" [hidden]="curTab!==1">
+            <div class="own_count exam_count">
+                <div>
+                    <h2>78<i>/200</i></h2>
+                    <p>已完成</p>
+                </div>
+                <div>
+                    <h2>89</h2>
+                    <p>平均分</p>
+                </div>
+                <div>
+                    <h2>66<i>%</i></h2>
+                    <p>正确率</p>
+                </div>
+            </div>
+            <div class="exam_sublist exam_test">
+                <ul>
+                    <li><i></i>知识一<a (click)="toReport('知识一')" class="done"></a></li>
+                    <li><i></i>知识二<a (click)="toReport('知识二')" class="done"></a></li>
+                    <li><i></i>知识点三<a (click)="toReport('知识点三')" class="done"></a></li>
+                    <li><i></i>练习一<a (click)="toReport('练习一')" class="done"></a></li>
+                    <li><i></i>练习二<a (click)="toReport('练习二')" class="done"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel2" [hidden]="curTab!==2">
+            <div class="own_count exam_count">
+                <div>
+                    <h2>5</h2>
+                    <p>已完成</p>
+                </div>
+                <div>
+                    <h2>89</h2>
+                    <p>平均分</p>
+                </div>
+                <div>
+                    <h2>66<i>%</i></h2>
+                    <p>正确率</p>
+                </div>
+            </div>
+            <div class="exam_sublist exam_test">
+                <ul>
+                    <li><i></i>2020测绘地理模拟试卷一<a (click)="toReport('2020测绘地理模拟试卷一')" class="done"></a><span>(<em>95</em>)</span></li>
+                    <li><i></i>2020测绘地理模拟试卷二<a (click)="toReport('2020测绘地理模拟试卷二')" class="done"></a><span>(<em>82</em>)</span></li>
+                    <li><i></i>2020测绘地理模拟试卷三<a (click)="toReport('2020测绘地理模拟试卷三')" class="done"></a><span>(<em>76</em>)</span></li>
+                    <li><i></i>2020测绘地理模拟试卷四<a (click)="toReport('2020测绘地理模拟试卷四')" class="done"></a><span>(<em>88</em>)</span></li>
+                    <li><i></i>2020测绘地理模拟试卷五<a (click)="toReport('2020测绘地理模拟试卷五')" class="done"></a><span>(<em>92</em>)</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel3" [hidden]="curTab!==3">
+            <div class="own_count exam_count">
+                <div>
+                    <h2>2</h2>
+                    <p>已完成</p>
+                </div>
+                <div>
+                    <h2>89</h2>
+                    <p>平均分</p>
+                </div>
+                <div>
+                    <h2>88<i>%</i></h2>
+                    <p>正确率</p>
+                </div>
+            </div>
+            <div class="exam_sublist exam_test">
+                <ul>
+                    <li><i></i>2020测绘地理考试试卷一<a (click)="toReport('2020测绘地理考试试卷一')" class="done"></a><span>(<em>92</em>)</span></li>
+                    <li><i></i>2020测绘地理考试试卷二<a (click)="toReport('2020测绘地理考试试卷二')" class="done"></a><span>(<em>87</em>)</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</ion-content>

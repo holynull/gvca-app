@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/own.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title down_title relative">
+	<a href="course.html" class="btn_back"></a>
+	听课记录
+	<a href="javascript:;" class="btn_edit">编辑</a>
+</div>
+<div class="deownload_menu">
+	<a href="javascript:;" class="active">离线记录<i></i></a>
+	<a href="javascript:;">在线记录<i></i></a>
+</div>
+<div class="panels">
+	<div class="panel1">
+		<div class="list_item down_item clearfix">
+			
+			<img src="images/course_pic.jpg" alt="">
+			<div class="lesson_mask">
+				<a href="javascript:;" class="icon_play"></a>
+			</div>
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<div>
+					<span class="fl"><i></i>已观看至：10分20秒</span>	
+				</div>
+			</div>
+		</div>
+		<div class="list_item down_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div class="lesson_mask">
+				<a href="javascript:;" class="icon_play"></a>
+			</div>
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<div>
+					<span class="fl"><i></i>已观看至：10分20秒</span>	
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="panel2">
+		<div class="list_item down_item clearfix">
+			
+			<img src="images/course_pic.jpg" alt="">
+			<div class="lesson_mask">
+				<a href="javascript:;" class="icon_play"></a>
+			</div>
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<div>
+					<span class="fl"><i></i>已观看至：10分20秒</span>	
+				</div>
+			</div>
+		</div>
+		<div class="list_item down_item clearfix">
+			<img src="images/course_pic.jpg" alt="">
+			<div class="lesson_mask">
+				<a href="javascript:;" class="icon_play"></a>
+			</div>
+			<div>
+				<h3>财务舞弊手段（一）—调整手段</h3>
+				<div>
+					<span class="fl"><i></i>已观看至：10分20秒</span>	
+				</div>
+			</div>
+		</div>	
+
+			
+	</div>	
+</div>
+
+<div class="bot_btns">
+	<a href="javascript:;">全选</a>
+	<em></em>
+	<a href="javascript:;" class="btn_del">删除<i>(1)</i></a>
+</div>
+
+
+<script>
+$(document).ready(function(){
+	$(".deownload_menu a").click(function(){
+		var index = $(this).index();
+		$(this).addClass("active").siblings("a").removeClass("active");
+		$(".panels>div").eq(index).show().siblings("div").hide();
+	});
+
+	var i=0;
+        $(".btn_edit").click(function() {
+            if(i==0){
+                $(this).text("取消");
+				$(".down_item").prepend("<input type='checkbox'>");
+				$(".list_item>div").css("width","8.3rem");
+				$(".bot_btns").show();
+				$(".phone_memory").css("bottom","2.5rem");
+                 i=1;
+            }else  {
+                $(this).text("编辑");
+				$(".down_item input").remove();
+				$(".list_item>div").css("width","9rem");
+				$(".bot_btns").hide();
+				$(".phone_memory").css("bottom","0");
+                 i=0;
+            }
+		});
+
+});
+</script>
+</body>
+</html>

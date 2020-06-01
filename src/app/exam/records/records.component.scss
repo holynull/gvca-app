@@ -1,0 +1,161 @@
+@import '../../../pub.scss';
+
+.own_count {
+    position: absolute;
+    width: 20rem;
+    height: 4.1rem;
+    background: #fff;
+    border-radius: .6rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+    left: 1.7rem;
+    margin-top: 1.2rem;
+}
+
+.own_count div {
+    float: left;
+    width: 25%;
+    text-align: center;
+    border-right: 1px solid #ebebeb;
+    box-sizing: border-box;
+}
+
+.own_count div:last-child {
+    border-right: none;
+}
+
+.own_count h2 {
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #cc0000;
+}
+
+.own_count p {
+    font-size: .45rem;
+    color: #999;
+}
+
+.deownload_menu {
+    height: 3rem;
+    line-height: 3rem;
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+}
+
+.deownload_menu a {
+    width: 50%;
+    float: left;
+    color: #101010;
+    font-size: .9rem;
+    position: relative;
+}
+
+.deownload_menu a.active {
+    color: #01204f;
+}
+
+.deownload_menu a.active i {
+    background: #0d6db9;
+    height: 2px;
+    width: 2rem;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 1rem);
+}
+
+.deownload_menu a span {
+    color: #cc0000;
+}
+
+.exam_menu a {
+    width: 33.33%;
+}
+
+.exam_count {
+    position: relative;
+}
+
+.exam_count div {
+    width: 33.33%;
+}
+
+.exam_count h2 i {
+    color: #999;
+    font-size: .6rem;
+}
+
+.exam_test span {
+    float: right;
+    font-size: .6rem;
+    color: #999;
+}
+
+.exam_test span em {
+    font-style: normal;
+    color: #cc0000;
+}
+
+.panels {
+    height: 26rem;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.panels>div.panel1 {
+    display: block;
+}
+
+.exam_sublist {
+    background: #fff;
+}
+
+.exam_sublist li {
+    border-bottom: 1px solid #e6e6e6;
+    height: 3rem;
+    line-height: 3rem;
+    color: #3f3f3f;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 88%;
+    font-size: .9rem;
+    box-sizing: border-box;
+    margin-left: 8%;
+}
+
+.exam_sublist li:last-child {
+    border-bottom: none;
+}
+
+.exam_sublist li i {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #0d6db9;
+    display: inline-block;
+    margin-right: .5rem;
+    margin-top: 1.4rem;
+    float: left;
+}
+
+.exam_sublist li span {
+    float: right;
+    font-size: .9rem;
+}
+
+.exam_sublist li a {
+    background: url(assets/images/icon_exam_ques.png);
+    background-size: contain;
+    width: 1.6rem;
+    height: 1.6rem;
+    float: right;
+    margin-left: .2rem;
+    margin-top: .7rem;
+}
+
+.exam_sublist li a.done {
+    background: url(assets/images/icon_exam_ans.png);
+    background-size: contain;
+}

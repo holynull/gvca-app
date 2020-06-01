@@ -1,0 +1,170 @@
+@import '../../../pub.scss';
+
+.btn-edit {
+    --color: #d0e4ff;
+    font-size: .9rem;
+}
+
+.deownload_menu {
+    height: 3rem;
+    line-height: 3rem;
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+}
+
+.deownload_menu a {
+    width: 50%;
+    float: left;
+    color: #101010;
+    font-size: .9rem;
+    position: relative;
+}
+
+.deownload_menu a.active {
+    color: #01204f;
+}
+
+.deownload_menu a.active i {
+    background: #0d6db9;
+    height: 2px;
+    width: 2rem;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 1rem);
+}
+
+.deownload_menu a span {
+    color: #cc0000;
+}
+
+.panels {
+    width: 100%;
+}
+
+.panels>div {
+    display: none;
+}
+
+.panels>div.panel1 {
+    display: block;
+}
+
+.list_item {
+    background: #f9f9f9;
+    border-radius: .2rem;
+    padding: .45rem;
+    box-sizing: border-box;
+    margin: .6rem;
+}
+
+.list_item img {
+    width: 9rem;
+    height: 5rem;
+    border-radius: .2rem;
+    float: left;
+    margin-right: .45rem;
+}
+
+.list_item>div {
+    float: right;
+    width: 10rem;
+}
+
+.list_item h3 {
+    color: #333;
+    font-size: .9rem;
+    height: 1.9rem;
+    overflow: hidden;
+    line-height: .9rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.list_item p {
+    color: #999;
+    font-size: .55rem;
+}
+
+.list_item a.btn_study {
+    color: #01204f;
+    font-size: .6rem;
+    padding: .1rem .6rem;
+    float: right;
+    border: 1px solid #01204f;
+    border-radius: 1rem;
+}
+
+.down_item {
+    background: #fff;
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 1rem;
+}
+
+.down_item span {
+    color: #999;
+    font-size: .55rem;
+}
+
+progress {
+    width: 100%;
+    height: 4px;
+    color: #f00;
+    background: #EFEFF4;
+    border-radius: 0.1rem;
+}
+
+/* 表示总长度背景色 */
+progress::-webkit-progress-bar {
+    background-color: #e6e6e6;
+    border-radius: 0.2rem;
+}
+
+/* 表示已完成进度背景色 */
+progress::-webkit-progress-value {
+    background: #0d6db9;
+    border-radius: 0.2rem;
+}
+
+.down_item input[type=checkbox] {
+    float: left;
+    margin-left: -.3rem;
+    margin-top: 1.7rem;
+    margin-right: .5rem;
+}
+
+.bot_btns {
+    background: #fff;
+    height: 3rem;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, .1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: none;
+}
+
+.bot_btns a {
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding: .75rem 0;
+    box-sizing: border-box;
+    color: #666;
+    font-size: .9rem;
+}
+
+.bot_btns a.btn_del {
+    color: #cc0000;
+    width: calc(50% - 1px);
+}
+
+.bot_btns a.btn_del i {
+    font-style: normal;
+}
+
+.bot_btns em {
+    height: 1.5rem;
+    border-left: 1px solid #ddd;
+    float: left;
+    margin: .6rem 0;
+}

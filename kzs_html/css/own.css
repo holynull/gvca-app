@@ -137,3 +137,57 @@
 .own_list li.own_exit a{
   text-align: center;
 }
+
+/*听课记录*/
+.down_item span{
+  margin-top: .4rem;
+}
+.down_item span i{
+  width: .75rem;
+  height: .75rem;
+  background: url(../images/icon_time.png);
+  background-size: contain;
+  float: left;
+  margin-top: .1rem;
+  margin-right: .2rem;
+}
+.list_item>div.lesson_mask{
+  width: 7rem;
+  height: 4rem;
+  border-radius: .2rem;
+  position: absolute;
+  background: rgba(0,0,0,.5);
+}
+.list_item>div.lesson_mask .icon_play{
+  width: 1.2rem;
+  height: 1.2rem;
+  position: absolute;
+  top: 1.4rem;
+  left: 2.9rem;
+  background: url(../images/icon_play.png);
+  background-size: contain;
+}
+
+/*考试记录*/
+.exam_menu a{
+  width: 33.33%;
+}
+.exam_count{
+  position: relative;
+}
+.exam_count div{
+  width: 33.33%;
+}
+.exam_count h2 i{
+  color: #999;
+  font-size: .6rem;
+}
+.exam_test span{
+  float: right;
+  font-size: .6rem;
+  color: #999;
+}
+.exam_test span em{
+  font-style: normal;
+  color: #cc0000;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/exam.css">
+	<link rel="stylesheet" href="css/own.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title down_title relative">
+	<a href="own.html" class="btn_back"></a>
+	考试记录
+</div>
+<div class="deownload_menu exam_menu">
+	<a href="javascript:;" class="active">在线练习<i></i></a>
+	<a href="javascript:;">模拟题库<i></i></a>
+	<a href="javascript:;">考试题库<i></i></a>
+</div>
+
+<div class="panels">
+	<div class="panel1">
+		<div class="own_count exam_count">			
+			<div>
+				<h2>78<i>/200</i></h2>
+				<p>已完成</p>
+			</div>
+			<div>
+				<h2>89</h2>
+				<p>平均分</p>
+			</div>
+			<div>
+				<h2>66<i>%</i></h2>
+				<p>正确率</p>
+			</div>
+		</div>
+		<div class="exam_sublist exam_test">
+			<ul>
+				<li><i></i>知识一<a href="exam_report.html" class="done"></a></li>
+				<li><i></i>知识二<a href="exam_report.html" class="done"></a></li>
+				<li><i></i>知识点三<a href="exam_report.html" class="done"></a></li>
+				<li><i></i>练习一<a href="exam_report.html" class="done"></a></li>
+				<li><i></i>练习二<a href="exam_report.html" class="done"></a></li>
+			</ul>
+		</div>		
+	</div>
+	<div class="panel2">
+		<div class="own_count exam_count">			
+			<div>
+				<h2>5</h2>
+				<p>已完成</p>
+			</div>
+			<div>
+				<h2>89</h2>
+				<p>平均分</p>
+			</div>
+			<div>
+				<h2>66<i>%</i></h2>
+				<p>正确率</p>
+			</div>
+		</div>
+		<div class="exam_sublist exam_test">
+			<ul>
+				<li><i></i>2020测绘地理模拟试卷一<a href="exam_report.html" class="done"></a><span>(<em>95</em>)</span></li>
+				<li><i></i>2020测绘地理模拟试卷二<a href="exam_report.html" class="done"></a><span>(<em>82</em>)</span></li>
+				<li><i></i>2020测绘地理模拟试卷三<a href="exam_report.html" class="done"></a><span>(<em>76</em>)</span></li>
+				<li><i></i>2020测绘地理模拟试卷四<a href="exam_report.html" class="done"></a><span>(<em>88</em>)</span></li>
+				<li><i></i>2020测绘地理模拟试卷五<a href="exam_report.html" class="done"></a><span>(<em>92</em>)</span></li>
+			</ul>
+		</div>				
+	</div>	
+	<div class="panel3">
+		<div class="own_count exam_count">			
+			<div>
+				<h2>2</h2>
+				<p>已完成</p>
+			</div>
+			<div>
+				<h2>89</h2>
+				<p>平均分</p>
+			</div>
+			<div>
+				<h2>88<i>%</i></h2>
+				<p>正确率</p>
+			</div>
+		</div>
+		<div class="exam_sublist exam_test">
+			<ul>
+				<li><i></i>2020测绘地理考试试卷一<a href="exam_report.html" class="done"></a><span>(<em>92</em>)</span></li>
+				<li><i></i>2020测绘地理考试试卷二<a href="exam_report.html" class="done"></a><span>(<em>87</em>)</span></li>
+		</div>				
+	</div>
+</div>
+
+
+
+
+<script>
+$(document).ready(function(){
+	$(".deownload_menu a").click(function(){
+		var index = $(this).index();
+		$(this).addClass("active").siblings("a").removeClass("active");
+		$(".panels>div").eq(index).show().siblings("div").hide();
+	});
+});	
+</script>
+</body>
+</html>

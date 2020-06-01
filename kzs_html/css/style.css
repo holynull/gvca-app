@@ -678,3 +678,59 @@ progress::-webkit-progress-value{
   bottom: 0;
   width: 100%;
 }
+
+
+/*登录*/
+.login_bg{
+  background: #fff;
+  padding: 0 2.5rem;
+}
+.login_logo{
+  width: 12rem;
+  height: 2.5rem;
+  margin: 6.2rem auto;
+}
+.login_logo img{
+  width: 100%;
+}
+.login_inputs div{
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin-bottom: .1rem;
+}
+.login_inputs div i{
+  width: 1.2rem;
+  height: 1.2rem;
+  float: left;
+  margin-top: .7rem;
+  margin-right: .4rem;
+}
+.login_inputs div.icon_user i{
+  background: url(../images/icon_user.png);
+  background-size: contain;
+}
+.login_inputs div.icon_password i{
+  background: url(../images/icon_password.png);
+  background-size: contain;
+}
+.login_inputs div input,.login_inputs div input:focus{
+  border: 0;
+  border-bottom: 1px solid #ebebeb;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  width: 11.75rem;
+  font-size: .7rem;
+  font-family: "PingFang SC";
+  outline: none;
+}
+.login_btn{
+  background: #01204f;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  border-radius: 1.1rem;
+  font-size: .8rem;
+  width: 13.5rem;
+  color: #fff;
+  text-align: center;
+  margin-top: 4rem;
+}

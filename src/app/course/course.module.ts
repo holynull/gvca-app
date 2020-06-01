@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { DetailComponent } from './detail/detail.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { DownloadComponent } from './download/download.component';
+import { RecordsComponent } from './records/records.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { DownloadComponent } from './download/download.component';
         DetailComponent,
         ConfirmComponent,
         DownloadComponent,
+        RecordsComponent,
     ],
     imports: [
         CommonModule,

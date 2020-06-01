@@ -6,6 +6,7 @@ import { ExamineComponent } from './examine/examine.component';
 import { AnswerComponent } from './answer/answer.component';
 import { ScoreComponent } from './score/score.component';
 import { ReportComponent } from './report/report.component';
+import { RecordsComponent } from './records/records.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'answer', component: AnswerComponent },
     { path: 'score', component: ScoreComponent },
     { path: 'report', component: ReportComponent },
+    { path: 'records', component: RecordsComponent },
 ];
 
 @NgModule({

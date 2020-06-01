@@ -12,6 +12,7 @@ export class ReportComponent implements OnInit {
 
     title: string;
 
+    url = "/exam/score";
     constructor(
         private activeRoute: ActivatedRoute,
         private modalCtrl: ModalController,
@@ -19,6 +20,9 @@ export class ReportComponent implements OnInit {
         this.activeRoute.queryParams.subscribe(params => {
             if (params && params.title) {
                 this.title = params.title;
+            }
+            if (params && params.url) {
+                this.url = params.url;
             }
         });
     }

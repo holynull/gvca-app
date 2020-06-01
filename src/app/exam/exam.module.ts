@@ -12,6 +12,7 @@ import { AnswerComponent } from './answer/answer.component';
 import { ScoreComponent } from './score/score.component';
 import { ReportComponent } from './report/report.component';
 import { AnswerCardComponent } from './answer-card/answer-card.component';
+import { RecordsComponent } from './records/records.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AnswerCardComponent } from './answer-card/answer-card.component';
         ScoreComponent,
         ReportComponent,
         AnswerCardComponent,
+        RecordsComponent,
     ],
     imports: [
         CommonModule,
