@@ -1,0 +1,70 @@
+@charset "utf-8";
+.notice_menu{
+  width: 100%;
+  overflow-x: auto;
+}
+.notice_menu div{
+  width: 24rem;
+}
+.notice_menu div a{
+  width: 4rem;
+}
+.notice_list li {
+  border-bottom: 1px solid #e6e6e6;
+  margin-left: 5%;
+  width: 90%;
+  padding: .4rem 0;
+}
+.notice_list li h3 {  
+  height: 1rem;
+  line-height: 1rem;
+  color: #3f3f3f;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: normal;
+  font-size: .7rem;
+  box-sizing: border-box;
+}
+.notice_list li h3 i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #0d6db9;
+  display: inline-block;
+  margin-right: .5rem;
+  margin-top: .35rem;
+  float: left;
+}
+.notice_list li p{ 
+  color: #999;
+  font-size: .55rem;
+  margin-left: 5%;
+}
+
+/*通知详情*/
+.notice_con{
+  padding: .6rem;
+}
+.notice_con h3{
+  color: #333;
+  font-size: .8rem;
+  text-align: center;
+  border-bottom: 1px solid #ebebeb;
+  padding: .2rem 0;
+}
+.notice_date{
+  color: #999;
+  font-size: .55rem;
+  text-align: center;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin-bottom: .2rem;
+}
+.notice_detail p{
+  color: #333;
+  font-size: .6rem;
+  text-indent: 2em;
+  line-height: 1rem;
+  margin-bottom: .4rem;
+}

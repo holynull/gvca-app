@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>甘肃建筑职业技术学院扩招生平台</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">	
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/exam.css">
+	<link rel="stylesheet" href="css/own.css">
+	<script type="text/javascript" src="js/jquery-3.5.0.min.js"></script>
+	<script>
+    (function (win,doc) {
+        function change(){
+            doc.documentElement.style.fontSize = 20*doc.documentElement.clientWidth/375+'px';
+        }
+        change();
+        win.addEventListener('resize',change,false);
+    })(window,document);
+</script>
+</head>
+<body>
+<div class="top_title own_title relative">
+	<a href="javascript:history.go(-1)" class="btn_back"></a>
+	考勤打卡
+	<a href="clockin_record.html" class="btn_record">考勤记录</a>
+</div>
+<div class="clockin_map">
+	<img src="images/map.jpg" alt="地图">
+</div>
+
+<div class="clockin_des">
+	<h3><i></i>2020-05-14<a href="javascript:;" class="btn_leave">请假</a></h3>
+	<p>规定考勤时间：00:00-23:59</p>
+	<p>岗位地址：甘肃省建筑职业技术学院</p>
+</div>
+<div class="clockin_des1">
+	<h3><i>8:40</i>签到</h3>
+	<p>签到时间：8:40</p>
+	<p>签到地址：甘肃省建筑职业技术学院</p>
+</div>
+
+<a href="javascript:;" class="btn_clockin">签到</a>
+
+
+<div class="dialog clockin_dialog">
+	<p><input type="radio" checked="checked" name="leave"> 事假</p>
+	<p><input type="radio" name="leave"> 病假</p>
+	<p><a href="javascript:;" class="btn_ok">确定</a></p>
+</div>
+<script>
+	$(document).ready(function(){
+		$(".btn_clockin").click(function(){
+			$(this).addClass("btn_clockined").text("已签到");
+			$(".clockin_des1").show();
+		});
+
+		$(".btn_leave").click(function(){
+			$(".clockin_dialog").show();
+		});
+
+		$(".btn_ok").click(function(){		
+			$(".exam_dialog").hide();
+		});
+		
+	});
+</script>
+</body>
+</html>
