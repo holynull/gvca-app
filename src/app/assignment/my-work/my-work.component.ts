@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { UploadComponent } from '../upload/upload.component';
 
@@ -9,7 +10,15 @@ import { UploadComponent } from '../upload/upload.component';
 })
 export class MyWorkComponent implements OnInit {
 
-    constructor(private modalCtrl: ModalController) { }
+    url: string;
+
+    constructor(private modalCtrl: ModalController, private activedRoute: ActivatedRoute) {
+        this.activedRoute.queryParams.subscribe(params => {
+            if (params && params.from && params.from === 'mine') {
+                this.url = '/tabs/mine';
+            }
+        });
+    }
 
     ngOnInit() { }
 

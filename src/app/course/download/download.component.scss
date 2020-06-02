@@ -42,10 +42,6 @@
     width: 100%;
 }
 
-.panels>div {
-    display: none;
-}
-
 .panels>div.panel1 {
     display: block;
 }
@@ -140,7 +136,6 @@ progress::-webkit-progress-value {
     position: fixed;
     bottom: 0;
     width: 100%;
-    display: none;
 }
 
 .bot_btns a {
@@ -167,4 +162,16 @@ progress::-webkit-progress-value {
     border-left: 1px solid #ddd;
     float: left;
     margin: .6rem 0;
+}
+
+.phone_memory {
+    background: #f1f1f1;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    color: #999;
+    font-size: .55rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

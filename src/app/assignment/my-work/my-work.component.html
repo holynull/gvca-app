@@ -1,22 +1,27 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button slot="start" (click)="close()">
-                <span class="btn_close"></span>
+            <ion-button *ngIf="url; else noUrl" [routerLink]="[url]" routerDirection="back">
+                <span class="btn_back"></span>
             </ion-button>
+            <ng-template #noUrl>
+                <ion-button slot="start" (click)="close()">
+                    <span class="btn_close"></span>
+                </ion-button>
+            </ng-template>
         </ion-buttons>
         <ion-title>我完成的作业</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <div class="homework_tip">
-		作业需修正，请重新提交！
+        作业需修正，请重新提交！
     </div>
-    <div class="mine_box" >
-		<img src="assets/images/homework_pic1.jpg" alt="">		
-		<img src="assets/images/homework_pic1.jpg" alt="">		
-		<img src="assets/images/homework_pic1.jpg" alt="">		
-	</div>
+    <div class="mine_box">
+        <img src="assets/images/homework_pic1.jpg" alt="">
+        <img src="assets/images/homework_pic1.jpg" alt="">
+        <img src="assets/images/homework_pic1.jpg" alt="">
+    </div>
 </ion-content>
 <ion-footer>
     <ion-toolbar>

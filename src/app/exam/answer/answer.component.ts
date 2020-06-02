@@ -15,6 +15,10 @@ export class AnswerComponent implements OnInit {
     @ViewChild('content', {})
     ionContent: ElementRef;
 
+    qIndex: number = 1;
+
+    qIndexT = true;
+
     title: string;
     // 倒计时总秒数
     seconds = 60 * 90;
@@ -71,11 +75,17 @@ export class AnswerComponent implements OnInit {
     }
 
     next() {
+        this.qIndex++;
+        this.qIndexT = !this.qIndexT;
         console.log('下一题');
     };
 
     prev() {
         console.log('上一题');
+        if (this.qIndex !== 1) {
+            this.qIndex--;
+            this.qIndexT = !this.qIndexT;
+        }
     }
     ngOnInit() {
 

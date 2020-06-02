@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button [routerLink]="['/tabs/course']" routerDirection="back">
+            <ion-button [routerLink]="['/tabs/mine']" routerDirection="back">
                 <span class="btn_back"></span>
             </ion-button>
         </ion-buttons>
@@ -13,11 +13,11 @@
 </ion-header>
 <ion-content>
     <div class="deownload_menu">
-        <a href="javascript:;" class="active">下载中 <span>(2)</span><i></i></a>
-        <a href="javascript:;">已下载<i></i></a>
+        <a (click)="changeTab(1)" [ngClass]="{active: curTab===1}">下载中 <span>(2)</span><i></i></a>
+        <a (click)="changeTab(2)" [ngClass]="{active: curTab===2}">已下载<i></i></a>
     </div>
     <div class="panels">
-        <div class="panel1">
+        <div class="panel1" [hidden]="curTab!==1">
             <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
 
                 <img src="assets/images/course_pic.jpg" alt="">
@@ -32,7 +32,7 @@
             </div>
             <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
                 <img src="assets/images/course_pic.jpg" alt="">
-                <div >
+                <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="22" max="100"></progress>
                     <div>
@@ -42,11 +42,11 @@
                 </div>
             </div>
         </div>
-        <div class="panel2">
-            <div class="list_item down_item clearfix"><input type="checkbox">
+        <div class="panel2" [hidden]="curTab!==2">
+            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
 
                 <img src="assets/images/course_pic.jpg" alt="">
-                <div style="width: 8.3rem;">
+                <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="22" max="100"></progress>
                     <div>
@@ -55,9 +55,9 @@
                     </div>
                 </div>
             </div>
-            <div class="list_item down_item clearfix"><input type="checkbox">
+            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
                 <img src="assets/images/course_pic.jpg" alt="">
-                <div style="width: 8.3rem;">
+                <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="22" max="100"></progress>
                     <div>
@@ -67,7 +67,7 @@
                 </div>
             </div>
 
-            <div class="phone_memory" style="bottom: 2.5rem;">
+            <div class="phone_memory" >
                 手机存储：总空间128G/剩余8.6G
             </div>
         </div>

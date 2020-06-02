@@ -13,62 +13,72 @@
 </ion-header>
 <ion-content>
     <div class="deownload_menu">
-        <a href="javascript:;" class="active">离线记录<i></i></a>
-        <a href="javascript:;">在线记录<i></i></a>
+        <a (click)="changeTab(1)" [ngClass]="{active: curTab===1}">离线记录<i></i></a>
+        <a (click)="changeTab(2)" [ngClass]="{active: curTab===2}">在线记录<i></i></a>
     </div>
     <div class="panels">
-        <div class="panel1">
-            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
-
-                <img src="assets/images/course_pic.jpg" alt="">
+        <div class="panel1" [hidden]="curTab!==1">
+            <div class="list_item down_item clearfix">
+                <div class="cb" [hidden]="!editable">
+                    <input type="checkbox" [hidden]="!editable">
+                </div>
+                <div class="lesson_mask">
+                    <img src="assets/images/course_pic.jpg" alt="">
+                    <a href="javascript:;" class="icon_play"></a>
+                </div>
                 <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="22" max="100"></progress>
                     <div>
-                        <span class="progress_speed fl">1.3M/s</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
+                        <span class="fl"><i></i>已观看至：10分20秒</span>
                     </div>
                 </div>
             </div>
-            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div >
+            <div class="list_item down_item clearfix">
+                <div class="cb" [hidden]="!editable">
+                    <input type="checkbox" [hidden]="!editable">
+                </div>
+                <div class="lesson_mask">
+                    <img src="assets/images/course_pic.jpg" alt="">
+                    <a href="javascript:;" class="icon_play"></a>
+                </div>
+                <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="22" max="100"></progress>
                     <div>
-                        <span class="progress_speed fl">已暂停</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
+                        <span class="fl"><i></i>已观看至：10分20秒</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="panel2">
-            <div class="list_item down_item clearfix"><input type="checkbox">
-
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div style="width: 8.3rem;">
+        <div class="panel2" [hidden]="curTab!==2">
+            <div class="list_item down_item clearfix">
+                <div class="cb" [hidden]="!editable">
+                    <input type="checkbox" [hidden]="!editable">
+                </div>
+                <div class="lesson_mask">
+                    <img src="assets/images/course_pic.jpg" alt="">
+                    <a href="javascript:;" class="icon_play"></a>
+                </div>
+                <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="22" max="100"></progress>
                     <div>
-                        <span class="progress_speed fl">1.3M/s</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
+                        <span class="fl"><i></i>已观看至：10分20秒</span>
                     </div>
                 </div>
             </div>
-            <div class="list_item down_item clearfix"><input type="checkbox">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div style="width: 8.3rem;">
+            <div class="list_item down_item clearfix">
+                <div class="cb" [hidden]="!editable">
+                    <input type="checkbox">
+                </div>
+                <div class="lesson_mask">
+                    <img src="assets/images/course_pic.jpg" alt="">
+                    <a href="javascript:;" class="icon_play"></a>
+                </div>
+                <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="22" max="100"></progress>
                     <div>
-                        <span class="progress_speed fl">已暂停</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
+                        <span class="fl"><i></i>已观看至：10分20秒</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="phone_memory" style="bottom: 2.5rem;">
-                手机存储：总空间128G/剩余8.6G
             </div>
         </div>
     </div>

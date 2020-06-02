@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-course-records',
-  templateUrl: './records.component.html',
-  styleUrls: ['./records.component.scss'],
+    selector: 'app-course-records',
+    templateUrl: './records.component.html',
+    styleUrls: ['./records.component.scss'],
 })
 export class RecordsComponent implements OnInit {
 
     editable: boolean = false;
 
+    curTab: number = 1;
     constructor() { }
 
     ngOnInit() { }
@@ -19,6 +20,10 @@ export class RecordsComponent implements OnInit {
         } else {
             this.editable = true;
         }
+    }
+
+    changeTab(tab) {
+        this.curTab = tab;
     }
 
 }

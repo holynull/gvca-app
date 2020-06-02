@@ -11,15 +11,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiInterceptor } from './services/api.interceptor';
+import { IonicStorageModule } from '@ionic/storage';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
     imports: [
         BrowserModule,
+        FormsModule,
         IonicModule.forRoot(),
         AppRoutingModule,
         HttpClientModule,
+        IonicStorageModule.forRoot(),
     ],
     providers: [
         StatusBar,

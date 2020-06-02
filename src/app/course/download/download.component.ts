@@ -9,6 +9,8 @@ export class DownloadComponent implements OnInit {
 
     editable: boolean = false;
 
+    curTab: number = 1;
+
     constructor() { }
 
     ngOnInit() { }
@@ -19,6 +21,10 @@ export class DownloadComponent implements OnInit {
         } else {
             this.editable = true;
         }
+    }
+
+    changeTab(tab) {
+        this.curTab = tab;
     }
 
 }

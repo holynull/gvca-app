@@ -16,17 +16,26 @@
 <ion-content>
     <div style="height: 100%;" #content>
         <div class="detail_tip exam_tip">
-            <span><i>第1题</i>|　共50题</span><em>(单选)</em>
+            <span><i>第{{qIndex}}题</i>|　共50题</span><em>(单选)</em>
             <span class="countdown">{{h}}:{{m}}:{{s}}</span>
         </div>
-        <div class="exam_subject">
+        <div class="exam_subject" [hidden]="qIndexT">
             下列选项中，正确的一项是（ ）
         </div>
-        <div class="exam_options clearfix">
+        <div class="exam_options clearfix" [hidden]="qIndexT">
             <a href="javascript:;" class="active"><i>A.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
             <a href="javascript:;"><i>B.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
             <a href="javascript:;"><i>C.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
             <a href="javascript:;"><i>D.</i>无人机应用技术专业韦加班为我院与北京韦加机</a>
+        </div>
+        <div class="exam_subject" [hidden]="!qIndexT">
+            关于Java编译，下面哪一个正确（ ）
+        </div>
+        <div class="exam_options clearfix" [hidden]="!qIndexT">
+            <a href="javascript:;" class="active"><i>A.</i>Java程序经编译后产生machine code</a>
+            <a href="javascript:;"><i>B.</i>Java程序经编译后会生产byte code</a>
+            <a href="javascript:;"><i>C.</i>Java程序经编译后会产生DLL</a>
+            <a href="javascript:;"><i>D.</i>以上都不正确</a>
         </div>
         <div class="exam_hand">下一题右滑</div>
     </div>

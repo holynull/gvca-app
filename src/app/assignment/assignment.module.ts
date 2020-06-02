@@ -5,11 +5,13 @@ import { AssignmentRoutingModule } from './assignment-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { MyWorkComponent } from './my-work/my-work.component';
 
 
 @NgModule({
     declarations: [
         HomeComponent,
+        MyWorkComponent,
     ],
     imports: [
         CommonModule,

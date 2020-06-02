@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="own_download">
-                <a href="javascript:;">
+                <a [routerLink]="['/course/download']">
                     <i></i>下载管理 <span>查看下载课程<em></em></span>
                 </a>
             </li>
@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li class="own_lesson">
-                <a href="javascript:;">
+                <a [routerLink]="['/assignment/my-work']" [queryParams]="{from:'mine'}">
                     <i></i>我的作业 <span>查看作业<em></em></span>
                 </a>
             </li>
@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li class="own_exit">
-                <a href="javascript:;">
+                <a (click)="logout()">
                     退出登录
                 </a>
             </li>
