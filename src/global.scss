@@ -26,21 +26,23 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 /* CSS Document */
-* {
-    margin: 0px;
-    padding: 0px;
-}
 
 body {
     font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
+    background: #ffffff;
+}
 
+ion-content {
+    --background: #ffffff;
+    --color: #000000;
 }
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 a:link,

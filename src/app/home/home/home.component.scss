@@ -4,7 +4,7 @@
     background: url(assets/images/icon_clockin.png) no-repeat;
     background-size: contain;
     position: absolute;
-    top: .8rem;
+    top: var(--ion-safe-area-top, 0);
     right: .5rem;
     z-index: 9;
 }
