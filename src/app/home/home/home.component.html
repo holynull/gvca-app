@@ -7,7 +7,7 @@
             <img src="assets/images/index_banner2.jpg" />
         </ion-slide>
     </ion-slides>
-    <i class="clockin"></i>
+    <i [routerLink]="['/attend']" class="clockin" [ngStyle]="{top: platform.is('cordova')&&platform.is('ios')?'var(--ion-safe-area-top, 0)':'.8rem'}"></i>
     <div class="index_msg">
         <i></i>
         <ion-slides #noticeSlides [options]="noticeOpts">

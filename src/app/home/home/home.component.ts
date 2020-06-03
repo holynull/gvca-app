@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, Platform } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -45,7 +45,8 @@ export class HomeComponent implements OnInit {
     noticeSlides: IonSlides;
 
     constructor(
-        private activeRoute: ActivatedRoute
+        private activeRoute: ActivatedRoute,
+        public platform: Platform,
     ) {
         this.activeRoute.queryParams.subscribe(param => {
             // if (this.bannerSlides) {
