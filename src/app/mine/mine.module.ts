@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MineRoutingModule } from './mine-routing.module';
 import { HomeComponent } from './home/home.component';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { HomeComponent } from './home/home.component';
     ],
     imports: [
         CommonModule,
-        MineRoutingModule
+        MineRoutingModule,
+        IonicModule,
     ]
 })
 export class MineModule { }
