@@ -134,7 +134,7 @@ progress::-webkit-progress-value {
     height: 3rem;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, .1);
     position: fixed;
-    bottom: 0;
+    bottom: var(--ion-safe-area-bottom, 0);
     width: 100%;
 }
 
@@ -172,6 +172,6 @@ progress::-webkit-progress-value {
     color: #999;
     font-size: .55rem;
     position: absolute;
-    bottom: 0;
+    bottom: var(--ion-safe-area-bottom, 0);
     width: 100%;
 }
