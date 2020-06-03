@@ -1,0 +1,169 @@
+@import '../../../pub.scss';
+
+.clockin_des,
+.clockin_des1 {
+    padding: .8rem .6rem;
+}
+
+.clockin_des h3,
+.clockin_des1 h3 {
+    font-size: .75rem;
+    color: #333;
+    margin-bottom: .2rem;
+}
+
+.clockin_des h3 i,
+.clockin_des1 h3 i {
+    width: 1.2rem;
+    height: 1.2rem;
+    float: left;
+    background: url(assets/images/clockin_icon.png);
+    background-size: contain;
+    margin-right: .3rem;
+}
+
+.clockin_des1 h3 i {
+    background: #0d6db9;
+    border-radius: 50%;
+    color: #fff;
+    font-size: .45rem;
+    text-align: center;
+    line-height: 1.2rem;
+}
+
+.clockin_calendar {
+    width: 100%;
+    height: 15.4rem;
+}
+
+.clockin_did h3 i.success,
+.clockin_undo h3 i.fail {
+    background: url(assets/images/clockin_success.png);
+    background-size: contain;
+    width: 1rem;
+    height: 1rem;
+}
+
+.clockin_undo h3 i.fail {
+    background: url(assets/images/clockin_fail.png);
+    background-size: contain;
+}
+
+.clockin_undo a.btn_exempt {
+    width: 3rem;
+}
+
+.clockin_require {
+    border-top: 1px dashed #ebebeb;
+    padding-top: .4rem;
+    margin-top: .4rem;
+}
+
+/*日历*/
+.clockin_calendar table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+table.ca1 {
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    color: #333;
+}
+
+.ca1 th,
+.ca1 td {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.clockin_calendar table caption {
+    font-size: .8rem;
+    padding-top: .5rem;
+}
+
+.ca1 caption[rel="prev"] {
+    float: left;
+    margin-left: 0.2em;
+}
+
+.ca1 caption[rel="next"] {
+    float: right;
+    margin-right: 0.1rem;
+}
+
+.cal caption a:link,
+.cal caption a:visited {
+    text-decoration: none;
+    color: #333;
+    padding: 0 1rem;
+}
+
+.cal thead th {
+    border-bottom: 1px solid #ebebeb;
+    font-size: .7rem;
+    height: 1.5rem;
+}
+
+.cal tbody {
+    color: #a4a4a4;
+}
+
+.cal tbody td {
+    text-align: center;
+}
+
+.cal tbody a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 0.3rem;
+    text-align: center;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin: .4rem auto;
+}
+
+.cal tbody a.clockined {
+    background: #0d6db9;
+    color: #fff;
+}
+
+.cal tbody a.unclockin {
+    background: #ffb64d;
+    color: #fff;
+}
+
+.clockin_des p,
+.clockin_des1 p {
+    color: #999;
+    font-size: .8rem;
+    padding-left: 1.5rem;
+    margin-bottom: .1rem;
+}
+
+.clockin_des a.btn_leave,
+.clockin_des1 a.btn_leave,
+.clockin_undo a.btn_exempt,
+.clockin_undo a.btn_exempted {
+    font-size: .7rem;
+    height: 1.5rem;
+    border-radius: .95rem;
+    border: 1px solid #0d6db9;
+    color: #0d6db9;
+    text-align: center;
+    line-height: 1.5rem;
+    float: right;
+    width: 4rem;
+}
+
+.clockin_undo a.btn_exempted {
+    border: 1px solid #ddd;
+    color: #aaa;
+}

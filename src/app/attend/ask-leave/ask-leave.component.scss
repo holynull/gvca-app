@@ -1,0 +1,56 @@
+.clockin_dialog {
+    height: 100%;
+    padding:1.5rem 0;
+}
+
+.clockin_dialog>p {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: .2rem;
+}
+
+.clockin_dialog a.btn_ok {
+    background: #01204f;
+    color: #fff;
+    font-size: 1rem;
+    padding: .2rem .7rem;
+    display: inline-block;
+    border-radius: 1rem;
+    // margin: .5rem .2rem;
+    height: 1.5rem;
+    line-height: 1.2rem;
+}
+
+input[type=radio] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 6px;
+    margin-right: 6px;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    outline: 0 !important;
+}
+
+input[type=radio]:after {
+    content: "";
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: .4rem;
+}
+
+input[type=radio]:checked:after {
+    background: #01204f url(assets/images/icon_check.png) no-repeat center center;
+    background-size: .6rem;
+    border: none;
+}
+
+.own_title a.btn_back {
+    top: .5rem;
+}

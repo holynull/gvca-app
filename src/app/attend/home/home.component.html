@@ -6,7 +6,24 @@
             </ion-button>
         </ion-buttons>
         <ion-title>考勤打卡</ion-title>
+        <ion-buttons slot="end">
+            <ion-button class="btn-records" [routerLink]="['/attend/records']">考勤记录</ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <div class="clockin_map">
+        <img src="assets/images/map.jpg" alt="地图">
+    </div>
+    <div class="clockin_des">
+        <h3><i></i>2020-05-14<a (click)="toAskForLeave()" class="btn_leave">请假</a></h3>
+        <p>规定考勤时间：00:00-23:59</p>
+        <p>岗位地址：甘肃省建筑职业技术学院</p>
+    </div>
+    <div class="clockin_des1" style="display: block;">
+        <h3><i>8:40</i>签到</h3>
+        <p>签到时间：8:40</p>
+        <p>签到地址：甘肃省建筑职业技术学院</p>
+    </div>
+    <a (click)="sign()" class="btn_clockin" [ngClass]="{btn_clockined: signed}">签到</a>
 </ion-content>
