@@ -1,0 +1,137 @@
+@import '../../../pub.scss';
+
+.deownload_menu {
+    height: 2.2rem;
+    line-height: 2.2rem;
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+}
+
+.deownload_menu a {
+    width: 50%;
+    float: left;
+    color: #101010;
+    font-size: .9rem;
+    position: relative;
+}
+
+.deownload_menu a.active {
+    color: #01204f;
+}
+
+.deownload_menu a.active i {
+    background: #0d6db9;
+    height: 2px;
+    width: 2rem;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 1rem);
+}
+
+.deownload_menu a span {
+    color: #cc0000;
+}
+
+.notice_menu {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.notice_menu div {
+    width: 24rem;
+}
+
+.notice_menu div a {
+    width: 4rem;
+}
+
+.notice_list li {
+    border-bottom: 1px solid #e6e6e6;
+    margin-left: 5%;
+    width: 90%;
+    padding: .4rem 0;
+}
+
+.notice_list li h3 {
+    height: 1rem;
+    line-height: 1rem;
+    color: #3f3f3f;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-size: .9rem;
+    box-sizing: border-box;
+}
+
+.notice_list li h3 i {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #0d6db9;
+    display: inline-block;
+    margin-right: .5rem;
+    margin-top: .35rem;
+    float: left;
+}
+
+.notice_list li p {
+    color: #999;
+    font-size: .55rem;
+    margin-left: 5%;
+}
+
+.panels {
+    height: 26rem;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.panels>div.panel1 {
+    display: block;
+}
+
+.list_item {
+    background: #f9f9f9;
+    border-radius: .2rem;
+    padding: .45rem;
+    box-sizing: border-box;
+    margin: .6rem;
+}
+
+.list_item img {
+    width: 7rem;
+    height: 4rem;
+    border-radius: .2rem;
+    float: left;
+    margin-right: .45rem;
+}
+
+.list_item>div {
+    float: right;
+    width: 9rem;
+}
+
+.list_item h3 {
+    color: #333;
+    font-size: .7rem;
+    height: 1.9rem;
+    overflow: hidden;
+    line-height: .9rem;
+    font-weight: normal;
+}
+
+.list_item p {
+    color: #999;
+    font-size: .55rem;
+}
+
+.list_item a.btn_study {
+    color: #01204f;
+    font-size: .6rem;
+    padding: .1rem .6rem;
+    float: right;
+    border: 1px solid #01204f;
+    border-radius: 1rem;
+}
