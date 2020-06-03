@@ -14,6 +14,7 @@
 }
 
 .login_inputs div {
+    display: flex;
     height: 3rem;
     line-height: 3rem;
     margin-bottom: 1rem;
@@ -54,8 +55,36 @@
     line-height: 2.2rem;
     border-radius: 1.1rem;
     font-size: 1.1rem;
-    width: 100%;
     color: #fff;
     text-align: center;
-    margin-top: 4rem;
+    margin: 4rem 0 0 0;
+    width: 100%;
+}
+
+
+
+ion-item {
+    --padding-start: 0;
+}
+
+.label-fixed {
+    width: 1.2rem;
+    min-width: 1.2rem;
+    flex: 0 1 auto;
+}
+
+.icon-username {
+    background: url(assets/images/icon_user.png);
+    background-size: contain;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+}
+
+.icon-pwd {
+    background: url(assets/images/icon_password.png);
+    background-size: contain;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
 }

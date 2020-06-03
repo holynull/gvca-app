@@ -11,9 +11,9 @@ import { AuthService } from 'app/services/auth.service';
 export class LoginComponent implements OnInit {
 
 
-    userName: string;
+    userName: string = '';
 
-    pwd: string;
+    pwd: string = '';
 
     url: string;
 

@@ -4,8 +4,14 @@
             <img src="assets/images/login_logo.png" alt="logo">
         </div>
         <div class="login_inputs">
-            <div class="icon_user"><i></i><input [(ngModel)]="userName" type="text" placeholder="用户名"></div>
-            <div class="icon_password"><i></i><input [(ngModel)]="pwd" type="password" placeholder="密码"></div>
+            <ion-item lines="inset">
+                <ion-label position="fixed"><span class="icon-username"></span></ion-label>
+                <ion-input [(ngModel)]="userName" type="text" placeholder="用户名"></ion-input>
+            </ion-item>
+            <ion-item style="margin-top: 1.5rem;">
+                <ion-label position="fixed"><span class="icon-pwd"></span></ion-label>
+                <ion-input [(ngModel)]="pwd" type="password" placeholder="密码"></ion-input>
+            </ion-item>
         </div>
         <div class="login_btn" (click)="login()">登录</div>
     </div>
