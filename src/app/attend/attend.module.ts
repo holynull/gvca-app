@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AskLeaveComponent } from './ask-leave/ask-leave.component';
 import { RecordsComponent } from './records/records.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { RecordsComponent } from './records/records.component';
         HomeComponent,
         AskLeaveComponent,
         RecordsComponent,
+        CalendarComponent,
     ],
     imports: [
         CommonModule,
