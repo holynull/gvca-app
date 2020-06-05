@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 ionic cordova resources ios
-ionic cordova build ios
+ionic cordova build ios --source-map
 
