@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-rm ./Ploutoz.apk
+rm ./GVCA.apk
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./keystore/my-release-key.keystore ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk alias_name
 
