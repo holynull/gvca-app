@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
     //在进入页面的时候触发
     ionViewDidEnter() {
         const map = this.map = new BMap.Map('map_container');  //创建地图实例
+        let myIcon = new BMap.Icon("assets/images/marker.png", new BMap.Size(27.2, 42.7));
         if (this.platform.is('cordova')) {
             this.geolocation.getCurrentPosition().catch(async error => {
                 let msg = JSON.stringify(error);
@@ -55,8 +56,8 @@ export class HomeComponent implements OnInit {
                             let rPoint = res.points[0];
                             let point = new BMap.Point(rPoint.lng, rPoint.lat);
                             // 初始化地图，设置中心点坐标和地图级别
-                            map.centerAndZoom(point, 19);
-                            var marker = new BMap.Marker(point);        // 创建标注   
+                            map.centerAndZoom(point, 17);
+                            var marker = new BMap.Marker(point, { icon: myIcon });        // 创建标注   
                             map.addOverlay(marker);
                         }
 
@@ -66,8 +67,8 @@ export class HomeComponent implements OnInit {
         } else {
             const point = new BMap.Point(116.404, 39.915);
             // 初始化地图，设置中心点坐标和地图级别
-            map.centerAndZoom(point, 15);
-            var marker = new BMap.Marker(point);        // 创建标注   
+            map.centerAndZoom(point, 17);
+            var marker = new BMap.Marker(point, { icon: myIcon });        // 创建标注   
             map.addOverlay(marker);
 
         }
