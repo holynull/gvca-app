@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { GestureController, Gesture } from '@ionic/angular';
 
 @Component({
     selector: 'app-calendar',
@@ -12,12 +13,44 @@ export class CalendarComponent implements OnInit {
 
     calendar: Array<Date> = new Array();
 
-    constructor() { }
+    slideFromRight: Gesture;
+
+    @ViewChild('calendarDiv', {})
+    calendarDiv: ElementRef;
+
+    constructor(private gestureCtrl: GestureController) {
+        setTimeout(() => {
+            this.slideFromRight = this.gestureCtrl.create({
+                el: this.calendarDiv.nativeElement,
+                threshold: 15,
+                gestureName: 'slide-from-right',
+                direction: 'x',
+                onEnd: ev => this.onGestureEnd(ev),
+            }, true);
+            this.slideFromRight.enable();
+        }, 0);
+    }
 
     ngOnInit() {
         this.genrateCalendar();
     }
-
+    allowTrigger(ev) {
+        let time = ev.currentTime - ev.startTime;
+        let span = Math.abs(ev.currentX - ev.startX);
+        return span > 20
+    }
+    onGestureEnd(ev) {
+        console.log(ev);
+        if (ev.startX > ev.currentX) {
+            if (this.allowTrigger(ev)) {
+                this.nextMonth();
+            }
+        } else {
+            if (this.allowTrigger(ev)) {
+                this.prevMonth();
+            }
+        }
+    }
     getCurYear(): string {
         return String(this.curDate.getFullYear());
     }

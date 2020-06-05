@@ -15,7 +15,7 @@
         <div class="item"><span>五</span></div>
         <div class="item"><span>六</span></div>
     </div>
-    <div class="cal">
+    <div class="cal" #calendarDiv>
         <div class="day" *ngFor="let item of calendar"><span
                 [ngClass]="{'nm': item.getMonth()!==curDate.getMonth(),'signed': item.getMonth()===curDate.getMonth(),'unsigned':item.getMonth()===curDate.getMonth()&&item.getDate()%3===1}">{{item.getDate()}}</span>
         </div>
