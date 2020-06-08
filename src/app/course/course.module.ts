@@ -9,6 +9,7 @@ import { DetailComponent } from './detail/detail.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { DownloadComponent } from './download/download.component';
 import { RecordsComponent } from './records/records.component';
+import { VgSupportsModule } from 'app/vg-supports.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { RecordsComponent } from './records/records.component';
         CourseRoutingModule,
         IonicModule,
         FormsModule,
+        VgSupportsModule,
     ],
     entryComponents: [
         ConfirmComponent,

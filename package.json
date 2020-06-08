@@ -34,6 +34,7 @@
     "es6-promise-plugin": "^4.2.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
+    "videogular2": "^7.0.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -43,6 +44,7 @@
     "@angular/compiler-cli": "~9.1.6",
     "@angular/language-service": "~9.1.6",
     "@ionic/angular-toolkit": "^2.1.1",
+    "@types/core-js": "^2.5.3",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

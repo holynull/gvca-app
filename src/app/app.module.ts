@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { ApiInterceptor } from './services/api.interceptor';
 import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule } from '@angular/forms';
+import { VgSupportsModule } from './vg-supports.module';
 
 @NgModule({
     declarations: [AppComponent],

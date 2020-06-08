@@ -1,14 +1,33 @@
 @import '../../../pub.scss';
 
+.video-container {
+    width: 100%;
+    height: 30%;
+}
+
+.video-control-btn {
+    width: 6%;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.video-control-voice {
+    width: 15%;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.video-progress {
+    width: 40%
+}
+
 /*课程详情*/
 .course_video {
+    display: block;
+    background: #ffffff;
+    width: 100%;
     position: sticky;
     top: 0;
-    background: #ffffff;
-
-    img {
-        width: 100%;
-    }
 }
 
 .detail_sub_menu {
