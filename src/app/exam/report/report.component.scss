@@ -13,13 +13,13 @@ i.answer-card {
 }
 
 .exam_tip span i {
-    font-size: .7rem;
+    font-size: .9rem;
     margin-right: .6rem;
 }
 
 .exam_tip em {
     color: #01204f;
-    font-size: .55rem;
+    font-size: .65rem;
     font-style: normal;
     margin-left: .6rem;
 }
@@ -33,7 +33,7 @@ i.answer-card {
 
 .detail_tip span {
     color: #4f4f4f;
-    font-size: .55rem;
+    font-size: .65rem;
 }
 
 .detail_tip span i {
@@ -74,8 +74,8 @@ i.answer-card {
 }
 
 .exam_options a.right em {
-    width: .7rem;
-    height: .7rem;
+    width: .8rem;
+    height: .8rem;
     background: url(assets/images/icon_exam_right.png);
     background-size: contain;
     float: right;
@@ -88,8 +88,8 @@ i.answer-card {
 }
 
 .exam_options a.wrong em {
-    width: .7rem;
-    height: .7rem;
+    width: .8rem;
+    height: .8rem;
     background: url(assets/images/icon_exam_wrong.png);
     background-size: contain;
     float: right;
@@ -104,7 +104,7 @@ i.answer-card {
 .exam_report_c h3 {
     color: #333;
     font-size: .9rem;
-    font-weight: normal;
+    font-weight: bold;
     margin-bottom: .5rem;
 }
 
@@ -126,6 +126,6 @@ i.answer-card {
 
 .exam_report_c p {
     color: #3f3f3f;
-    font-size: .7rem;
+    font-size: .8rem;
     line-height: 170%;
 }

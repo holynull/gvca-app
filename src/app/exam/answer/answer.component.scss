@@ -13,13 +13,13 @@ i.answer-card {
 }
 
 .exam_tip span i {
-    font-size: .7rem;
+    font-size: .9rem;
     margin-right: .6rem;
 }
 
 .exam_tip em {
     color: #01204f;
-    font-size: .55rem;
+    font-size: .65rem;
     font-style: normal;
     margin-left: .6rem;
 }
@@ -27,6 +27,7 @@ i.answer-card {
 .exam_tip span.countdown {
     float: right;
     width: 4rem;
+    text-align:right;
 }
 
 .detail_tip {
@@ -38,11 +39,12 @@ i.answer-card {
 
 .detail_tip span {
     color: #4f4f4f;
-    font-size: .55rem;
+    font-size: .65rem;
 }
 
 .detail_tip span i {
     color: #cc0000;
+    font-size: .9rem;
 }
 
 .exam_subject {
@@ -59,7 +61,7 @@ i.answer-card {
     color: #333;
     border: 1px solid #ededed;
     padding: .6rem;
-    font-size: .8rem;
+    font-size: .9rem;
     width: 100%;
     box-sizing: border-box;
     float: left;

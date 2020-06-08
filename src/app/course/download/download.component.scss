@@ -6,8 +6,8 @@
 }
 
 .deownload_menu {
-    height: 3rem;
-    line-height: 3rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
     border-bottom: 1px solid #efefef;
     text-align: center;
 }
@@ -16,7 +16,7 @@
     width: 50%;
     float: left;
     color: #101010;
-    font-size: .9rem;
+    font-size: 1rem;
     position: relative;
 }
 
@@ -63,8 +63,9 @@
 }
 
 .list_item>div {
-    float: right;
-    width: 10rem;
+    float: left;
+    width: 9.2rem;
+    margin-left: .4rem;
 }
 
 .list_item h3 {

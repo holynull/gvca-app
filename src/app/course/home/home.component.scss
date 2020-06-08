@@ -14,7 +14,7 @@
     width: 33.33%;
     float: left;
     color: #101010;
-    font-size: .9rem;
+    font-size: 1rem;
     position: relative;
 }
 
@@ -40,7 +40,7 @@
 .list_item {
     background: #f9f9f9;
     border-radius: .2rem;
-    padding: .45rem;
+    padding: .6rem;
     box-sizing: border-box;
     margin: .6rem;
 }
@@ -50,12 +50,12 @@
     height: 5rem;
     border-radius: .2rem;
     float: left;
-    margin-right: .45rem;
+    margin-right: .6rem;
 }
 
 .list_item>div {
-    float: right;
-    width: 11rem;
+    float: left;
+    width: 10rem;
 }
 
 .list_item h3 {
@@ -65,11 +65,13 @@
     overflow: hidden;
     line-height: 1.1rem;
     font-weight: normal;
+    margin: 0;
 }
 
 .list_item p {
     color: #999;
-    font-size: .55rem;
+    font-size: .6rem;
+    margin: .3rem 0 0 0;
 }
 
 .list_item a.btn_study {
@@ -85,11 +87,14 @@
 .xx_choose {
     padding: 0 .6rem;
 }
+.xx_choose ul{
+    margin:0;
+}
 
 .xx_choose li {
     border-bottom: 1px solid #ededed;
-    height: 2.1rem;
-    line-height: 2rem;
+    height: 2.8rem;
+    line-height: 2.6rem;
 }
 
 .xx_choose li label {
@@ -99,7 +104,7 @@
 
 .tip_txt {
     color: #999;
-    font-size: .55rem;
+    font-size: .6rem;
     text-align: center;
     margin-top: 1rem;
 }
@@ -108,11 +113,11 @@
     background: #01204f;
     color: #fff;
     width: 90%;
-    height: 2.2rem;
-    line-height: 2.2rem;
-    font-size: .85rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    font-size: 1rem;
     display: block;
-    border-radius: 1.1rem;
+    border-radius: 2rem;
     text-align: center;
     margin: .6rem auto;
 }
