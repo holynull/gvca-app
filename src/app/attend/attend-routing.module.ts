@@ -6,8 +6,8 @@ import { RecordsComponent } from './records/records.component';
 
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'records', component: RecordsComponent },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'records', component: RecordsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
