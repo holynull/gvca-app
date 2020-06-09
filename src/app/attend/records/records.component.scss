@@ -7,9 +7,10 @@
 
 .clockin_des h3,
 .clockin_des1 h3 {
-    font-size: .75rem;
+    font-size: .8rem;
     color: #333;
     margin-bottom: .2rem;
+    margin-top: .4rem;
 }
 
 .clockin_des h3 i,
@@ -60,19 +61,20 @@
     font-size: .8rem;
     padding-left: 1.5rem;
     margin-bottom: .1rem;
+    margin-top: .3rem;
 }
 
 .clockin_des a.btn_leave,
 .clockin_des1 a.btn_leave,
 .clockin_undo a.btn_exempt,
 .clockin_undo a.btn_exempted {
-    font-size: .7rem;
+    font-size: .6rem;
     height: 1.5rem;
-    border-radius: .95rem;
+    border-radius: 1rem;
     border: 1px solid #0d6db9;
     color: #0d6db9;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.4rem;
     float: right;
     width: 4rem;
 }

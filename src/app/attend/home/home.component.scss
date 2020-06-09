@@ -16,20 +16,25 @@
 
 .clockin_des h3,
 .clockin_des1 h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #333;
     margin-bottom: .2rem;
-    line-height: 2.5rem;
+    line-height: 2rem;
+    margin-top: .4rem;
+}
+.clockin_des1 h3 {
+    border-top: 1px dashed #ebebeb;
+    padding-top: 1rem;
 }
 
 .clockin_des h3 i,
 .clockin_des1 h3 i {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     float: left;
     background: url(assets/images/clockin_icon.png);
     background-size: contain;
-    margin-right: .3rem;
+    margin-right: .5rem;
 }
 
 .clockin_des1 h3 i {
@@ -38,7 +43,7 @@
     color: #fff;
     font-size: .6rem;
     text-align: center;
-    line-height: 2.5rem;
+    line-height: 2rem;
 }
 
 .clockin_des a.btn_leave,
@@ -51,9 +56,10 @@
     border: 1px solid #0d6db9;
     color: #0d6db9;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.4rem;
     float: right;
     width: 2.4rem;
+    margin-top: .3rem;
 }
 
 .clockin_undo a.btn_exempted {
@@ -67,6 +73,7 @@
     font-size: .8rem;
     padding-left: 3rem;
     margin-bottom: .1rem;
+    margin-top: .2rem;
 }
 
 a.btn_clockin,

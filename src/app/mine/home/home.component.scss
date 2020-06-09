@@ -53,8 +53,7 @@
 .own_count div {
     float: left;
     width: 25%;
-    text-align: center;
-    border-right: 1px solid #ebebeb;
+    text-align: center;   
     box-sizing: border-box;
 }
 
@@ -63,15 +62,17 @@
 }
 
 .own_count h2 {
-    margin-top: .5rem;
+    margin-top: 0.7rem;
     font-size: 1.2rem;
     font-weight: bold;
     color: #cc0000;
+    margin-bottom: .2rem;
 }
 
 .own_count p {
-    font-size: .45rem;
+    font-size: .6rem;
     color: #999;
+    margin-top: 0;
 }
 
 .own_list {
@@ -79,7 +80,7 @@
     background: #fff;
     border-radius: .6rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
-    margin: 1.2rem auto .6rem;
+    margin: .2rem auto 0.6rem;
     padding: .2rem .6rem;
     box-sizing: border-box;
 }

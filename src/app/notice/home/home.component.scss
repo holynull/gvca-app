@@ -1,8 +1,8 @@
 @import '../../../pub.scss';
 
 .deownload_menu {
-    height: 2.2rem;
-    line-height: 2.2rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
     border-bottom: 1px solid #efefef;
     text-align: center;
 }
@@ -11,7 +11,7 @@
     width: 50%;
     float: left;
     color: #101010;
-    font-size: .9rem;
+    font-size: 1rem;
     position: relative;
 }
 
@@ -44,6 +44,11 @@
 
 .notice_menu div a {
     width: 4rem;
+    margin: 0 .5rem;
+}
+
+.notice_list{
+    margin: .3rem 0;
 }
 
 .notice_list li {
@@ -63,6 +68,7 @@
     word-wrap: normal;
     font-size: .9rem;
     box-sizing: border-box;
+    margin:0;
 }
 
 .notice_list li h3 i {
@@ -78,8 +84,8 @@
 
 .notice_list li p {
     color: #999;
-    font-size: .55rem;
-    margin-left: 5%;
+    font-size: .6rem;
+    margin: 0 0 0 4%;
 }
 
 .panels {
