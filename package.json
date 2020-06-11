@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
     "@ionic-native/core": "^5.0.7",
+    "@ionic-native/file": "^5.26.0",
     "@ionic-native/geolocation": "^5.26.0",
     "@ionic-native/screen-orientation": "^5.26.0",
     "@ionic-native/splash-screen": "^5.0.0",
@@ -28,6 +29,7 @@
     "@ionic/storage": "^2.2.0",
     "cordova-android": "8.1.0",
     "cordova-ios": "5.1.1",
+    "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-screen-orientation": "^3.0.2",
     "cordova-sqlite-storage": "^5.0.0",
@@ -78,11 +80,12 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-screen-orientation": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

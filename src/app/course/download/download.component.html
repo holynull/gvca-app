@@ -13,68 +13,53 @@
 </ion-header>
 <ion-content>
     <div class="deownload_menu">
-        <a (click)="changeTab(1)" [ngClass]="{active: curTab===1}">下载中 <span>(2)</span><i></i></a>
+        <a (click)="changeTab(1)" [ngClass]="{active: curTab===1}">下载中 <span
+                *ngIf="(courseDownloadSvr.tasks | downloadTasks:[0,2]).length>0 ">({{(courseDownloadSvr.tasks | downloadTasks:[0,2]).length}})</span><i></i></a>
         <a (click)="changeTab(2)" [ngClass]="{active: curTab===2}">已下载<i></i></a>
     </div>
     <div class="panels">
         <div class="panel1" [hidden]="curTab!==1">
-            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
+            <div class="list_item down_item clearfix"
+                *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[0,2] ">
+                <input type="checkbox" [hidden]="!editable" value="{{item.taskId}}" [(ngModel)]="item.checked">
 
                 <img src="assets/images/course_pic.jpg" alt="">
                 <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="22" max="100"></progress>
                     <div>
-                        <span class="progress_speed fl">1.3M/s</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
-                    </div>
-                </div>
-            </div>
-            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="22" max="100"></progress>
-                    <div>
-                        <span class="progress_speed fl">已暂停</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
+                        <span class="progress_speed fl">{{item.speedToString()}}/s</span>
+                        <span class="progress_memory fr">{{item.loadedToString()}}/{{item.totalToString()}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel2" [hidden]="curTab!==2">
-            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
+            <div class="list_item down_item clearfix" *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[1] "
+                [routerLink]="['/course/detail']" [queryParams]="{taskId:item.taskId}">
+                <input type="checkbox" [hidden]="!editable" value="{{item.taskId}}" [(ngModel)]="item.checked">
 
                 <img src="assets/images/course_pic.jpg" alt="">
                 <div>
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="22" max="100"></progress>
                     <div>
-                        <span class="progress_speed fl">1.3M/s</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
-                    </div>
-                </div>
-            </div>
-            <div class="list_item down_item clearfix"><input type="checkbox" [hidden]="!editable">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="22" max="100"></progress>
-                    <div>
-                        <span class="progress_speed fl">已暂停</span>
-                        <span class="progress_memory fr">15.8M/128.6M</span>
+                        <span class="progress_speed fl">{{item.speedToString()}}/s</span>
+                        <span class="progress_memory fr">{{item.loadedToString()}}/{{item.totalToString()}}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="phone_memory" >
-                手机存储：总空间128G/剩余8.6G
+            <div class="phone_memory">
+                <!-- TODO: 可能取不到总空间/ -->
+                手机存储：剩余&nbsp;&nbsp;&nbsp;{{freeSpace}}
             </div>
         </div>
     </div>
     <div class="bot_btns" style="display: block;" [hidden]="!editable">
-        <a href="javascript:;">全选</a>
+        <a (click)="selectAll()">全选</a>
         <em></em>
-        <a href="javascript:;" class="btn_del">删除<i>(1)</i></a>
+        <a (click)="delete(curTab===1?0:1)" class="btn_del">删除<i
+                *ngIf="(courseDownloadSvr.tasks | downloadTasks:(curTab===1?[0,2]:[1]):true).length>0">({{(courseDownloadSvr.tasks | downloadTasks:(curTab===1?[0,2]:[1]):true).length}})</i></a>
     </div>
 </ion-content>

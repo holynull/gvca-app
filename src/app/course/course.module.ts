@@ -10,6 +10,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { DownloadComponent } from './download/download.component';
 import { RecordsComponent } from './records/records.component';
 import { VgSupportsModule } from 'app/vg-supports.module';
+import { DownloadTasksPipe } from './pipes/download-tasks.pipe';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { VgSupportsModule } from 'app/vg-supports.module';
         ConfirmComponent,
         DownloadComponent,
         RecordsComponent,
+        DownloadTasksPipe,
+        SafeUrlPipe,
     ],
     imports: [
         CommonModule,
@@ -29,6 +33,8 @@ import { VgSupportsModule } from 'app/vg-supports.module';
     ],
     entryComponents: [
         ConfirmComponent,
+    ],
+    providers: [
     ]
 })
 export class CourseModule { }

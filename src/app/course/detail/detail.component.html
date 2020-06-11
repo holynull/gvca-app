@@ -35,7 +35,7 @@
             </vg-controls>
             <video #myMedia [vgMedia]="myMedia" id="my-video" height="200" preload="auto" style="z-index: 100;"
                 poster="assets/images/video_pic.jpg" crossorigin="true" playsinline="true" webkit-playsinline="true">
-                <source src="{{videoPath}}" type="video/mp4">
+                <source src="{{videoPath }}" type="video/mp4">
             </video>
         </vg-player>
     </div>
@@ -47,7 +47,7 @@
         <div class="detail_panel1" [hidden]="curTab!==1">
             <div class="detail_tip">
                 <span>共<i>2</i>课</span>
-                <a href="javascript:;" class="btn_alldown"><i></i>全部下载</a>
+                <a (click)="download()" class="btn_alldown"><i></i>全部下载</a>
             </div>
             <div class="detail_list">
                 <ul>
