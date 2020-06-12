@@ -21,10 +21,11 @@
         <div class="panel1" [hidden]="curTab!==1">
             <div class="list_item down_item clearfix"
                 *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[0,2] ">
+                {{item.status===2?'失败':''}}
                 <input type="checkbox" [hidden]="!editable" value="{{item.taskId}}" [(ngModel)]="item.checked">
 
                 <img src="assets/images/course_pic.jpg" alt="">
-                <div>
+                <div (click)="reDownload(item)">
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="{{item.loaded}}" max="{{item.total}}"></progress>
                     <div>

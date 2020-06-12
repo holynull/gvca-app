@@ -1,17 +1,14 @@
-import { HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@env/environment';
 import { File } from '@ionic-native/file/ngx';
+import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ConstVal } from 'app/constVal';
 import { DownloadTask } from 'app/model/download-task';
 import { DownloadTaskStatus } from 'app/model/download-task-status';
-import { tap, catchError } from 'rxjs/operators';
+import { DownloadTaskStorage } from 'app/model/download-task-storage';
 import { ApiService } from './api.service';
 import { BaseService } from './base.service';
-import { Platform } from '@ionic/angular';
-import { of } from 'rxjs';
-import { DownloadTaskStorage } from 'app/model/download-task-storage';
-import { environment } from '@env/environment';
 
 
 
@@ -30,7 +27,7 @@ export class CourseDownloadService extends BaseService {
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
             if (data) {
                 data.forEach((d, index, arr) => {
-                    let task = new DownloadTask();
+                    let task = new DownloadTask(this.api, this.platform, file);
                     task.taskId = d.taskId;
                     task.total = Number(d.total);
                     task.loaded = Number(d.loaded);
@@ -39,96 +36,54 @@ export class CourseDownloadService extends BaseService {
                     task.speed = Number(d.speed);
                     task.fileName = d.fileName;
                     task.fullPath = d.fullPath;
+                    task.url = d.url;
                     this.tasks.push(task);
                 });
             }
         });
-        let root = this.file.dataDirectory;
-        let rFileName = environment.videoDir;
-        if (this.platform.is('ios')) {
-            root = this.file.documentsDirectory;
-        }
-        if (this.platform.is('android')) {
-            rFileName = 'Documents/' + rFileName;
-        }
-        this.file.checkDir(root, rFileName).then(exists => {
-            if (!exists) {
-                this.file.createDir(root, rFileName, false).then(entry => {
-                }).catch(e => {
-                    console.error(e, {})
-                });
+        if (platform.is('cordova')) {
+            let root = this.file.dataDirectory;
+            let rFileName = environment.videoDir;
+            if (this.platform.is('ios')) {
+                root = this.file.documentsDirectory;
             }
-        }).catch(e => {
-            if (e.code === 1) {
-                this.file.createDir(root, rFileName, false).then(entry => {
-                }).catch(e => {
-                    console.error(e, {});
-                });
+            if (this.platform.is('android')) {
+                rFileName = 'Documents/' + rFileName;
             }
-        });
-    }
-
-    downloadFile(): DownloadTask {
-        let task = new DownloadTask();
-        task.taskId = String(new Date().getTime());
-        let sta = new Date().getTime();
-        let preLoaded = 0;
-        task.observable = this.api.testDownload().pipe(catchError(e => {
-            console.error(e);
-            task.status = DownloadTaskStatus.Failed;
-            this.updateStorage();
-            return of(e);
-        }), tap(res => {
-            if (res.type === HttpEventType.Sent) {
-                task.status = DownloadTaskStatus.Downloading;
-                this.updateStorage();
-            }
-            if (res.type === HttpEventType.DownloadProgress) {
-                let now = new Date().getTime();
-                if (now - sta >= 1000) {
-                    task.speed = res.loaded - preLoaded;
-                    preLoaded = res.loaded;
-                    sta = now;
+            this.file.checkDir(root, rFileName).then(exists => {
+                if (!exists) {
+                    this.file.createDir(root, rFileName, false).then(entry => {
+                    }).catch(e => {
+                        console.error(e, {})
+                    });
                 }
-                task.loaded = res.loaded;
-                task.total = res.total;
-            }
-            if (res.type === HttpEventType.Response) {
-                task.status = DownloadTaskStatus.Done;
-                let fileName = 'file_' + new Date().getTime() + '.mp4';
-                task.fileName = fileName;
-                if (this.platform.is('cordova')) {
-                    let root = this.file.dataDirectory;
-                    let rFileName = environment.videoDir + '/' + fileName;
-                    if (this.platform.is('ios')) {
-                        root = this.file.documentsDirectory;
-                    }
-                    if (this.platform.is('android')) {
-                        rFileName = 'Documents/' + rFileName;
-                    }
-                    this.file.writeFile(root, rFileName, res.body, { replace: true }).then(saveRes => {
-                        console.log(saveRes);
-                        task.nativeUrl = saveRes.nativeURL;
-                        task.fullPath = saveRes.fullPath;
-                        this.updateStorage();
+            }).catch(e => {
+                if (e.code === 1) {
+                    this.file.createDir(root, rFileName, false).then(entry => {
                     }).catch(e => {
                         console.error(e, {});
                     });
-                } else {
-                    let arr = new Array();
-                    this.tasks.forEach(e => {
-                        arr.push(new DownloadTaskStorage(e));
-                    });
-                    this.updateStorage();
                 }
-            }
-        }));
+            });
+        }
+    }
+
+    runTask(): DownloadTask {
+        let task = new DownloadTask(this.api, this.platform, this.file);
+        task.taskId = String(new Date().getTime());
+        task.url = 'https://images.plo.one/video/videogular.mp4';
+        task.api = this.api;
+        task.download(() => {
+            this.updateStorage();
+        }).subscribe(d => {
+
+        });
         this.tasks.push(task);
         this.updateStorage();
         return task;
     }
 
-    private updateStorage() {
+    public updateStorage() {
         let arr = new Array();
         this.tasks.forEach(e => {
             arr.push(new DownloadTaskStorage(e));

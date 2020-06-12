@@ -26,8 +26,7 @@ export class ApiService extends BaseService {
     }
 
     //TODO: 测试下载
-    testDownload(): Observable<any> {
-        let url = 'https://images.plo.one/video/videogular.mp4';
+    testDownload(url): Observable<any> {
         return this.http.get(url, {
             responseType: "blob",
             reportProgress: true,

@@ -56,18 +56,12 @@ export class DetailComponent implements OnInit {
 
     download() {
         this.router.navigate(['/course/download']);
-        this.courseDownloadSvr.downloadFile().observable.subscribe(res => {
-
-        });
+        this.courseDownloadSvr.runTask();
         setTimeout(() => {
-            this.courseDownloadSvr.downloadFile().observable.subscribe(res => {
-
-            });
+            this.courseDownloadSvr.runTask();
         }, 1000);
         setTimeout(() => {
-            this.courseDownloadSvr.downloadFile().observable.subscribe(res => {
-
-            });
+            this.courseDownloadSvr.runTask();
         }, 1000);
     }
 }
