@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
-import { CourseDownloadService } from 'app/services/course-download.service';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { Platform } from '@ionic/angular';
+import { DownloadTask } from 'app/model/download-task';
 import { DownloadTaskStatus } from 'app/model/download-task-status';
+import { CourseDownloadService } from 'app/services/course-download.service';
 
 @Component({
     selector: 'app-download',
@@ -21,7 +24,7 @@ export class DownloadComponent implements OnInit {
 
     checkList: Array<boolean> = new Array();
 
-    constructor(public platform: Platform, private file: File, public courseDownloadSvr: CourseDownloadService) {
+    constructor(public platform: Platform, private file: File, public courseDownloadSvr: CourseDownloadService, private router: Router, private media: StreamingMedia) {
         if (platform.is('cordova')) {
             file.getFreeDiskSpace().then(num => {
                 if (Math.floor(num / 1024 / 1024 / 1024) > 0) {
@@ -85,6 +88,24 @@ export class DownloadComponent implements OnInit {
             });
         }
 
+    }
+
+    playVideo(task: DownloadTask) {
+        console.log(task);
+        let url = task.nativeUrl;
+        console.log(url);
+        let options: StreamingVideoOptions = {
+            successCallback: () => {
+                console.log('Video played');
+            },
+            errorCallback: (e) => {
+                console.log(e, {});
+            },
+            orientation: 'landscape',
+            shouldAutoClose: true,
+            controls: true,
+        };
+        this.media.playVideo(url, options);
     }
 
 }

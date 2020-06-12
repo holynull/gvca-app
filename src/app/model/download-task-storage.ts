@@ -11,6 +11,7 @@ export class DownloadTaskStorage {
     speed: number = 0;
     checked: boolean = false;
     fileName: string;
+    fullPath:string;
 
     constructor(task: DownloadTask) {
         this.taskId = task.taskId;
@@ -21,6 +22,7 @@ export class DownloadTaskStorage {
         this.speed = task.speed;
         this.checked = task.checked;
         this.fileName = task.fileName;
+        this.fullPath=task.fullPath;
     }
 
     private numToString(num) {

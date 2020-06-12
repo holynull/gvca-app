@@ -17,7 +17,9 @@ export class DetailComponent implements OnInit {
         this.activedRoute.queryParams.subscribe(params => {
             if (params && params.taskId) {
                 this.file.resolveLocalFilesystemUrl(this.courseDownloadSvr.getTaskById(params.taskId).nativeUrl).then(entry => {
-                    this.videoPath = entry.toInternalURL().replace('cdvfile', 'http');
+                    this.videoPath = entry.toInternalURL();
+                }).catch(e => {
+                    console.error(e);
                 });
             } else {
                 this.videoPath = "https://images.plo.one/video/videogular.mp4";

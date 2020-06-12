@@ -35,12 +35,11 @@
             </div>
         </div>
         <div class="panel2" [hidden]="curTab!==2">
-            <div class="list_item down_item clearfix" *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[1] "
-                [routerLink]="['/course/detail']" [queryParams]="{taskId:item.taskId}">
+            <div class="list_item down_item clearfix" *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[1] ">
                 <input type="checkbox" [hidden]="!editable" value="{{item.taskId}}" [(ngModel)]="item.checked">
 
                 <img src="assets/images/course_pic.jpg" alt="">
-                <div>
+                <div (click)="playVideo(item)">
                     <h3>财务舞弊手段（一）—调整手段</h3>
                     <progress value="{{item.loaded}}" max="{{item.total}}"></progress>
                     <div>

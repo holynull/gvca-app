@@ -19,7 +19,8 @@ export const environment = {
             debug: true, // 调试状态，将显示错误信息
             url: '', // 接口的url地址
         }
-    }
+    },
+    videoDir: 'course_video',
 };
 
 /*

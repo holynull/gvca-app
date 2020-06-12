@@ -11,6 +11,7 @@ import { BaseService } from './base.service';
 import { Platform } from '@ionic/angular';
 import { of } from 'rxjs';
 import { DownloadTaskStorage } from 'app/model/download-task-storage';
+import { environment } from '@env/environment';
 
 
 
@@ -22,6 +23,7 @@ import { DownloadTaskStorage } from 'app/model/download-task-storage';
 export class CourseDownloadService extends BaseService {
 
     tasks: Array<DownloadTask> = new Array();
+
 
     constructor(private api: ApiService, private file: File, private storage: Storage, private platform: Platform) {
         super();
@@ -36,7 +38,31 @@ export class CourseDownloadService extends BaseService {
                     task.status = Number(d.status);
                     task.speed = Number(d.speed);
                     task.fileName = d.fileName;
+                    task.fullPath = d.fullPath;
                     this.tasks.push(task);
+                });
+            }
+        });
+        let root = this.file.dataDirectory;
+        let rFileName = environment.videoDir;
+        if (this.platform.is('ios')) {
+            root = this.file.documentsDirectory;
+        }
+        if (this.platform.is('android')) {
+            rFileName = 'Documents/' + rFileName;
+        }
+        this.file.checkDir(root, rFileName).then(exists => {
+            if (!exists) {
+                this.file.createDir(root, rFileName, false).then(entry => {
+                }).catch(e => {
+                    console.error(e, {})
+                });
+            }
+        }).catch(e => {
+            if (e.code === 1) {
+                this.file.createDir(root, rFileName, false).then(entry => {
+                }).catch(e => {
+                    console.error(e, {});
                 });
             }
         });
@@ -72,9 +98,21 @@ export class CourseDownloadService extends BaseService {
                 let fileName = 'file_' + new Date().getTime() + '.mp4';
                 task.fileName = fileName;
                 if (this.platform.is('cordova')) {
-                    this.file.writeFile(this.file.dataDirectory, fileName, res.body, { replace: true }).then(saveRes => {
+                    let root = this.file.dataDirectory;
+                    let rFileName = environment.videoDir + '/' + fileName;
+                    if (this.platform.is('ios')) {
+                        root = this.file.documentsDirectory;
+                    }
+                    if (this.platform.is('android')) {
+                        rFileName = 'Documents/' + rFileName;
+                    }
+                    this.file.writeFile(root, rFileName, res.body, { replace: true }).then(saveRes => {
+                        console.log(saveRes);
                         task.nativeUrl = saveRes.nativeURL;
+                        task.fullPath = saveRes.fullPath;
                         this.updateStorage();
+                    }).catch(e => {
+                        console.error(e, {});
                     });
                 } else {
                     let arr = new Array();
@@ -106,6 +144,8 @@ export class CourseDownloadService extends BaseService {
                         this.file.removeFile(this.file.dataDirectory, e.fileName).then(data => {
                             console.log('保存文件回调');
                             console.log(data);
+                        }).catch(e => {
+                            console.error(e, {});
                         });
                     }
                     return false;

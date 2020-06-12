@@ -11,6 +11,7 @@ export class DownloadTask {
     speed: number = 0;
     checked: boolean = false;
     fileName: string;
+    fullPath:string;
 
     private numToString(num) {
         if (Math.floor(num / 1024 / 1024 / 1024) > 0) {
