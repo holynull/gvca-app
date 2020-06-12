@@ -35,4 +35,5 @@ export class DownloadTask {
     speedToString() {
         return this.numToString(this.speed);
     }
+    
 }
