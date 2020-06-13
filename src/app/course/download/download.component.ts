@@ -108,10 +108,8 @@ export class DownloadComponent implements OnInit {
         this.media.playVideo(url, options);
     }
     reDownload(item: DownloadTask) {
-        item.download(() => {
+        item.run(() => {
             this.courseDownloadSvr.updateStorage();
-        }).subscribe(d => {
-
         });
     }
 

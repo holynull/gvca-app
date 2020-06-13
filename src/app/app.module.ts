@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
@@ -36,7 +37,8 @@ import { ApiInterceptor } from './services/api.interceptor';
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
         File,
-        StreamingMedia
+        StreamingMedia,
+        FileTransfer,
     ],
     bootstrap: [AppComponent]
 })

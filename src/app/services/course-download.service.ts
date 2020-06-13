@@ -9,7 +9,7 @@ import { DownloadTaskStatus } from 'app/model/download-task-status';
 import { DownloadTaskStorage } from 'app/model/download-task-storage';
 import { ApiService } from './api.service';
 import { BaseService } from './base.service';
-
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 
 
@@ -22,12 +22,12 @@ export class CourseDownloadService extends BaseService {
     tasks: Array<DownloadTask> = new Array();
 
 
-    constructor(private api: ApiService, private file: File, private storage: Storage, private platform: Platform) {
+    constructor(private api: ApiService, private file: File, private storage: Storage, private platform: Platform, private transfer: FileTransfer) {
         super();
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
             if (data) {
                 data.forEach((d, index, arr) => {
-                    let task = new DownloadTask(this.api, this.platform, file);
+                    let task = new DownloadTask(this.api, this.platform, file, this.transfer);
                     task.taskId = d.taskId;
                     task.total = Number(d.total);
                     task.loaded = Number(d.loaded);
@@ -69,14 +69,12 @@ export class CourseDownloadService extends BaseService {
     }
 
     runTask(): DownloadTask {
-        let task = new DownloadTask(this.api, this.platform, this.file);
+        let task = new DownloadTask(this.api, this.platform, this.file, this.transfer);
         task.taskId = String(new Date().getTime());
         task.url = 'https://images.plo.one/video/videogular.mp4';
         task.api = this.api;
-        task.download(() => {
+        task.run(() => {
             this.updateStorage();
-        }).subscribe(d => {
-
         });
         this.tasks.push(task);
         this.updateStorage();

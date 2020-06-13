@@ -7,11 +7,13 @@ import { of, Observable } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import { File } from '@ionic-native/file/ngx';
 import { environment } from '@env/environment';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 export class DownloadTask {
     api: ApiService;
     platform: Platform;
     fileSystem: File;
+    transfer: FileTransfer;
     taskId: string;
     total: number = 0;
     loaded: number = 0;
@@ -23,10 +25,11 @@ export class DownloadTask {
     fullPath: string;
     url: string;
 
-    constructor(api: ApiService, platform: Platform, file: File) {
+    constructor(api: ApiService, platform: Platform, file: File, transfer: FileTransfer) {
         this.api = api;
         this.platform = platform;
         this.fileSystem = file;
+        this.transfer = transfer;
     }
 
     private numToString(num) {
@@ -53,56 +56,117 @@ export class DownloadTask {
         return this.numToString(this.speed);
     }
 
-    download(updateStorageCallBack: Function): Observable<any> {
+    run(updateStorageCallBack: Function) {
         this.status = DownloadTaskStatus.Downloading;
         let sta = new Date().getTime();
         let preLoaded = 0;
-        return this.api.testDownload(this.url).pipe(catchError(e => {
-            console.error(e);
-            this.status = DownloadTaskStatus.Failed;
-            updateStorageCallBack();
-            return of(e);
-        }), tap(res => {
-            if (res.type === HttpEventType.Sent) {
-                this.status = DownloadTaskStatus.Downloading;
-                updateStorageCallBack();
+        let root = this.fileSystem.dataDirectory;
+        let rFileName;
+        if (this.platform.is('ios')) {
+            root = this.fileSystem.documentsDirectory;
+        }
+        if (this.fileName) {
+            rFileName = environment.videoDir + '/' + this.fileName;
+            if (this.platform.is('android')) {
+                rFileName = 'Documents/' + rFileName;
             }
-            if (res.type === HttpEventType.DownloadProgress) {
+            this.fileSystem.checkFile(root, rFileName).then(exists => {
+                if (exists) {// 文件存在，续传
+
+                }
+            }).catch(e => {
+                if (e.code === 1) { // 不存在
+
+                }
+                console.error(e, {});
+            });
+        } else {
+            this.fileName = 'file_' + new Date().getTime() + '.mp4';
+            rFileName = environment.videoDir + '/' + this.fileName;
+            if (this.platform.is('android')) {
+                rFileName = 'Documents/' + rFileName;
+            }
+
+        }
+        const transObj: FileTransferObject = this.transfer.create();
+        const opt = {
+            headers: {
+
+            }
+        }
+
+        transObj.onProgress(event => {
+            // console.log(event);
+            if (event.lengthComputable) {
                 let now = new Date().getTime();
                 if (now - sta >= 1000) {
-                    this.speed = res.loaded - preLoaded;
-                    preLoaded = res.loaded;
+                    this.speed = event.loaded - preLoaded;
+                    preLoaded = event.loaded;
                     sta = now;
-                }
-                this.loaded = res.loaded;
-                this.total = res.total;
-            }
-            if (res.type === HttpEventType.Response) {
-                this.status = DownloadTaskStatus.Done;
-                let fileName = 'file_' + new Date().getTime() + '.mp4';
-                this.fileName = fileName;
-                if (this.platform.is('cordova')) {
-                    let root = this.fileSystem.dataDirectory;
-                    let rFileName = environment.videoDir + '/' + fileName;
-                    if (this.platform.is('ios')) {
-                        root = this.fileSystem.documentsDirectory;
-                    }
-                    if (this.platform.is('android')) {
-                        rFileName = 'Documents/' + rFileName;
-                    }
-                    this.fileSystem.writeFile(root, rFileName, res.body, { replace: true }).then(saveRes => {
-                        console.log(saveRes);
-                        this.nativeUrl = saveRes.nativeURL;
-                        this.fullPath = saveRes.fullPath;
-                        updateStorageCallBack();
-                    }).catch(e => {
-                        console.error(e, {});
-                    });
-                } else {
-                    updateStorageCallBack();
+                    this.loaded = event.loaded;
+                    this.total = event.total;
                 }
             }
-        }));
+        });
+        this.status = DownloadTaskStatus.Downloading;
+        transObj.download(this.url, root + '/' + rFileName, true, opt).then(event => {
+            console.log(event);
+            this.status = DownloadTaskStatus.Done;
+            this.loaded = this.total;
+            this.nativeUrl = event.nativeURL;
+            this.fullPath = event.fullPath;
+            updateStorageCallBack();
+        }).catch(e => {
+            console.error(e, {});
+            this.status = DownloadTaskStatus.Failed;
+            updateStorageCallBack();
+        });
+        // return this.api.testDownload(this.url).pipe(catchError(e => {
+        //     console.error(e);
+        //     this.status = DownloadTaskStatus.Failed;
+        //     updateStorageCallBack();
+        //     return of(e);
+        // }), tap(res => {
+        //     if (res.type === HttpEventType.Sent) {
+        //         this.status = DownloadTaskStatus.Downloading;
+        //         updateStorageCallBack();
+        //     }
+        //     if (res.type === HttpEventType.DownloadProgress) {
+        //         let now = new Date().getTime();
+        //         if (now - sta >= 1000) {
+        //             this.speed = res.loaded - preLoaded;
+        //             preLoaded = res.loaded;
+        //             sta = now;
+        //         }
+        //         this.loaded = res.loaded;
+        //         this.total = res.total;
+        //     }
+        //     if (res.type === HttpEventType.Response) {
+        //         this.status = DownloadTaskStatus.Done;
+        //         let fileName = 'file_' + new Date().getTime() + '.mp4';
+        //         this.fileName = fileName;
+        //         if (this.platform.is('cordova')) {
+        //             let root = this.fileSystem.dataDirectory;
+        //             let rFileName = environment.videoDir + '/' + fileName;
+        //             if (this.platform.is('ios')) {
+        //                 root = this.fileSystem.documentsDirectory;
+        //             }
+        //             if (this.platform.is('android')) {
+        //                 rFileName = 'Documents/' + rFileName;
+        //             }
+        //             this.fileSystem.writeFile(root, rFileName, res.body, { replace: true }).then(saveRes => {
+        //                 console.log(saveRes);
+        //                 this.nativeUrl = saveRes.nativeURL;
+        //                 this.fullPath = saveRes.fullPath;
+        //                 updateStorageCallBack();
+        //             }).catch(e => {
+        //                 console.error(e, {});
+        //             });
+        //         } else {
+        //             updateStorageCallBack();
+        //         }
+        //     }
+        // }));
     }
 
 }
