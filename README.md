@@ -237,10 +237,40 @@ typeName：课程类型
   pageNo：页数（从1开始）
   pageSize：每页数量
 返回参数示例：
-{    "code":1,    "codeMsg":"获取课程列表成功！",
-"pageNo":1,
-"selectState":1,
-    "info":[        {            "departmentName":"电气信息系",            "courseType":1,            "ifSelect":0,            "courseDesc":"344545",            "majorId":1,            "addTime":1583980063464,            "teacherName":"王老师",            "departmentId":1,            "semesterName":"大一（上）",            "typeName":"基本素质教学课程",            "updateTime":1583981879887,            "sort":1,            "courseCycle":"",            "semesterId":1,            "courseName":"阅读理解专项训练",            "teacherId":111,            "courseStatus":1,            "majorName":"计算机专业",            "courseId":2,            "courseDetail":"<img src="http://kzs.7east.cn:80/data/2020/03/12//20200312105620-廖雪峰.png">"        }    ]}
+
+```
+{
+    "code": 1,
+    "codeMsg": "获取课程列表成功！",
+    "pageNo": 1,
+    "selectState": 1,
+    "info": [
+        {
+            "departmentName": "电气信息系",
+            "courseType": 1,
+            "ifSelect": 0,
+            "courseDesc": "344545",
+            "majorId": 1,
+            "addTime": 1583980063464,
+            "teacherName": "王老师",
+            "departmentId": 1,
+            "semesterName": "大一（上）",
+            "typeName": "基本素质教学课程",
+            "updateTime": 1583981879887,
+            "sort": 1,
+            "courseCycle": "",
+            "semesterId": 1,
+            "courseName": "阅读理解专项训练",
+            "teacherId": 111,
+            "courseStatus": 1,
+            "majorName": "计算机专业",
+            "courseId": 2,
+            "courseDetail": "<img src=\"http: //kzs.7east.cn:80/data/2020/03/12//20200312105620-廖雪峰.png\">"
+        }
+    ]
+}
+```
+
 参数解析： code：状态码，1成功 0无数据  -1未知token         
 codeMsg：状态信息
 pageNo：当前页数
