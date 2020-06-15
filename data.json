@@ -1,0 +1,53 @@
+{
+    "code": 1,
+    "pageNo": 1,
+    "codeMsg": "获取作业列表成功！",
+    "info": [
+        {
+            "dataUrl": "http://kzs.7east.cn/data/2020/02/17/20200217112115-TIM图片20200110180553.gif",
+            "departmentName": "电气信息系",
+            "majorId": 1,
+            "addTime": 1581909680224,
+            "teacherName": "王老师",
+            "homeworkDetail": "233",
+            "departmentId": 1,
+            "homeworkStatus": 1,
+            "semesterName": "大一（上）",
+            "updateTime": 1581909680224,
+            "sort": 12,
+            "workTime": 1591912800000,
+            "stuhomeworkStatus": 2,
+            "homeworkName": "测试二",
+            "semesterId": 1,
+            "score": "A",
+            "homeworkId": 4,
+            "teacherId": 111,
+            "workTimeStr": "2020-06-12",
+            "schoolId": 1,
+            "majorName": "计算机专业"
+        },
+        {
+            "dataUrl": "http://kzs.7east.cn/data/2020/02/17/20200217124826-TIM图片20200107150257.jpg",
+            "departmentName": "电气信息系",
+            "majorId": 1,
+            "addTime": 1581914913144,
+            "teacherName": "王老师",
+            "homeworkDetail": "123",
+            "departmentId": 1,
+            "homeworkStatus": 1,
+            "semesterName": "大一（上）",
+            "updateTime": 1581916164792,
+            "sort": 13,
+            "workTime": 1591912800000,
+            "stuhomeworkStatus": 2,
+            "homeworkName": "2020作业测试4",
+            "semesterId": 1,
+            "score": "C",
+            "homeworkId": 5,
+            "teacherId": 111,
+            "workTimeStr": "2020-06-12",
+            "schoolId": 1,
+            "majorName": "计算机专业"
+        }
+    ]
+}

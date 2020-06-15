@@ -6,6 +6,7 @@ import { Platform } from '@ionic/angular';
 import { DownloadTask } from 'app/model/download-task';
 import { DownloadTaskStatus } from 'app/model/download-task-status';
 import { CourseDownloadService } from 'app/services/course-download.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-download',
@@ -23,6 +24,8 @@ export class DownloadComponent implements OnInit {
     checkedIds: Array<string> = new Array();
 
     checkList: Array<boolean> = new Array();
+
+    timer: Subscription;
 
     constructor(public platform: Platform, private file: File, public courseDownloadSvr: CourseDownloadService, private router: Router, private media: StreamingMedia) {
         if (platform.is('cordova')) {
@@ -107,10 +110,20 @@ export class DownloadComponent implements OnInit {
         };
         this.media.playVideo(url, options);
     }
+
     reDownload(item: DownloadTask) {
         item.run(() => {
             this.courseDownloadSvr.updateStorage();
         });
     }
 
+    ionViewDidEnter(event) {
+        this.timer = interval(1000).subscribe(s => {
+
+        });
+    }
+
+    ionViewWillLeave(event) {
+        this.timer.unsubscribe();
+    }
 }

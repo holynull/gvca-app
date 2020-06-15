@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ConstVal } from 'app/constVal';
 import { DownloadTask } from 'app/model/download-task';
 import { DownloadTaskStatus } from 'app/model/download-task-status';
-import { DownloadTaskStorage } from 'app/model/download-task-storage';
 import { ApiService } from './api.service';
 import { BaseService } from './base.service';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 
 
@@ -27,7 +26,7 @@ export class CourseDownloadService extends BaseService {
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
             if (data) {
                 data.forEach((d, index, arr) => {
-                    let task = new DownloadTask(this.api, this.platform, file, this.transfer);
+                    let task = new DownloadTask(d.urtl, this.api, this.platform, file, this.transfer);
                     task.taskId = d.taskId;
                     task.total = Number(d.total);
                     task.loaded = Number(d.loaded);
@@ -36,7 +35,6 @@ export class CourseDownloadService extends BaseService {
                     task.speed = Number(d.speed);
                     task.fileName = d.fileName;
                     task.fullPath = d.fullPath;
-                    task.url = d.url;
                     this.tasks.push(task);
                 });
             }
@@ -69,9 +67,9 @@ export class CourseDownloadService extends BaseService {
     }
 
     runTask(): DownloadTask {
-        let task = new DownloadTask(this.api, this.platform, this.file, this.transfer);
+        let url = 'https://images.plo.one/video/videogular.mp4';
+        let task = new DownloadTask(url, this.api, this.platform, this.file, this.transfer);
         task.taskId = String(new Date().getTime());
-        task.url = 'https://images.plo.one/video/videogular.mp4';
         task.api = this.api;
         task.run(() => {
             this.updateStorage();
@@ -84,7 +82,18 @@ export class CourseDownloadService extends BaseService {
     public updateStorage() {
         let arr = new Array();
         this.tasks.forEach(e => {
-            arr.push(new DownloadTaskStorage(e));
+            arr.push({
+                taskId: e.taskId,
+                total: e.total,
+                loaded: e.loaded,
+                navtiveUrl: e.nativeUrl,
+                status: e.status,
+                speed: e.speed,
+                checked: e.checked,
+                fileName: e.fileName,
+                fullPath: e.fullPath,
+                targetUrl: e.targetUrl,
+            });
         });
         this.storage.set(ConstVal.DOWNLOAD_TASKS, arr).then();
     }

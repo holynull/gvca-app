@@ -13,7 +13,7 @@ export class DownloadTask {
     api: ApiService;
     platform: Platform;
     fileSystem: File;
-    transfer: FileTransfer;
+    transfer: FileTransferObject;
     taskId: string;
     total: number = 0;
     loaded: number = 0;
@@ -23,13 +23,14 @@ export class DownloadTask {
     checked: boolean = false;
     fileName: string;
     fullPath: string;
-    url: string;
+    targetUrl: string;
 
-    constructor(api: ApiService, platform: Platform, file: File, transfer: FileTransfer) {
+    constructor(url: string, api: ApiService, platform: Platform, file: File, trans: FileTransfer) {
+        this.targetUrl = url;
         this.api = api;
         this.platform = platform;
         this.fileSystem = file;
-        this.transfer = transfer;
+        this.transfer = trans.create();
     }
 
     private numToString(num) {
@@ -88,14 +89,13 @@ export class DownloadTask {
             }
 
         }
-        const transObj: FileTransferObject = this.transfer.create();
         const opt = {
             headers: {
 
             }
         }
 
-        transObj.onProgress(event => {
+        this.transfer.onProgress(event => {
             // console.log(event);
             if (event.lengthComputable) {
                 let now = new Date().getTime();
@@ -109,7 +109,7 @@ export class DownloadTask {
             }
         });
         this.status = DownloadTaskStatus.Downloading;
-        transObj.download(this.url, root + '/' + rFileName, true, opt).then(event => {
+        this.transfer.download(this.targetUrl, root + '/' + rFileName, true, opt).then(event => {
             console.log(event);
             this.status = DownloadTaskStatus.Done;
             this.loaded = this.total;
