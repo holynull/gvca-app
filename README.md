@@ -343,7 +343,34 @@ score：批改后评分
   pageSize：每页数量
 courseId：课程id
 返回参数示例：
-{    "code":1,    "pageNo":1,    "codeMsg":"获取课件列表成功！",    "info":[        {            "lessonStatus":1,            "loadState":1,            "addTime":1591193141443,            "lessonId":125,            "updateTime":1592042349526,            "sort":0,            "lessonName":"课件测试1",            "courseName":"阅读理解专项训练",            "teacherId":0,            "videoUrl":"http://kzs.7east.cn/data/2020/06/13//20200613175838-111.mp4",            "lessonLength":0,            "transcodeDurtion":"00:02:44",            "courseId":2,            "lessonType":2,            "videosize":16506880        }    ]}
+
+```
+{
+    "code": 1,
+    "pageNo": 1,
+    "codeMsg": "获取课件列表成功！",
+    "info": [
+        {
+            "lessonStatus": 1,
+            "loadState": 1,
+            "addTime": 1591193141443,
+            "lessonId": 125,
+            "updateTime": 1592042349526,
+            "sort": 0,
+            "lessonName": "课件测试1",
+            "courseName": "阅读理解专项训练",
+            "teacherId": 0,
+            "videoUrl": "http://kzs.7east.cn/data/2020/06/13//20200613175838-111.mp4",
+            "lessonLength": 0,
+            "transcodeDurtion": "00:02:44",
+            "courseId": 2,
+            "lessonType": 2,
+            "videosize": 16506880
+        }
+    ]
+}
+```
+
 参数解析： code：状态码，1成功 0无数据  -1未知token         
 codeMsg：状态信息
 pageNo：当前页数
@@ -356,22 +383,23 @@ transcodeDurtion：视频时长
 
 
 
-9选课接口：
+## 9选课接口：
+
 请求示例：http://kzs.7east.cn/front/app/insertStuCourse?cids=4,5,6,7
 请求参数：token
   cids：课程courseId（例：4,5,6,7）
 返回参数示例：
+
+```
 {    "code":1,    "codeMsg":"选课成功！"   }
+```
+
 参数解析： code：状态码，1成功 0失败  -1未知token         
 codeMsg：状态信息
 
 
+## 10插入听课记录接口：
 
-
-
-
-
-10插入听课记录接口：
 请求示例：http://kzs.7east.cn/front/app/insertStuLesson?cid=3&lid=126&gapTime=60&lessonLength=167
 请求参数：token
   cid：课程courseId（例：4,5,6,7）
@@ -379,7 +407,11 @@ Lid：课件lessonId
 gapTime：距离上次听课记录请求间隔时间（秒值）
 lessonLength：听课到多少秒（听课时间记录秒值）
 返回参数示例：
+
+```
 {    "code":1,    "codeMsg":"成功！"   }
+```
+
 参数解析： code：状态码，1成功 0失败  -1未知token         
 codeMsg：状态信息
 
