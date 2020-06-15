@@ -1,52 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { ConstVal } from "../constVal";
 import { BaseService } from './base.service';
-
-export class UserInfo {
-    accountId: string;
-    areaCode: string;
-    digitId: number;
-    email: string;
-    googleBind: number;
-    lang: string;
-    mobile: string;
-    role: number;
-    username: string;
-    withdrawLimitTime: number;
-    withdrawStatus: number;
-
-    /**
-     * 用于隐藏邮箱或者手机号
-     */
-    getHiddenIdentity() {
-        if (this.email) {
-            let username = this.email;
-            let name = username.substring(0, username.indexOf('@'));
-            let replace;
-            if (name && name.length > 1) {
-                replace = name.substring(name.length - 4, name.length);
-            }
-            if (replace && replace.length > 0) {
-                let val = '';
-                for (let i = 0; i < replace.length; i++) {
-                    val = val + '*';
-                }
-                username = username.replace(replace, val);
-            }
-            return username;
-        } else if (this.mobile) {
-            let mobile = this.mobile;
-            return mobile.substring(0, 3) + '****' + mobile.substring(7);
-        } else {
-            return null;
-        }
-    }
-
-
-}
+import { ApiService } from './api.service';
+import { UserInfo } from 'app/model/userinfo';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -64,7 +24,9 @@ export class AuthService extends BaseService {
     isAuthenticatedStatus = false;
 
 
-    constructor(private storage: Storage) {
+    constructor(private storage: Storage, private api: ApiService,
+        private router: Router
+    ) {
         super();
         this.checkAuthenticated();
     }
@@ -80,22 +42,55 @@ export class AuthService extends BaseService {
                 this.token = token;
                 this.isAuthenticatedStatus = true;
                 // TODO: 调用远程接口，检查token
-            } else {
-                this.isAuthenticatedStatus = false;
             }
         });
-
+        this.storage.get(ConstVal.USER_INFO).then(studentInfo => {
+            if (studentInfo) {
+                this.userInfo = new UserInfo();
+                this.userInfo.companyPosition = studentInfo.companyPosition;
+                this.userInfo.addTime = studentInfo.addTime;
+                this.userInfo.idCard = studentInfo.idCard;
+                this.userInfo.departmentId = studentInfo.departmentId;
+                this.userInfo.className = studentInfo.className;
+                this.userInfo.studentId = studentInfo.studentId;
+                this.userInfo.classId = studentInfo.classId;
+                this.userInfo.schoolId = studentInfo.schoolId;
+                this.userInfo.studentStatus = studentInfo.studentStatus;
+                this.userInfo.emergencyContactTel = studentInfo.emergencyContactTel;
+                this.userInfo.studentSex = studentInfo.studentSex;
+                this.userInfo.departmentName = studentInfo.departmentName;
+                this.userInfo.gradeName = studentInfo.gradeName;
+                this.userInfo.gradeId = studentInfo.gradeId;
+                this.userInfo.majorId = studentInfo.majorId;
+                this.userInfo.emergencyContact = studentInfo.emergencyContact;
+                this.userInfo.semesterName = studentInfo.semesterName;
+                this.userInfo.updateTime = studentInfo.updateTime;
+                this.userInfo.studentPassword = studentInfo.studentPassword;
+                this.userInfo.semesterId = studentInfo.semesterId;
+                this.userInfo.companyId = studentInfo.companyId;
+                this.userInfo.studentName = studentInfo.studentName;
+                this.userInfo.studentAddress = studentInfo.studentAddress;
+                this.userInfo.majorName = studentInfo.majorName;
+                this.userInfo.studentNum = studentInfo.studentNum;
+            }
+        });
     }
 
     /**
      * guard 用到的函数
      */
-    isAuthenticated(): Observable<boolean> {
-        if (this.isAuthenticatedStatus) {
-            return of(true);
-        } else {
-            return of(false);
-        }
+    isAuthenticated(): Promise<boolean> {
+        return this.storage.get(ConstVal.ACCESS_TOKEN).then(token => {
+            if (token) {
+                this.isAuthenticatedStatus = true;
+                return true;
+            } else {
+                this.isAuthenticatedStatus = false;
+                let url = location.pathname;
+                this.router.navigate(['/login'], { queryParams: { url: url } });
+                return false;
+            }
+        });
     }
 
 
@@ -109,24 +104,58 @@ export class AuthService extends BaseService {
 
 
     public logout() {
-        this.storage.remove(ConstVal.ACCESS_TOKEN).then();
-        this.isAuthenticatedStatus = false;
+        this.logoutClear();
     }
 
     public logoutClear() {
-        this.storage.remove(ConstVal.ACCESS_TOKEN);
+        this.storage.remove(ConstVal.ACCESS_TOKEN).then();
+        this.storage.remove(ConstVal.USER_INFO).then();
         this.isAuthenticatedStatus = false;
-
     }
 
     public login(userName: string, password: string): Observable<any> {
         if (userName && password) {
-            return of({ err: 0, msg: "登录成功" }).pipe(tap(res => {
-                this.isAuthenticatedStatus = true;
-                this.storage.set(ConstVal.ACCESS_TOKEN, "lallalalwoshi token").then();
+            return this.api.login(userName, password).pipe(map(res => {
+                if (res.code === 1) {
+                    this.isAuthenticatedStatus = true;
+                    this.token = res.token;
+                    this.storage.set(ConstVal.ACCESS_TOKEN, res.token).then();
+                    this.userInfo = new UserInfo();
+                    this.userInfo.companyPosition = res.studentInfo.companyPosition;
+                    this.userInfo.addTime = res.studentInfo.addTime;
+                    this.userInfo.idCard = res.studentInfo.idCard;
+                    this.userInfo.departmentId = res.studentInfo.departmentId;
+                    this.userInfo.className = res.studentInfo.className;
+                    this.userInfo.studentId = res.studentInfo.studentId;
+                    this.userInfo.classId = res.studentInfo.classId;
+                    this.userInfo.schoolId = res.studentInfo.schoolId;
+                    this.userInfo.studentStatus = res.studentInfo.studentStatus;
+                    this.userInfo.emergencyContactTel = res.studentInfo.emergencyContactTel;
+                    this.userInfo.studentSex = res.studentInfo.studentSex;
+                    this.userInfo.departmentName = res.studentInfo.departmentName;
+                    this.userInfo.gradeName = res.studentInfo.gradeName;
+                    this.userInfo.gradeId = res.studentInfo.gradeId;
+                    this.userInfo.majorId = res.studentInfo.majorId;
+                    this.userInfo.emergencyContact = res.studentInfo.emergencyContact;
+                    this.userInfo.semesterName = res.studentInfo.semesterName;
+                    this.userInfo.updateTime = res.studentInfo.updateTime;
+                    this.userInfo.studentPassword = res.studentInfo.studentPassword;
+                    this.userInfo.semesterId = res.studentInfo.semesterId;
+                    this.userInfo.companyId = res.studentInfo.companyId;
+                    this.userInfo.studentName = res.studentInfo.studentName;
+                    this.userInfo.studentAddress = res.studentInfo.studentAddress;
+                    this.userInfo.majorName = res.studentInfo.majorName;
+                    this.userInfo.studentNum = res.studentInfo.studentNum;
+                    this.storage.set(ConstVal.USER_INFO, this.userInfo).then();
+                    return { code: 1, msg: '登录成功' };
+                } else if (res.code === 0) { //账号或者密码错误
+                    return { code: res.code, msg: '用户名或者密码错误' };
+                } else { // 其他错误
+                    return { code: res.code, msg: '其他错误' };
+                }
             }));
         } else {
-            return of({ err: -1, msg: "请输入用户名和密码" });
+            return of({ code: -1, msg: "请输入用户名和密码" });
         }
     }
 }

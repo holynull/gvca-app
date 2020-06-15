@@ -10,5 +10,9 @@ export class ConstVal {
      */
     public static DOWNLOAD_TASKS = 'download_task';
 
+    public static USER_INFO = 'user_info';
+
+    public static SLIDE_IMAGES = 'slide_images';
+
 
 }

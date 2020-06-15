@@ -32,8 +32,33 @@ export class ApiService extends BaseService {
             reportProgress: true,
             observe: "events",
             headers: new HttpHeaders(
-                { 'Content-Type': 'video/mp4',"Cache-Control":'no-cache' },
+                { 'Content-Type': 'video/mp4', "Cache-Control": 'no-cache' },
             )
         });
+    }
+
+    /**
+     * 
+     * @param studentName 登录
+     * @param studentPassword 
+     */
+    login(studentName: string, studentPassword: string) {
+        const params = new HttpParams().set('studentName', studentName).set('studentPassword', studentPassword);
+        let url = this.url(environment.api.login.url);
+        return this.http.post(url, params).pipe(timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * 获取轮播图
+     */
+    getAdv() {
+        let url = this.url(environment.api.getAdv.url);
+        return this.http.get(url,{} ).pipe(timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
     }
 }

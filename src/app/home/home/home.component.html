@@ -1,13 +1,11 @@
 <ion-content scrollY="false">
     <ion-slides mode='ios' #bannerSlides pager="true" [options]="slideOpts">
-        <ion-slide>
-            <img src="assets/images/index_banner.jpg" />
-        </ion-slide>
-        <ion-slide>
-            <img src="assets/images/index_banner2.jpg" />
+        <ion-slide *ngFor="let item of advSvr.advs">
+            <img [src]="item.image|safeUrl" />
         </ion-slide>
     </ion-slides>
-    <i [routerLink]="['/attend']" class="clockin" [ngStyle]="{top: platform.is('cordova')&&platform.is('ios')?'var(--ion-safe-area-top, 0)':'.8rem'}"></i>
+    <i [routerLink]="['/attend']" class="clockin"
+        [ngStyle]="{top: platform.is('cordova')&&platform.is('ios')?'var(--ion-safe-area-top, 0)':'.8rem'}"></i>
     <div class="index_msg">
         <i></i>
         <ion-slides #noticeSlides [options]="noticeOpts">
@@ -43,7 +41,7 @@
             <i class="index_icon2"></i>
             <p>考勤打卡</p>
         </a>
-        <a [routerLink]="['/tabs/course']" >
+        <a [routerLink]="['/tabs/course']">
             <i class="index_icon3"></i>
             <p>在线课程</p>
         </a>
