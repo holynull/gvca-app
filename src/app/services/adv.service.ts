@@ -15,31 +15,7 @@ export class AdvService {
         private api: ApiService,
         private storage: Storage,
     ) {
-        this.storage.get(ConstVal.SLIDE_IMAGES).then(data => {
-            if (data) {
-                data.forEach((e => {
-                    let adv = new Adv();
-                    adv.image = e.image;
-                    adv.addTime = new Date(e.addTime);
-                    adv.slideShowName = e.slideShowName;
-                    adv.startTime = new Date(e.startTime);
-                    adv.updateTime = new Date(e.updateTime);
-                    adv.endTime = new Date(e.endTime);
-                    adv.slideShowId = e.slideShowId;
-                    adv.url = e.url;
-                    adv.status = e.status;
-                    this.advs.push(adv);
-                }));
-            } else {
-                let adv1 = new Adv();
-                adv1.image = 'assets/images/index_banner.jpg';
-                let adv2 = new Adv();
-                adv2.image = 'assets/images/index_banner2.jpg';
-                this.advs.push(adv1);
-                this.advs.push(adv2);
-            }
-            this.loadData();
-        });
+        
     }
 
     loadData() {

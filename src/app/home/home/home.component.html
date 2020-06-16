@@ -9,24 +9,9 @@
     <div class="index_msg">
         <i></i>
         <ion-slides #noticeSlides [options]="noticeOpts">
-            <ion-slide>
-                <a>
-                    <span>你好～！</span>
-                </a>
-            </ion-slide>
-            <ion-slide>
-                <a>
-                    <span>甘肃建筑职业技术学院2020年综合评价与中职生升学与中职生升学</span>
-                </a>
-            </ion-slide>
-            <ion-slide>
-                <a>
-                    <span>大法师打发打发的说法是的发送到发送到发送到发送到发的发送到发送到发的啥饭</span>
-                </a>
-            </ion-slide>
-            <ion-slide>
-                <a>
-                    <span>你好～！个</span>
+            <ion-slide *ngFor="let item of noticeSvr.getHomeNotice()">
+                <a [routerLink]="['/notice/detail']" [queryParams]="{url:'/tabs/home',type:1,id:item.noticeId}" >
+                    <span>{{item.title}}</span>
                 </a>
             </ion-slide>
         </ion-slides>

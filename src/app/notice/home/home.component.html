@@ -11,155 +11,17 @@
 <ion-content>
     <div class="deownload_menu notice_menu">
         <div>
-            <a (click)="changeTab(1,'校内通知')" [ngClass]="{active: curTab===1}">校内通知<i></i></a>
-            <a (click)="changeTab(2,'系统公告')" [ngClass]="{active: curTab===2}">系统公告<i></i></a>
-            <a (click)="changeTab(3,'广告')" [ngClass]="{active: curTab===3}">广告<i></i></a>
-            <a (click)="changeTab(4,'公益活动')" [ngClass]="{active: curTab===4}">公益活动<i></i></a>
-            <a (click)="changeTab(5,'培训通知')" [ngClass]="{active: curTab===5}">培训通知<i></i></a>
-            <a (click)="changeTab(6,'公共信息')" [ngClass]="{active: curTab===6}">公共信息<i></i></a>
+            <a *ngFor="let item of noticeSvr.noticeCats" (click)="changeTab(item.noticeCatId,item.name)"
+                [ngClass]="{active: curTab===item.noticeCatId}">{{item.name}}<i></i></a>
         </div>
     </div>
     <div class="panels">
-        <div class="panel1" [hidden]="curTab!==1">
+        <div class="panel1" *ngFor="let item of noticeSvr.noticeCats" [hidden]="curTab!==item.noticeCatId">
             <div class="notice_list">
                 <ul>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel2" [hidden]="curTab!==2">
-            <div class="notice_list">
-                <ul>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel3" [hidden]="curTab!==3">
-            <div class="notice_list">
-                <ul>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel4" [hidden]="curTab!==4">
-            <div class="notice_list">
-                <ul>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel5" [hidden]="curTab!==5">
-            <div class="notice_list">
-                <ul>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel6" [hidden]="curTab!==6">
-            <div class="notice_list">
-                <ul>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
-                    </li>
-                    <li (click)="showDetail()">
-                        <h3><i></i>关于2019年第二批高职扩招录取考生推迟...</h3>
-                        <p>2020-5-31</p>
+                    <li *ngFor="let n of item.notices" (click)="showDetail(item.noticeCatId,n.noticeId)">
+                        <h3><i></i>{{n.title}}</h3>
+                        <p>{{n.addTime|date:'yyyy-MM-dd'}}</p>
                     </li>
                 </ul>
             </div>

@@ -7,6 +7,7 @@ import { BaseService } from './base.service';
 import { ApiService } from './api.service';
 import { UserInfo } from 'app/model/userinfo';
 import { Router } from '@angular/router';
+import { BootService } from './boot.service';
 
 
 @Injectable({
@@ -25,7 +26,8 @@ export class AuthService extends BaseService {
 
 
     constructor(private storage: Storage, private api: ApiService,
-        private router: Router
+        private router: Router,
+        private boot: BootService,
     ) {
         super();
         this.checkAuthenticated();
@@ -40,6 +42,7 @@ export class AuthService extends BaseService {
         this.storage.get(ConstVal.ACCESS_TOKEN).then(token => {
             if (token) {
                 this.token = token;
+                localStorage.setItem(ConstVal.ACCESS_TOKEN, token);
                 this.isAuthenticatedStatus = true;
                 // TODO: 调用远程接口，检查token
             }
@@ -48,7 +51,7 @@ export class AuthService extends BaseService {
             if (studentInfo) {
                 this.userInfo = new UserInfo();
                 this.userInfo.companyPosition = studentInfo.companyPosition;
-                this.userInfo.addTime = studentInfo.addTime;
+                this.userInfo.addTime = new Date(studentInfo.addTime);
                 this.userInfo.idCard = studentInfo.idCard;
                 this.userInfo.departmentId = studentInfo.departmentId;
                 this.userInfo.className = studentInfo.className;
@@ -64,7 +67,7 @@ export class AuthService extends BaseService {
                 this.userInfo.majorId = studentInfo.majorId;
                 this.userInfo.emergencyContact = studentInfo.emergencyContact;
                 this.userInfo.semesterName = studentInfo.semesterName;
-                this.userInfo.updateTime = studentInfo.updateTime;
+                this.userInfo.updateTime = new Date(studentInfo.updateTime);
                 this.userInfo.studentPassword = studentInfo.studentPassword;
                 this.userInfo.semesterId = studentInfo.semesterId;
                 this.userInfo.companyId = studentInfo.companyId;
@@ -109,6 +112,7 @@ export class AuthService extends BaseService {
 
     public logoutClear() {
         this.storage.remove(ConstVal.ACCESS_TOKEN).then();
+        localStorage.removeItem(ConstVal.ACCESS_TOKEN);
         this.storage.remove(ConstVal.USER_INFO).then();
         this.isAuthenticatedStatus = false;
     }
@@ -119,6 +123,7 @@ export class AuthService extends BaseService {
                 if (res.code === 1) {
                     this.isAuthenticatedStatus = true;
                     this.token = res.token;
+                    localStorage.setItem(ConstVal.ACCESS_TOKEN, this.token);
                     this.storage.set(ConstVal.ACCESS_TOKEN, res.token).then();
                     this.userInfo = new UserInfo();
                     this.userInfo.companyPosition = res.studentInfo.companyPosition;
@@ -147,6 +152,7 @@ export class AuthService extends BaseService {
                     this.userInfo.majorName = res.studentInfo.majorName;
                     this.userInfo.studentNum = res.studentInfo.studentNum;
                     this.storage.set(ConstVal.USER_INFO, this.userInfo).then();
+                    this.boot.initData();
                     return { code: 1, msg: '登录成功' };
                 } else if (res.code === 0) { //账号或者密码错误
                     return { code: res.code, msg: '用户名或者密码错误' };

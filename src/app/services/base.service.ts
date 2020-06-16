@@ -49,12 +49,12 @@ export class BaseService {
         this.subject.next(event);
     }
 
-    protected errorHandler(data, router: Router) {
+    protected errorHandler(res, router: Router) {
         // TODO: 接口返回权限错误，则返回到登录页面
-        if (data.err === 1) {
+        if (res.code === -1) {
             router.navigate(['login'], { queryParams: { url: router.url } });
         } else {
-            return data;
+            return res;
         }
     }
 

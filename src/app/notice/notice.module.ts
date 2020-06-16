@@ -6,12 +6,14 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 
 @NgModule({
     declarations: [
         HomeComponent,
-        DetailComponent
+        DetailComponent,
+        SafeHtmlPipe
     ],
     imports: [
         CommonModule,

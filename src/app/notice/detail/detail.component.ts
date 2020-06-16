@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Notice } from 'app/model/notice';
+import { NoticeService } from 'app/services/notice.service';
 
 @Component({
     selector: 'app-detail',
@@ -8,17 +10,41 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailComponent implements OnInit {
 
-    title: string;
+    type: number;
+
+    id: number;
 
     curTab: number;
 
-    constructor(private activedRoute: ActivatedRoute) {
+    notice: Notice;
+
+    url: string;
+
+    constructor(
+        private activedRoute: ActivatedRoute,
+        private noticeSvr: NoticeService,
+    ) {
         this.activedRoute.queryParams.subscribe(params => {
+            if (params.url) {
+                this.url = params.url;
+            }
             if (params && params.tab) {
                 this.curTab = params.tab;
             }
-            if (params && params.title) {
-                this.title = params.title;
+            if (params && params.type && params.id) {
+                this.type = Number(params.type);
+                this.id = Number(params.id);
+                let cat = this.noticeSvr.noticeCats.filter(e => e.noticeCatId === this.type);
+                if (cat && cat.length > 0) {
+                    let ns = cat[0].notices.filter(e => e.noticeId === this.id);
+                    if (ns && ns.length > 0) {
+                        this.notice = ns[0];
+                    } else {
+                        console.error('未找到公告', {});
+                    }
+                } else {
+                    console.error('未找到公告类别', {});
+                }
             }
         });
     }

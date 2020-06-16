@@ -34,7 +34,19 @@ export const environment = {
             retryTimes: 2,
             debug: true,
             url: '/front/app/getAdv',
-        }
+        },
+        getNoticeCats: { // 首页分类
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getNoticeCat',
+        },
+        getNotice: { // 公告
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getNotice',
+        },
     },
     videoDir: 'course_video',
 };

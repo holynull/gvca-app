@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { NoticeService } from 'app/services/notice.service';
 
 @Component({
     selector: 'app-home',
@@ -13,7 +14,11 @@ export class HomeComponent implements OnInit {
 
     title: string = '校内通知';
 
-    constructor(private router: Router, private activedRoute: ActivatedRoute) {
+    constructor(
+        private router: Router,
+        private activedRoute: ActivatedRoute,
+        public noticeSvr: NoticeService,
+    ) {
         this.activedRoute.queryParams.subscribe(params => {
             if (params && params.tab) {
                 this.curTab = Number(params.tab);
@@ -31,8 +36,8 @@ export class HomeComponent implements OnInit {
         this.title = title;
     }
 
-    showDetail() {
-        this.router.navigate(['/notice/detail'], { queryParams: { title: this.title, tab: this.curTab } });
+    showDetail(type, noticeId) {
+        this.router.navigate(['/notice/detail'], { queryParams: { type: type, id: noticeId, tab: this.curTab } });
     }
 
 }

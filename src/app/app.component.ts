@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { Platform } from '@ionic/angular';
+import { BootService } from './services/boot.service';
+
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
@@ -15,6 +16,7 @@ export class AppComponent {
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private screenOrientation: ScreenOrientation,
+        private bootSvr: BootService,
     ) {
         this.initializeApp();
     }

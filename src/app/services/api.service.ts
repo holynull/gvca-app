@@ -2,16 +2,21 @@ import { HttpClient, HttpParams, HttpRequest, HttpHeaders } from '@angular/commo
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable, of } from 'rxjs';
-import { catchError, retry, timeout } from 'rxjs/operators';
+import { catchError, retry, timeout, tap } from 'rxjs/operators';
 import { ApiUtilsService } from './api-utils.service';
 import { BaseService } from './base.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService extends BaseService {
 
-    constructor(private http: HttpClient, private apiUtils: ApiUtilsService) {
+    constructor(
+        private http: HttpClient,
+        private apiUtils: ApiUtilsService,
+        private router: Router,
+    ) {
         super();
     }
 
@@ -56,9 +61,39 @@ export class ApiService extends BaseService {
      */
     getAdv() {
         let url = this.url(environment.api.getAdv.url);
-        return this.http.get(url,{} ).pipe(timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
             return of(e);
         }));
+    }
+
+    /**
+     * 获取公告
+     */
+    getNotice(type) {
+        let url = this.url(environment.api.getNotice.url);
+        let params = new HttpParams().set('type', type);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * 获取公告分类
+     */
+    getNoticeCats() {
+        let url = this.url(environment.api.getNoticeCats.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * 获取课程分类
+     */
+    getCourseCat(){
+
     }
 }
