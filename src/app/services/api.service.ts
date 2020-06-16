@@ -93,7 +93,26 @@ export class ApiService extends BaseService {
     /**
      * 获取课程分类
      */
-    getCourseCat(){
+    getCourseCat() {
+        let url = this.url(environment.api.getCourseCat.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
 
+    /**
+     * 获取课程列表
+     * @param type 
+     * @param pageNo 
+     * @param pageSize 
+     */
+    getCourseList(type: number, pageNo, pageSize) {
+        let params = new HttpParams().set('type', String(type)).set('pageNo', String(pageNo)).set('pageSize', String(pageSize));
+        let url = this.url(environment.api.getCourseList.url);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
     }
 }

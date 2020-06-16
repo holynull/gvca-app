@@ -47,6 +47,18 @@ export const environment = {
             debug: true,
             url: '/front/app/getNotice',
         },
+        getCourseCat: {
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getCourseCat',
+        },
+        getCourseList: {
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getCourseList',
+        }
     },
     videoDir: 'course_video',
 };

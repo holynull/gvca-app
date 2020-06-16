@@ -7,92 +7,43 @@
 </ion-header>
 <ion-content>
     <div class="sub_menu">
-        <a (click)="select(1)" [ngClass]="{active: curTab===1}">基本素质<i></i></a>
-        <a (click)="select(2)" [ngClass]="{active: curTab===2}">专业教学<i></i></a>
-        <a (click)="select(3)" [ngClass]="{active: curTab===3}">素质拓展<i></i></a>
+        <a *ngFor="let item of courseSvr.courseCats" (click)="select(item.courseTypeId)"
+            [ngClass]="{active: curTab===item.courseTypeId}">{{item.typeName}}<i></i></a>
     </div>
     <div class="panels">
-        <div class="panel1" [hidden]="curTab!==1">
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
+        <div class="panel1" *ngIf="selectState===0; else need">
+            <div class="list_item clearfix" *ngFor="let item of courseSvr.courses">
+                <img [src]="item.photo?item.photo:'assets/images/course_pic.jpg'|safeUrl" alt="">
                 <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
-                </div>
-            </div>
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（二）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
-                </div>
-            </div>
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（三）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
-                </div>
-            </div>
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（四）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
-                </div>
-            </div>
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（五）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
-                </div>
-            </div>
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（六）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
+                    <h3>{{item.courseName}}</h3>
+                    <p>{{item.teacherName}}</p>
+                    <a [routerLink]="['/course/detail']" [queryParams]="{id:item.courseId,tab:curTab}"
+                        routerDirection="forward" class="btn_study">进入学习</a>
                 </div>
             </div>
         </div>
-        <div class="panel2" [hidden]="curTab!==2">
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（七）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
+        <ng-template #need>
+            <div class="panel3">
+                <div class="xx_choose">
+                    <form action="">
+                        <ul>
+                            <li><input type="checkbox" id="course1" checked=""><label for="course1">选修课一</label></li>
+                            <li><input type="checkbox" id="course2"><label for="course2">选修课二</label></li>
+                            <li><input type="checkbox" id="course3"><label for="course3">选修课三</label></li>
+                            <li><input type="checkbox" id="course4"><label for="course4">选修课四</label></li>
+                        </ul>
+                        <p class="tip_txt">请在以上选修课中任意选择四个课程</p>
+                        <a href="javascript:;" class="btn_submit" (click)="confirm()">确定</a>
+                    </form>
                 </div>
             </div>
-            <div class="list_item clearfix">
-                <img src="assets/images/course_pic.jpg" alt="">
-                <div>
-                    <h3>财务舞弊手段（八）—调整手段</h3>
-                    <p>于老师</p>
-                    <a [routerLink]="['/course/detail']" routerDirection="forward" class="btn_study">进入学习</a>
-                </div>
-            </div>
-        </div>
-        <div class="panel3" [hidden]="curTab!==3">
-            <div class="xx_choose">
-                <form action="">
-                    <ul>
-                        <li><input type="checkbox" id="course1" checked=""><label for="course1">选修课一</label></li>
-                        <li><input type="checkbox" id="course2"><label for="course2">选修课二</label></li>
-                        <li><input type="checkbox" id="course3"><label for="course3">选修课三</label></li>
-                        <li><input type="checkbox" id="course4"><label for="course4">选修课四</label></li>
-                    </ul>
-                    <p class="tip_txt">请在以上选修课中任意选择四个课程</p>
-                    <a href="javascript:;" class="btn_submit" (click)="confirm()">确定</a>
-                </form>
-            </div>
-        </div>
+        </ng-template>
     </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" >
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 </ion-content>

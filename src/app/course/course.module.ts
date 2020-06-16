@@ -10,8 +10,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { DownloadComponent } from './download/download.component';
 import { RecordsComponent } from './records/records.component';
 import { VgSupportsModule } from 'app/vg-supports.module';
-import { DownloadTasksPipe } from './pipes/download-tasks.pipe';
-import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 
 @NgModule({
@@ -21,8 +20,6 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
         ConfirmComponent,
         DownloadComponent,
         RecordsComponent,
-        DownloadTasksPipe,
-        SafeUrlPipe,
     ],
     imports: [
         CommonModule,
@@ -30,6 +27,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
         IonicModule,
         FormsModule,
         VgSupportsModule,
+        PipesModule,
     ],
     entryComponents: [
         ConfirmComponent,

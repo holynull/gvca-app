@@ -6,20 +6,20 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { DetailComponent } from './detail/detail.component';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 
 @NgModule({
     declarations: [
         HomeComponent,
         DetailComponent,
-        SafeHtmlPipe
     ],
     imports: [
         CommonModule,
         NoticeRoutingModule,
         IonicModule,
         FormsModule,
+        PipesModule,
     ]
 })
 export class NoticeModule { }

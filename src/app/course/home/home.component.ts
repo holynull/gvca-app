@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { CourseSelectStates } from 'app/model/course-sel-status';
+import { PageInfo } from 'app/model/pageInfo';
+import { CourseService } from 'app/services/course.service';
 import { ConfirmComponent } from '../confirm/confirm.component';
 
 @Component({
@@ -9,16 +13,40 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 })
 export class HomeComponent implements OnInit {
 
-    curTab = 1;
+    curTab;
+
+    pageInfo: PageInfo = new PageInfo();
+
+    selectState: CourseSelectStates = CourseSelectStates.NONEED;
 
     constructor(
         private modalCtrl: ModalController,
-    ) { }
+        public courseSvr: CourseService,
+        private activedRoute: ActivatedRoute,
+    ) {
+        this.activedRoute.queryParams.subscribe(params => {
+            if (params.tab) {
+                this.curTab = Number(params.tab);
+            } else {
+                setTimeout(() => {
+                    this.curTab = courseSvr.courseCats[0].courseTypeId;
+                    this.pageInfo.firstPage()
+                    this.courseSvr.loadCourse(this.curTab, this.pageInfo, (state) => {
+                        this.selectState = Number(state);
+                    });
+                }, 0);
+            }
+        });
+    }
 
     ngOnInit() { }
 
     select(tab) {
-        this.curTab = tab;
+        this.curTab = Number(tab);
+        this.pageInfo.firstPage()
+        this.courseSvr.loadCourse(this.curTab, this.pageInfo, (state) => {
+            this.selectState = Number(state);
+        });
     }
     async presentConfirm(callBackOk: Function) {
         const modal = await this.modalCtrl.create({
@@ -40,6 +68,22 @@ export class HomeComponent implements OnInit {
     confirm() {
         this.presentConfirm(() => {
             console.log("press ok");
+        });
+    }
+
+    doRefresh(event) {
+        this.pageInfo.firstPage();
+        this.courseSvr.loadCourse(this.curTab, this.pageInfo, (status) => {
+            this.selectState = Number(status);
+            event.target.complete();
+        });
+    }
+
+    loadData(event) {
+        this.pageInfo.nextPage();
+        this.courseSvr.loadCourse(this.curTab, this.pageInfo, (status) => {
+            this.selectState = Number(status);
+            event.target.complete();
         });
     }
 }

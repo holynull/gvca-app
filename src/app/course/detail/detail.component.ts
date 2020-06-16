@@ -3,6 +3,8 @@ import { VgMedia, BitrateOption } from 'videogular2/compiled/core';
 import { CourseDownloadService } from 'app/services/course-download.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
+import { Course } from 'app/model/course';
+import { CourseService } from 'app/services/course.service';
 
 @Component({
     selector: 'app-detail',
@@ -13,16 +15,23 @@ export class DetailComponent implements OnInit {
 
     curTab = 1;
 
-    constructor(public courseDownloadSvr: CourseDownloadService, private router: Router, private activedRoute: ActivatedRoute, private file: File) {
+    tab: number;
+
+    course: Course = new Course();
+
+    constructor(
+        public courseDownloadSvr: CourseDownloadService,
+        private router: Router,
+        private activedRoute: ActivatedRoute,
+        private file: File,
+        public courseSvr: CourseService,
+    ) {
         this.activedRoute.queryParams.subscribe(params => {
-            if (params && params.taskId) {
-                this.file.resolveLocalFilesystemUrl(this.courseDownloadSvr.getTaskById(params.taskId).nativeUrl).then(entry => {
-                    this.videoPath = entry.toInternalURL();
-                }).catch(e => {
-                    console.error(e);
-                });
-            } else {
-                this.videoPath = "https://images.plo.one/video/videogular.mp4";
+            if (params.id) {
+                this.course = this.courseSvr.getCourse(Number(params.id));
+            }
+            if (params.tab) {
+                this.tab = Number(params.tab);
             }
         });
     }
@@ -48,6 +57,10 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() {
         // this.dashBitrates.push(this.videoQuality1, this.videoQuality2);
+    }
+
+    ionViewDidLeave() {
+        this.course = null;
     }
 
     selectTab(tab) {

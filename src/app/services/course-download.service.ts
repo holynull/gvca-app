@@ -23,10 +23,14 @@ export class CourseDownloadService extends BaseService {
 
     constructor(private api: ApiService, private file: File, private storage: Storage, private platform: Platform, private transfer: FileTransfer) {
         super();
+        
+    }
+
+    public initData(){
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
             if (data) {
                 data.forEach((d, index, arr) => {
-                    let task = new DownloadTask(d.urtl, this.api, this.platform, file, this.transfer);
+                    let task = new DownloadTask(d.urtl, this.api, this.platform, this.file, this.transfer);
                     task.taskId = d.taskId;
                     task.total = Number(d.total);
                     task.loaded = Number(d.loaded);
@@ -39,7 +43,7 @@ export class CourseDownloadService extends BaseService {
                 });
             }
         });
-        if (platform.is('cordova')) {
+        if (this.platform.is('cordova')) {
             let root = this.file.dataDirectory;
             let rFileName = environment.videoDir;
             if (this.platform.is('ios')) {
