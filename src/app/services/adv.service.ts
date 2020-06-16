@@ -30,14 +30,22 @@ export class AdvService {
                     adv.status = e.status;
                     this.advs.push(adv);
                 }));
+            } else {
+                let adv1 = new Adv();
+                adv1.image = 'assets/images/index_banner.jpg';
+                let adv2 = new Adv();
+                adv2.image = 'assets/images/index_banner2.jpg';
+                this.advs.push(adv1);
+                this.advs.push(adv2);
             }
+            this.loadData();
         });
-        this.loadData();
     }
 
     loadData() {
         this.api.getAdv().subscribe(res => {
             if (res.code === 1) {
+                this.advs.splice(0, this.advs.length);
                 res.info.forEach((e, index, arr) => {
                     let adv = new Adv();
                     adv.image = e.image;
@@ -49,9 +57,9 @@ export class AdvService {
                     adv.slideShowId = e.slideShowId;
                     adv.url = e.url;
                     adv.status = e.status;
-                    this.advs.splice(index, 1);
                     this.advs.push(adv);
                 });
+                this.storage.set(ConstVal.SLIDE_IMAGES, this.advs).then();
             } else if (res.code === 0) {
 
             } else if (res.code === -1) {
