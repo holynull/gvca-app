@@ -50,7 +50,6 @@ export class BaseService {
     }
 
     protected errorHandler(res, router: Router) {
-        // TODO: 接口返回权限错误，则返回到登录页面
         if (res.code === -1) {
             router.navigate(['login'], { queryParams: { url: router.url } });
         } else {

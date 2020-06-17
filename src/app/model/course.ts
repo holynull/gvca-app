@@ -20,4 +20,5 @@ export class Course {
     courseId: number;
     courseDetail: string;
     photo: string;
+    // TODO: 缺少视频目录以及视频
 }

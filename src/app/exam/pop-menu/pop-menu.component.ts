@@ -29,7 +29,6 @@ export class PopMenuComponent implements OnInit {
             this.router.navigate(['/tabs/exam/simulation']);
         }
         if (index === 3) {
-            // TODO: 
             this.router.navigate(['/tabs/exam/examine']);
         }
     }

@@ -58,6 +58,12 @@ export const environment = {
             retryTimes: 2,
             debug: true,
             url: '/front/app/getCourseList',
+        },
+        getHomeWorkList: {
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getHomeWorkList',
         }
     },
     videoDir: 'course_video',

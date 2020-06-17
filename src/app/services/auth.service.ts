@@ -44,7 +44,7 @@ export class AuthService extends BaseService {
                 this.token = token;
                 localStorage.setItem(ConstVal.ACCESS_TOKEN, token);
                 this.isAuthenticatedStatus = true;
-                // TODO: 调用远程接口，检查token
+                // 调用远程接口，检查token；不需要了，因为token不会过期
             }
         });
         this.storage.get(ConstVal.USER_INFO).then(studentInfo => {
