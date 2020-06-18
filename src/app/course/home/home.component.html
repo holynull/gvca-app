@@ -26,10 +26,9 @@
                 <div class="xx_choose">
                     <form action="">
                         <ul>
-                            <li><input type="checkbox" id="course1" checked=""><label for="course1">选修课一</label></li>
-                            <li><input type="checkbox" id="course2"><label for="course2">选修课二</label></li>
-                            <li><input type="checkbox" id="course3"><label for="course3">选修课三</label></li>
-                            <li><input type="checkbox" id="course4"><label for="course4">选修课四</label></li>
+                            <li *ngFor="let item of courseSvr.courses;let i=index"><input type="checkbox"
+                                    [(ngModel)]="item.checked" id="c_{{i}}"><label
+                                    for="c_{{i}}">{{item.courseName}}</label></li>
                         </ul>
                         <p class="tip_txt">请在以上选修课中任意选择四个课程</p>
                         <a href="javascript:;" class="btn_submit" (click)="confirm()">确定</a>

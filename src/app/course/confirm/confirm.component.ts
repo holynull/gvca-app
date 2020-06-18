@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+import { Course } from 'app/model/course';
 
 @Component({
     selector: 'app-confirm',
@@ -8,7 +9,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class ConfirmComponent implements OnInit {
 
-    constructor(private modalCtrl: ModalController) { }
+    courses: Array<Course>;
+
+    constructor(private modalCtrl: ModalController,
+        private navParams: NavParams) {
+        if (navParams.data.courses) {
+            this.courses = navParams.data.courses;
+        }
+    }
 
     ngOnInit() { }
 

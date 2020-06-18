@@ -5,6 +5,8 @@ import { Course } from 'app/model/course';
 import { CourseSelectStates } from 'app/model/course-sel-status';
 import { PageInfo } from 'app/model/pageInfo';
 import { Lesson } from 'app/model/lesson';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -126,5 +128,23 @@ export class CourseService {
         });
     }
 
+    selectCourse(): Observable<any> {
+        let cids = '';
+        let arr = this.courses.filter(e => {
+            return e.checked;
+        });
+        arr.forEach(e => {
+            if (cids === '') {
+                cids = String(e.courseId);
+            } else {
+                cids = cids + ',' + e.courseId;
+            }
+        });
+        if (cids !== '') {
+            return this.api.insertStuCourse(cids);
+        } else {
+            return of('no cids selected.');
+        }
+    }
 
 }

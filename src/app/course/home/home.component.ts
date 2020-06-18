@@ -55,9 +55,7 @@ export class HomeComponent implements OnInit {
             cssClass: 'modal-dialog',
             backdropDismiss: false,
             componentProps: {
-                'firstName': 'Douglas',
-                'lastName': 'Adams',
-                'middleInitial': 'N'
+                courses: this.courseSvr.courses.filter(e => e.checked)
             }
         });
         await modal.present();
@@ -68,7 +66,9 @@ export class HomeComponent implements OnInit {
     }
     confirm() {
         this.presentConfirm(() => {
-            console.log("press ok");
+            this.courseSvr.selectCourse().subscribe(res=>{
+
+            });
         });
     }
 

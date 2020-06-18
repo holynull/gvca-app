@@ -1,8 +1,7 @@
 <div class="dialog">
     <p>您选择的课程是：</p>
     <ul>
-        <li><i></i>选修课一</li>
-        <li><i></i>选修课三</li>
+        <li *ngFor="let item of courses"><i></i>{{item.courseName}}</li>
     </ul>
     <div>
         <a (click)="cancel()" class="btn_reset">重选</a>

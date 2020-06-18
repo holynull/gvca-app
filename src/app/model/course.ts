@@ -23,4 +23,5 @@ export class Course {
     courseDetail: string;
     photo: string;
     lessons: Array<Lesson> = new Array();
+    checked: boolean;
 }

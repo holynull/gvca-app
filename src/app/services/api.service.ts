@@ -129,4 +129,13 @@ export class ApiService extends BaseService {
             return of(e);
         }));
     }
+
+    insertStuCourse(cids: string): Observable<any> {
+        let url = this.url(environment.api.insertStuCourse.url);
+        let params = new HttpParams().set('cids', cids);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
 }
