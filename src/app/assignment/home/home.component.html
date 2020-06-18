@@ -16,9 +16,9 @@
                     <a *ngSwitchCase="2" (click)="toMyWork()" class="btn_do btn_modify">去修正</a>
                     <a *ngSwitchCase="3" href="javascript:;" class="btn_did">A+</a>
                 </h3>
-                <!--TODO: 作业没有下面的内容  -->
-                <p>1. 46页课文预习，大声朗读3遍<br>
-                    2. 45页生词听写两遍</p>
+                <div [innerHtml]="item.homeworkDetail|safeHtml">
+
+                </div>
             </div>
         </div>
     </div>

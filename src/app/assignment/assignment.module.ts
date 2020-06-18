@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { MyWorkComponent } from './my-work/my-work.component';
 import { UploadComponent } from './upload/upload.component';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { UploadComponent } from './upload/upload.component';
         AssignmentRoutingModule,
         IonicModule,
         FormsModule,
+        PipesModule,
     ]
 })
 export class AssignmentModule { }
