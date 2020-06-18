@@ -1,3 +1,5 @@
+import { Lesson } from './lesson';
+
 export class Course {
     departmentName: string;
     courseType: number;
@@ -20,5 +22,5 @@ export class Course {
     courseId: number;
     courseDetail: string;
     photo: string;
-    // TODO: 缺少视频目录以及视频
+    lessons: Array<Lesson> = new Array();
 }

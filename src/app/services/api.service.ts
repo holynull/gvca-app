@@ -119,4 +119,14 @@ export class ApiService extends BaseService {
             return of(e);
         }));
     }
+
+    getLessonList(pageNo: number, pageSize: number, courseId: string): Observable<any> {
+        let url = this.url(environment.api.getLessonList.url);
+        let params = new HttpParams().set('pageNo', String(pageNo)).set('pageSize', String(pageSize))
+            .set('courseId', courseId);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
 }

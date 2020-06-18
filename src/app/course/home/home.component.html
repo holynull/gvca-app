@@ -17,8 +17,7 @@
                 <div>
                     <h3>{{item.courseName}}</h3>
                     <p>{{item.teacherName}}</p>
-                    <a [routerLink]="['/course/detail']" [queryParams]="{id:item.courseId,tab:curTab}"
-                        routerDirection="forward" class="btn_study">进入学习</a>
+                    <a (click)="goToDetail(item.courseId,curTab)" routerDirection="forward" class="btn_study">进入学习</a>
                 </div>
             </div>
         </div>
@@ -39,7 +38,7 @@
             </div>
         </ng-template>
     </div>
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" >
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>

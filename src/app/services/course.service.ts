@@ -4,6 +4,7 @@ import { ApiService } from './api.service';
 import { Course } from 'app/model/course';
 import { CourseSelectStates } from 'app/model/course-sel-status';
 import { PageInfo } from 'app/model/pageInfo';
+import { Lesson } from 'app/model/lesson';
 
 @Injectable({
     providedIn: 'root'
@@ -84,6 +85,45 @@ export class CourseService {
                 return this.courses[i];
             }
         }
+    }
+
+    getLesson(pageInfo: PageInfo, courseId: number, callBack?: (arr: Array<Lesson>) => any) {
+        this.api.getLessonList(pageInfo.curPageNum, pageInfo.pageSize, String(courseId)).subscribe(res => {
+            let arr = new Array<Lesson>();
+            if (res.code === 1) {
+                res.info.forEach(e => {
+                    let l = new Lesson();
+                    l.lessonStatus = e.lessonStatus;
+                    l.loadState = e.loadState;
+                    l.addTime = new Date(e.addTime);
+                    l.lessonId = e.lessonId;
+                    l.updateTime = new Date(e.updateTime);
+                    l.sort = e.sort;
+                    l.lessonName = e.lessonName;
+                    l.courseName = e.courseName;
+                    l.teacherId = e.teacherId;
+                    l.videoUrl = e.videoUrl;
+                    l.lessonLength = e.lessonLength;
+                    l.transcodeDurtion = e.transcodeDurtion;
+                    l.courseId = e.courseId;
+                    l.lessonType = e.lessonType;
+                    l.videosize = e.videosize;
+                    l.downLoadTaskId = e.downLoadTaskId;
+                    arr.push(l);
+                });
+            } else {
+                console.error(res, {});
+            }
+            if (callBack) {
+                // todo: 测试多视频播放
+                let l = new Lesson();
+                l.videoUrl = 'http://static.videogular.com/assets/videos/videogular.mp4';
+                l.lessonId = new Date().getTime();
+                // arr.push(l);
+                arr.unshift(l);
+                callBack(arr);
+            }
+        });
     }
 
 

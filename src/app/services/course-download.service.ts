@@ -23,10 +23,10 @@ export class CourseDownloadService extends BaseService {
 
     constructor(private api: ApiService, private file: File, private storage: Storage, private platform: Platform, private transfer: FileTransfer) {
         super();
-        
+
     }
 
-    public initData(){
+    public initData() {
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
             if (data) {
                 data.forEach((d, index, arr) => {
@@ -39,6 +39,9 @@ export class CourseDownloadService extends BaseService {
                     task.speed = Number(d.speed);
                     task.fileName = d.fileName;
                     task.fullPath = d.fullPath;
+                    if (d.lessonId) {
+                        task.lessonId = d.lessonId;
+                    }
                     this.tasks.push(task);
                 });
             }
@@ -97,6 +100,7 @@ export class CourseDownloadService extends BaseService {
                 fileName: e.fileName,
                 fullPath: e.fullPath,
                 targetUrl: e.targetUrl,
+                lessonId: e.lessonId,
             });
         });
         this.storage.set(ConstVal.DOWNLOAD_TASKS, arr).then();

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CourseSelectStates } from 'app/model/course-sel-status';
 import { PageInfo } from 'app/model/pageInfo';
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
         private modalCtrl: ModalController,
         public courseSvr: CourseService,
         private activedRoute: ActivatedRoute,
+        private router: Router,
     ) {
         this.activedRoute.queryParams.subscribe(params => {
             if (params.tab) {
@@ -84,6 +85,16 @@ export class HomeComponent implements OnInit {
         this.courseSvr.loadCourse(this.curTab, this.pageInfo, (status) => {
             this.selectState = Number(status);
             event.target.complete();
+        });
+    }
+
+    goToDetail(id, tab) {
+        let course = this.courseSvr.getCourse(id);
+        let pageInfo = new PageInfo();
+        pageInfo.firstPage();
+        this.courseSvr.getLesson(pageInfo, id, (arr) => {
+            course.lessons = arr;
+            this.router.navigate(['/course/detail'], { queryParams: { id: id, tab: tab } });
         });
     }
 }

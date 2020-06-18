@@ -64,7 +64,13 @@ export const environment = {
             retryTimes: 2,
             debug: true,
             url: '/front/app/getHomeWorkList',
-        }
+        },
+        getLessonList: {
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getLessonList',
+        },
     },
     videoDir: 'course_video',
 };
