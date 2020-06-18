@@ -138,4 +138,13 @@ export class ApiService extends BaseService {
             return of(e);
         }));
     }
+
+    insertStuLesson(cid: string, lid: string, gapTime: string, lessonLength: string): Observable<any> {
+        let url = this.url(environment.api.insertStuLesson.url);
+        let params = new HttpParams().set('cid', cid).set('Lid',lid).set('gapTime',gapTime).set('lessonLength',lessonLength);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
 }

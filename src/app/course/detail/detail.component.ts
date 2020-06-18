@@ -7,6 +7,8 @@ import { CourseDownloadService } from 'app/services/course-download.service';
 import { CourseService } from 'app/services/course.service';
 import { BitrateOption, VgAPI, VgMedia } from 'videogular2/compiled/core';
 import { AlertController } from '@ionic/angular';
+import { interval } from 'rxjs';
+import { last } from 'rxjs/operators';
 
 @Component({
     selector: 'app-detail',
@@ -46,7 +48,7 @@ export class DetailComponent implements OnInit {
 
     pageInfo: PageInfo = new PageInfo();
 
-    videoPath: string;
+    curLesson: Lesson;
 
     constructor(
         public courseDownloadSvr: CourseDownloadService,
@@ -68,22 +70,36 @@ export class DetailComponent implements OnInit {
     }
     playerReady(event) {
         this.vgApi = event;
-
+        this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
+        let sta = new Date();
+        this.vgApi.getDefaultMedia().subscriptions.playing.subscribe(() => {
+            let gapTime = Math.floor((new Date().getTime() - sta.getTime()) / 1000);
+            this.courseSvr.updateLessonStuData(this.curLesson, gapTime, this.vgApi.getDefaultMedia().currentTime);
+            sta = new Date();
+        });
+        this.vgApi.getDefaultMedia().subscriptions.pause.subscribe(() => {
+            let gapTime = Math.floor((new Date().getTime() - sta.getTime()) / 1000);
+            this.courseSvr.updateLessonStuData(this.curLesson, gapTime, this.vgApi.getDefaultMedia().currentTime);
+            sta = new Date();
+        });
+        this.vgApi.getDefaultMedia().subscriptions.timeUpdate.subscribe((event) => { // 不允许快进
+            if ((this.vgApi.getDefaultMedia().currentTime >= 2 && this.vgApi.getDefaultMedia().currentTime - this.curLesson.lessonLength) > 2) {
+                this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
+            } else {
+                this.curLesson.lessonLength = this.vgApi.getDefaultMedia().currentTime;
+            }
+        });
     }
     ngOnInit() {
         if (this.course.lessons && this.course.lessons.length > 0) {
-            this.videoPath = this.course.lessons[0].videoUrl;
+            this.curLesson = this.course.lessons[0];
         }
-        // this.dashBitrates.push(this.videoQuality1, this.videoQuality2);
-        // if (this.course.lessons && this.course.lessons.length > 0) {
-        //     this.videoPath = this.course.lessons[0].videoUrl;
-        // } else {
-        //     this.videoPath = 'http://static.videogular.com/assets/videos/videogular.mp4';//this.lessons[0].videoUrl;
-        // }
     }
 
-    ionViewWillEnter() {
-
+    ionViewWillLeave() {
+        console.log({
+            curTime: this.vgApi.getDefaultMedia().currentTime,
+        });
     }
 
     ionViewDidLeave() {
@@ -110,9 +126,6 @@ export class DetailComponent implements OnInit {
         this.courseSvr.getLesson(this.pageInfo, this.course.courseId, (arr) => {
             this.course.lessons = arr;
             event.target.complete();
-            // if (this.course.lessons && this.course.lessons.length > 0) {
-            //     // this.videoPath = this.course.lessons[0].videoUrl;
-            // }
         });
     }
 
@@ -127,12 +140,11 @@ export class DetailComponent implements OnInit {
     }
 
     play(lesson: Lesson) {
-        if (lesson.videoUrl !== this.videoPath) {
+        if (lesson.lessonId !== this.curLesson.lessonId) {
             this.vgApi.pause();
-            this.videoPath = lesson.videoUrl;
-            this.vgApi.subscriptions.canPlay.subscribe(() => {
-                this.vgApi.play();
-            });
+            this.curLesson = lesson;
+            this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
+            this.vgApi.play();
         }
     }
     async onVideoError(event) {

@@ -7,6 +7,7 @@ import { PageInfo } from 'app/model/pageInfo';
 import { Lesson } from 'app/model/lesson';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -120,7 +121,8 @@ export class CourseService {
                 // todo: 测试多视频播放
                 let l = new Lesson();
                 l.videoUrl = 'http://static.videogular.com/assets/videos/videogular.mp4';
-                l.lessonId = new Date().getTime();
+                l.lessonId = 125;
+                l.courseId = 2;
                 // arr.push(l);
                 arr.unshift(l);
                 callBack(arr);
@@ -145,6 +147,20 @@ export class CourseService {
         } else {
             return of('no cids selected.');
         }
+    }
+
+    /**
+     * 更新用户听课数据
+     * @param cid  
+     * @param lid 
+     */
+    updateLessonStuData(lesson: Lesson, gapTime: number, lessonLength: number) {
+        this.api.insertStuLesson(String(lesson.courseId), String(lesson.lessonId), String(Math.floor(gapTime)), String(Math.floor(lessonLength)))
+            .subscribe(res => {
+                if (res.code !== 1) {
+                    console.error(res);
+                }
+            });
     }
 
 }

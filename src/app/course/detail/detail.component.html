@@ -35,7 +35,7 @@
             </vg-controls>
             <video #myMedia [vgMedia]="myMedia" [VgMaster]="true"
                 id="myMedia" height="200" preload="auto" style="z-index: 100;" crossorigin="true"
-                playsinline="true" webkit-playsinline="true" [src]="videoPath" (error)="onVideoError($event)">
+                playsinline="true" webkit-playsinline="true" [src]="curLesson.videoUrl" (error)="onVideoError($event)">
             </video>
         </vg-player>
     </div>

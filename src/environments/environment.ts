@@ -77,6 +77,13 @@ export const environment = {
             debug: true,
             url: '/front/app/insertStuCourse',
         },
+        insertStuLesson: {
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/insertStuLesson',
+
+        },
     },
     videoDir: 'course_video',
 };

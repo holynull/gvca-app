@@ -9,7 +9,7 @@ export class Lesson {
     courseName: string;
     teacherId: number;
     videoUrl: string;
-    lessonLength: number;
+    lessonLength: number = 0;
     transcodeDurtion: string;
     courseId: number;
     lessonType: number;
