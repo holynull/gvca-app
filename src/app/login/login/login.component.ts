@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     login() {
         this.auth.login(this.userName, this.pwd).subscribe(async res => {
             if (res.code === 1) {
-                this.router.navigate([this.url ? this.url : '/tabs/home']);
+                this.router.navigate(['/tabs/home']);
             } else {
                 const alert = await this.alertCtrl.create({
                     header: "温馨提示",

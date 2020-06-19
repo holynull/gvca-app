@@ -32,12 +32,13 @@ export class AppComponent {
             }
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            if (this.platform.is('cordova')) {
+                this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(val => {
+                    console.log('Lock Screen Orientation.');
+                    console.log(val);
+                });
+            }
         });
-        if (this.platform.is('cordova')) {
-            this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(val => {
-                console.log('Lock Screen Orientation.');
-                console.log(val);
-            });
-        }
+
     }
 }

@@ -23,7 +23,6 @@ export class CourseDownloadService extends BaseService {
 
     constructor(private api: ApiService, private file: File, private storage: Storage, private platform: Platform, private transfer: FileTransfer) {
         super();
-
     }
 
     public initData() {
@@ -111,7 +110,15 @@ export class CourseDownloadService extends BaseService {
             if (e.status === status && e.checked) {
                 if (e.status === DownloadTaskStatus.Done && e.fileName) { // 非下载完成的任务，不能删除
                     if (this.platform.is('cordova')) {
-                        this.file.removeFile(this.file.dataDirectory, e.fileName).then(data => {
+                        let root = this.file.dataDirectory;
+                        let rFileName = environment.videoDir;
+                        if (this.platform.is('ios')) {
+                            root = this.file.documentsDirectory;
+                        }
+                        if (this.platform.is('android')) {
+                            rFileName = 'Documents/' + rFileName;
+                        }
+                        this.file.removeFile(root, rFileName + '/' + e.fileName).then(data => {
                             console.log('保存文件回调');
                             console.log(data);
                         }).catch(e => {
