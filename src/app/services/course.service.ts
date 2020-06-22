@@ -118,13 +118,6 @@ export class CourseService {
                 console.error(res, {});
             }
             if (callBack) {
-                // todo: 测试多视频播放
-                let l = new Lesson();
-                l.videoUrl = 'http://static.videogular.com/assets/videos/videogular.mp4';
-                l.lessonId = 125;
-                l.courseId = 2;
-                // arr.push(l);
-                arr.unshift(l);
                 callBack(arr);
             }
         });
