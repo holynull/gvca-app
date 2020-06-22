@@ -33,9 +33,9 @@
                 <vg-fullscreen class="video-control-btn"></vg-fullscreen>
                 <!--全屏和非全屏之间切换-->
             </vg-controls>
-            <video #myMedia [vgMedia]="myMedia" [VgMaster]="true"
-                id="myMedia" height="200" preload="auto" style="z-index: 100;" crossorigin="true"
-                playsinline="true" webkit-playsinline="true" [src]="curLesson.videoUrl" (error)="onVideoError($event)">
+            <video #myMedia [vgMedia]="myMedia" [VgMaster]="true" id="myMedia" height="200" preload="auto"
+                style="z-index: 100;" crossorigin="true" playsinline="true" webkit-playsinline="true"
+                [src]="curLesson.videoUrl" (error)="onVideoError($event)">
             </video>
         </vg-player>
     </div>
@@ -47,18 +47,18 @@
         <div class="detail_panel1" [hidden]="curTab!==1">
             <div class="detail_tip">
                 <span>共<i>{{course.lessons.length}}</i>课</span>
-                <a (click)="download()" class="btn_alldown"><i></i>全部下载</a>
+                <a (click)="downloadAll()" class="btn_alldown"><i></i>全部下载</a>
             </div>
             <div class="detail_list">
                 <ul>
-                    <li class="clearfix" *ngFor="let item of course.lessons" (click)="play(item)">
+                    <li class="clearfix" *ngFor="let item of course.lessons">
                         <div class="detail_c">
                             <h3>{{item.lessonName}}</h3>
                             <p>时长{{item.transcodeDurtion}}</p>
                         </div>
                         <div class="detail_btns">
-                            <a href="javascript:;" class="detail_btn_play"></a>
-                            <a href="javascript:;" class="detail_btn_down"></a>
+                            <a href="javascript:;" class="detail_btn_play" (click)="play(item)"></a>
+                            <a href="javascript:;" class="detail_btn_down" *ngIf="!isDownloaded(item)" (click)="download(item)"></a>
                         </div>
                     </li>
                 </ul>

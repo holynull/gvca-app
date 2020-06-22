@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 import { Platform } from '@ionic/angular';
@@ -27,7 +27,18 @@ export class DownloadComponent implements OnInit {
 
     timer: Subscription;
 
-    constructor(public platform: Platform, private file: File, public courseDownloadSvr: CourseDownloadService, private router: Router, private media: StreamingMedia) {
+    url: string = '';
+
+    backParams: any = {};
+
+    constructor(
+        public platform: Platform,
+        private file: File,
+        public courseDownloadSvr: CourseDownloadService,
+        private router: Router,
+        private media: StreamingMedia,
+        private activedRoute: ActivatedRoute,
+    ) {
         if (platform.is('cordova')) {
             file.getFreeDiskSpace().then(num => {
                 if (Math.floor(num / 1024 / 1024 / 1024) > 0) {
@@ -41,7 +52,17 @@ export class DownloadComponent implements OnInit {
                 }
             });
         }
+        this.activedRoute.queryParams.subscribe(params => {
+            if (params.url) {
+                this.url = params.url;
+            } else {
+                this.url = '/tabs/mine';
+            }
 
+            if (params.courseId) {
+                this.backParams.id = params.courseId;
+            }
+        });
     }
 
     ngOnInit() { }
@@ -108,6 +129,7 @@ export class DownloadComponent implements OnInit {
             shouldAutoClose: true,
             controls: true,
         };
+        // todo: 本地播放，无法实现上传播放时长
         this.media.playVideo(url, options);
     }
 

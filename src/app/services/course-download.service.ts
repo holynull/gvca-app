@@ -9,6 +9,7 @@ import { DownloadTask } from 'app/model/download-task';
 import { DownloadTaskStatus } from 'app/model/download-task-status';
 import { ApiService } from './api.service';
 import { BaseService } from './base.service';
+import { Lesson } from 'app/model/lesson';
 
 
 
@@ -41,6 +42,9 @@ export class CourseDownloadService extends BaseService {
                     if (d.lessonId) {
                         task.lessonId = d.lessonId;
                     }
+                    if (d.courseId) {
+                        task.courseId = d.courseId;
+                    }
                     this.tasks.push(task);
                 });
             }
@@ -72,16 +76,28 @@ export class CourseDownloadService extends BaseService {
         }
     }
 
-    runTask(): DownloadTask {
-        let url = 'https://images.plo.one/video/videogular.mp4';
-        let task = new DownloadTask(url, this.api, this.platform, this.file, this.transfer);
-        task.taskId = String(new Date().getTime());
-        task.api = this.api;
+    runTask(lesson: Lesson): DownloadTask {
+        let exsits = false;
+        let task: DownloadTask;
+        for (let i = 0; i < this.tasks.length; i++) {
+            if (this.tasks[i].lessonId === lesson.lessonId) {
+                exsits = true;
+                task = this.tasks[i];
+                break;
+            }
+        }
+        if (!exsits) {
+            task = new DownloadTask(lesson.videoUrl, this.api, this.platform, this.file, this.transfer);
+            task.taskId = String(new Date().getTime());
+            task.api = this.api;
+            task.lessonId = lesson.lessonId;
+            task.courseId = lesson.courseId;
+            this.tasks.push(task);
+            this.updateStorage();
+        }
         task.run(() => {
             this.updateStorage();
         });
-        this.tasks.push(task);
-        this.updateStorage();
         return task;
     }
 
@@ -100,6 +116,7 @@ export class CourseDownloadService extends BaseService {
                 fullPath: e.fullPath,
                 targetUrl: e.targetUrl,
                 lessonId: e.lessonId,
+                courseId: e.courseId,
             });
         });
         this.storage.set(ConstVal.DOWNLOAD_TASKS, arr).then();

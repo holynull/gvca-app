@@ -20,18 +20,6 @@ export class ApiService extends BaseService {
         super();
     }
 
-    //TODO: 测试下载
-    testDownload(url): Observable<any> {
-        return this.http.get(url, {
-            responseType: "blob",
-            reportProgress: true,
-            observe: "events",
-            headers: new HttpHeaders(
-                { 'Content-Type': 'video/mp4', "Cache-Control": 'no-cache' },
-            )
-        });
-    }
-
     /**
      * 
      * @param studentName 登录

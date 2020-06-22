@@ -9,6 +9,8 @@ import { BitrateOption, VgAPI, VgMedia } from 'videogular2/compiled/core';
 import { AlertController } from '@ionic/angular';
 import { interval } from 'rxjs';
 import { last } from 'rxjs/operators';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { DownloadTask } from 'app/model/download-task';
 
 @Component({
     selector: 'app-detail',
@@ -56,6 +58,7 @@ export class DetailComponent implements OnInit {
         private activedRoute: ActivatedRoute,
         public courseSvr: CourseService,
         private alertCtrl: AlertController,
+        private media: StreamingMedia,
     ) {
         this.activedRoute.queryParams.subscribe(params => {
             if (params.id) {
@@ -110,15 +113,20 @@ export class DetailComponent implements OnInit {
         this.curTab = tab;
     }
 
-    download() {
-        this.router.navigate(['/course/download']);
-        this.courseDownloadSvr.runTask();
-        setTimeout(() => {
-            this.courseDownloadSvr.runTask();
-        }, 1000);
-        setTimeout(() => {
-            this.courseDownloadSvr.runTask();
-        }, 1000);
+    downloadAll() {
+        this.router.navigate(['/course/download'], {
+            queryParams: {
+                url: '/course/detail',
+                courseId: this.course.courseId,
+            }
+        });
+        this.course.lessons.forEach(e => {
+            this.download(e);
+        });
+    }
+
+    download(item: Lesson) {
+        this.courseDownloadSvr.runTask(item);
     }
 
     doRefresh(event) {
@@ -140,11 +148,26 @@ export class DetailComponent implements OnInit {
     }
 
     play(lesson: Lesson) {
-        if (lesson.lessonId !== this.curLesson.lessonId) {
+        let task = this.isDownloaded(lesson)
+        if (!task) {
             this.vgApi.pause();
             this.curLesson = lesson;
             this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
             this.vgApi.play();
+        } else {
+            let options: StreamingVideoOptions = {
+                successCallback: () => {
+                    console.log('Video played');
+                },
+                errorCallback: (e) => {
+                    console.log(e, {});
+                },
+                orientation: 'landscape',
+                shouldAutoClose: true,
+                controls: true,
+            };
+            // todo: 本地播放，无法实现上传播放时长
+            this.media.playVideo(task.nativeUrl, options);
         }
     }
     async onVideoError(event) {
@@ -165,5 +188,14 @@ export class DetailComponent implements OnInit {
             ]
         });
         await alert.present();
+    }
+
+    isDownloaded(lesson: Lesson): DownloadTask {
+        for (let i = 0; i < this.courseDownloadSvr.tasks.length; i++) {
+            if (this.courseDownloadSvr.tasks[i].lessonId === lesson.lessonId) {
+                return this.courseDownloadSvr.tasks[i];
+            }
+        }
+        return null;
     }
 }

@@ -25,6 +25,7 @@ export class DownloadTask {
     fullPath: string;
     targetUrl: string;
     lessonId: number;
+    courseId:number;
 
     constructor(url: string, api: ApiService, platform: Platform, file: File, trans: FileTransfer) {
         this.targetUrl = url;
