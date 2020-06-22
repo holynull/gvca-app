@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopMenuComponent } from '../pop-menu/pop-menu.component';
+import { ExercisesService } from 'app/services/exercises.service';
 
 @Component({
     selector: 'app-home',
@@ -9,7 +10,10 @@ import { PopMenuComponent } from '../pop-menu/pop-menu.component';
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private popOverCtrl: PopoverController) { }
+    constructor(
+        private popOverCtrl: PopoverController,
+        public eSvr:ExercisesService,
+        ) { }
 
     ngOnInit() { }
 

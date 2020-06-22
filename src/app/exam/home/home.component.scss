@@ -10,29 +10,34 @@ ion-button {
     }
 }
 
-.exam_list>ul>li{
-    height: 3rem;
-    line-height: 3rem;
-    background: #f5f6f6 url(assets/images/icon_exam_list.png) no-repeat .5rem center;
-    background-size: 1.2rem;
-    padding-left: 1.9rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    word-wrap: normal;
-    width: 100%;
-    color: #333;
-    font-size: .9rem;
-    box-sizing: border-box;
-    border-top: 1px solid #e6e6e6;
-  }
-  .exam_list>ul>li span{
+.exam_list>ul>li {
+
+    div.course {
+        line-height: 3rem;
+        background: #f5f6f6 url(assets/images/icon_exam_list.png) no-repeat .5rem center;
+        background-size: 1.2rem;
+        padding-left: 1.9rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+        width: 100%;
+        color: #333;
+        font-size: .9rem;
+        box-sizing: border-box;
+        border-top: 1px solid #e6e6e6;
+    }
+}
+
+.exam_list>ul>li span {
     float: right;
-  }
-  .exam_list>ul>li span i{
+}
+
+.exam_list>ul>li span i {
     color: #cc0000;
-  }
-  .exam_list>ul>li em{
+}
+
+.exam_list>ul>li em {
     background: url(assets/images/icon_exam_listarrow.png);
     background-size: contain;
     width: 1.6rem;
@@ -41,18 +46,21 @@ ion-button {
     margin-right: .2rem;
     margin-top: .7rem;
     transition: 0.3s linear all;
-  }
-  .exam_list>ul>li.active em{
-    transform: rotate(90deg);
-  }
-  .exam_list>ul>li~div{
-    // display: none;
-  }
+}
 
-  .exam_sublist{
+.exam_list>ul>li.active em {
+    transform: rotate(90deg);
+}
+
+.exam_list>ul>li~div {
+    // display: none;
+}
+
+.exam_sublist {
     background: #fff;
-  }
-  .exam_sublist li{
+}
+
+.exam_sublist li {
     border-bottom: 1px solid #e6e6e6;
     height: 3rem;
     line-height: 3rem;
@@ -65,11 +73,13 @@ ion-button {
     font-size: .9rem;
     box-sizing: border-box;
     margin-left: 8%;
-  }
-  .exam_sublist li:last-child{
+}
+
+.exam_sublist li:last-child {
     border-bottom: none;
-  }
-  .exam_sublist li i{
+}
+
+.exam_sublist li i {
     width: 4px;
     height: 4px;
     border-radius: 50%;
@@ -78,12 +88,14 @@ ion-button {
     margin-right: .5rem;
     margin-top: 1.4rem;
     float: left;
-  }
-  .exam_sublist li span{
+}
+
+.exam_sublist li span {
     float: right;
-    font-size: .9rem;  
-  }
-  .exam_sublist li a{
+    font-size: .9rem;
+}
+
+.exam_sublist li a {
     background: url(assets/images/icon_exam_ques.png);
     background-size: contain;
     width: 1.6rem;
@@ -91,8 +103,9 @@ ion-button {
     float: right;
     margin-left: .2rem;
     margin-top: .7rem;
-  }
-  .exam_sublist li a.done{
+}
+
+.exam_sublist li a.done {
     background: url(assets/images/icon_exam_ans.png);
     background-size: contain;
-  }
+}

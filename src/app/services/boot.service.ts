@@ -4,6 +4,7 @@ import { CourseDownloadService } from './course-download.service';
 import { CourseService } from './course.service';
 import { NoticeService } from './notice.service';
 import { Platform } from '@ionic/angular';
+import { ExercisesService } from './exercises.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,7 @@ export class BootService {
         private noticeSvr: NoticeService,
         private courseSvr: CourseService,
         private courseDownloadSvr: CourseDownloadService,
+        private exercisSvr: ExercisesService,
     ) {
         this.initData();
     }
@@ -26,6 +28,7 @@ export class BootService {
             this.noticeSvr.loadeData();
             this.courseSvr.getAllCourseCats();
             this.courseDownloadSvr.initData();
+            this.exercisSvr.loadData();
         });
     }
 }

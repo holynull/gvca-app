@@ -11,22 +11,34 @@
 <ion-content>
     <div class="exam_list">
         <ul>
-            <li>课程一<em></em><span><i>6</i>/152</span></li>
-            <div class="exam_sublist">
-                <ul>
-                    <li><i></i>知识点一<a class="done"></a><span>(10)</span></li>
-                    <li><i></i>知识点二<a [routerLink]="['/exam/answer']"  [queryParams]="{title:'知识点二'}"></a><span>(6)</span></li>
-                    <li><i></i>知识点三<a [routerLink]="['/exam/answer']"  [queryParams]="{title:'知识点三'}"></a><span>(8)</span></li>
-                </ul>
-            </div>
-            <li>课程二<em></em><span><i>5</i>/80</span></li>
+            <li *ngFor="let item of eSvr.exercisCourses">
+                <div class="course">
+                    {{item.name}}<em></em><span><i>{{item.questionUsedSum}}</i>/{{item.questionSum}}</span></div>
+                <div class="exam_sublist">
+                    <ul>
+                        <li *ngFor="let d of item.details">
+                            <i></i>
+                            {{d.name}}
+                            <a *ngIf="d.questionSum===d.questionUsedSum&&d.questionSum!==0;else nodone"
+                                [ngClass]="{done: d.questionSum===d.questionUsedSum}"></a>
+                            <ng-template #nodone>
+                                <a [routerLink]="['/exam/answer']"
+                                    [queryParams]="{title:d.name,pid:item.pid,qcid:d.qcid}"></a>
+                            </ng-template>
+                            <span>({{d.questionUsedSum}})</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- <li>课程二<em></em><span><i>5</i>/80</span></li>
             <div class="exam_sublist">
                 <ul>
                     <li><i></i>知识点一<a href="javascript:;" class="done"></a><span>(10)</span></li>
-                    <li><i></i>知识点二<a [routerLink]="['/exam/answer']"  [queryParams]="{title:'知识点二'}"></a><span>(6)</span></li>
+                    <li><i></i>知识点二<a [routerLink]="['/exam/answer']"
+                            [queryParams]="{title:'知识点二'}"></a><span>(6)</span></li>
                 </ul>
             </div>
-            <li>课程三<em></em><span><i>10</i>/120</span></li>
+            <li>课程三<em></em><span><i>10</i>/120</span></li> -->
         </ul>
     </div>
 </ion-content>

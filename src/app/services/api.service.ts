@@ -21,7 +21,7 @@ export class ApiService extends BaseService {
     }
 
     /**
-     * 
+     *  
      * @param studentName 登录
      * @param studentPassword 
      */
@@ -127,9 +127,108 @@ export class ApiService extends BaseService {
         }));
     }
 
+    /**
+     * id:10
+     * @param cid 
+     * @param lid 
+     * @param gapTime 
+     * @param lessonLength 
+     */
     insertStuLesson(cid: string, lid: string, gapTime: string, lessonLength: string): Observable<any> {
         let url = this.url(environment.api.insertStuLesson.url);
-        let params = new HttpParams().set('cid', cid).set('lid',lid).set('gapTime',gapTime).set('lessonLength',lessonLength);
+        let params = new HttpParams().set('cid', cid).set('lid', lid).set('gapTime', gapTime).set('lessonLength', lessonLength);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:11
+     */
+    getEaxmCourseList() {
+        let url = this.url(environment.api.getEaxmCourseList.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:12
+     * @param pid 
+     */
+    getEaxmCourseDetailList(pid: string) {
+        let url = this.url(environment.api.getEaxmCourseDetailList.url);
+        let params = new HttpParams().set('pid', pid);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:13
+     * @param qcid 
+     */
+    getQuestionList(qcid: string) {
+        let url = this.url(environment.api.getQuestionList.url);
+        let params = new HttpParams().set('qcid', qcid);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:14
+     * @param type 2模拟题库，3考试题库 
+     */
+    getExamList(type: string) {
+        let url = this.url(environment.api.getExamList.url);
+        let params = new HttpParams().set('type', type);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:15
+     * @param examId 
+     */
+    getExamQuestionList(examId: string) {
+        let url = this.url(environment.api.getExamQuestionList.url);
+        let params = new HttpParams().set('examId', examId);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:16
+     * @param jsonlist 
+     * @param qcpid 
+     * @param qcid 
+     */
+    insertStuLxQuestion(jsonlist: string, qcpid: string, qcid: string) {
+        let url = this.url(environment.api.insertStuLxQuestion.url);
+        let params = new HttpParams().set('jsonlist', jsonlist).set('qcpid', qcpid).set('qcid', qcid);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:17
+     * @param jsonlist 
+     * @param examId 
+     */
+    insertStuQuestion(jsonlist: string, examId: string) {
+        let url = this.url(environment.api.insertStuQuestion.url);
+        let params = new HttpParams().set('jsonlist', jsonlist).set('examId', examId);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
             return of(e);
