@@ -11,9 +11,10 @@
 <ion-content>
     <div class="exam_sublist exam_test">
         <ul>
-            <li><i></i>2020测绘地理模拟试卷一<a href="javascript:;" class="done"></a></li>
-            <li><i></i>2020测绘地理模拟试卷二<a href="javascript:;"></a></li>
-            <li><i></i>2020测绘地理模拟试卷三<a href="javascript:;"></a></li>
+            <li *ngFor="let item of examSvr.testPapers">
+                <i></i>{{item.examName}}
+                <a (click)="goToAnswer(item)" [ngClass]="{done: item.usedStatus===1}"></a>
+            </li>
         </ul>
     </div>
 </ion-content>

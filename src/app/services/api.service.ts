@@ -146,7 +146,7 @@ export class ApiService extends BaseService {
     /**
      * id:11
      */
-    getEaxmCourseList() {
+    getEaxmCourseList(): Observable<any> {
         let url = this.url(environment.api.getEaxmCourseList.url);
         return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
@@ -158,7 +158,7 @@ export class ApiService extends BaseService {
      * id:12
      * @param pid 
      */
-    getEaxmCourseDetailList(pid: string) {
+    getEaxmCourseDetailList(pid: string): Observable<any> {
         let url = this.url(environment.api.getEaxmCourseDetailList.url);
         let params = new HttpParams().set('pid', pid);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
@@ -171,7 +171,7 @@ export class ApiService extends BaseService {
      * id:13
      * @param qcid 
      */
-    getQuestionList(qcid: string) {
+    getQuestionList(qcid: string): Observable<any> {
         let url = this.url(environment.api.getQuestionList.url);
         let params = new HttpParams().set('qcid', qcid);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
@@ -184,7 +184,7 @@ export class ApiService extends BaseService {
      * id:14
      * @param type 2模拟题库，3考试题库 
      */
-    getExamList(type: string) {
+    getExamList(type: string): Observable<any> {
         let url = this.url(environment.api.getExamList.url);
         let params = new HttpParams().set('type', type);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
@@ -197,7 +197,7 @@ export class ApiService extends BaseService {
      * id:15
      * @param examId 
      */
-    getExamQuestionList(examId: string) {
+    getExamQuestionList(examId: string): Observable<any> {
         let url = this.url(environment.api.getExamQuestionList.url);
         let params = new HttpParams().set('examId', examId);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
@@ -212,7 +212,7 @@ export class ApiService extends BaseService {
      * @param qcpid 
      * @param qcid 
      */
-    insertStuLxQuestion(jsonlist: string, qcpid: string, qcid: string) {
+    insertStuLxQuestion(jsonlist: string, qcpid: string, qcid: string): Observable<any> {
         let url = this.url(environment.api.insertStuLxQuestion.url);
         let params = new HttpParams().set('jsonlist', jsonlist).set('qcpid', qcpid).set('qcid', qcid);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
@@ -226,7 +226,7 @@ export class ApiService extends BaseService {
      * @param jsonlist 
      * @param examId 
      */
-    insertStuQuestion(jsonlist: string, examId: string) {
+    insertStuQuestion(jsonlist: string, examId: string): Observable<any> {
         let url = this.url(environment.api.insertStuQuestion.url);
         let params = new HttpParams().set('jsonlist', jsonlist).set('examId', examId);
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {

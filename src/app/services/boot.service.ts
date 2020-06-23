@@ -5,6 +5,8 @@ import { CourseService } from './course.service';
 import { NoticeService } from './notice.service';
 import { Platform } from '@ionic/angular';
 import { ExercisesService } from './exercises.service';
+import { SimulationService } from './simulation.service';
+import { ExamService } from './exam.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +20,8 @@ export class BootService {
         private courseSvr: CourseService,
         private courseDownloadSvr: CourseDownloadService,
         private exercisSvr: ExercisesService,
+        private simuSvr: SimulationService,
+        private examSvr: ExamService,
     ) {
         this.initData();
     }
@@ -29,6 +33,8 @@ export class BootService {
             this.courseSvr.getAllCourseCats();
             this.courseDownloadSvr.initData();
             this.exercisSvr.loadData();
+            this.simuSvr.loadData();
+            this.examSvr.loadData();
         });
     }
 }

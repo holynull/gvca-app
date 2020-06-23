@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button [routerLink]="['/tabs/exam']" routerDirection="back">
+            <ion-button [routerLink]="[url]" routerDirection="back">
                 <span class="btn_back"></span>
             </ion-button>
         </ion-buttons>
@@ -16,14 +16,15 @@
 <ion-content scrollY="false">
     <div style="height: 100%;" #content>
         <div class="detail_tip exam_tip">
-            <span><i>第{{qIndex}}题</i>|　共{{eSvr.getQuestions(pid,qcid).length}}题</span><em>(单选)</em>
+            <span><i>第{{qIndex+1}}题</i>|　共{{questions.length}}题</span><em>(单选)</em>
             <span class="countdown">{{h}}:{{m}}:{{s}}</span>
         </div>
-        <div class="exam_subject">
-            {{curQuestion.question}}
+        <div class="exam_subject" [innerHtml]="(questions.length>0?questions[qIndex].question:'')|safeHtml">
         </div>
-        <div class="exam_options clearfix">
-            <a *ngFor="let item of curQuestion.optional" [ngClass]="{active: curQuestion.isSelectedOpt(item)}" (click)="selOpt(item)"><i>{{item.key}}.</i>{{item.description}}</a>
+        <div class="exam_options clearfix" *ngIf="questions&&questions.length>0">
+            <a *ngFor="let item of questions[qIndex].optional"
+                [ngClass]="{active: questions[qIndex].isSelectedOpt(item)}"
+                (click)="questions[qIndex].giveAnswer(item)"><i>{{item.key}}.</i>{{item.description}}</a>
         </div>
         <div class="exam_hand">下一题右滑</div>
     </div>

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
 import { ExercisCourse } from 'app/model/exercis-course';
-import { pid } from 'process';
 import { ExercisCourseDetail } from 'app/model/exercis-course-detail';
-import { ExercisQuestion } from 'app/model/exercis-que';
 import { QuestionOption } from 'app/model/que-option';
+import { Question } from '../model/question';
+import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +19,7 @@ export class ExercisesService {
     public async loadData() {
         let res1 = await this.api.getEaxmCourseList().toPromise();
         if (res1.code === 1) {
+            this.exercisCourses.splice(0, this.exercisCourses.length);
             res1.info.forEach(async e => {
                 let course: ExercisCourse = new ExercisCourse();
                 course.dateline = e.deateline;
@@ -29,6 +29,7 @@ export class ExercisesService {
                 course.pid = Number(e.pid);
                 course.questionSum = Number(e.questionSum);
                 course.status = Number(e.status);
+                this.exercisCourses.push(course);
                 let res2 = await this.api.getEaxmCourseDetailList(String(course.pid)).toPromise();
                 if (res2.code === 1) {
                     res2.info.forEach(async e1 => {
@@ -40,10 +41,11 @@ export class ExercisesService {
                         detail.pid = Number(e1.pid);
                         detail.questionSum = Number(e.questionSum);
                         detail.status = Number(e.status);
+                        course.details.push(detail);
                         let res3 = await this.api.getQuestionList(String(detail.qcid)).toPromise();
                         if (res3.code === 1) {
                             res3.info.forEach(e3 => {
-                                let que = new ExercisQuestion();
+                                let que = new Question();
                                 que.trueAnswer = e3.trueAnswer;
                                 que.questionId = e3.questionId;
                                 que.question = e3.question;
@@ -69,19 +71,17 @@ export class ExercisesService {
                         } else {
                             console.error('获取练习题目出错', res3);
                         }
-                        course.details.push(detail);
                     });
                 } else {
                     console.error('获取知识点出错', res2);
                 }
-                this.exercisCourses.push(course);
             });
         } else {
             console.error('获取练习题库出错', res1);
         }
     }
 
-    getQuestions(pid: number, qcid: number): Array<ExercisQuestion> {
+    getQuestions(pid: number, qcid: number): Array<Question> {
         for (let i = 0; i < this.exercisCourses.length; i++) {
             if (this.exercisCourses[i].pid === pid) {
                 let detail = this.exercisCourses[i].getDetailById(qcid);

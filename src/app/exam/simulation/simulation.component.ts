@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { PopMenuComponent } from '../pop-menu/pop-menu.component';
 import { SimuTipsComponent } from '../simu-tips/simu-tips.component';
+import { SimulationService } from 'app/services/simulation.service';
+import { TestPaper } from 'app/model/test-paper';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-simulation',
@@ -10,10 +13,17 @@ import { SimuTipsComponent } from '../simu-tips/simu-tips.component';
 })
 export class SimulationComponent implements OnInit {
 
-    constructor(private popOverCtrl: PopoverController, private modalCtrl: ModalController) { }
+    constructor(
+        private popOverCtrl: PopoverController,
+        private modalCtrl: ModalController,
+        public simuSvr: SimulationService,
+        private router: Router,
+    ) { }
 
     ngOnInit() {
-        this.presentTips();
+        if (!this.simuSvr.enabled) {
+            this.presentTips();
+        }
     }
 
     async openPopMenu() {
@@ -40,5 +50,11 @@ export class SimulationComponent implements OnInit {
             }
         });
         await modal.present();
+    }
+
+    goToAnswer(detail: TestPaper) {
+        if (detail.questions.length > 0) {
+            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, from: 'simu' } });
+        }
     }
 }

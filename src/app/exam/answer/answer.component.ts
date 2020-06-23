@@ -5,9 +5,11 @@ import { AnswerCardComponent } from '../answer-card/answer-card.component';
 import { interval } from 'rxjs';
 import { createGesture, Gesture } from '@ionic/core';
 import { ExercisesService } from 'app/services/exercises.service';
-import { ExercisQuestion } from 'app/model/exercis-que';
+import { Question } from 'app/model/question';
 import { QuestionOption } from 'app/model/que-option';
-import { QuestionType } from 'app/model/question-type';
+import { QuestionType } from 'app/model/question-type.enum';
+import { SimulationService } from 'app/services/simulation.service';
+import { ExamService } from 'app/services/exam.service';
 
 @Component({
     selector: 'app-answer',
@@ -19,7 +21,9 @@ export class AnswerComponent implements OnInit {
     @ViewChild('content', {})
     ionContent: ElementRef;
 
-    qIndex: number = 1;
+    url: string = '/tabs/exam';
+
+    qIndex: number = 0;
 
     title: string;
     // 倒计时总秒数
@@ -31,17 +35,15 @@ export class AnswerComponent implements OnInit {
 
     slideFromRight: Gesture;
 
-    pid: number;
-
-    qcid: number;
-
-    curQuestion: ExercisQuestion;
+    questions: Array<Question> = new Array();
 
     constructor(
         private activeRoute: ActivatedRoute,
         private modalCtrl: ModalController,
         private gestureCtrl: GestureController,
         public eSvr: ExercisesService,
+        public sSvr: SimulationService,
+        public examSvr: ExamService,
     ) {
         setTimeout(() => {
             this.slideFromRight = this.gestureCtrl.create({
@@ -59,10 +61,25 @@ export class AnswerComponent implements OnInit {
             if (params && params.title) {
                 this.title = params.title;
             }
-            if (params.qid && params.qcid) {
-                this.pid = params.pid;
-                this.qcid = params.qcid;
-                this.curQuestion = eSvr.getQuestions(this.pid, this.qcid)[this.qIndex];
+            switch (params.from) {
+                case 'exer':
+                    if (params.qid && params.qcid) {
+                        this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
+                    }
+                    this.url = '/tabs/exam';
+                    break;
+                case 'simu':
+                    if (params.examId) {
+                        this.questions = this.sSvr.getQuesionsById(Number(params.examId));
+                    }
+                    this.url = '/tabs/exam/simulation'
+                    break;
+                case 'exam':
+                    if (params.examId) {
+                        this.questions = this.examSvr.getQuesionsById(Number(params.examId));
+                    }
+                    this.url = '/tabs/exam/examine'
+                    break;
             }
         });
     }
@@ -93,18 +110,16 @@ export class AnswerComponent implements OnInit {
     }
 
     next() {
-        if (this.qIndex !== (this.eSvr.getQuestions(this.pid, this.qcid).length - 1)) {
+        if (this.qIndex !== (this.questions.length - 1)) {
             this.qIndex++;
-            this.curQuestion = this.eSvr.getQuestions(this.pid, this.qcid)[this.qIndex];
         }
         console.log('下一题');
     };
 
     prev() {
         console.log('上一题');
-        if (this.qIndex !== 1) {
+        if (this.qIndex !== 0) {
             this.qIndex--;
-            this.curQuestion = this.eSvr.getQuestions(this.pid, this.qcid)[this.qIndex];
         }
     }
     ngOnInit() {
@@ -143,14 +158,6 @@ export class AnswerComponent implements OnInit {
             }
         });
         return await modal.present();
-    }
-
-    selOpt(opt: QuestionOption) {
-        if (this.curQuestion.questionType === QuestionType.MUTI_ANSWER) {
-            this.curQuestion.studentAnswer = this.curQuestion.studentAnswer + opt.key;
-        } else {
-            this.curQuestion.studentAnswer = opt.key;
-        }
     }
 
 }

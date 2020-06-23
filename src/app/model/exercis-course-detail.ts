@@ -1,4 +1,4 @@
-import { ExercisQuestion } from './exercis-que';
+import { Question } from './question';
 
 export class ExercisCourseDetail {
     dateline: number;
@@ -8,5 +8,5 @@ export class ExercisCourseDetail {
     pid: number;
     questionSum: number;
     status: number;
-    questions: Array<ExercisQuestion> = new Array();
+    questions: Array<Question> = new Array();
 }

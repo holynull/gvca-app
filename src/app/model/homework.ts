@@ -1,4 +1,4 @@
-import { HomeworkStatus } from './homework-status';
+import { HomeworkStatus } from './homework-status.enum';
 
 export class Homework {
     dataUrl: string;

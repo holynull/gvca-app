@@ -1,4 +1,4 @@
-import { Gender } from './gender';
+import { Gender } from './gender.enum';
 
 export class UserInfo {
     companyPosition: string;

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { ExamTipsComponent } from '../exam-tips/exam-tips.component';
 import { PopMenuComponent } from '../pop-menu/pop-menu.component';
+import { ExamService } from 'app/services/exam.service';
+import { TestPaper } from 'app/model/test-paper';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-examine',
@@ -10,10 +13,17 @@ import { PopMenuComponent } from '../pop-menu/pop-menu.component';
 })
 export class ExamineComponent implements OnInit {
 
-    constructor(private popOverCtrl: PopoverController, private modalCtrl: ModalController) { }
+    constructor(
+        private popOverCtrl: PopoverController,
+        private modalCtrl: ModalController,
+        public examSvr: ExamService,
+        private router: Router,
+    ) { }
 
     ngOnInit() {
-        this.presentTips();
+        if (!this.examSvr.enabled) {
+            this.presentTips();
+        }
     }
 
     async openPopMenu() {
@@ -40,5 +50,9 @@ export class ExamineComponent implements OnInit {
         });
         await modal.present();
     }
-
+    goToAnswer(detail: TestPaper) {
+        if (detail.questions.length > 0) {
+            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, from: 'exam' } });
+        }
+    }
 }

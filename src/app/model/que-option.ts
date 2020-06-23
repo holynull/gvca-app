@@ -1,4 +1,4 @@
-import { ExercisQuestion } from './exercis-que';
+import { Question } from './question';
 
 export class QuestionOption {
     key: string;

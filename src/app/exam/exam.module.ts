@@ -13,6 +13,7 @@ import { ScoreComponent } from './score/score.component';
 import { ReportComponent } from './report/report.component';
 import { AnswerCardComponent } from './answer-card/answer-card.component';
 import { RecordsComponent } from './records/records.component';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { RecordsComponent } from './records/records.component';
         ExamRoutingModule,
         IonicModule,
         FormsModule,
+        PipesModule,
     ]
 })
 export class ExamModule { }

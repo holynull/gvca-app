@@ -14,5 +14,9 @@ export class ConstVal {
 
     public static SLIDE_IMAGES = 'slide_images';
 
+    public static EXER_DATA = 'exer_data';
+    public static SIMU_DATA = 'simu_data';
+    public static EXAM_DATA = 'exam_data';
+
 
 }
