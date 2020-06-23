@@ -70,6 +70,7 @@ export class ExercisesService {
                                 que.questionType = e3.questionType;
                                 que.questionStatus = Number(e3.questionStatus);
                                 que.sort = qIndex + 1;
+                                que.score = Number(e3.score);
                                 detail.questions.push(que);
                             });
                             await this.saveOrUpdate(true);

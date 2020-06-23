@@ -35,6 +35,7 @@ export class ScoreComponent implements OnInit {
             this.dataType = params.dataType;
             this.pid = params.pid;
             this.qcid = params.qcid;
+            this.examId = params.examId;
             switch (this.dataType) {
                 case 'exer':
                     this.questions = exerSvr.getQuestions(Number(this.pid), Number(this.qcid));
