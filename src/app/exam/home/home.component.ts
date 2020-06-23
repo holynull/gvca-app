@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopMenuComponent } from '../pop-menu/pop-menu.component';
 import { ExercisesService } from 'app/services/exercises.service';
+import { Router } from '@angular/router';
+import { ExercisCourseDetail } from 'app/model/exercis-course-detail';
 
 @Component({
     selector: 'app-home',
@@ -12,8 +14,9 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private popOverCtrl: PopoverController,
-        public eSvr:ExercisesService,
-        ) { }
+        public eSvr: ExercisesService,
+        private router: Router,
+    ) { }
 
     ngOnInit() { }
 
@@ -29,6 +32,12 @@ export class HomeComponent implements OnInit {
         });
         await dialog.present();
         let dismissData = await dialog.onDidDismiss();
+    }
+
+    goToAnswer(detail: ExercisCourseDetail) {
+        if (detail.questions.length > 0) {
+            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.name, pid: detail.pid, qcid: detail.qcid } });
+        }
     }
 
 }
