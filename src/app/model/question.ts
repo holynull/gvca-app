@@ -16,6 +16,7 @@ export class Question {
     questionStatus: number;
     state: QuestionState = QuestionState.NONE;
     score: number;
+    sort: number;
 
     isSelectedOpt(opt: QuestionOption) {
         return this.studentAnswer.indexOf(opt.key) !== -1;

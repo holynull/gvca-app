@@ -83,21 +83,21 @@ export class AnswerCardComponent implements OnInit {
                     this.exerSvr.submit(this.pid, this.qcid).then(() => {
                         this.modalCtrl.dismiss();
                         loading.dismiss();
-                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title } });
+                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, pid: this.pid, qcid: this.qcid, dataType: this.dataType } });
                     });
                     break;
                 case 'simu':
                     this.simuSvr.submit(this.examId).then(() => {
                         this.modalCtrl.dismiss();
                         loading.dismiss();
-                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title } });
+                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
                     });
                     break;
                 case 'exam':
                     this.examSvr.submit(this.examId).then(() => {
                         this.modalCtrl.dismiss();
                         loading.dismiss();
-                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title } });
+                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
                     });
                     break;
             }

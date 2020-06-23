@@ -50,7 +50,7 @@ export class SimulationService {
                 this.testPapers.push(simulation);
                 let res3 = await this.api.getExamQuestionList(String(simulation.examId)).toPromise();
                 if (res3.code === 1) {
-                    res3.info.forEach(e3 => {
+                    res3.info.forEach((e3, qIndex, arr) => {
                         let que = new Question();
                         que.trueAnswer = e3.trueAnswer;
                         que.questionId = Number(e3.questionId);
@@ -72,6 +72,7 @@ export class SimulationService {
                         que.explains = e3.explains;
                         que.questionType = e3.questionType;
                         que.questionStatus = Number(e3.questionStatus);
+                        que.sort = qIndex + 1;
                         simulation.questions.push(que);
                     });
                     await this.saveOrUpdate(true);
