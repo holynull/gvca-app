@@ -3,6 +3,8 @@ import { TestPaper } from 'app/model/test-paper';
 import { ApiService } from './api.service';
 import { Question } from 'app/model/question';
 import { QuestionOption } from 'app/model/que-option';
+import { Storage } from '@ionic/storage';
+import { ConstVal } from 'app/constVal';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +20,7 @@ export class SimulationService {
 
     constructor(
         private api: ApiService,
+        private storage: Storage,
     ) {
 
     }
@@ -50,7 +53,7 @@ export class SimulationService {
                     res3.info.forEach(e3 => {
                         let que = new Question();
                         que.trueAnswer = e3.trueAnswer;
-                        que.questionId = e3.questionId;
+                        que.questionId = Number(e3.questionId);
                         que.question = e3.question;
                         que.addTime = new Date(e3.addTime);
                         que.questionCategoryId = Number(e3.questionCategoryId);
@@ -71,6 +74,7 @@ export class SimulationService {
                         que.questionStatus = Number(e3.questionStatus);
                         simulation.questions.push(que);
                     });
+                    await this.saveOrUpdate(true);
                 } else {
                     console.error('获取模拟题库题目出错', res3);
                 }
@@ -89,6 +93,31 @@ export class SimulationService {
             }
         }
         return new Array();
+    }
+
+    public async saveOrUpdate(isUpdate: boolean) {
+        let data = await this.storage.get(ConstVal.SIMU_DATA);
+        if (isUpdate && data && this.testPapers) {
+            data.forEach(d => {
+                for (let i = 0; i < this.testPapers.length; i++) {
+                    if (this.testPapers[i].examId === Number(d.examId)) {
+                        d.questions.forEach(q => {
+                            for (let n = 0; n < this.testPapers[i].questions.length; n++) {
+                                if (this.testPapers[i].questions[n].questionId === Number(q.questionId)) {
+                                    this.testPapers[i].questions[n].studentAnswer = q.studentAnswer;
+                                    this.testPapers[i].questions[n].state = Number(q.state);
+                                    this.testPapers[i].questions[n].questionStatus = Number(q.questionStatus);
+                                    this.testPapers[i].questions[n].score = Number(q.score);
+                                    break;
+                                }
+                            }
+                        });
+                        break;
+                    }
+                }
+            });
+        }
+        this.storage.set(ConstVal.SIMU_DATA, this.testPapers);
     }
 
 }

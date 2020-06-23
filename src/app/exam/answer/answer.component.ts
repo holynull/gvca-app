@@ -160,4 +160,10 @@ export class AnswerComponent implements OnInit {
         return await modal.present();
     }
 
+    ionViewWillLeave() {
+        this.eSvr.saveOrUpdate(false);
+        this.examSvr.saveOrUpdate(false);
+        this.sSvr.saveOrUpdate(false);
+    }
+
 }

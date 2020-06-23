@@ -52,6 +52,12 @@ export class SimulationComponent implements OnInit {
         await modal.present();
     }
 
+    doRefresh(event) {
+        this.simuSvr.loadData().then(() => {
+            event.target.complete();
+        });
+    }
+
     goToAnswer(detail: TestPaper) {
         if (detail.questions.length > 0) {
             this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, from: 'simu' } });

@@ -4,6 +4,8 @@ import { ExercisCourseDetail } from 'app/model/exercis-course-detail';
 import { QuestionOption } from 'app/model/que-option';
 import { Question } from '../model/question';
 import { ApiService } from './api.service';
+import { Storage } from '@ionic/storage';
+import { ConstVal } from 'app/constVal';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +16,7 @@ export class ExercisesService {
 
     constructor(
         private api: ApiService,
+        private storage: Storage,
     ) { }
 
     public async loadData() {
@@ -39,15 +42,15 @@ export class ExercisesService {
                         detail.questionUsedSum = Number(e1.questionUsedSum);
                         detail.qcid = Number(e1.qcid);
                         detail.pid = Number(e1.pid);
-                        detail.questionSum = Number(e.questionSum);
-                        detail.status = Number(e.status);
+                        detail.questionSum = Number(e1.questionSum);
+                        detail.status = Number(e1.status);
                         course.details.push(detail);
                         let res3 = await this.api.getQuestionList(String(detail.qcid)).toPromise();
                         if (res3.code === 1) {
                             res3.info.forEach(e3 => {
                                 let que = new Question();
                                 que.trueAnswer = e3.trueAnswer;
-                                que.questionId = e3.questionId;
+                                que.questionId = Number(e3.questionId);
                                 que.question = e3.question;
                                 que.addTime = new Date(e3.addTime);
                                 que.questionCategoryId = Number(e3.questionCategoryId);
@@ -68,6 +71,7 @@ export class ExercisesService {
                                 que.questionStatus = Number(e3.questionStatus);
                                 detail.questions.push(que);
                             });
+                            await this.saveOrUpdate(true);
                         } else {
                             console.error('获取练习题目出错', res3);
                         }
@@ -91,5 +95,40 @@ export class ExercisesService {
             }
         }
         return new Array();
+    }
+
+    /**
+     * api数据拉取完成后，从本地存储更新数据
+     */
+    public async saveOrUpdate(isUpdate: boolean) { // api数据拉取完成后，从本地存储更新数据
+        let data = await this.storage.get(ConstVal.EXER_DATA);
+        if (isUpdate && data && this.exercisCourses.length > 0) { // update
+            data.forEach(e => {
+                for (let i = 0; i < this.exercisCourses.length; i++) {
+                    if (this.exercisCourses[i].pid === Number(e.pid)) {
+                        e.details.forEach(d => {
+                            for (let j = 0; j < this.exercisCourses[i].details.length; j++) {
+                                if (this.exercisCourses[i].details[j].qcid === Number(d.qcid)) {
+                                    d.questions.forEach(q => {
+                                        for (let n = 0; n < this.exercisCourses[i].details[j].questions.length; n++) {
+                                            if (this.exercisCourses[i].details[j].questions[n].questionId === Number(q.questionId)) {
+                                                this.exercisCourses[i].details[j].questions[n].studentAnswer = q.studentAnswer;
+                                                this.exercisCourses[i].details[j].questions[n].state = Number(q.state);
+                                                this.exercisCourses[i].details[j].questions[n].questionStatus = Number(q.questionStatus);
+                                                this.exercisCourses[i].details[j].questions[n].score = Number(q.score);
+                                                break;
+                                            }
+                                        }
+                                    });
+                                    break;
+                                }
+                            }
+                        });
+                        break;
+                    }
+                }
+            });
+        }
+        this.storage.set(ConstVal.EXER_DATA, this.exercisCourses);
     }
 }

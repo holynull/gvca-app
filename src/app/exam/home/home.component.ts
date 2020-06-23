@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
     goToAnswer(detail: ExercisCourseDetail) {
         if (detail.questions.length > 0) {
-            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.name, pid: detail.pid, qcid: detail.qcid,from:'exer' } });
+            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.name, pid: detail.pid, qcid: detail.qcid, from: 'exer' } });
         }
     }
     doRefresh(event) {
