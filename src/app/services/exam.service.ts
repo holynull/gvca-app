@@ -132,6 +132,13 @@ export class ExamService {
             }
             json.push(o);
         });
-        return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise();
+        return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise().then(res => {
+            if (res.code === 1) {
+
+            } else {
+                console.error('提交考试试卷出错', res);
+            }
+        });
+
     }
 }

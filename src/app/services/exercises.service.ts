@@ -144,6 +144,12 @@ export class ExercisesService {
             }
             json.push(o);
         });
-        return this.api.insertStuLxQuestion(JSON.stringify(json), String(pid), String(qcid)).toPromise();
+        return this.api.insertStuLxQuestion(JSON.stringify(json), String(pid), String(qcid)).toPromise().then(res => {
+            if (res.code === 1) {
+
+            } else {
+                console.error('提交练习试卷出错', res);
+            }
+        });
     }
 }
