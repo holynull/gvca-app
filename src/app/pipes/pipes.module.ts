@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DownloadTasksPipe } from './download-tasks.pipe';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { SafeHtmlPipe } from './safe-html.pipe';
+import { QueFilterPipe } from './que-filter.pipe';
 
 
 
@@ -11,6 +12,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
         DownloadTasksPipe,
         SafeUrlPipe,
         SafeHtmlPipe,
+        QueFilterPipe,
     ],
     imports: [
         CommonModule
@@ -19,6 +21,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
         DownloadTasksPipe,
         SafeUrlPipe,
         SafeHtmlPipe,
+        QueFilterPipe,
     ]
 })
 export class PipesModule { }

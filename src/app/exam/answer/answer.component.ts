@@ -37,6 +37,14 @@ export class AnswerComponent implements OnInit {
 
     questions: Array<Question> = new Array();
 
+    from: string;
+
+    pid: number;
+
+    qcid: number;
+
+    examId: number;
+
     constructor(
         private activeRoute: ActivatedRoute,
         private modalCtrl: ModalController,
@@ -64,21 +72,28 @@ export class AnswerComponent implements OnInit {
             switch (params.from) {
                 case 'exer':
                     if (params.qid && params.qcid) {
+                        this.pid = Number(params.pid);
+                        this.qcid = Number(params.qcid);
                         this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
                     }
                     this.url = '/tabs/exam';
+                    this.from = 'exer';
                     break;
                 case 'simu':
                     if (params.examId) {
-                        this.questions = this.sSvr.getQuesionsById(Number(params.examId));
+                        this.examId = params.examId;
+                        this.questions = this.sSvr.getQuestionsById(Number(params.examId));
                     }
-                    this.url = '/tabs/exam/simulation'
+                    this.url = '/tabs/exam/simulation';
+                    this.from = 'simu';
                     break;
                 case 'exam':
                     if (params.examId) {
-                        this.questions = this.examSvr.getQuesionsById(Number(params.examId));
+                        this.examId = params.examId;
+                        this.questions = this.examSvr.getQuestionsById(Number(params.examId));
                     }
-                    this.url = '/tabs/exam/examine'
+                    this.url = '/tabs/exam/examine';
+                    this.from = 'exam';
                     break;
             }
         });
@@ -155,6 +170,10 @@ export class AnswerComponent implements OnInit {
             cssClass: 'my-custom-class',
             componentProps: {
                 title: this.title,
+                dataType: this.from,
+                pid: this.pid,
+                qcid: this.qcid,
+                examId: this.examId,
             }
         });
         return await modal.present();
@@ -164,6 +183,18 @@ export class AnswerComponent implements OnInit {
         this.eSvr.saveOrUpdate(false);
         this.examSvr.saveOrUpdate(false);
         this.sSvr.saveOrUpdate(false);
+    }
+
+    getQueType(): string {
+        if (this.questions[this.qIndex].questionType === QuestionType.MUTI_ANSWER) {
+            return '多选';
+        }
+        if (this.questions[this.qIndex].questionType === QuestionType.ONE_ANSWER) {
+            return '单选';
+        }
+        if (this.questions[this.qIndex].questionType === QuestionType.TRUE_OR_FALSE) {
+            return '判断';
+        }
     }
 
 }

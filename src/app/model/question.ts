@@ -27,7 +27,12 @@ export class Question {
                 if (!this.studentAnswer) {
                     this.studentAnswer = answer.key;
                 } else {
-                    this.studentAnswer = this.studentAnswer + answer.key;
+                    let iKey = this.studentAnswer.indexOf(answer.key);
+                    if (iKey > -1) {
+                        this.studentAnswer = this.studentAnswer.replace(answer.key, '');
+                    } else {
+                        this.studentAnswer = this.studentAnswer + answer.key;
+                    }
                 }
             } else if (this.questionType === QuestionType.ONE_ANSWER) {
                 this.studentAnswer = answer.key;

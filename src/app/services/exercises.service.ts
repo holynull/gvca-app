@@ -131,4 +131,19 @@ export class ExercisesService {
         }
         this.storage.set(ConstVal.EXER_DATA, this.exercisCourses);
     }
+
+    submit(pid: number, qcid: number): Promise<any> {
+        let questions = this.getQuestions(pid, qcid);
+        let json = new Array();
+        questions.forEach(e => {
+            let o = {
+                questionId: e.questionId,
+                studentAnswer: e.studentAnswer,
+                state: e.state,
+                score: e.getQuestionScore()
+            }
+            json.push(o);
+        });
+        return this.api.insertStuLxQuestion(JSON.stringify(json), String(pid), String(qcid)).toPromise();
+    }
 }

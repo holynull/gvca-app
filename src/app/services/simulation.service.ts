@@ -86,7 +86,7 @@ export class SimulationService {
         }
     }
 
-    public getQuesionsById(examId: number): Array<Question> {
+    public getQuestionsById(examId: number): Array<Question> {
         for (let i = 0; i < this.testPapers.length; i++) {
             if (this.testPapers[i].examId === examId) {
                 return this.testPapers[i].questions;
@@ -118,6 +118,22 @@ export class SimulationService {
             });
         }
         this.storage.set(ConstVal.SIMU_DATA, this.testPapers);
+    }
+
+
+    submit(examId: number): Promise<any> {
+        let questions = this.getQuestionsById(examId);
+        let json = new Array();
+        questions.forEach(e => {
+            let o = {
+                questionId: e.questionId,
+                studentAnswer: e.studentAnswer,
+                state: e.state,
+                score: e.getQuestionScore()
+            }
+            json.push(o);
+        });
+        return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise();
     }
 
 }

@@ -17,6 +17,6 @@ export class ConstVal {
     public static EXER_DATA = 'exer_data';
     public static SIMU_DATA = 'simu_data';
     public static EXAM_DATA = 'exam_data';
-
+    public static LOADING_DURATION_MILLION_SECONDS = 6000; // 配置最好与environment.api.timeoutMs乘以api.retryTimes+1相
 
 }
