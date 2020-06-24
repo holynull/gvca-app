@@ -52,4 +52,18 @@ export class ScoreComponent implements OnInit {
 
     ngOnInit() { }
 
+    getScore() {
+        let total = 0;
+        this.questions.forEach(e => {
+            total = total + e.getQuestionScore();
+        });
+        return total;
+    }
+    getTotalScore() {
+        let total = 0;
+        this.questions.forEach(e => {
+            total = total + e.score;
+        });
+        return total;
+    }
 }

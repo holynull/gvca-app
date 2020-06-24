@@ -16,11 +16,12 @@
         <!-- <p>恭喜你，成功完成本次考试！</p> -->
         <div class="exam_score clearfix">
             <div>
-                <dt><i>80</i>/100</dt>
+                <dt><i>{{getScore()}}</i>/{{getTotalScore()}}</dt>
                 <dd>当前得分</dd>
             </div>
             <em></em>
             <div>
+                <!-- todo: 没有排名数据 -->
                 <dt><i>200</i>/1020</dt>
                 <dd>当前排名</dd>
             </div>
@@ -34,12 +35,14 @@
             </div>
         </h3>
         <div class="card_numbers clearfix">
-            <a *ngFor="let item of questions" [ngClass]="{'right': item.state===1,'wrong':item.state===2}">{{item.sort}}</a>
+            <a *ngFor="let item of questions"
+                [ngClass]="{'right': item.getState()===1,'wrong':item.getState()===2}">{{item.sort}}</a>
         </div>
     </div>
 </ion-content>
 <ion-footer>
     <ion-toolbar>
-        <ion-button [routerLink]="['/exam/report']" [queryParams]="{title:title}" >查看错题解析</ion-button>
+        <ion-button [routerLink]="['/exam/report']"
+            [queryParams]="{title:title,url:'/exam/score',data:dataType,examId:examId,pid:pid,qcid:qcid}">查看错题解析</ion-button>
     </ion-toolbar>
 </ion-footer>

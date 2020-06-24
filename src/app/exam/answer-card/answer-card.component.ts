@@ -42,20 +42,20 @@ export class AnswerCardComponent implements OnInit {
         switch (this.dataType) {
             case 'exer':
                 if (this.navParams.data.pid && this.navParams.data.qcid) {
-                    this.pid = this.navParams.data.pid;
-                    this.qcid = this.navParams.data.qcid;
+                    this.pid = Number(this.navParams.data.pid);
+                    this.qcid = Number(this.navParams.data.qcid);
                     this.questions = exerSvr.getQuestions(Number(this.navParams.data.pid), Number(this.navParams.data.qcid));
                 }
                 break;
             case 'simu':
                 if (this.navParams.data.examId) {
-                    this.examId = this.navParams.data.examId;
+                    this.examId = Number(this.navParams.data.examId);
                     this.questions = this.simuSvr.getQuestionsById(Number(this.navParams.data.examId));
                 }
                 break;
             case 'exam':
                 if (this.navParams.data.examId) {
-                    this.examId = this.navParams.data.examId;
+                    this.examId = Number(this.navParams.data.examId);
                     this.questions = this.examSvr.getQuestionsById(Number(this.navParams.data.examId));
                 }
                 break;
@@ -68,38 +68,42 @@ export class AnswerCardComponent implements OnInit {
     }
 
     async submit() {
-        let loading = await this.loadingCtrl.create({
-            message: 'Loading',
-            backdropDismiss: false,
-            duration: ConstVal.LOADING_DURATION_MILLION_SECONDS,
-        });
-        await loading.present();
         if (this.from && this.from === 'report') {
             this.modalCtrl.dismiss();
-            // this.router.navigate(['/exam/report'], { queryParams: { title: this.title } });
-        } else { // 交卷
-            switch (this.dataType) {
-                case 'exer':
-                    this.exerSvr.submit(this.pid, this.qcid).then(() => {
-                        this.modalCtrl.dismiss();
-                        loading.dismiss();
-                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, pid: this.pid, qcid: this.qcid, dataType: this.dataType } });
-                    });
-                    break;
-                case 'simu':
-                    this.simuSvr.submit(this.examId).then(() => {
-                        this.modalCtrl.dismiss();
-                        loading.dismiss();
-                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
-                    });
-                    break;
-                case 'exam':
-                    this.examSvr.submit(this.examId).then(() => {
-                        this.modalCtrl.dismiss();
-                        loading.dismiss();
-                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
-                    });
-                    break;
+        } else {
+            let loading = await this.loadingCtrl.create({
+                message: 'Loading',
+                backdropDismiss: false,
+                duration: ConstVal.LOADING_DURATION_MILLION_SECONDS,
+            });
+            await loading.present();
+            if (this.from && this.from === 'report') {
+                this.modalCtrl.dismiss();
+                // this.router.navigate(['/exam/report'], { queryParams: { title: this.title } });
+            } else { // 交卷
+                switch (this.dataType) {
+                    case 'exer':
+                        this.exerSvr.submit(this.pid, this.qcid).then(() => {
+                            this.modalCtrl.dismiss();
+                            loading.dismiss();
+                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, pid: this.pid, qcid: this.qcid, dataType: this.dataType } });
+                        });
+                        break;
+                    case 'simu':
+                        this.simuSvr.submit(this.examId).then(() => {
+                            this.modalCtrl.dismiss();
+                            loading.dismiss();
+                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
+                        });
+                        break;
+                    case 'exam':
+                        this.examSvr.submit(this.examId).then(() => {
+                            this.modalCtrl.dismiss();
+                            loading.dismiss();
+                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
+                        });
+                        break;
+                }
             }
         }
     }

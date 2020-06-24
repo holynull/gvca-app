@@ -1,6 +1,6 @@
 import { QuestionOption } from './que-option';
-import { QuestionType } from './question-type.enum';
 import { QuestionState } from './question-state.enum';
+import { QuestionType } from './question-type.enum';
 
 export class Question {
     trueAnswer: string;
@@ -14,12 +14,15 @@ export class Question {
     explains: string;
     questionType: QuestionType;
     questionStatus: number;
-    state: QuestionState = QuestionState.NONE;
     score: number;
     sort: number;
 
     isSelectedOpt(opt: QuestionOption) {
         return this.studentAnswer.indexOf(opt.key) !== -1;
+    }
+
+    isAnswerSelectedOpt(opt: QuestionOption) {
+        return this.trueAnswer.indexOf(opt.key) !== -1;
     }
 
     giveAnswer(answer: QuestionOption | boolean) {
@@ -41,21 +44,29 @@ export class Question {
         } else if (answer === true || answer === false) {
             this.studentAnswer = String(answer ? 1 : 2);
         }
-        if (this.trueAnswer === this.studentAnswer) {
-            this.state = QuestionState.RIGHT;
-        } else {
-            this.state = QuestionState.WRONG;
-        }
+
     }
 
     /**
      * 计算得分
      */
     getQuestionScore(): number {
-        if (this.state === QuestionState.RIGHT) {
+        if (this.getState() === QuestionState.RIGHT) {
             return this.score;
         } else {
             return 0;
+        }
+    }
+
+    getState(): QuestionState {
+        if (!this.studentAnswer || this.studentAnswer === '') {
+            return QuestionState.NONE;
+        } else {
+            if (this.trueAnswer === this.studentAnswer) {
+                return QuestionState.RIGHT;
+            } else {
+                return QuestionState.WRONG;
+            }
         }
     }
 }

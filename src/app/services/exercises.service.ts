@@ -27,10 +27,10 @@ export class ExercisesService {
                 let course: ExercisCourse = new ExercisCourse();
                 course.dateline = e.deateline;
                 course.name = e.name;
-                course.questionUsedSum = Number(e.questionUsedSum);
+                course.questionUsedSum = Number(e.questionUsedSum ? e.questionUsedSum : 0);
                 course.qcid = Number(e.qcid);
                 course.pid = Number(e.pid);
-                course.questionSum = Number(e.questionSum);
+                course.questionSum = Number(e.questionSum ? e.questionSum : 0);
                 course.status = Number(e.status);
                 this.exercisCourses.push(course);
                 let res2 = await this.api.getEaxmCourseDetailList(String(course.pid)).toPromise();
@@ -39,10 +39,10 @@ export class ExercisesService {
                         let detail = new ExercisCourseDetail();
                         detail.dateline = Number(e1.dateline);
                         detail.name = e1.name;
-                        detail.questionUsedSum = Number(e1.questionUsedSum);
+                        detail.questionUsedSum = Number(e1.questionUsedSum ? e1.questionUsedSum : 0);
                         detail.qcid = Number(e1.qcid);
                         detail.pid = Number(e1.pid);
-                        detail.questionSum = Number(e1.questionSum);
+                        detail.questionSum = Number(e1.questionSum ? e1.questionSum : 0);
                         detail.status = Number(e1.status);
                         course.details.push(detail);
                         let res3 = await this.api.getQuestionList(String(detail.qcid)).toPromise();
@@ -89,7 +89,7 @@ export class ExercisesService {
 
     getQuestions(pid: number, qcid: number): Array<Question> {
         for (let i = 0; i < this.exercisCourses.length; i++) {
-            if (this.exercisCourses[i].pid === pid) {
+            if (this.exercisCourses[i].pid === Number(pid)) {
                 let detail = this.exercisCourses[i].getDetailById(qcid);
                 if (detail) {
                     return detail.questions;
@@ -115,7 +115,6 @@ export class ExercisesService {
                                         for (let n = 0; n < this.exercisCourses[i].details[j].questions.length; n++) {
                                             if (this.exercisCourses[i].details[j].questions[n].questionId === Number(q.questionId)) {
                                                 this.exercisCourses[i].details[j].questions[n].studentAnswer = q.studentAnswer;
-                                                this.exercisCourses[i].details[j].questions[n].state = Number(q.state);
                                                 this.exercisCourses[i].details[j].questions[n].questionStatus = Number(q.questionStatus);
                                                 this.exercisCourses[i].details[j].questions[n].score = Number(q.score);
                                                 break;
@@ -141,14 +140,14 @@ export class ExercisesService {
             let o = {
                 questionId: e.questionId,
                 studentAnswer: e.studentAnswer,
-                state: e.state,
+                state: e.getState(),
                 score: e.getQuestionScore()
             }
             json.push(o);
         });
         return this.api.insertStuLxQuestion(JSON.stringify(json), String(pid), String(qcid)).toPromise().then(res => {
             if (res.code === 1) {
-
+                this.loadData().then();
             } else {
                 console.error('提交练习试卷出错', res);
             }

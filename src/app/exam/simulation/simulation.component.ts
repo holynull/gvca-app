@@ -5,6 +5,7 @@ import { SimuTipsComponent } from '../simu-tips/simu-tips.component';
 import { SimulationService } from 'app/services/simulation.service';
 import { TestPaper } from 'app/model/test-paper';
 import { Router } from '@angular/router';
+import { UsedState } from 'app/model/used-state.enum';
 
 @Component({
     selector: 'app-simulation',
@@ -59,8 +60,10 @@ export class SimulationComponent implements OnInit {
     }
 
     goToAnswer(detail: TestPaper) {
-        if (detail.questions.length > 0) {
-            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, from: 'simu' } });
+        if (detail.questions.length > 0 && detail.usedState === UsedState.DONE) {
+            this.router.navigate(['/exam/report'], { queryParams: { title: detail.examName, examId: detail.examId, dataType: 'simu', url: '/tabs/exam/simulation' } });
+        } else if (detail.questions.length > 0 && detail.usedState === UsedState.NONE) {
+            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, dataType: 'simu', url: '/tabs/exam/simulation' } });
         }
     }
 }

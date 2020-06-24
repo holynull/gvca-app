@@ -90,7 +90,7 @@ export class SimulationService {
 
     public getQuestionsById(examId: number): Array<Question> {
         for (let i = 0; i < this.testPapers.length; i++) {
-            if (this.testPapers[i].examId === examId) {
+            if (this.testPapers[i].examId === Number(examId)) {
                 return this.testPapers[i].questions;
             }
         }
@@ -107,7 +107,6 @@ export class SimulationService {
                             for (let n = 0; n < this.testPapers[i].questions.length; n++) {
                                 if (this.testPapers[i].questions[n].questionId === Number(q.questionId)) {
                                     this.testPapers[i].questions[n].studentAnswer = q.studentAnswer;
-                                    this.testPapers[i].questions[n].state = Number(q.state);
                                     this.testPapers[i].questions[n].questionStatus = Number(q.questionStatus);
                                     this.testPapers[i].questions[n].score = Number(q.score);
                                     break;
@@ -130,14 +129,14 @@ export class SimulationService {
             let o = {
                 questionId: e.questionId,
                 studentAnswer: e.studentAnswer,
-                state: e.state,
+                state: e.getState(),
                 score: e.getQuestionScore()
             }
             json.push(o);
         });
         return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise().then(res => {
             if (res.code === 1) {
-
+                this.loadData().then();
             } else {
                 console.error('提交模拟试卷出错', res);
             }

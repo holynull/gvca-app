@@ -5,6 +5,7 @@ import { PopMenuComponent } from '../pop-menu/pop-menu.component';
 import { ExamService } from 'app/services/exam.service';
 import { TestPaper } from 'app/model/test-paper';
 import { Router } from '@angular/router';
+import { UsedState } from 'app/model/used-state.enum';
 
 @Component({
     selector: 'app-examine',
@@ -58,8 +59,10 @@ export class ExamineComponent implements OnInit {
     }
 
     goToAnswer(detail: TestPaper) {
-        if (detail.questions.length > 0) {
-            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, from: 'exam' } });
+        if (detail.questions.length > 0 && detail.usedState === UsedState.DONE) {
+            this.router.navigate(['/exam/report'], { queryParams: { title: detail.examName, examId: detail.examId, dataType: 'exam', url: '/tabs/exam/examine' } });
+        } else if (detail.questions.length > 0 && detail.usedState === UsedState.NONE) {
+            this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, dataType: 'exam', url: '/tabs/exam/examine' } });
         }
     }
 }

@@ -215,7 +215,7 @@ export class ApiService extends BaseService {
     insertStuLxQuestion(jsonlist: string, qcpid: string, qcid: string): Observable<any> {
         let url = this.url(environment.api.insertStuLxQuestion.url);
         let params = new HttpParams().set('jsonlist', jsonlist).set('qcpid', qcpid).set('qcid', qcid);
-        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+        return this.http.post(url, params).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
             return of(e);
         }));
@@ -229,7 +229,7 @@ export class ApiService extends BaseService {
     insertStuQuestion(jsonlist: string, examId: string): Observable<any> {
         let url = this.url(environment.api.insertStuQuestion.url);
         let params = new HttpParams().set('jsonlist', jsonlist).set('examId', examId);
-        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+        return this.http.post(url, params).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
             return of(e);
         }));

@@ -37,7 +37,7 @@ export class AnswerComponent implements OnInit {
 
     questions: Array<Question> = new Array();
 
-    from: string;
+    dataType: string;
 
     pid: number;
 
@@ -66,34 +66,21 @@ export class AnswerComponent implements OnInit {
             this.slideFromRight.enable();
         }, 0);
         this.activeRoute.queryParams.subscribe(params => {
-            if (params && params.title) {
-                this.title = params.title;
-            }
-            switch (params.from) {
+            this.title = params.title;
+            this.url = params.url;
+            this.pid = params.pid;
+            this.qcid = params.qcid;
+            this.examId = params.examId;
+            this.dataType = params.dataType;
+            switch (this.dataType) {
                 case 'exer':
-                    if (params.qid && params.qcid) {
-                        this.pid = Number(params.pid);
-                        this.qcid = Number(params.qcid);
-                        this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
-                    }
-                    this.url = '/tabs/exam';
-                    this.from = 'exer';
+                    this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
                     break;
                 case 'simu':
-                    if (params.examId) {
-                        this.examId = params.examId;
-                        this.questions = this.sSvr.getQuestionsById(Number(params.examId));
-                    }
-                    this.url = '/tabs/exam/simulation';
-                    this.from = 'simu';
+                    this.questions = this.sSvr.getQuestionsById(Number(params.examId));
                     break;
                 case 'exam':
-                    if (params.examId) {
-                        this.examId = params.examId;
-                        this.questions = this.examSvr.getQuestionsById(Number(params.examId));
-                    }
-                    this.url = '/tabs/exam/examine';
-                    this.from = 'exam';
+                    this.questions = this.examSvr.getQuestionsById(Number(params.examId));
                     break;
             }
         });
@@ -170,7 +157,7 @@ export class AnswerComponent implements OnInit {
             cssClass: 'my-custom-class',
             componentProps: {
                 title: this.title,
-                dataType: this.from,
+                dataType: this.dataType,
                 pid: this.pid,
                 qcid: this.qcid,
                 examId: this.examId,

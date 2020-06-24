@@ -16,7 +16,7 @@
         <ul>
             <li *ngFor="let item of simuSvr.testPapers">
                 <i></i>{{item.examName}}
-                <a (click)="goToAnswer(item)" [ngClass]="{done: item.usedStatus===1}"></a>
+                <a (click)="goToAnswer(item)" [ngClass]="{done: item.usedState===1}"></a>
             </li>
         </ul>
     </div>

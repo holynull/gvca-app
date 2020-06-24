@@ -1,5 +1,5 @@
 import { Question } from './question';
-import { UsedStatus } from './used-status.enum';
+import { UsedState } from './used-state.enum';
 
 export class TestPaper {
     gradeId: number;
@@ -15,7 +15,7 @@ export class TestPaper {
     questionCategoryId: number;
     startTime: Date;
     endTime: Date;
-    usedState: UsedStatus;
+    usedState: UsedState;
     status: number;
     questions: Array<Question> = new Array();
 }

@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Gesture, GestureController } from '@ionic/angular';
 import { AnswerCardComponent } from '../answer-card/answer-card.component';
+import { Question } from 'app/model/question';
+import { ExercisesService } from 'app/services/exercises.service';
+import { SimulationService } from 'app/services/simulation.service';
+import { ExamService } from 'app/services/exam.service';
+import { QuestionType } from 'app/model/question-type.enum';
 
 @Component({
     selector: 'app-report',
@@ -10,33 +15,139 @@ import { AnswerCardComponent } from '../answer-card/answer-card.component';
 })
 export class ReportComponent implements OnInit {
 
+    @ViewChild('content', {})
+    ionContent: ElementRef;
+
+    qIndex: number = 0;
+
     title: string;
 
+    slideFromRight: Gesture;
+
+    questions: Array<Question> = new Array();
+
+    pid: number;
+
+    qcid: number;
+
+    examId: number;
+
+    dataType: string;
+
     url = "/exam/score";
+
     constructor(
         private activeRoute: ActivatedRoute,
         private modalCtrl: ModalController,
+        private gestureCtrl: GestureController,
+        public eSvr: ExercisesService,
+        public sSvr: SimulationService,
+        public examSvr: ExamService,
     ) {
+        setTimeout(() => {
+            this.slideFromRight = this.gestureCtrl.create({
+                el: this.ionContent.nativeElement,
+                threshold: 15,
+                gestureName: 'slide-from-right',
+                direction: 'x',
+                onMove: ev => this.onGestureMove(ev),
+                onStart: ev => this.onGestureStart(ev),
+                onEnd: ev => this.onGestureEnd(ev),
+            }, true);
+            this.slideFromRight.enable();
+        }, 0);
         this.activeRoute.queryParams.subscribe(params => {
-            if (params && params.title) {
-                this.title = params.title;
-            }
-            if (params && params.url) {
-                this.url = params.url;
+            this.title = params.title;
+            this.dataType = params.dataType;
+            this.pid = params.pid;
+            this.qcid = params.qcid;
+            this.examId = params.examId;
+            this.url = params.url;
+            switch (this.dataType) {
+                case 'exer':
+                    if (params.qid && params.qcid) {
+                        this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
+                    }
+                    break;
+                case 'simu':
+                    if (params.examId) {
+                        this.examId = params.examId;
+                        this.questions = this.sSvr.getQuestionsById(Number(params.examId));
+                    }
+                    break;
+                case 'exam':
+                    if (params.examId) {
+                        this.questions = this.examSvr.getQuestionsById(Number(params.examId));
+                    }
+                    break;
             }
         });
     }
 
+    onGestureMove(ev) {
+        // console.log(ev);
+    }
+    onGestureStart(ev) {
+        // console.log(ev);
+    }
+
+    allowTrigger(ev) {
+        let time = ev.currentTime - ev.startTime;
+        let span = Math.abs(ev.currentX - ev.startX);
+        return span > 20
+    }
+    onGestureEnd(ev) {
+        console.log(ev);
+        if (ev.startX > ev.currentX) {
+            if (this.allowTrigger(ev)) {
+                this.next();
+            }
+        } else {
+            if (this.allowTrigger(ev)) {
+                this.prev();
+            }
+        }
+    }
+
+    next() {
+        if (this.qIndex !== (this.questions.length - 1)) {
+            this.qIndex++;
+        }
+        console.log('下一题');
+    };
+
+    prev() {
+        console.log('上一题');
+        if (this.qIndex !== 0) {
+            this.qIndex--;
+        }
+    }
     ngOnInit() { }
+
     async openAnswerCard() {
         const modal = await this.modalCtrl.create({
             component: AnswerCardComponent,
             cssClass: 'my-custom-class',
             componentProps: {
                 title: this.title,
-                from: "report"
+                from: "report",
+                dataType: this.dataType,
+                pid: this.pid,
+                qcid: this.qcid,
+                examId: this.examId,
             }
         });
         return await modal.present();
+    }
+    getQueType(): string {
+        if (this.questions.length > 0 && this.questions[this.qIndex].questionType === QuestionType.MUTI_ANSWER) {
+            return '多选';
+        }
+        if (this.questions.length > 0 && this.questions[this.qIndex].questionType === QuestionType.ONE_ANSWER) {
+            return '单选';
+        }
+        if (this.questions.length > 0 && this.questions[this.qIndex].questionType === QuestionType.TRUE_OR_FALSE) {
+            return '判断';
+        }
     }
 }

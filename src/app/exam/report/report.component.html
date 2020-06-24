@@ -1,7 +1,8 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button [routerLink]="[url]" routerDirection="back">
+            <ion-button [routerLink]="[url]" [queryParams]="{dataType:dataType,pid:pid,qcid:qcid,examId:examId}"
+                routerDirection="back">
                 <span class="btn_back"></span>
             </ion-button>
         </ion-buttons>
@@ -14,31 +15,31 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="detail_tip exam_tip">
-        <span><i>第1题</i>|　共50题</span><em>(单选)</em>
-    </div>
-    <div class="exam_subject">
-        下列选项中，正确的一项是（ ）
-    </div>
-    <div class="exam_options clearfix">
-        <a href="javascript:;" class="right"><i>A.</i>无人机应用技术专业韦加班为我院与北京韦加机<em></em></a>
-        <a href="javascript:;" class="wrong"><i>B.</i>无人机应用技术专业韦加班为我院与北京韦加机<em></em></a>
-        <a href="javascript:;"><i>C.</i>无人机应用技术专业韦加班为我院与北京韦加机<em></em></a>
-        <a href="javascript:;"><i>D.</i>无人机应用技术专业韦加班为我院与北京韦加机<em></em></a>
-
-    </div>
-    <div class="exam_report_c">
-        <h3>答案</h3>
-        <ul>
-            <li>题目分值：3分</li>
-            <li>我的得分：0分</li>
-        </ul>
-        <ul>
-            <li class="right">正确答案：A</li>
-            <li class="wrong">我的选择：B</li>
-        </ul>
-        <h3>解析</h3>
-        <p>解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京韦加机韦加机
-        </p>
+    <div style="height: 100%;" #content>
+        <div class="detail_tip exam_tip">
+            <span><i>第{{qIndex+1}}题</i>|　共{{questions.length}}题</span><em>({{getQueType()}})</em>
+        </div>
+        <div class="exam_subject" [innerHtml]="(questions.length>0?questions[qIndex].question:'')|safeHtml">
+        </div>
+        <div class="exam_options clearfix" *ngIf="questions&&questions.length>0">
+            <a *ngFor="let item of questions[qIndex].optional"
+                [ngClass]="{right: questions[qIndex].isAnswerSelectedOpt(item),wrong: questions[qIndex].isSelectedOpt(item)&&questions[qIndex].getState()===2}">
+                <i>{{item.key}}.</i>{{item.description}}<em></em></a>
+        </div>
+        <div class="exam_report_c" *ngIf="questions&&questions.length>0">
+            <h3>答案</h3>
+            <ul>
+                <li>题目分值：{{questions[qIndex].score}}分</li>
+                <li>我的得分：{{questions[qIndex].getQuestionScore()}}分</li>
+            </ul>
+            <ul>
+                <li class="right">正确答案：{{questions[qIndex].trueAnswer}}</li>
+                <li class="wrong">我的选择：{{questions[qIndex].studentAnswer}}</li>
+            </ul>
+            <h3>解析</h3>
+            <p [innerHtml]="questions[qIndex].explains|safeHtml">
+                解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京韦加机解释无人机应用技术专业韦加班为我院与北京韦加机韦加机
+            </p>
+        </div>
     </div>
 </ion-content>
