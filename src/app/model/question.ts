@@ -69,4 +69,28 @@ export class Question {
             }
         }
     }
+
+    transTrueAnswer() {
+        if (this.questionType === 3) {
+            if (this.trueAnswer === '1') {
+                return '对';
+            } else {
+                return '错';
+            }
+        } else {
+            return this.trueAnswer;
+        }
+    }
+
+    transGiveAnswer() {
+        if (this.questionType === 3) {
+            if (this.studentAnswer === '1') {
+                return '对';
+            } else {
+                return '错';
+            }
+        } else {
+            return this.studentAnswer;
+        }
+    }
 }
