@@ -284,10 +284,10 @@ export class ApiService extends BaseService {
         let url = this.url(environment.api.getSignList.url);
         let params = new HttpParams();
         if (year) {
-            params.set('year', year);
+            params = params.set('year', year);
         }
         if (month) {
-            params.set('month', month);
+            params = params.set('month', month);
         }
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
