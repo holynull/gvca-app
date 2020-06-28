@@ -904,3 +904,447 @@ Score：单题得分
 
 参数解析： code：状态码，1成功 0失败  -1未知token         
 codeMsg：状态信息
+
+
+## 18模拟题库和考试题库答题接口：
+
+请求示例：http://kzs.7east.cn/front/app/getUserInfo?token=34789
+请求参数：token
+ 
+
+
+返回参数示例：
+
+```
+{
+	"code": 1,
+	"codeMsg": "获取个人学习统计成功！",
+	"info": [{
+		"questionCount": 5,
+		"lessentTime": 251,
+		"examMnCount": 3,
+		"studentName": "peter11",
+		"photo": "http://kzs.7east.cn/data/null",
+		"examCount": 1
+	}]
+}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+questionCount：答题数量
+lessentTime：听课时长秒值
+examMnCount：已做模拟题库套数
+examCount：已做考试题库套数
+studentName：学生姓名
+Photo：头像
+
+## 19 修改个人信息接口：
+
+请求示例：http://kzs.7east.cn/front/app/updateUserInfo?token=34789&studentPassword=111&photo=2020/03/11//20200311223023-张雪峰.jpg
+请求参数：token
+studentPassword：新密码 
+photo：头像路径（20接口上传后返回半路径）
+
+注:密码和头像可以单独传值不需要修改不用传
+
+修改密码例:http://kzs.7east.cn/front/app/updateUserInfo?token=34789&studentPassword=111
+
+返回参数示例：
+
+`{"code":1,"codeMsg":"修改个人信息成功！"}`
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+
+## 20 图片上传接口（上传后返回半路径，其他接口修改或插入值时使用）：
+
+请求示例：http://kzs.7east.cn/front/app/uploadfile?token=34789
+请求方式：POST
+请求参数：token
+  Filedata：MultipartFile类对象
+
+返回参数示例：
+
+```
+{
+	"code": 1,
+	"codeMsg": "上传成功！",
+	"path": "/photo/20170807110932.jpg"
+}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+path：上传后半路径
+
+## 21 获取签到记录接口：
+
+请求示例：http://kzs.7east.cn/front/app/getSignList?token=34789&year=2020&month=05
+请求参数：token
+ 				year：年
+month：月（获取整年可不传 10以下月份需要在前面补0）
+
+返回参数示例：
+```
+{
+    "code": 1,
+    "codeMsg": "获取签到记录成功！",
+    "info": [
+        {
+            "gradeId": 1,
+            "signAddress": "无",
+            "majorId": 1,
+            "addTime": 1517306820000,
+            "departmentId": 1,
+            "latitude": 524.236,
+            "signStatus": 1,
+            "exemptState": 1,
+            "updateTime": 1517306820000,
+            "signDate": 1517306820000,
+            "timedate": "20200531",
+            "holidayState": 1,
+            "recordId": 5,
+            "studentId": 34789,
+            "classId": 1,
+            "schoolId": 1,
+            "company": 1,
+            "longitude": 137.235
+        }
+    ]
+}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+signAddress：签到地址中文
+latitude：纬度
+longitude：经度
+signStatus：签到状态（1已签到 2签到地址有误 3签到时间有误 4 签到时间地址均有误 5请假 6未签到申请豁免 ）
+timedate：签到时间年月日字符串，例：20200603
+exemptState：豁免状态（1正常  2申请豁免  3已豁免 4拒绝豁免）
+holidayState：请假状态（1正常 2事假  3病假）
+ 
+## 22获取签到学校信息：
+
+请求示例：http://kzs.7east.cn/front/app/getSignSchool?token=34789
+请求参数：token
+
+返回参数示例：
+
+```
+{
+    "schoolNum": "13111",
+    "signStartTime": "8:00",
+    "code": 1,
+    "addTime": 1517306820000,
+    "latitude": 39.894536,
+    "schoolType": 1,
+    "signDistance": 1000,
+    "schoolAddress": "湖北省武汉市洪山区南李路28号",
+    "updateTime": 1583823142968,
+    "schoolStatus": 1,
+    "signEndTime": "18:00",
+    "schoolId": 1,
+    "contact": "唐老师",
+    "schoolDetail": "湖北工业大学（Hubei University of Technology），简称“湖工大”，坐落在有“九省通衢”之称的国家中心城市——武汉，是一所以工学为特色，涵盖工学、文学、理学、医学、法学、艺术学、经济学、管理学和教育学等九大学科门类的省属重点多科性大学，学校是国家“中西部高校基础能力建设工程”高校、湖北省重点建设高校、湖北省“2011计划”牵头高校、湖北省国内一流学科建设高校 [1]  ，入选国家“111计划”、教育部“卓越工程师教育培养计划”、“卓越教师培养计划”、“百校工程”高校。被教育部评为高等学校本科教学工作水平评估优秀高校、全国毕业生就业典型经验高校、全国创新创业典型经验高校、全国首批深化创新创业教育改革示范高校。现为武器装备科研生产单位二级保密资质认证高校。",
+    "codeMsg": "获取签到学校成功！",
+    "isPublic": 1,
+    "schoolDesc": "湖北工业大学（Hubei University of Technology），简称“湖工大”111",
+    "schoolName": "甘肃建筑职业技术学院",
+    "contactPhone": "1877451255",
+    "longitude": 116.647066
+}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+latitude：学校中心点纬度
+longitude：学校中心点经度
+schoolName：学校名称
+signDistance：最远打卡距离（米）
+signStartTime:打卡开始时间
+signEndTime:打卡结束时间
+
+ ## 23签到：
+
+请求示例：http://kzs.7east.cn/front/app/insertStuSign?token=34789&longitude=116.647066&latitude=39.894536&signAddress=日光清城type=1
+请求参数：token
+ 			 longitude：精度
+ 			  latitude：纬度
+  signAddress:签到地址
+type：签到类型 1已签到 2签到地址有误 3签到时间有误 4 签到时间地址均有误
+ 
+
+返回参数示例：
+
+```
+{
+    "code": 1,
+    "codeMsg": "签到成功！"
+} 
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+
+
+## 24提交作业：二次提交即为修改提交
+
+请求示例：http://kzs.7east.cn/front/app/insertStuHome?token=34789&homeworkId=4&teacherId=111&stuAnsPhoto=2020/03/11//20200311223023-张雪峰.jpg,2020/03/11//20200311223023-张雪峰.jpg&studentAnswer=作业已完成
+请求参数：token
+ 			 homeworkId：作业id 接口7中homeworkId
+ teacherId：教师id接口7中teacherId
+ stuAnsPhoto：学生作业图片上传后返回的半路径（多个图片用英文半角逗号‘,’隔开）
+ studentAnswer：学生作业文字
+ 			 
+ 
+
+返回参数示例：
+
+```
+{
+	"code": 1,
+	"codeMsg": "提交作业成功！"
+}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+
+## 25 申请豁免：未签到及异常签到状态可申请
+
+请求示例：http://kzs.7east.cn/front/app/updateExemptState?token=34789&timedate=20200502
+请求参数：token
+ timedate：申请豁免的年月日，例：20200502
+ 
+返回参数示例：
+
+```
+{"code":1,"codeMsg":"申请豁免成功！"}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+
+## 26 请假接口：当天未签到可申请请假
+请求示例：http://kzs.7east.cn/front/app/updateHolidayState?token=34789&holidayState=2
+请求参数：token
+ holidayState： 2事假  3病假
+
+返回参数示例：
+
+```
+{"code":1,"codeMsg":"申请请假成功！"}
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token         
+codeMsg：状态信息
+ 
+ ## 27 个人中心听课记录接口：
+
+请求示例：http://kzs.7east.cn/front/app/getLessonList?token=34789
+请求参数：token
+
+返回参数示例：
+
+```
+{
+    "code": 1,
+    "pageNo": 1,
+    "codeMsg": "获取听课记录列表成功！",
+    "info": [
+        {
+            "lessonStatus": 1,
+            "loadState": 1,
+            "addTime": 1591193141443,
+            "lessonId": 125,
+            "updateTime": 1592042349526,
+            "sort": 0,
+            "lessonName": "课件测试1",
+            "courseName": "阅读理解专项训练",
+            "teacherId": 0,
+            "videoUrl": "http://kzs.7east.cn/data/2020/06/13//20200613175838-111.mp4",
+            "lessonLength": 0,
+            "transcodeDurtion": "00:02:44",
+            "courseId": 2,
+            "lessonType": 2,
+            "videosize": 16506880
+        }
+    ]
+}
+```
+
+参数解析： code：状态码，1成功 0无数据  -1未知token         
+codeMsg：状态信息
+pageNo：当前页数
+lessonName：课件名称
+courseName：课程名称
+videoUrl：视频路径
+lessonLength：当前听课记录秒值（为0时未听过该课件）
+transcodeDurtion：视频时长
+
+## 28获取考试记录列表接口：
+
+请求示例：http://kzs.7east.cn/front/app/getStuExamList?token=34789
+请求参数：token
+ 				  
+返回参数示例：
+
+```
+{
+	"code": 1,
+	"codeMsg": "获取考试记录列表成功！",
+	"info": [ {
+		"gradeId": 1,
+		"majorId": 1,
+		"addTime": 1582595563053,
+		"examName": "测试考试(3)",
+		"sumScore": 100,
+		"updateTime": 1582595563053,
+		"sort": 2,
+		"semesterId": 1,
+		"examTemplateId": 1,
+		"examId": 2,
+		"questionCategoryId": 2,
+		"startTime": 1582595547000,
+		"endTime": 1582595547000,
+		"usedState": "1",
+		"status": 1,
+"stuScore":0
+
+	}]
+}
+```
+
+参数解析： code：状态码，1成功 0无数据  -1未知token  2不满足答题条件        
+codeMsg：状态信息
+examName：试卷名称
+examId：试卷id
+stuScore： 学生试题得分
+
+## 29 获取个人中心我的作业接口：
+
+请求示例：http://kzs.7east.cn/front/app/getStuHomeWorkList?token=34789
+请求参数：token
+
+返回参数示例：
+
+```
+{
+	"code": 1,
+	"codeMsg": "获取我得作业列表成功！",
+	"info": [{
+		"dataUrl": "http://kzs.7east.cn/data/2020/06/13/20200613015030-1111.png",
+		"departmentName": "电气信息系",
+		"majorId": 1,
+		"addTime": 1583914924556,
+		"teacherName": "王老师",
+		"homeworkDetail": "<img src=\"http://localhost:8030/data/2020/03/11/20200311162144-张雪峰.jpg\">  老弟,1加1等于多少?",
+		"departmentId": 1,
+		"homeworkStatus": 1,
+		"semesterName": "大一（上）",
+		"updateTime": 1591984234591,
+		"sort": 15,
+		"workTime": 1591999200000,
+		"stuhomeworkStatus": 1,
+		"homeworkName": "测试",
+		"semesterId": 1,
+		"score": "A+",
+		"homeworkId": 8,
+		"teacherId": 111,
+		"workTimeStr": "2020-06-13",
+		"schoolId": 1,
+		"stuAnsPhoto": "",
+		"majorName": "计算机专业"
+	}, {
+		"dataUrl": "http://kzs.7east.cn/data/2020/03/11/20200311154947-张雪峰.jpg",
+		"departmentName": "电气信息系",
+		"majorId": 1,
+		"addTime": 1583913019888,
+		"teacherName": "王老师",
+		"homeworkDetail": "<img src=\"http://localhost:8030/data/2020/03/11/20200311155002-张雪峰.jpg\">111111",
+		"departmentId": 1,
+		"homeworkStatus": 1,
+		"semesterName": "大一（上）",
+		"updateTime": 1583913019888,
+		"sort": 14,
+		"workTime": 1591999200000,
+		"stuhomeworkStatus": 1,
+		"homeworkName": "测试二1",
+		"semesterId": 1,
+		"score": "B",
+		"homeworkId": 7,
+		"teacherId": 111,
+		"workTimeStr": "2020-06-13",
+		"schoolId": 1,
+		"stuAnsPhoto": "",
+		"majorName": "计算机专业"
+	}, {
+		"dataUrl": "http://kzs.7east.cn/data/2020/02/17/20200217124826-TIM图片20200107150257.jpg",
+		"departmentName": "电气信息系",
+		"majorId": 1,
+		"addTime": 1581914913144,
+		"teacherName": "王老师",
+		"homeworkDetail": "123",
+		"departmentId": 1,
+		"homeworkStatus": 1,
+		"semesterName": "大一（上）",
+		"updateTime": 1581916164792,
+		"studentAnswer": "测试答案",
+		"sort": 13,
+		"workTime": 1591912800000,
+		"stuhomeworkStatus": 2,
+		"homeworkName": "2020作业测试4",
+		"semesterId": 1,
+		"score": "C",
+		"homeworkId": 5,
+		"teacherId": 111,
+		"workTimeStr": "2020-06-12",
+		"schoolId": 1,
+		"stuAnsPhoto": "",
+		"majorName": "计算机专业"
+	}, {
+		"dataUrl": "http://kzs.7east.cn/data/2020/02/17/20200217112115-TIM图片20200110180553.gif",
+		"departmentName": "电气信息系",
+		"majorId": 1,
+		"addTime": 1581909680224,
+		"teacherName": "王老师",
+		"homeworkDetail": "233",
+		"departmentId": 1,
+		"homeworkStatus": 1,
+		"semesterName": "大一（上）",
+		"updateTime": 1581909680224,
+		"studentAnswer": "作业已完成",
+		"sort": 12,
+		"workTime": 1591912800000,
+		"stuhomeworkStatus": 2,
+		"homeworkName": "测试二",
+		"semesterId": 1,
+		"homeworkId": 4,
+		"teacherId": 111,
+		"workTimeStr": "2020-06-12",
+		"schoolId": 1,
+		"stuAnsPhoto": "http://kzs.7east.cn/data/2020/03/11//20200311223023-张雪峰.jpg,http://kzs.7east.cn/data/2020/03/11//20200311223023-张雪峰.jpg",
+		"majorName": "计算机专业"
+	}]
+}
+```
+
+参数解析： code：状态码，1成功 0无数据  -1未知token         
+codeMsg：状态信息
+pageNo：当前页数
+homeworkName：作业名称
+teacherName：教师名称
+departmentName：所属院系
+majorName：所属专业
+semesterName：所属学期
+dataUrl：附件路径
+stuhomeworkStatus：作业完成状态  0未提交  1普通提交   2修改后提交   3作业打回需修改  4批改完成
+score：批改后评分
+stuAnsPhoto：学生作业图片
+studentAnswer：学生作业文字
+
+
+
+   
