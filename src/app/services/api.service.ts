@@ -6,6 +6,8 @@ import { catchError, retry, timeout, tap } from 'rxjs/operators';
 import { ApiUtilsService } from './api-utils.service';
 import { BaseService } from './base.service';
 import { Router } from '@angular/router';
+import { SignType } from 'app/model/sign-type.enum';
+import { HolidayState } from 'app/model/holiday-state.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -230,6 +232,172 @@ export class ApiService extends BaseService {
         let url = this.url(environment.api.insertStuQuestion.url);
         let params = new HttpParams().set('jsonlist', jsonlist).set('examId', examId);
         return this.http.post(url, params).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:18
+     */
+    getUserInfo(): Observable<any> {
+        let url = this.url(environment.api.getUserInfo.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id: 19
+     * @param studentPassword 
+     * @param photo 
+     */
+    updateUserInfo(studentPassword?: string, photo?: string): Observable<any> {
+        let url = this.url(environment.api.updateUserInfo.url);
+        let params = new HttpParams();
+        if (studentPassword) {
+            params.set('studentPassword', studentPassword);
+        }
+        if (photo) {
+            params.set('photo', photo);
+        }
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:20 在filetransfer中使用
+     */
+    uploadfile() {
+
+    }
+
+    /**
+     * id:21
+     * @param year 年
+     * @param month 月（获取整年可不传 10以下月份需要在前面补0）
+     */
+    getSignList(year: string, month?: string): Observable<any> {
+        let url = this.url(environment.api.getSignList.url);
+        let params = new HttpParams();
+        if (year) {
+            params.set('year', year);
+        }
+        if (month) {
+            params.set('month', month);
+        }
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:22
+     */
+    getSignCompany(): Observable<any> {
+        let url = this.url(environment.api.getSignCompany.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id: 23
+     * @param longitude 
+     * @param latitude 
+     * @param signAddress 
+     * @param type 
+     */
+    insertStuSign(longitude: string, latitude: string, signAddress: string, type: SignType): Observable<any> {
+        let url = this.url(environment.api.insertStuSign.url);
+        let params = new HttpParams().set('longitude', longitude).set('latitude', latitude).set('signAddress', signAddress).set('type', String(type));
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:24
+     * @param homeworkId 
+     * @param teacherId 
+     * @param stuAnsPhoto 学生作业图片上传后返回的半路径（多个图片用英文半角逗号‘,’隔开） 
+     * @param studentAnswer 
+     */
+    insertStuHome(homeworkId: string, teacherId: string, stuAnsPhoto: string, studentAnswer: string): Observable<any> {
+        let url = this.url(environment.api.insertStuHome.url);
+        let params = new HttpParams()
+            .set('homeworkId', homeworkId)
+            .set('teacherId', teacherId)
+            .set('stuAnsPhoto', stuAnsPhoto)
+            .set('studentAnswer', studentAnswer);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:25
+     * @param timedate 申请豁免的年月日，例：20200502 
+     */
+    updateExemptState(timedate: string): Observable<any> {
+        let url = this.url(environment.api.updateExemptState.url);
+        let params = new HttpParams()
+            .set('timedate', timedate);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     *id:26 
+     * @param holidayState 
+     */
+    updateHolidayState(holidayState: HolidayState): Observable<any> {
+        let url = this.url(environment.api.updateHolidayState.url);
+        let params = new HttpParams()
+            .set('holidayState', String(holidayState));
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:27
+     */
+    getStuLessonList(): Observable<any> {
+        let url = this.url(environment.api.getStuLessonList.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:28
+     */
+    getStuExamList(): Observable<any> {
+        let url = this.url(environment.api.getStuExamList.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * id:29
+     */
+    getStuHomeWorkList() {
+        let url = this.url(environment.api.getStuHomeWorkList.url);
+        return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
             return of(e);
         }));

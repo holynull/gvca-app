@@ -1,24 +1,17 @@
 {
+    "signStartTime": "8:00",
     "code": 1,
-    "pageNo": 1,
-    "codeMsg": "获取听课记录列表成功！",
-    "info": [
-        {
-            "lessonStatus": 1,
-            "loadState": 1,
-            "addTime": 1591193141443,
-            "lessonId": 125,
-            "updateTime": 1592042349526,
-            "sort": 0,
-            "lessonName": "课件测试1",
-            "courseName": "阅读理解专项训练",
-            "teacherId": 0,
-            "videoUrl": "http://kzs.7east.cn/data/2020/06/13//20200613175838-111.mp4",
-            "lessonLength": 0,
-            "transcodeDurtion": "00:02:44",
-            "courseId": 2,
-            "lessonType": 2,
-            "videosize": 16506880
-        }
-    ]
+    "distance": 500,
+    "addTime": 0,
+    "companyDesc": "百度科技有限公司",
+    "companyName": "百度科技有限公司",
+    "latitude": 40.05704,
+    "companyStatus": 1,
+    "updateTime": 1593321279731,
+    "companyId": 1,
+    "companyAddress": "海淀区11",
+    "codeMsg": "获取签到单位成功！",
+    "signEndTime": "18:00",
+    "longitude": 116.3079
 }
+

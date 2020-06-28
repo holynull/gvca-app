@@ -1025,46 +1025,46 @@ timedate：签到时间年月日字符串，例：20200603
 exemptState：豁免状态（1正常  2申请豁免  3已豁免 4拒绝豁免）
 holidayState：请假状态（1正常 2事假  3病假）
  
-## 22获取签到学校信息：
+## 22获取签到单位信息：
 
-请求示例：http://kzs.7east.cn/front/app/getSignSchool?token=34789
+请求示例：http://kzs.7east.cn/front/app/getSignCompany?token=34789
 请求参数：token
 
 返回参数示例：
 
 ```
 {
-    "schoolNum": "13111",
     "signStartTime": "8:00",
     "code": 1,
-    "addTime": 1517306820000,
-    "latitude": 39.894536,
-    "schoolType": 1,
-    "signDistance": 1000,
-    "schoolAddress": "湖北省武汉市洪山区南李路28号",
-    "updateTime": 1583823142968,
-    "schoolStatus": 1,
+    "distance": 500,
+    "addTime": 0,
+    "companyDesc": "百度科技有限公司",
+    "companyName": "百度科技有限公司",
+    "latitude": 40.05704,
+    "companyStatus": 1,
+    "updateTime": 1593321279731,
+    "companyId": 1,
+    "companyAddress": "海淀区11",
+    "codeMsg": "获取签到单位成功！",
     "signEndTime": "18:00",
-    "schoolId": 1,
-    "contact": "唐老师",
-    "schoolDetail": "湖北工业大学（Hubei University of Technology），简称“湖工大”，坐落在有“九省通衢”之称的国家中心城市——武汉，是一所以工学为特色，涵盖工学、文学、理学、医学、法学、艺术学、经济学、管理学和教育学等九大学科门类的省属重点多科性大学，学校是国家“中西部高校基础能力建设工程”高校、湖北省重点建设高校、湖北省“2011计划”牵头高校、湖北省国内一流学科建设高校 [1]  ，入选国家“111计划”、教育部“卓越工程师教育培养计划”、“卓越教师培养计划”、“百校工程”高校。被教育部评为高等学校本科教学工作水平评估优秀高校、全国毕业生就业典型经验高校、全国创新创业典型经验高校、全国首批深化创新创业教育改革示范高校。现为武器装备科研生产单位二级保密资质认证高校。",
-    "codeMsg": "获取签到学校成功！",
-    "isPublic": 1,
-    "schoolDesc": "湖北工业大学（Hubei University of Technology），简称“湖工大”111",
-    "schoolName": "甘肃建筑职业技术学院",
-    "contactPhone": "1877451255",
-    "longitude": 116.647066
+    "longitude": 116.3079
 }
+
+
 ```
 
 参数解析： code：状态码，1成功 0失败  -1未知token         
 codeMsg：状态信息
-latitude：学校中心点纬度
-longitude：学校中心点经度
-schoolName：学校名称
-signDistance：最远打卡距离（米）
+latitude：单位中心点纬度
+longitude：单位中心点经度
+companyName：单位名称
+companyAddress：公司地址描述
+distance：最远打卡距离（米）
+companyDesc：公司简介
 signStartTime:打卡开始时间
 signEndTime:打卡结束时间
+
+
 
  ## 23签到：
 

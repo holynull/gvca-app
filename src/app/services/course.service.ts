@@ -8,6 +8,7 @@ import { Lesson } from 'app/model/lesson';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { CourseInfo } from 'app/model/course-info';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,8 @@ export class CourseService {
     courseCats: Array<CourseCat> = new Array();
 
     courses: Array<Course> = new Array();
+
+    info: CourseInfo = new CourseInfo();
 
     constructor(
         private api: ApiService,
@@ -154,6 +157,23 @@ export class CourseService {
                     console.error(res);
                 }
             });
+    }
+
+    getUserCourseInfo(): Promise<any> {
+        return this.api.getUserInfo().toPromise().then(res => {
+            if (res.code === 1) {
+                this.info.questionCount = Number(res.info[0].questionCount);
+                this.info.lessentTime = Number(res.info[0].lessentTime);
+                this.info.examMnCount = Number(res.info[0].examMnCount);
+                this.info.studentName = res.info[0].studentName;
+                this.info.photo = res.info[0].photo;
+                this.info.examCount = Number(res.info[0].examCount);
+                return this.info;
+            } else {
+                console.error('获取用户的学习统计数据出错', res);
+                return this.info;
+            }
+        });
     }
 
 }

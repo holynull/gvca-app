@@ -3,22 +3,23 @@
         <div class="own_head">
             <img src="assets/images/own_head.jpg" alt="">
         </div>
-        <h3>张三的小幸运<i class="niname_edit"></i></h3>
+        <!-- todo: 没有昵称修改的接口 -->
+        <h3>{{auth.userInfo.studentName}}<i class="niname_edit"></i></h3>
         <div class="own_count">
             <div>
-                <h2>798</h2>
+                <h2>{{courseSvr.info.lessentTime}}</h2>
                 <p>学习时长</p>
             </div>
             <div>
-                <h2>345</h2>
+                <h2>{{courseSvr.info.questionCount}}</h2>
                 <p>完成练习</p>
             </div>
             <div>
-                <h2>66</h2>
+                <h2>{{courseSvr.info.examMnCount}}</h2>
                 <p>模拟测试</p>
             </div>
             <div>
-                <h2>8</h2>
+                <h2>{{courseSvr.info.examCount}}</h2>
                 <p>在线考试</p>
             </div>
         </div>
@@ -54,13 +55,8 @@
     </div>
     <div class="own_list own_list1">
         <ul>
-            <li class="own_clear">
-                <a href="javascript:;">
-                    <i></i>清除系统内存 <span>128.8M<em></em></span>
-                </a>
-            </li>
             <li class="own_setup">
-                <a href="javascript:;">
+                <a [routerLink]="['/mine/settings']" routerDirection="forward">
                     <i></i>设置 <span><em></em></span>
                 </a>
             </li>

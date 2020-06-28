@@ -173,7 +173,7 @@ export const environment = {
             debug: true,
             url: '/front/app/getSignList',
         },
-        getSignSchool: {
+        getSignCompany: {
             id: 22,
             timeoutMs: 2000,
             retryTimes: 2,

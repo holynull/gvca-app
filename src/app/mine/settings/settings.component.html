@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/tabs/mine']" routerDirection="back">
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>设置</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="own_list">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    用户名<span>{{auth.userInfo.studentName}}</span>
+                </a>
+            </li>
+            <li class="own_head1">
+                <a href="javascript:;">
+                    头像<span class="span_head"><em></em><img src="assets/images/own_head.jpg" alt=""></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="own_list own_list1">
+        <ul>
+            <li class="own_setup">
+                <a href="javascript:;">
+                    修改密码<span>&nbsp;<em></em></span>
+                </a>
+            </li>
+            <li class="own_clear">
+                <a href="javascript:;">
+                    清除系统内存 <span>128.8M<em></em></span>
+                </a>
+            </li>
+
+            <li class="own_exit">
+                <a href="javascript:;">
+                    退出登录
+                </a>
+            </li>
+        </ul>
+    </div>
+</ion-content>
