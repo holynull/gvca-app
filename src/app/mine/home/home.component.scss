@@ -1,3 +1,7 @@
+ul {
+    margin: 0;
+}
+
 .own_top {
     background: url(assets/images/own_topbg.png) no-repeat;
     background-size: 100%;
@@ -53,7 +57,7 @@
 .own_count div {
     float: left;
     width: 25%;
-    text-align: center;   
+    text-align: center;
     box-sizing: border-box;
 }
 

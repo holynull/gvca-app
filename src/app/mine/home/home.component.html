@@ -1,7 +1,7 @@
 <ion-content scrollY="false">
     <div class="own_top">
         <div class="own_head">
-            <img src="assets/images/own_head.jpg" alt="">
+            <img [src]="auth.userInfo.photo|safeUrl" alt="">
         </div>
         <!-- todo: 没有昵称修改的接口 -->
         <h3>{{auth.userInfo.studentName}}<i class="niname_edit"></i></h3>

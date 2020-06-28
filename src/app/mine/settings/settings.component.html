@@ -18,7 +18,7 @@
             </li>
             <li class="own_head1">
                 <a href="javascript:;">
-                    头像<span class="span_head"><em></em><img src="assets/images/own_head.jpg" alt=""></span>
+                    头像<span class="span_head"><em></em><img [src]="auth.userInfo.photo|safeUrl" alt=""></span>
                 </a>
             </li>
         </ul>
@@ -26,7 +26,7 @@
     <div class="own_list own_list1">
         <ul>
             <li class="own_setup">
-                <a href="javascript:;">
+                <a [routerLink]="['/mine/modify_pwd']">
                     修改密码<span>&nbsp;<em></em></span>
                 </a>
             </li>

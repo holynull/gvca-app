@@ -26,4 +26,5 @@ export class UserInfo {
     studentAddress: string;
     majorName: string;
     studentNum: string;
+    photo: string;
 }

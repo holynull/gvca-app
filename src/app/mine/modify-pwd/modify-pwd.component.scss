@@ -1,0 +1,20 @@
+@import '../../../pub.scss';
+
+ion-item {
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
+}
+
+.label-fixed {
+    width: 1.2rem;
+    min-width: 1.2rem;
+    flex: 0 1 auto;
+}
+
+.icon-pwd {
+    background: url(assets/images/icon_password.png);
+    background-size: contain;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+}

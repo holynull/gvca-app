@@ -75,6 +75,7 @@ export class AuthService extends BaseService {
                 this.userInfo.studentAddress = studentInfo.studentAddress;
                 this.userInfo.majorName = studentInfo.majorName;
                 this.userInfo.studentNum = studentInfo.studentNum;
+                this.userInfo.photo = studentInfo.photo;
             }
         });
     }
@@ -151,6 +152,7 @@ export class AuthService extends BaseService {
                     this.userInfo.studentAddress = res.studentInfo.studentAddress;
                     this.userInfo.majorName = res.studentInfo.majorName;
                     this.userInfo.studentNum = res.studentInfo.studentNum;
+                    this.userInfo.photo = res.studentInfo.photo;
                     this.storage.set(ConstVal.USER_INFO, this.userInfo).then();
                     this.boot.initData();
                     return { code: 1, msg: '登录成功' };
@@ -163,5 +165,16 @@ export class AuthService extends BaseService {
         } else {
             return of({ code: -1, msg: "请输入用户名和密码" });
         }
+    }
+
+    updatePwd(pwd: string): Promise<any> {
+        return this.api.updateUserInfo(pwd).toPromise().then(res => {
+            if (res.code === 1) {
+                console.info(res);
+            } else {
+                console.error('修改密码出错', res);
+            }
+            return res;
+        });
     }
 }

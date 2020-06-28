@@ -257,10 +257,10 @@ export class ApiService extends BaseService {
         let url = this.url(environment.api.updateUserInfo.url);
         let params = new HttpParams();
         if (studentPassword) {
-            params.set('studentPassword', studentPassword);
+            params = params.set('studentPassword', studentPassword);
         }
         if (photo) {
-            params.set('photo', photo);
+            params = params.set('photo', photo);
         }
         return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);

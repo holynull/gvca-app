@@ -18,7 +18,7 @@ export class ApiInterceptor implements HttpInterceptor {
         if (token && url.indexOf(environment.api.apiDomain) !== -1) {
             if (req.method.toUpperCase() === 'GET') {
                 req = req.clone({
-                    params: req.params.set('token', token),
+                    params: req.params.append('token', token),
                 });
             } else {
                 let params: HttpParams = req.body;

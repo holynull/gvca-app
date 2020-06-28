@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/mine/settings']" routerDirection="back">
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>修改密码</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-item style="margin-top: 1.5rem;">
+        <ion-label position="fixed"><span class="icon-pwd"></span></ion-label>
+        <ion-input [(ngModel)]="pwd" type="password" placeholder="请输入新密码"></ion-input>
+    </ion-item>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button (click)="submit()">提交</ion-button>
+    </ion-toolbar>
+</ion-footer>
