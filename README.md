@@ -906,7 +906,7 @@ Score：单题得分
 codeMsg：状态信息
 
 
-## 18模拟题库和考试题库答题接口：
+## 18 用户学习统计数据：
 
 请求示例：http://kzs.7east.cn/front/app/getUserInfo?token=34789
 请求参数：token
@@ -1143,7 +1143,7 @@ codeMsg：状态信息
  
  ## 27 个人中心听课记录接口：
 
-请求示例：http://kzs.7east.cn/front/app/getLessonList?token=34789
+请求示例：http://kzs.7east.cn/front/app/getStuLessonList?token=34789
 请求参数：token
 
 返回参数示例：
@@ -1183,6 +1183,8 @@ courseName：课程名称
 videoUrl：视频路径
 lessonLength：当前听课记录秒值（为0时未听过该课件）
 transcodeDurtion：视频时长
+
+
 
 ## 28获取考试记录列表接口：
 
