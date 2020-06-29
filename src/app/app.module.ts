@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +43,10 @@ import { ApiInterceptor } from './services/api.interceptor';
         File,
         StreamingMedia,
         FileTransfer,
+        PhotoLibrary,
+        ImagePicker,
+        Camera,
+        WebView,
     ],
     bootstrap: [AppComponent]
 })

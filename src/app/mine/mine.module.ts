@@ -8,6 +8,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ModifyPwdComponent } from './modify-pwd/modify-pwd.component';
 import { PipesModule } from 'app/pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
+import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
         HomeComponent,
         SettingsComponent,
         ModifyPwdComponent,
+        ProfilePictureComponent,
     ],
     imports: [
         CommonModule,

@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/mine/settings']" routerDirection="back">
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>修改头像</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-avatar class="profile-picture">
+        <img [src]="picPath|safeUrl" >
+    </ion-avatar>
+    <div class="btn_container">
+        <ion-button (click)="getPicAction()">更换头像</ion-button>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button (click)="submit()">保存</ion-button>
+    </ion-toolbar>
+</ion-footer>

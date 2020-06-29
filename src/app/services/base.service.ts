@@ -57,7 +57,7 @@ export class BaseService {
         }
     }
 
-    protected url(url: string): string {
+    public url(url: string): string {
         return this.apiPrefix() + url;
     }
 }

@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="own_head1">
-                <a href="javascript:;">
+                <a [routerLink]="['/mine/profile_picture']">
                     头像<span class="span_head"><em></em><img [src]="auth.userInfo.photo|safeUrl" alt=""></span>
                 </a>
             </li>
@@ -37,7 +37,7 @@
             </li>
 
             <li class="own_exit">
-                <a href="javascript:;">
+                <a (click)="auth.logout()">
                     退出登录
                 </a>
             </li>
