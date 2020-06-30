@@ -7,6 +7,7 @@ import { Platform } from '@ionic/angular';
 import { ExercisesService } from './exercises.service';
 import { SimulationService } from './simulation.service';
 import { ExamService } from './exam.service';
+import { AttendService } from './attend.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +23,7 @@ export class BootService {
         private exercisSvr: ExercisesService,
         private simuSvr: SimulationService,
         private examSvr: ExamService,
+        private attendSvr: AttendService,
     ) {
         this.initData();
     }
@@ -35,6 +37,7 @@ export class BootService {
             this.exercisSvr.loadData();
             this.simuSvr.loadData();
             this.examSvr.loadData();
+            this.attendSvr.loadData();
         });
     }
 }

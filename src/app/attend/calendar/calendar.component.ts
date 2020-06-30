@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { GestureController, Gesture } from '@ionic/angular';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Gesture, GestureController } from '@ionic/angular';
+import { AttendService } from 'app/services/attend.service';
 
 @Component({
     selector: 'app-calendar',
@@ -9,7 +10,7 @@ import { GestureController, Gesture } from '@ionic/angular';
 export class CalendarComponent implements OnInit {
 
     @Input()
-    curDate: Date = new Date();
+    curDate: Date;
 
     calendar: Array<Date> = new Array();
 
@@ -18,7 +19,14 @@ export class CalendarComponent implements OnInit {
     @ViewChild('calendarDiv', {})
     calendarDiv: ElementRef;
 
-    constructor(private gestureCtrl: GestureController) {
+    @Output()
+    dateChange: EventEmitter<Date> = new EventEmitter();
+
+    constructor(
+        private gestureCtrl: GestureController,
+        private attendSvr: AttendService,
+    ) {
+        this.curDate = new Date();
         setTimeout(() => {
             this.slideFromRight = this.gestureCtrl.create({
                 el: this.calendarDiv.nativeElement,
@@ -33,6 +41,9 @@ export class CalendarComponent implements OnInit {
 
     ngOnInit() {
         this.genrateCalendar();
+        setTimeout(() => {
+            this.dateChange.emit(this.curDate);
+        }, 0);
     }
     allowTrigger(ev) {
         let time = ev.currentTime - ev.startTime;
@@ -94,6 +105,7 @@ export class CalendarComponent implements OnInit {
             this.curDate.setMonth(cm + 1);
         }
         this.genrateCalendar();
+        this.dateChange.emit(this.curDate);
     }
 
     prevMonth() {
@@ -105,6 +117,7 @@ export class CalendarComponent implements OnInit {
             this.curDate.setMonth(cm - 1);
         }
         this.genrateCalendar();
+        this.dateChange.emit(this.curDate);
     }
 
     private nextDay(date: Date) {
@@ -168,6 +181,29 @@ export class CalendarComponent implements OnInit {
                 return 0;
             }
         });
+    }
+
+    isToday(d: Date) {
+        return new Date().toDateString() === d.toDateString();
+    }
+
+    isCurDate(d: Date) {
+        return this.curDate.toDateString() === d.toDateString();
+    }
+
+    changeCurDate(item: Date) {
+        this.curDate = item;
+        this.dateChange.emit(this.curDate);
+    }
+
+    isCurMonth(item: Date): boolean {
+        return this.curDate.getFullYear() === item.getFullYear() && this.curDate.getMonth() === item.getMonth();
+    }
+
+    isPreToday(item: Date): boolean {
+        let now = new Date();
+        now = new Date(now.setHours(0, 0, 0, 0));
+        return item.getTime() < now.getTime();
     }
 
 }

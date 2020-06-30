@@ -1,3 +1,3 @@
-export enum HolidayState{
-    NONE,NONE1,ABSENCE,SICK
+export enum HolidayState {
+    NONE, NORMAL, ABSENCE, SICK
 }

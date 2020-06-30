@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/services/auth.service';
 import { CourseService } from 'app/services/course.service';
+import { AttendService } from 'app/services/attend.service';
 
 @Component({
     selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
         private auth: AuthService,
         private router: Router,
         public courseSvr: CourseService,
+        public attendSvr: AttendService,
     ) {
         this.courseSvr.getUserCourseInfo().then();
     }

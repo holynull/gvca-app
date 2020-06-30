@@ -9,23 +9,23 @@
     </ion-toolbar>
 </ion-header>
 <ion-content scrollY="false">
-    <app-calendar></app-calendar>
+    <app-calendar (dateChange)="onDateChange($event)"></app-calendar>
     <div class="space"></div>
-    <div class="clockin_des clockin_undo">
-        <h3><i class="fail"></i>未签到<a (click)="exempt()" class="btn_leave btn_exempt"
-                [ngClass]="{btn_exempted: exempted}">申请豁免</a></h3>
-        <p>规定考勤时间：00:00-23:59</p>
-        <p>岗位地址：甘肃省建筑职业技术学院</p>
+    <div class="clockin_des clockin_undo" *ngIf="(!curRecord||curRecord.signStatus!=0&&curRecord.signStatus!==1)&&isPreToday()">
+        <h3><i class="fail"></i>{{attendSvr.transSignStatus(!curRecord?0:curRecord.signStatus)}}<a (click)="exempt()" class="btn_leave btn_exempt"
+                [ngClass]="{btn_exempted: curRecord&&curRecord.exemptState!==1}">申请豁免</a></h3>
+        <p>规定考勤时间：{{attendSvr.company.signStartTime}}-{{attendSvr.company.signEndTime}}</p>
+        <p>{{attendSvr.company.companyAddress}}</p>
     </div>
-    <div class="clockin_des clockin_did">
+    <div class="clockin_des clockin_did" *ngIf="curRecord&&curRecord.signStatus===1">
         <h3><i class="success"></i>已签到</h3>
         <div>
-            <p>签到时间：8:40</p>
-            <p>签到地址：甘肃省建筑职业技术学院</p>
+            <p>签到时间：{{curRecord.signDate.getHours()}}:{{curRecord.signDate.getMinutes()}}</p>
+            <p>签到地址：{{curRecord.signAddress}}</p>
         </div>
         <div class="clockin_require">
-            <p>规定考勤时间：00:00-23:59</p>
-            <p>岗位地址：甘肃省建筑职业技术学院</p>
+        <p>规定考勤时间：{{attendSvr.company.signStartTime}}-{{attendSvr.company.signEndTime}}</p>
+         <p>{{attendSvr.company.companyAddress}}</p>
         </div>
 
     </div>

@@ -3,6 +3,7 @@ import { IonSlides, Platform } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { AdvService } from 'app/services/adv.service';
 import { NoticeService } from 'app/services/notice.service';
+import { AttendService } from 'app/services/attend.service';
 
 @Component({
     selector: 'app-home',
@@ -51,6 +52,7 @@ export class HomeComponent implements OnInit {
         public platform: Platform,
         public advSvr: AdvService,
         public noticeSvr: NoticeService,
+        public attendSvr: AttendService,
     ) {
         this.activeRoute.queryParams.subscribe(param => {
             // if (this.bannerSlides) {

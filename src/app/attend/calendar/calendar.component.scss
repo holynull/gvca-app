@@ -60,22 +60,31 @@
                 width: 2rem;
                 margin: 0 auto;
                 line-height: 1rem;
+                background: #ffffff;
+                border-radius: 50%;
             }
 
             .signed {
                 background: #0d6db9;
                 color: #fff;
-                border-radius: 50%;
             }
 
-            .unsigned {
+            .warning {
                 background: #ffb64d;
                 color: #fff;
-                border-radius: 50%;
             }
 
             .nm {
+                background: none;
                 color: #a4a4a4;
+            }
+
+            .today {
+                color: #333333;
+            }
+
+            .cur {
+                border: 1px solid #cc0000;
             }
         }
     }

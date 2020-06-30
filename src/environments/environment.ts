@@ -178,14 +178,14 @@ export const environment = {
             timeoutMs: 2000,
             retryTimes: 2,
             debug: true,
-            url: '/front/app/getSignSchool',
+            url: '/front/app/getSignCompany',
         },
         insertStuSign: {
             id: 23,
             timeoutMs: 2000,
             retryTimes: 2,
             debug: true,
-            url: '/front/app/getSignSchool',
+            url: '/front/app/insertStuSign',
         },
         insertStuHome: {
             id: 24,
