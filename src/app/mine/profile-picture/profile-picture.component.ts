@@ -114,14 +114,12 @@ export class ProfilePictureComponent implements OnInit {
                 console.info(res);
                 let json = JSON.parse(res.response);
                 if (json.code === 1) {
-                    this.api.updateUserInfo(null, json.path).toPromise().then(res => {
-                        if (res.code === 1) {
+                    this.auth.updateUserPhoto(json.path).then(success => {
+                        if (success) {
                             this.courseSvr.getUserCourseInfo().then(() => {
                                 this.auth.userInfo.photo = this.courseSvr.info.photo;
                                 this.router.navigate(['/mine/settings']);
                             });
-                        } else {
-                            console.error('更新用户头像数据出错', res);
                         }
                     });
                 } else {

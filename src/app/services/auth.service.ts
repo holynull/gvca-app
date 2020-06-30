@@ -178,4 +178,15 @@ export class AuthService extends BaseService {
             return res;
         });
     }
+
+    updateUserPhoto(path: string): Promise<boolean> {
+        return this.api.updateUserInfo(null, path).toPromise().then(res => {
+            if (res.code === 1) {
+                return true;
+            } else {
+                console.error('更新用户头像数据出错', res);
+                return false;
+            }
+        });
+    }
 }
