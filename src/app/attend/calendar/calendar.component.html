@@ -20,7 +20,7 @@
             <span (click)="changeCurDate(item)"
                 [ngClass]="{
                     'cur':isCurDate(item),
-                    'today':isToday(item),
+                    'today':isToday(item)&&isCurMonth(item),
                     'nm': item.getMonth()!==curDate.getMonth(),
                     'signed': attendSvr.signStatus(item)===1&&isCurMonth(item)&&isPreToday(item),
                     'warning':attendSvr.signStatus(item)!==1&&attendSvr.signStatus(item)!==0&&isCurMonth(item)&&(isPreToday(item)||isToday(item))

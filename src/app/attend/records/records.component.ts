@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, Inject } from '@angular/core';
 import { AttendService } from 'app/services/attend.service';
 import { SignRecord } from 'app/model/sign-record';
 import { ExemptState } from 'app/model/exempt-state.enum';
 import { SignStatus } from 'app/model/sign-status.enum';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-records',
@@ -17,6 +18,7 @@ export class RecordsComponent implements OnInit {
 
     constructor(
         public attendSvr: AttendService,
+        @Inject(LOCALE_ID) private locale: string,
     ) { }
 
     ngOnInit() { }
@@ -25,15 +27,7 @@ export class RecordsComponent implements OnInit {
         if (!this.curRecord || this.curRecord.exemptState === ExemptState.NORMAL) {
             this.attendSvr.applyExempt(this.curDate).then(success => {
                 if (success) {
-                    if (this.curRecord) {
-                        this.curRecord.exemptState = ExemptState.NORMAL;
-                    } else {
-                        this.curRecord = new SignRecord();
-                        this.curRecord.exemptState = ExemptState.EXEMPTED;
-                        this.curRecord.signStatus = SignStatus.APPLY_EXEMPT;
-                        this.curRecord.signDate = this.curDate;
-                        this.attendSvr.records.push(this.curRecord);
-                    }
+                    this.curRecord = this.attendSvr.getRecord(this.curDate);
                 }
             });
         }

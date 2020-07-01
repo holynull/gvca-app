@@ -8,12 +8,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class AskLeaveComponent implements OnInit {
 
+    leaveType: string='3';
+
     constructor(private modalCtrl: ModalController) { }
 
     ngOnInit() { }
 
     askForLeave() {
-        this.modalCtrl.dismiss();
+        this.modalCtrl.dismiss(Number(this.leaveType));
     }
 
 }

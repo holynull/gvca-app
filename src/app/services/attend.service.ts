@@ -4,6 +4,8 @@ import { SignRecord } from 'app/model/sign-record';
 import { SignStatus } from 'app/model/sign-status.enum';
 import { Company } from 'app/model/company';
 import { DatePipe } from '@angular/common';
+import { HolidayState } from 'app/model/holiday-state.enum';
+import { SignType } from 'app/model/sign-type.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -56,7 +58,7 @@ export class AttendService {
                     record.exemptState = Number(e.exemptState);
                     record.updateTime = new Date(e.updateTime);
                     record.signDate = new Date(e.signDate);
-                    record.timedate = String(e.graaaaaa);
+                    record.timedate = String(e.timedate);
                     record.holidayState = Number(e.holidayState);
                     record.recordId = Number(e.recordId);
                     record.studentId = Number(e.studentId);
@@ -73,8 +75,10 @@ export class AttendService {
     }
 
     signStatus(d: Date): SignStatus {
+        let datePipe = new DatePipe(this.locale);
+        let str = datePipe.transform(d, 'yyyyMMdd');
         for (let i = 0; i < this.records.length; i++) {
-            if (d.toDateString() === this.records[i].signDate.toDateString()) {
+            if (str === this.records[i].timedate) {
                 return this.records[i].signStatus;
             }
         }
@@ -82,8 +86,10 @@ export class AttendService {
     }
 
     getRecord(d: Date): SignRecord {
+        let datePipe = new DatePipe(this.locale);
+        let str = datePipe.transform(d, 'yyyyMMdd');
         for (let i = 0; i < this.records.length; i++) {
-            if (this.records[i].signDate.toDateString() === d.toDateString()) {
+            if (this.records[i].timedate === str) {
                 return this.records[i];
             }
         }
@@ -110,10 +116,49 @@ export class AttendService {
     }
 
     applyExempt(date: Date): Promise<boolean> {
-        let datePipe=new DatePipe(this.locale);
+        let datePipe = new DatePipe(this.locale);
         let str = datePipe.transform(date, 'yyyyMMdd');
         return this.api.updateExemptState(str).toPromise().then(res => {
             if (res.code === 1) {
+                this.loadData();
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
+    askLeave(type: HolidayState): Promise<boolean> {
+        return this.api.updateHolidayState(type).toPromise().then(res => {
+            if (res.code === 1) {
+                this.loadData();
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
+    sign(lng: number, lat: number, distance: number): Promise<boolean> {
+        let now = new Date();
+        let dWrong: boolean = distance > 500; // 距离大于500米
+        let sta = new Date().setHours(Number(this.company.signStartTime.split(':')[0]), Number(this.company.signStartTime.split(':')[1]), 0, 0);
+        let end = new Date().setHours(Number(this.company.signEndTime.split(':')[0]), Number(this.company.signEndTime.split(':')[1]), 0, 0);
+        let tWrong = false;
+        if (now.getTime() > end || now.getTime() < sta) {
+            tWrong = true;
+        }
+        let status: SignType = SignType.NONE;
+        if (dWrong && tWrong) {
+            status = SignType.ADDRESS_TIME_WRONG;
+        } else if (dWrong) {
+            status = SignType.ADDRESS_WRONG;
+        } else if (tWrong) {
+            status = SignType.TIME_WRONG;
+        }
+        return this.api.insertStuSign(String(lng), String(lat), this.company.companyAddress, status).toPromise().then(res => {
+            if (res.code === 1) {
+                this.loadData();
                 return true;
             } else {
                 return false;

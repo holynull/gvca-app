@@ -1,5 +1,5 @@
 <div class="dialog clockin_dialog" style="display: block;">
-    <p><input type="radio" checked="checked" name="leave"> 事假</p>
-    <p><input type="radio" name="leave"> 病假</p>
+    <p><input type="radio" checked="checked" name="leaveType" [(ngModel)]="leaveType" value="2"> 事假</p>
+    <p><input type="radio" name="leaveType" [(ngModel)]="leaveType" value="3"> 病假</p>
     <p><a (click)="askForLeave()" class="btn_ok">确定</a></p>
 </div>

@@ -1,6 +1,7 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, LOCALE_ID, Inject } from '@angular/core';
 import { Gesture, GestureController } from '@ionic/angular';
 import { AttendService } from 'app/services/attend.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-calendar',
@@ -25,6 +26,7 @@ export class CalendarComponent implements OnInit {
     constructor(
         private gestureCtrl: GestureController,
         private attendSvr: AttendService,
+        @Inject(LOCALE_ID) private locale: string,
     ) {
         this.curDate = new Date();
         setTimeout(() => {
@@ -128,7 +130,9 @@ export class CalendarComponent implements OnInit {
         if (m === 11 && dd === 31) {
             return new Date(y + 1, 0, 1);
         } else {
-            if (date.toDateString() === lastDay.toDateString()) {
+            let dStr = new DatePipe(this.locale).transform(date);
+            let lStr = new DatePipe(this.locale).transform(lastDay);
+            if (dStr === lStr) {
                 return new Date(y, m + 1, 1);
             } else {
                 return new Date(y, m, dd + 1);
@@ -144,7 +148,9 @@ export class CalendarComponent implements OnInit {
         if (m === 0 && dd === 1) {
             return new Date(y - 1, 11, 31);
         } else {
-            if (date.toDateString() === firstDay.toDateString()) {
+            let dStr = new DatePipe(this.locale).transform(date);
+            let lStr = new DatePipe(this.locale).transform(firstDay);
+            if (dStr === lStr) {
                 return new Date(y, m, 0);
             } else {
                 return new Date(y, m, dd - 1);
@@ -184,11 +190,17 @@ export class CalendarComponent implements OnInit {
     }
 
     isToday(d: Date) {
-        return new Date().toDateString() === d.toDateString();
+        let datePipe = new DatePipe(this.locale);
+        let today = datePipe.transform(new Date());
+        let dStr = datePipe.transform(d);
+        return today === dStr;
     }
 
     isCurDate(d: Date) {
-        return this.curDate.toDateString() === d.toDateString();
+        let datePipe = new DatePipe(this.locale);
+        let curStr = datePipe.transform(this.curDate);
+        let dStr = datePipe.transform(d);
+        return curStr === dStr;
     }
 
     changeCurDate(item: Date) {
