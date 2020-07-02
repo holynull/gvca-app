@@ -107,7 +107,15 @@ export class HomeComponent implements OnInit {
 
     sign() {
         if (this.status === SignStatus.NONE) {
-            this.attendSvr.sign(this.lng, this.lat, this.distance).then();
+            this.attendSvr.sign(this.lng, this.lat, this.distance).then(success => {
+                if (success) {
+                    this.now = new Date();
+                    this.curRecord = this.attendSvr.getRecord(this.now);
+                    this.status = this.attendSvr.signStatus(this.now);
+                } else {
+
+                }
+            });
         }
     }
 
@@ -125,6 +133,7 @@ export class HomeComponent implements OnInit {
             if (success) {
                 this.now = new Date();
                 this.curRecord = this.attendSvr.getRecord(this.now);
+                this.status = this.attendSvr.signStatus(this.now);
             } else {
 
             }

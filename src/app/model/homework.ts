@@ -22,6 +22,7 @@ export class Homework {
     workTimeStr: string;
     schoolId: number;
     majorName: string;
+    stuAnsPhoto: string;
 
     workTimeToStr(): string {
         return (this.workTime.getMonth() + 1) + '月' + (this.workTime.getDate()) + '日';

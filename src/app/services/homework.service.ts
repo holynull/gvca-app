@@ -45,6 +45,7 @@ export class HomeworkService {
                     hw.workTimeStr = e.workTimeStr;
                     hw.schoolId = e.schoolId;
                     hw.majorName = e.majorName;
+                    hw.stuAnsPhoto = e.stuAnsPhoto;
                     this.homeworks.push(hw);
                 });
             } else {
@@ -52,6 +53,27 @@ export class HomeworkService {
             }
             if (callBack) {
                 callBack();
+            }
+        });
+    }
+
+    getHomeworkById(hId: number): Homework {
+        for (let i = 0; i < this.homeworks.length; i++) {
+            if (this.homeworks[i].homeworkId === hId) {
+                return this.homeworks[i];
+            }
+        }
+        return null;
+    }
+
+    submit(hw: Homework, path: string, txtAnswer: string): Promise<boolean> {
+        return this.api.insertStuHome(String(hw.homeworkId), String(hw.teacherId), path, txtAnswer).toPromise().then(res => {
+            if (res.code === 1) {
+                this.getHomeWorks(new PageInfo());
+                return true;
+            } else {
+                console.error('提交作业出错', res);
+                return false;
             }
         });
     }

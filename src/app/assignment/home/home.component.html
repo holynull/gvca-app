@@ -11,9 +11,9 @@
             <p class="date">{{item.workTimeToStr()}}</p>
             <div>
                 <h3 [ngSwitch]="item.stuhomeworkStatus">{{item.homeworkName}}
-                    <a *ngSwitchCase="0" (click)="toUpload()" class="btn_do btn_todo">去完成</a>
+                    <a *ngSwitchCase="0" (click)="toUpload(item.homeworkId)" class="btn_do btn_todo">去完成</a>
                     <a *ngSwitchCase="1" href="javascript:;" class="btn_did">待批改</a>
-                    <a *ngSwitchCase="2" (click)="toMyWork()" class="btn_do btn_modify">去修正</a>
+                    <a *ngSwitchCase="2" (click)="toMyWork(item.homeworkId)" class="btn_do btn_modify">去修正</a>
                     <a *ngSwitchCase="3" href="javascript:;" class="btn_did">A+</a>
                 </h3>
                 <div [innerHtml]="item.homeworkDetail|safeHtml">

@@ -7,7 +7,7 @@
         </ion-buttons>
         <ion-title>上传作业</ion-title>
         <ion-buttons slot="end">
-            <ion-button><span class="btn-submit">提交</span></ion-button>
+            <ion-button (click)="submit()"><span class="btn-submit">提交</span></ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -15,15 +15,12 @@
     <div class="homework_box">
         <p>根据老师的要求来完成作业吧~</p>
         <ul class="clearfix">
-            <li><img src="assets/images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
-            <li><img src="assets/images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
-            <li><img src="assets/images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
-            <li><img src="assets/images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
-            <li><img src="assets/images/homework_pic.jpg" alt=""><a href="javascript:;" class="homework_close"></a></li>
+            <li *ngFor="let item of viewUrls;let i=index"><img [src]="item|safeUrl" alt=""><a (click)="delPic(i)"
+                    class="homework_close"></a></li>
         </ul>
     </div>
     <div class="homework_btns">
         <i class="homework_img" (click)="getPic()"></i>
-        <i class="homework_audio"></i>
+        <!-- <i class="homework_audio"></i> -->
     </div>
 </ion-content>

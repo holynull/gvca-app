@@ -134,6 +134,7 @@ export class AttendService {
                 this.loadData();
                 return true;
             } else {
+                console.error('请假失败', res);
                 return false;
             }
         });
@@ -161,6 +162,7 @@ export class AttendService {
                 this.loadData();
                 return true;
             } else {
+                console.error('签到失败', res);
                 return false;
             }
         });

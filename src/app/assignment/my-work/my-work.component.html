@@ -18,9 +18,7 @@
         作业需修正，请重新提交！
     </div>
     <div class="mine_box">
-        <img src="assets/images/homework_pic1.jpg" alt="">
-        <img src="assets/images/homework_pic1.jpg" alt="">
-        <img src="assets/images/homework_pic1.jpg" alt="">
+        <img *ngFor="let item of path" [src]="item|safeUrl" alt="">
     </div>
 </ion-content>
 <ion-footer>

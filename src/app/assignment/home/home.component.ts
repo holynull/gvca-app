@@ -28,18 +28,20 @@ export class HomeComponent implements OnInit {
         this.homeworkSvr.getHomeWorks(this.pageInfo);
     }
 
-    async toUpload() {
+    async toUpload(hId: number) {
         const modal = await this.modalCtrl.create({
             component: UploadComponent,
             componentProps: {
+                hId: hId,
             }
         });
         await modal.present();
     }
-    async toMyWork() {
+    async toMyWork(hId: number) {
         const modal = await this.modalCtrl.create({
             component: MyWorkComponent,
             componentProps: {
+                hId: hId,
             }
         });
         await modal.present();
