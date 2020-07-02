@@ -110,7 +110,7 @@ export class HomeworkService {
         return this.api.insertStuHome(String(hw.homeworkId), String(hw.teacherId), path, txtAnswer).toPromise().then(res => {
             if (res.code === 1) {
                 this.getHomeWorks(new PageInfo());
-                this.loadCompleted();
+                this.loadCompletedHomeWork();
                 return true;
             } else {
                 console.error('提交作业出错', res);
