@@ -103,6 +103,51 @@
 .panels>div.panel1 {
     display: block;
 }
+.exam_list>ul>li {
+
+    div.course {
+        line-height: 3rem;
+        background: #f5f6f6 url(assets/images/icon_exam_list.png) no-repeat .5rem center;
+        background-size: 1.2rem;
+        padding-left: 1.9rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+        width: 100%;
+        color: #333;
+        font-size: .9rem;
+        box-sizing: border-box;
+        border-top: 1px solid #e6e6e6;
+    }
+}
+
+.exam_list>ul>li span {
+    float: right;
+}
+
+.exam_list>ul>li span i {
+    color: #cc0000;
+}
+
+.exam_list>ul>li em {
+    background: url(assets/images/icon_exam_listarrow.png);
+    background-size: contain;
+    width: 1.6rem;
+    height: 1.6rem;
+    float: right;
+    margin-right: .2rem;
+    margin-top: .7rem;
+    transition: 0.3s linear all;
+}
+
+.exam_list>ul>li.active em {
+    transform: rotate(90deg);
+}
+
+.exam_list>ul>li~div {
+    // display: none;
+}
 
 .exam_sublist {
     background: #fff;

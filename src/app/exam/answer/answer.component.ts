@@ -45,6 +45,8 @@ export class AnswerComponent implements OnInit {
 
     examId: number;
 
+    tab: number;
+
     constructor(
         private activeRoute: ActivatedRoute,
         private modalCtrl: ModalController,
@@ -72,6 +74,7 @@ export class AnswerComponent implements OnInit {
             this.qcid = params.qcid;
             this.examId = params.examId;
             this.dataType = params.dataType;
+            this.tab = params.tab;
             switch (this.dataType) {
                 case 'exer':
                     this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));

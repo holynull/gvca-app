@@ -30,13 +30,27 @@
                     <p>正确率</p>
                 </div>
             </div>
-            <div class="exam_sublist exam_test">
+            <div class="exam_list exam_test">
                 <ul>
-                    <li><i></i>知识一<a (click)="toReport('知识一')" class="done"></a></li>
-                    <li><i></i>知识二<a (click)="toReport('知识二')" class="done"></a></li>
-                    <li><i></i>知识点三<a (click)="toReport('知识点三')" class="done"></a></li>
-                    <li><i></i>练习一<a (click)="toReport('练习一')" class="done"></a></li>
-                    <li><i></i>练习二<a (click)="toReport('练习二')" class="done"></a></li>
+                    <li *ngFor="let item of exerSvr.exercisCourses">
+                        <div class="course">
+                            {{item.name}}<em></em><span><i>{{item.questionUsedSum}}</i>/{{item.questionSum}}</span>
+                        </div>
+                        <div class="exam_sublist">
+                            <ul>
+                                <li *ngFor="let d of item.details">
+                                    <i></i>
+                                    {{d.name}}
+                                    <a *ngIf="d.questionSum===d.questionUsedSum&&d.questionSum!==0;else nodone"
+                                        [ngClass]="{done: d.questionSum===d.questionUsedSum}"></a>
+                                    <ng-template #nodone>
+                                        <a (click)="goToAnswerExer(d)"></a>
+                                    </ng-template>
+                                    <span>({{d.questionUsedSum}}/{{d.questionSum}})</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -57,11 +71,8 @@
             </div>
             <div class="exam_sublist exam_test">
                 <ul>
-                    <li><i></i>2020测绘地理模拟试卷一<a (click)="toReport('2020测绘地理模拟试卷一')" class="done"></a><span>(<em>95</em>)</span></li>
-                    <li><i></i>2020测绘地理模拟试卷二<a (click)="toReport('2020测绘地理模拟试卷二')" class="done"></a><span>(<em>82</em>)</span></li>
-                    <li><i></i>2020测绘地理模拟试卷三<a (click)="toReport('2020测绘地理模拟试卷三')" class="done"></a><span>(<em>76</em>)</span></li>
-                    <li><i></i>2020测绘地理模拟试卷四<a (click)="toReport('2020测绘地理模拟试卷四')" class="done"></a><span>(<em>88</em>)</span></li>
-                    <li><i></i>2020测绘地理模拟试卷五<a (click)="toReport('2020测绘地理模拟试卷五')" class="done"></a><span>(<em>92</em>)</span></li>
+                    <li *ngFor="let item of simuSvr.testPapers"><i></i>{{item.examName}}<a (click)="goToAnswer(item,'simu')"
+                            [ngClass]="{done: item.usedState===1}"></a><span>(<em>{{item.getScore()}}</em>)</span></li>
                 </ul>
             </div>
         </div>
@@ -82,8 +93,8 @@
             </div>
             <div class="exam_sublist exam_test">
                 <ul>
-                    <li><i></i>2020测绘地理考试试卷一<a (click)="toReport('2020测绘地理考试试卷一')" class="done"></a><span>(<em>92</em>)</span></li>
-                    <li><i></i>2020测绘地理考试试卷二<a (click)="toReport('2020测绘地理考试试卷二')" class="done"></a><span>(<em>87</em>)</span></li>
+                    <li *ngFor="let item of examSvr.testPapers"><i></i>{{item.examName}}<a (click)="goToAnswer(item,'exam')"
+                            [ngClass]="{done: item.usedState===1}"></a><span>(<em>{{item.getScore()}}</em>)</span></li>
                 </ul>
             </div>
         </div>

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { MyWorkComponent } from './my-work/my-work.component';
 import { UploadComponent } from './upload/upload.component';
 import { PipesModule } from 'app/pipes/pipes.module';
+import { CompletedComponent } from './completed/completed.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { PipesModule } from 'app/pipes/pipes.module';
         HomeComponent,
         MyWorkComponent,
         UploadComponent,
+        CompletedComponent,
     ],
     imports: [
         CommonModule,

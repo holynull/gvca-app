@@ -8,6 +8,7 @@ import { ExercisesService } from './exercises.service';
 import { SimulationService } from './simulation.service';
 import { ExamService } from './exam.service';
 import { AttendService } from './attend.service';
+import { HomeworkService } from './homework.service';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,7 @@ export class BootService {
         private simuSvr: SimulationService,
         private examSvr: ExamService,
         private attendSvr: AttendService,
+        private hwSvr:HomeworkService,
     ) {
         this.initData();
     }
@@ -39,6 +41,7 @@ export class BootService {
             this.simuSvr.loadData();
             this.examSvr.loadData();
             this.attendSvr.loadData();
+            this.hwSvr.loadCompletedHomeWork().then();
         });
     }
 }

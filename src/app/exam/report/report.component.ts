@@ -36,6 +36,8 @@ export class ReportComponent implements OnInit {
 
     url = "/exam/score";
 
+    tab: string;
+
     constructor(
         private activeRoute: ActivatedRoute,
         private modalCtrl: ModalController,
@@ -63,6 +65,7 @@ export class ReportComponent implements OnInit {
             this.qcid = params.qcid;
             this.examId = params.examId;
             this.url = params.url;
+            this.tab = params.tab;
             switch (this.dataType) {
                 case 'exer':
                     if (params.qid && params.qcid) {

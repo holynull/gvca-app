@@ -4,6 +4,7 @@ import { SignRecord } from 'app/model/sign-record';
 import { ExemptState } from 'app/model/exempt-state.enum';
 import { SignStatus } from 'app/model/sign-status.enum';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-records',
@@ -16,10 +17,19 @@ export class RecordsComponent implements OnInit {
 
     curDate: Date;
 
+    url: string = "/attend"
+
     constructor(
         public attendSvr: AttendService,
         @Inject(LOCALE_ID) private locale: string,
-    ) { }
+        private activedRoute: ActivatedRoute,
+    ) {
+        this.activedRoute.queryParams.subscribe(params => {
+            if (params.url) {
+                this.url = params.url;
+            }
+        });
+    }
 
     ngOnInit() { }
 

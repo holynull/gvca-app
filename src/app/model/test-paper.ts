@@ -18,4 +18,12 @@ export class TestPaper {
     usedState: UsedState;
     status: number;
     questions: Array<Question> = new Array();
+
+    getScore(): number {
+        let score = 0;
+        this.questions.forEach(q => {
+            score = score + q.getQuestionScore();
+        });
+        return score;
+    }
 }

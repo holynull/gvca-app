@@ -42,12 +42,12 @@
                 </a>
             </li>
             <li class="own_homework">
-                <a [routerLink]="['/assignment/my-work']" [queryParams]="{from:'mine'}">
+                <a [routerLink]="['/assignment/completed']" [queryParams]="{from:'mine'}">
                     <i></i>我的作业 <span>查看作业<em></em></span>
                 </a>
             </li>
             <li class="own_clockin" *ngIf="attendSvr.company">
-                <a href="javascript:;">
+                <a [routerLink]="['/attend/records']" [queryParams]="{url:'/tabs/mine'}">
                     <i></i>考勤打卡 <span>查看打卡记录<em></em></span>
                 </a>
             </li>
