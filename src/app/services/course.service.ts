@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CourseInfo } from 'app/model/course-info';
+import { LessonRecord } from 'app/model/lesson-record';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,8 @@ export class CourseService {
     courses: Array<Course> = new Array();
 
     info: CourseInfo = new CourseInfo();
+
+    records: Array<LessonRecord> = new Array();
 
     constructor(
         private api: ApiService,
@@ -172,6 +175,37 @@ export class CourseService {
             } else {
                 console.error('获取用户的学习统计数据出错', res);
                 return this.info;
+            }
+        });
+    }
+
+    loadLessonRecords(): Promise<boolean> {
+        return this.api.getStuLessonList().toPromise().then(res => {
+            if (res.code === 1) {
+                this.records.splice(0, this.records.length);
+                res.info.forEach(e => {
+                    let record = new LessonRecord();
+                    record.lessonStatus = Number(e.lessonStatus);
+                    record.loadState = Number(e.loadState);
+                    record.addTime = new Date(e.addTime);
+                    record.lessonId = Number(e.lessonId);
+                    record.updateTime = new Date(e.updateTime);
+                    record.sort = Number(e.sort);
+                    record.lessonName = e.lessonName;
+                    record.courseName = e.courseName;
+                    record.teacherId = Number(e.teacherId);
+                    record.videoUrl = e.videoUrl;
+                    record.lessonLength = Number(e.lessonLength);
+                    record.transcodeDurtion = e.transcodeDurtion;
+                    record.courseId = Number(e.courseId);
+                    record.lessonType = Number(e.lessonType);
+                    record.videosize = Number(e.videosize);
+                    this.records.push(record);
+                });
+                return true;
+            } else {
+                console.error('获取听课记录出错', res);
+                return false;
             }
         });
     }

@@ -33,6 +33,7 @@ export class BootService {
             this.advSrv.initData();
             this.noticeSvr.loadeData();
             this.courseSvr.getAllCourseCats();
+            this.courseSvr.loadLessonRecords().then();
             this.courseDownloadSvr.initData();
             this.exercisSvr.loadData();
             this.simuSvr.loadData();

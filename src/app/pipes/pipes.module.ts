@@ -4,6 +4,7 @@ import { DownloadTasksPipe } from './download-tasks.pipe';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { QueFilterPipe } from './que-filter.pipe';
+import { LessonRecordTypePipe } from './lesson-record-type.pipe';
 
 
 
@@ -13,6 +14,7 @@ import { QueFilterPipe } from './que-filter.pipe';
         SafeUrlPipe,
         SafeHtmlPipe,
         QueFilterPipe,
+        LessonRecordTypePipe,
     ],
     imports: [
         CommonModule
@@ -22,6 +24,7 @@ import { QueFilterPipe } from './que-filter.pipe';
         SafeUrlPipe,
         SafeHtmlPipe,
         QueFilterPipe,
+        LessonRecordTypePipe,
     ]
 })
 export class PipesModule { }

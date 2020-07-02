@@ -18,68 +18,40 @@
     </div>
     <div class="panels">
         <div class="panel1" [hidden]="curTab!==1">
-            <div class="list_item down_item clearfix">
+            <div class="list_item down_item clearfix" *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
                 <div class="cb" [hidden]="!editable">
                     <input type="checkbox" [hidden]="!editable">
                 </div>
                 <div class="lesson_mask">
+                    <!-- todo：接口里没有图 -->
                     <img src="assets/images/course_pic.jpg" alt="">
                     <a href="javascript:;" class="icon_play"></a>
                 </div>
                 <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
+                    <h3>{{item.lessonName}}</h3>
                     <div>
-                        <span class="fl"><i></i>已观看至：10分20秒</span>
-                    </div>
-                </div>
-            </div>
-            <div class="list_item down_item clearfix">
-                <div class="cb" [hidden]="!editable">
-                    <input type="checkbox" [hidden]="!editable">
-                </div>
-                <div class="lesson_mask">
-                    <img src="assets/images/course_pic.jpg" alt="">
-                    <a href="javascript:;" class="icon_play"></a>
-                </div>
-                <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
-                    <div>
-                        <span class="fl"><i></i>已观看至：10分20秒</span>
+                        <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel2" [hidden]="curTab!==2">
-            <div class="list_item down_item clearfix">
+            <div class="list_item down_item clearfix" *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
                 <div class="cb" [hidden]="!editable">
                     <input type="checkbox" [hidden]="!editable">
                 </div>
                 <div class="lesson_mask">
+                    <!-- todo：接口里没有图 -->
                     <img src="assets/images/course_pic.jpg" alt="">
                     <a href="javascript:;" class="icon_play"></a>
                 </div>
                 <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
+                    <h3>{{item.lessonName}}</h3>
                     <div>
-                        <span class="fl"><i></i>已观看至：10分20秒</span>
+                        <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
                     </div>
                 </div>
-            </div>
-            <div class="list_item down_item clearfix">
-                <div class="cb" [hidden]="!editable">
-                    <input type="checkbox">
-                </div>
-                <div class="lesson_mask">
-                    <img src="assets/images/course_pic.jpg" alt="">
-                    <a href="javascript:;" class="icon_play"></a>
-                </div>
-                <div>
-                    <h3>财务舞弊手段（一）—调整手段</h3>
-                    <div>
-                        <span class="fl"><i></i>已观看至：10分20秒</span>
-                    </div>
-                </div>
-            </div>
+            </div> 
         </div>
     </div>
     <div class="bot_btns" style="display: block;" [hidden]="!editable">
