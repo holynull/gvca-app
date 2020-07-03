@@ -90,17 +90,17 @@ export class AnswerCardComponent implements OnInit {
                         });
                         break;
                     case 'simu':
-                        this.simuSvr.submit(this.examId).then(() => {
+                        this.simuSvr.submit(this.examId).then((res) => {
                             this.modalCtrl.dismiss();
                             loading.dismiss();
-                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
+                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType, ranking: res.ranking, sumPeople: res.sumPeople } });
                         });
                         break;
                     case 'exam':
-                        this.examSvr.submit(this.examId).then(() => {
+                        this.examSvr.submit(this.examId).then((res) => {
                             this.modalCtrl.dismiss();
                             loading.dismiss();
-                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType } });
+                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType, ranking: res.ranking, sumPeople: res.sumPeople } });
                         });
                         break;
                 }

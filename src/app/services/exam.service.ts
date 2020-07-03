@@ -140,7 +140,9 @@ export class ExamService {
         return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise().then(res => {
             if (res.code === 1) {
                 this.loadData().then();
+                return res;
             } else {
+                return res;
                 console.error('提交考试试卷出错', res);
             }
         });

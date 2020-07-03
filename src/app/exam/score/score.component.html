@@ -21,8 +21,7 @@
             </div>
             <em></em>
             <div>
-                <!-- todo: 没有排名数据 -->
-                <dt><i>200</i>/1020</dt>
+                <dt><i>{{ranking}}</i>/{{sumPeople}}</dt>
                 <dd>当前排名</dd>
             </div>
         </div>
@@ -43,6 +42,7 @@
 <ion-footer>
     <ion-toolbar>
         <ion-button [routerLink]="['/exam/report']"
-            [queryParams]="{title:title,url:'/exam/score',dataType:dataType,examId:examId,pid:pid,qcid:qcid}">查看错题解析</ion-button>
+            [queryParams]="{title:title,url:'/exam/score',dataType:dataType,examId:examId,pid:pid,qcid:qcid}">查看错题解析
+        </ion-button>
     </ion-toolbar>
 </ion-footer>

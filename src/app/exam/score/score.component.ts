@@ -24,6 +24,10 @@ export class ScoreComponent implements OnInit {
 
     examId: number;
 
+    sumPeople: string;
+
+    ranking: string;
+
     constructor(
         private activeRoute: ActivatedRoute,
         public exerSvr: ExercisesService,
@@ -36,6 +40,8 @@ export class ScoreComponent implements OnInit {
             this.pid = params.pid;
             this.qcid = params.qcid;
             this.examId = params.examId;
+            this.sumPeople = params.sumPeople;
+            this.ranking = params.ranking;
             switch (this.dataType) {
                 case 'exer':
                     this.questions = exerSvr.getQuestions(Number(this.pid), Number(this.qcid));

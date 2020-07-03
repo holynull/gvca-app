@@ -141,7 +141,9 @@ export class SimulationService {
         return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise().then(res => {
             if (res.code === 1) {
                 this.loadData().then();
+                return res;
             } else {
+                return res;
                 console.error('提交模拟试卷出错', res);
             }
         });
