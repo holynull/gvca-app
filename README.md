@@ -1348,5 +1348,21 @@ stuAnsPhoto：学生作业图片
 studentAnswer：学生作业文字
 
 
+## 30 获取个人中心答题记录统计数据：
+
+请求示例：http://kzs.7east.cn/front/app/getExamStatistical?token=34789&type=1
+请求参数：token
+ 			 	type：题库类型（1练习题库 2模拟题库  3考试题库） 
+返回参数示例：
+
+```
+{    "code":1,    "rightStr":"80",    "codeMsg":"获取个人中心答题记录统计数据成功！",    "leftStr":"4/5",    "middleStr":""}       
+```
+
+参数解析： code：状态码，1成功 0失败  -1未知token  
+codeMsg：状态信息
+leftStr：左侧显示数据
+middleStr：中间显示数据（练习题库无分数显示）
+rightStr：左侧显示数据
 
    

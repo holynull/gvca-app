@@ -18,15 +18,16 @@
         <div class="panel1" [hidden]="curTab!==1">
             <div class="own_count exam_count">
                 <div>
-                    <h2>78<i>/200</i></h2>
+                    <h2>{{exerSvr.stateData.leftStr.split('/')[0]}}<i>/{{exerSvr.stateData.leftStr.split('/')[1]}}</i>
+                    </h2>
                     <p>已完成</p>
                 </div>
                 <div>
-                    <h2>89</h2>
+                    <h2>{{exerSvr.stateData.middleStr}}</h2>
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>66<i>%</i></h2>
+                    <h2>{{exerSvr.stateData.leftStr}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
@@ -57,21 +58,23 @@
         <div class="panel2" [hidden]="curTab!==2">
             <div class="own_count exam_count">
                 <div>
-                    <h2>5</h2>
+                    <h2>{{simuSvr.stateData.leftStr.split('/')[0]}}<i>/{{simuSvr.stateData.leftStr.split('/')[1]}}</i>
+                    </h2>
                     <p>已完成</p>
                 </div>
                 <div>
-                    <h2>89</h2>
+                    <h2>{{simuSvr.stateData.middleStr}}</h2>
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>66<i>%</i></h2>
+                    <h2>{{simuSvr.stateData.leftStr}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
             <div class="exam_sublist exam_test">
                 <ul>
-                    <li *ngFor="let item of simuSvr.testPapers"><i></i>{{item.examName}}<a (click)="goToAnswer(item,'simu')"
+                    <li *ngFor="let item of simuSvr.testPapers"><i></i>{{item.examName}}<a
+                            (click)="goToAnswer(item,'simu')"
                             [ngClass]="{done: item.usedState===1}"></a><span>(<em>{{item.getScore()}}</em>)</span></li>
                 </ul>
             </div>
@@ -79,21 +82,23 @@
         <div class="panel3" [hidden]="curTab!==3">
             <div class="own_count exam_count">
                 <div>
-                    <h2>2</h2>
+                    <h2>{{examSvr.stateData.leftStr.split('/')[0]}}<i>/{{examSvr.stateData.leftStr.split('/')[1]}}</i>
+                    </h2>
                     <p>已完成</p>
                 </div>
                 <div>
-                    <h2>89</h2>
+                    <h2>{{examSvr.stateData.middleStr}}</h2>
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>88<i>%</i></h2>
+                    <h2>{{examSvr.stateData.leftStr}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
             <div class="exam_sublist exam_test">
                 <ul>
-                    <li *ngFor="let item of examSvr.testPapers"><i></i>{{item.examName}}<a (click)="goToAnswer(item,'exam')"
+                    <li *ngFor="let item of examSvr.testPapers"><i></i>{{item.examName}}<a
+                            (click)="goToAnswer(item,'exam')"
                             [ngClass]="{done: item.usedState===1}"></a><span>(<em>{{item.getScore()}}</em>)</span></li>
                 </ul>
             </div>

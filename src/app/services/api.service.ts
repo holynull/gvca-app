@@ -395,9 +395,22 @@ export class ApiService extends BaseService {
     /**
      * id:29
      */
-    getStuHomeWorkList() {
+    getStuHomeWorkList(): Observable<any> {
         let url = this.url(environment.api.getStuHomeWorkList.url);
         return this.http.get(url, {}).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
+            this.apiUtils.presentAlert(e, environment.api.default.debug);
+            return of(e);
+        }));
+    }
+
+    /**
+     * 
+     * @param type 题库类型（1练习题库 2模拟题库  3考试题库） 
+     */
+    getExamStatistical(type: string): Observable<any> {
+        let url = this.url(environment.api.getExamStatistical.url);
+        let params = new HttpParams().set('type', type);
+        return this.http.get(url, { params: params }).pipe(tap(res => this.errorHandler(res, this.router)), timeout(environment.api.default.timeoutMs), retry(environment.api.default.retryTimes), catchError(e => {
             this.apiUtils.presentAlert(e, environment.api.default.debug);
             return of(e);
         }));

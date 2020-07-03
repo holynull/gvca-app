@@ -6,6 +6,7 @@ import { Question } from '../model/question';
 import { ApiService } from './api.service';
 import { Storage } from '@ionic/storage';
 import { ConstVal } from 'app/constVal';
+import { retry } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,12 @@ import { ConstVal } from 'app/constVal';
 export class ExercisesService {
 
     exercisCourses: Array<ExercisCourse> = new Array();
+
+    stateData = {
+        rightStr: '',
+        leftStr: ' / ',
+        middleStr: '',
+    }
 
     constructor(
         private api: ApiService,
@@ -150,6 +157,20 @@ export class ExercisesService {
                 this.loadData().then();
             } else {
                 console.error('提交练习试卷出错', res);
+            }
+        });
+    }
+
+    getStateData(): Promise<boolean> {
+        return this.api.getExamStatistical('1').toPromise().then(res => {
+            if (res.code === 1) {
+                this.stateData.leftStr = res.leftStr;
+                this.stateData.rightStr = res.rightStr;
+                this.stateData.middleStr = res.middleStr;
+                return true;
+            } else {
+                console.error('获取练习题统计数据出错', res);
+                return false;
             }
         });
     }

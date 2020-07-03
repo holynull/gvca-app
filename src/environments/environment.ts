@@ -229,6 +229,13 @@ export const environment = {
             debug: true,
             url: '/front/app/getStuHomeWorkList',
         },
+        getExamStatistical: {
+            id: 30,
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getExamStatistical',
+        },
     },
     videoDir: 'course_video',
 };

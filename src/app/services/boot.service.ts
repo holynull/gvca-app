@@ -21,11 +21,11 @@ export class BootService {
         private noticeSvr: NoticeService,
         private courseSvr: CourseService,
         private courseDownloadSvr: CourseDownloadService,
-        private exercisSvr: ExercisesService,
+        private exerSvr: ExercisesService,
         private simuSvr: SimulationService,
         private examSvr: ExamService,
         private attendSvr: AttendService,
-        private hwSvr:HomeworkService,
+        private hwSvr: HomeworkService,
     ) {
         this.initData();
     }
@@ -37,11 +37,14 @@ export class BootService {
             this.courseSvr.getAllCourseCats();
             this.courseSvr.loadLessonRecords().then();
             this.courseDownloadSvr.initData();
-            this.exercisSvr.loadData();
+            this.exerSvr.loadData();
             this.simuSvr.loadData();
             this.examSvr.loadData();
             this.attendSvr.loadData();
             this.hwSvr.loadCompletedHomeWork().then();
+            this.exerSvr.getStateData().then();
+            this.simuSvr.getStateData().then();
+            this.examSvr.getStateData().then();
         });
     }
 }

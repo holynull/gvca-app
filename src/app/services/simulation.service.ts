@@ -10,7 +10,11 @@ import { ConstVal } from 'app/constVal';
     providedIn: 'root'
 })
 export class SimulationService {
-
+    stateData = {
+        rightStr: '',
+        leftStr: ' / ',
+        middleStr: '',
+    }
     /**
      * 是否可以答题
      */
@@ -142,5 +146,17 @@ export class SimulationService {
             }
         });
     }
-
+    getStateData(): Promise<boolean> {
+        return this.api.getExamStatistical('2').toPromise().then(res => {
+            if (res.code === 1) {
+                this.stateData.leftStr = res.leftStr;
+                this.stateData.rightStr = res.rightStr;
+                this.stateData.middleStr = res.middleStr;
+                return true;
+            } else {
+                console.error('获取模拟考试统计数据出错', res);
+                return false;
+            }
+        });
+    }
 }
