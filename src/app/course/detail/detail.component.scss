@@ -47,8 +47,9 @@
     width: 50%;
     float: left;
     color: #101010;
-    font-size: .9rem;
+    font-size: 1rem;
     background: #ffffff;
+    position: relative;
 }
 
 .detail_sub_menu a.active i {
@@ -58,6 +59,7 @@
     border-radius: 2px;
     bottom: 0;
     left: calc(50% - 1rem);
+    position:absolute;
 }
 
 .detail_tip {
@@ -122,7 +124,7 @@ a.btn_alldown i {
     line-height: 1.8rem;
     font-weight: normal;
     background: url(assets/images/detail_iconlesson.png) no-repeat 0 center;
-    background-size: .8rem;
+    background-size: .9rem;
     padding-left: 1.1rem;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -136,6 +138,7 @@ a.btn_alldown i {
     color: #999;
     font-size: .55rem;
     padding-left: 1.1rem;
+    margin:0;
 }
 
 .detail_btns {
@@ -164,6 +167,9 @@ a.detail_btn_down {
 .detail_panel2 {
     padding: .6rem .8rem;
     background: #ffffff;
+    font-size: .8rem;
+    line-height: 180%;
+    text-indent: 2em;
 }
 
 .detail_panel2 p {

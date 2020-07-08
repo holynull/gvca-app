@@ -9,9 +9,17 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-item style="margin-top: 1.5rem;">
+    <ion-item style="margin-top: 1.5rem; font-size: .8rem;">
+        <ion-label position="fixed"><span class="icon-pwd"></span></ion-label>
+        <ion-input [(ngModel)]="pwd" type="password" placeholder="请输入旧密码"></ion-input>
+    </ion-item>
+    <ion-item style="margin-top: 1.5rem; font-size: .8rem;">
         <ion-label position="fixed"><span class="icon-pwd"></span></ion-label>
         <ion-input [(ngModel)]="pwd" type="password" placeholder="请输入新密码"></ion-input>
+    </ion-item>
+    <ion-item style="margin-top: 1.5rem; font-size: .8rem;">
+        <ion-label position="fixed"><span class="icon-pwd"></span></ion-label>
+        <ion-input [(ngModel)]="pwd" type="password" placeholder="请确认新密码"></ion-input>
     </ion-item>
 </ion-content>
 <ion-footer>
