@@ -13,9 +13,9 @@ ion-button {
 .exam_list>ul>li {
 
     div.course {
-        line-height: 3rem;
+        line-height: 2.8rem;
         background: #f5f6f6 url(assets/images/icon_exam_list.png) no-repeat .5rem center;
-        background-size: 1.2rem;
+        background-size: 1.3rem;
         padding-left: 1.9rem;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -44,7 +44,7 @@ ion-button {
     height: 1.6rem;
     float: right;
     margin-right: .2rem;
-    margin-top: .7rem;
+    margin-top: .6rem;
     transition: 0.3s linear all;
 }
 
@@ -62,8 +62,8 @@ ion-button {
 
 .exam_sublist li {
     border-bottom: 1px solid #e6e6e6;
-    height: 3rem;
-    line-height: 3rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
     color: #3f3f3f;
     text-overflow: ellipsis;
     overflow: hidden;

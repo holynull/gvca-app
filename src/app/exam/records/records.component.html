@@ -16,16 +16,16 @@
     </div>
     <div class="panels">
         <div class="panel1" [hidden]="curTab!==1">
-            <div class="own_count exam_count">
+            <div class="own_count exam_count exam_lx">
                 <div>
                     <h2>{{exerSvr.stateData.leftStr.split('/')[0]}}<i>/{{exerSvr.stateData.leftStr.split('/')[1]}}</i>
                     </h2>
                     <p>已完成</p>
                 </div>
-                <div>
+                <!-- <div>
                     <h2>{{exerSvr.stateData.middleStr}}</h2>
                     <p>平均分</p>
-                </div>
+                </div> -->
                 <div>
                     <h2>{{exerSvr.stateData.leftStr}}<i>%</i></h2>
                     <p>正确率</p>

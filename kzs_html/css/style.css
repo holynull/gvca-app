@@ -530,12 +530,16 @@ a.detail_btn_play{
   display: inline-block;
   margin-right:.2rem;
 }
-a.detail_btn_down{
+a.detail_btn_down,a.detail_btn_downed{
   width: 1.2rem;
   height: 1.2rem;
   background: url(../images/detail_icondown.png);
   background-size: contain;
   display: inline-block;
+}
+a.detail_btn_downed{ 
+  background: url(../images/detail_icondowned.png);
+  background-size: contain;  
 }
 /*课程详情——课程介绍*/
 .detail_panel2{

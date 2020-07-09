@@ -15,7 +15,7 @@ ion-header {
             height: 1.6rem;
             background: url(assets/images/icon_back.png) no-repeat;
             background-size: contain;
-            margin: .75rem auto .75rem .5rem;
+            margin: .75rem auto .75rem 0;
         }
 
         span.btn_close {
@@ -23,7 +23,7 @@ ion-header {
             height: 1.6rem;
             background: url(assets/images/icon_close.png) no-repeat;
             background-size: contain;
-            margin: .75rem auto .75rem .5rem;
+            margin: .75rem auto .75rem 0;
         }
     }
 }
@@ -45,4 +45,8 @@ ion-footer {
 
 
     }
+}
+.sc-ion-buttons-md-h{
+    position:absolute;
+    left:0;
 }
