@@ -171,23 +171,23 @@ export class DetailComponent implements OnInit {
         }
     }
     async onVideoError(event) {
-        console.error(event, {});
-        let alert = await this.alertCtrl.create({
-            header: "温馨提示",
-            message: "您所请求的视频不存在。",
-            backdropDismiss: false,
-            buttons: [
-                {
-                    text: "确定",
-                    role: 'cancel',
-                    cssClass: 'secondary',
-                    handler: (blah) => {
-                        // console.log('Confirm Cancel: blah');
-                    }
-                }
-            ]
-        });
-        await alert.present();
+        console.error("视频onVideoError", event);
+        // let alert = await this.alertCtrl.create({
+        //     header: "温馨提示",
+        //     message: "您所请求的视频不存在。",
+        //     backdropDismiss: false,
+        //     buttons: [
+        //         {
+        //             text: "确定",
+        //             role: 'cancel',
+        //             cssClass: 'secondary',
+        //             handler: (blah) => {
+        //                 // console.log('Confirm Cancel: blah');
+        //             }
+        //         }
+        //     ]
+        // });
+        // await alert.present();
     }
 
     isDownloaded(lesson: Lesson): DownloadTask {
