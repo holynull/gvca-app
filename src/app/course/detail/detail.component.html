@@ -24,7 +24,7 @@
                 </vg-scrub-bar>
                 <!--<vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>-->
                 <vg-time-display class="video-control-btn" vgProperty="total" vgFormat="mm:ss"></vg-time-display>
-                <vg-mute class="video-control-btn"></vg-mute>
+                <!-- <vg-mute class="video-control-btn"></vg-mute> -->
                 <!--当前音量和静音之间切换-->
                 <!-- <vg-quality-selector class="video-control-btn" [bitrates]="dashBitrates"
                                          (onBitrateChange)="vgDash.setBitrate($event)">
@@ -33,9 +33,10 @@
                 <vg-fullscreen class="video-control-btn"></vg-fullscreen>
                 <!--全屏和非全屏之间切换-->
             </vg-controls>
-            <video #myMedia [vgMedia]="myMedia" [VgMaster]="true" id="myMedia" height="200" preload="auto"
-                style="z-index: 100;" crossorigin="true" playsinline="true" webkit-playsinline="true"
-                [src]="curLesson.videoUrl" (error)="onVideoError($event)">
+            <video #myMedia [vgMedia]="myMedia" [VgMaster]="true" id="myMedia" height="200" style="z-index: 100;"
+                crossorigin="true" playsinline="true" webkit-playsinline="true" preload="metadata" autoplay="autoplay"
+                webkit-playsinline="webkit-playsinline" [src]="curLesson.videoUrl" (error)="onVideoError($event)"
+                type="video/mp4">
             </video>
         </vg-player>
     </div>
@@ -58,7 +59,8 @@
                         </div>
                         <div class="detail_btns">
                             <a href="javascript:;" class="detail_btn_play" (click)="play(item)"></a>
-                            <a href="javascript:;" class="detail_btn_down" *ngIf="!isDownloaded(item)" (click)="download(item)"></a>
+                            <a href="javascript:;" class="detail_btn_down" *ngIf="!isDownloaded(item)"
+                                (click)="download(item)"></a>
                         </div>
                     </li>
                 </ul>

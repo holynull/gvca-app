@@ -1,5 +1,9 @@
 @import '../../../pub.scss';
 
+ion-header {
+    height: var(--ion-safe-area-top, 0);
+}
+
 .sub_menu {
     height: 2.8rem;
     line-height: 2.8rem;
@@ -87,8 +91,9 @@
 .xx_choose {
     padding: 0 .6rem;
 }
-.xx_choose ul{
-    margin:0;
+
+.xx_choose ul {
+    margin: 0;
 }
 
 .xx_choose li {
@@ -121,4 +126,3 @@
     text-align: center;
     margin: .6rem auto;
 }
-

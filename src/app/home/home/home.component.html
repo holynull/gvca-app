@@ -1,4 +1,4 @@
-<ion-content scrollY="false">
+<ion-content>
     <ion-slides mode='ios' #bannerSlides pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let item of advSvr.advs">
             <img [src]="item.image|safeUrl" />
@@ -10,7 +10,7 @@
         <i></i>
         <ion-slides #noticeSlides [options]="noticeOpts">
             <ion-slide *ngFor="let item of noticeSvr.getHomeNotice()">
-                <a [routerLink]="['/notice/detail']" [queryParams]="{url:'/tabs/home',type:1,id:item.noticeId}" >
+                <a [routerLink]="['/notice/detail']" [queryParams]="{url:'/tabs/home',type:1,id:item.noticeId}">
                     <span>{{item.title}}</span>
                 </a>
             </ion-slide>

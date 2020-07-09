@@ -15,11 +15,12 @@
     <div class="clockin_map" #map id="map_container">
     </div>
     <div class="clockin_des" *ngIf="status!==1">
-        <h3><i></i>{{now|date:'yyyy-MM-dd'}}<a *ngIf="status===0" (click)="toAskForLeave()" class="btn_leave">请假</a></h3>
+        <h3><i></i>{{now|date:'yyyy-MM-dd'}}<a *ngIf="status===0" (click)="toAskForLeave()" class="btn_leave">请假</a>
+        </h3>
         <p>规定考勤时间：{{attendSvr.company.signStartTime}}-{{attendSvr.company.signEndTime}}</p>
         <p>{{attendSvr.company.companyAddress}}</p>
     </div>
-    <div class="clockin_des1" *ngIf="curRecord">
+    <div class="clockin_des1" *ngIf="curRecord||status===1">
         <h3><i>{{curRecord.signDate|date:'HH:mm'}}</i>签到</h3>
         <p>签到时间：{{curRecord.signDate|date:'HH:mm'}}</p>
         <p>签到地址：{{curRecord.signAddress}}</p>

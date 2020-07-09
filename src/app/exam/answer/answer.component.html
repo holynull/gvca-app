@@ -26,12 +26,16 @@
             <ng-container *ngIf="questions[qIndex].questionType===1||questions[qIndex].questionType===2">
                 <a *ngFor="let item of questions[qIndex].optional"
                     [ngClass]="{active: questions[qIndex].isSelectedOpt(item)}"
-                    (click)="questions[qIndex].giveAnswer(item)"><i>{{item.key}}.</i>{{item.description}}</a>
+                    (click)="questions[qIndex].giveAnswer(item)"><i>{{item.key}}.</i>
+                    <span [innerHtml]="item.description|safeHtml"></span>
+                </a>
             </ng-container>
             <!-- 判断题 -->
             <ng-container *ngIf="questions[qIndex].questionType===3">
-                <a [ngClass]="{active: questions[qIndex].studentAnswer==='1'}" (click)="questions[qIndex].giveAnswer(true)"><i>A.</i>对</a>
-                <a [ngClass]="{active: questions[qIndex].studentAnswer==='2'}" (click)="questions[qIndex].giveAnswer(false)"><i>B.</i>错</a>
+                <a [ngClass]="{active: questions[qIndex].studentAnswer==='1'}"
+                    (click)="questions[qIndex].giveAnswer(true)"><i>A.</i>对</a>
+                <a [ngClass]="{active: questions[qIndex].studentAnswer==='2'}"
+                    (click)="questions[qIndex].giveAnswer(false)"><i>B.</i>错</a>
             </ng-container>
         </div>
         <div class="exam_hand">下一题右滑</div>

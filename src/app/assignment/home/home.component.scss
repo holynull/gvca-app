@@ -1,5 +1,9 @@
 @import '../../../pub.scss';
 
+ion-header {
+    height: var(--ion-safe-area-top, 0);
+}
+
 /*作业*/
 .homework_list:before {
     content: "";
@@ -20,11 +24,13 @@
     float: none;
     margin-top: .2rem;
 }
+
 .homework_list .list_item p {
     color: #333;
     font-size: .8rem;
-    margin:0;
+    margin: 0;
 }
+
 .homework_list .list_item p.week {
     color: #999;
     font-size: .6rem;
@@ -36,7 +42,7 @@
 }
 
 .homework_list .list_item h3 {
-    background: url(assets/images/icon_work.png) no-repeat 0 center;   
+    background: url(assets/images/icon_work.png) no-repeat 0 center;
     background-size: 1.4rem;
     color: #01204f;
     font-size: 1rem;

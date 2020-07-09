@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
         private alertCtrl: AlertController,
         private attendSvr: AttendService,
     ) {
-        this.status = this.attendSvr.signStatus(new Date());
-        this.curRecord = this.attendSvr.getRecord(new Date());
+        this.status = this.attendSvr.signStatus(this.now);
+        this.curRecord = this.attendSvr.getRecord(this.now);
     }
 
 
