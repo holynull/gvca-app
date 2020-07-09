@@ -73,6 +73,9 @@ export class DetailComponent implements OnInit {
     }
     playerReady(event) {
         this.vgApi = event;
+        this.vgApi.getDefaultMedia().subscriptions.error.subscribe(
+            (error) => { console.log(error); }
+        );
         this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
         let sta = new Date();
         this.vgApi.getDefaultMedia().subscriptions.playing.subscribe(() => {
