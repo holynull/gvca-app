@@ -11,6 +11,7 @@ import { DownloadComponent } from './download/download.component';
 import { RecordsComponent } from './records/records.component';
 import { VgSupportsModule } from 'app/vg-supports.module';
 import { PipesModule } from 'app/pipes/pipes.module';
+import { PlayLessonComponent } from './play-lesson/play-lesson.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PipesModule } from 'app/pipes/pipes.module';
         ConfirmComponent,
         DownloadComponent,
         RecordsComponent,
+        PlayLessonComponent,
     ],
     imports: [
         CommonModule,

@@ -7,6 +7,7 @@ import { DownloadTask } from 'app/model/download-task';
 import { DownloadTaskStatus } from 'app/model/download-task-status';
 import { CourseDownloadService } from 'app/services/course-download.service';
 import { interval, Subscription } from 'rxjs';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @Component({
     selector: 'app-download',
@@ -38,6 +39,7 @@ export class DownloadComponent implements OnInit {
         private router: Router,
         private media: StreamingMedia,
         private activedRoute: ActivatedRoute,
+        private webview: WebView,
     ) {
         if (platform.is('cordova')) {
             file.getFreeDiskSpace().then(num => {
@@ -115,22 +117,24 @@ export class DownloadComponent implements OnInit {
     }
 
     playVideo(task: DownloadTask) {
-        console.log(task);
-        let url = task.nativeUrl;
-        console.log(url);
-        let options: StreamingVideoOptions = {
-            successCallback: () => {
-                console.log('Video played');
-            },
-            errorCallback: (e) => {
-                console.log(e, {});
-            },
-            orientation: 'landscape',
-            shouldAutoClose: true,
-            controls: true,
-        };
+        // console.log(task);
+        // let url = task.nativeUrl;
+        // console.log(url);
+        // let options: StreamingVideoOptions = {
+        //     successCallback: () => {
+        //         console.log('Video played');
+        //     },
+        //     errorCallback: (e) => {
+        //         console.log(e, {});
+        //     },
+        //     orientation: 'landscape',
+        //     shouldAutoClose: true,
+        //     controls: true,
+        // };
         // todo: 本地播放，无法实现上传播放时长
-        this.media.playVideo(url, options);
+        // this.media.playVideo(url, options);
+        let url = this.webview.convertFileSrc(task.nativeUrl);
+        this.router.navigate(['/course/play-lesson'], { queryParams: { url: url } });
     }
 
     reDownload(item: DownloadTask) {

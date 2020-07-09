@@ -1,0 +1,22 @@
+@import '../../../pub.scss';
+
+.video-container {
+    width: 100%;
+}
+
+.video-control-btn {
+    width: 2.5rem;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.video-control-voice {
+    width: 15%;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.video-progress {
+    width: 40%;
+    margin: 0 1rem;
+}
