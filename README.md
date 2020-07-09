@@ -941,9 +941,14 @@ Photo：头像
 
 ## 19 修改个人信息接口：
 
-请求示例：http://kzs.7east.cn/front/app/updateUserInfo?token=34789&studentPassword=111&photo=2020/03/11//20200311223023-张雪峰.jpg
+请求示例：http://kzs.7east.cn/front/app/updateUserInfo?token=34789&studentPassword=111&photo=2020/03/11//20200311223023-张雪峰.jpg& oldPassword=111& studentPasswordTwo=1111
+
 请求参数：token
-studentPassword：新密码 
+			oldPassword：原密码
+			studentPassword：新密码
+
+studentPasswordTwo：二次密码
+
 photo：头像路径（20接口上传后返回半路径）
 
 注:密码和头像可以单独传值不需要修改不用传
@@ -956,6 +961,8 @@ photo：头像路径（20接口上传后返回半路径）
 
 参数解析： code：状态码，1成功 0失败  -1未知token         
 codeMsg：状态信息
+
+
 
 ## 20 图片上传接口（上传后返回半路径，其他接口修改或插入值时使用）：
 
