@@ -124,12 +124,18 @@ export class DetailComponent implements OnInit {
             }
         });
         this.course.lessons.forEach(e => {
-            this.download(e);
+            if (!this.isDownloaded(e)) {
+                this.courseDownloadSvr.runTask(e);
+            }
         });
     }
 
     download(item: Lesson) {
-        this.courseDownloadSvr.runTask(item);
+        if (!this.isDownloaded(item)) {
+            this.courseDownloadSvr.runTask(item);
+        } else {
+            this.router.navigate(['/course/download'], { queryParams: { url: '/course/detail', tab: 2 } });
+        }
     }
 
     doRefresh(event) {

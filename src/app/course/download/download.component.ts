@@ -60,6 +60,9 @@ export class DownloadComponent implements OnInit {
             } else {
                 this.url = '/tabs/mine';
             }
+            if (params.tab) {
+                this.curTab = Number(params.tab);
+            }
 
             if (params.courseId) {
                 this.backParams.id = params.courseId;

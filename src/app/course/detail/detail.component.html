@@ -58,8 +58,8 @@
                             <p>时长{{item.transcodeDurtion}}</p>
                         </div>
                         <div class="detail_btns">
-                            <a href="javascript:;" class="detail_btn_play" (click)="play(item)"></a>
-                            <a href="javascript:;" class="detail_btn_down" *ngIf="!isDownloaded(item)"
+                            <a class="detail_btn_play" (click)="play(item)"></a>
+                            <a [ngClass]="{'detail_btn_downed': isDownloaded(item),'detail_btn_down':!isDownloaded(item)}"
                                 (click)="download(item)"></a>
                         </div>
                     </li>
