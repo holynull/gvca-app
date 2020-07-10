@@ -11,6 +11,7 @@ import { interval } from 'rxjs';
 import { last } from 'rxjs/operators';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 import { DownloadTask } from 'app/model/download-task';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @Component({
     selector: 'app-detail',
@@ -59,6 +60,7 @@ export class DetailComponent implements OnInit {
         public courseSvr: CourseService,
         private alertCtrl: AlertController,
         private media: StreamingMedia,
+        private webview: WebView,
     ) {
         this.activedRoute.queryParams.subscribe(params => {
             if (params.id) {
@@ -164,19 +166,8 @@ export class DetailComponent implements OnInit {
             this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
             this.vgApi.play();
         } else {
-            let options: StreamingVideoOptions = {
-                successCallback: () => {
-                    console.log('Video played');
-                },
-                errorCallback: (e) => {
-                    console.log(e, {});
-                },
-                orientation: 'landscape',
-                shouldAutoClose: true,
-                controls: true,
-            };
-            // todo: 本地播放，无法实现上传播放时长
-            this.media.playVideo(task.nativeUrl, options);
+            let url = this.webview.convertFileSrc(task.nativeUrl);
+            this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
         }
     }
     async onVideoError(event) {

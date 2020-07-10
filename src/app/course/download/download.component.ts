@@ -120,22 +120,6 @@ export class DownloadComponent implements OnInit {
     }
 
     playVideo(task: DownloadTask) {
-        // console.log(task);
-        // let url = task.nativeUrl;
-        // console.log(url);
-        // let options: StreamingVideoOptions = {
-        //     successCallback: () => {
-        //         console.log('Video played');
-        //     },
-        //     errorCallback: (e) => {
-        //         console.log(e, {});
-        //     },
-        //     orientation: 'landscape',
-        //     shouldAutoClose: true,
-        //     controls: true,
-        // };
-        // todo: 本地播放，无法实现上传播放时长
-        // this.media.playVideo(url, options);
         let url = this.webview.convertFileSrc(task.nativeUrl);
         this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
     }
