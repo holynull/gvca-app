@@ -14,15 +14,18 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="homework_tip">
+    <div class="homework_tip" *ngIf="hw.stuhomeworkStatus===2">
         作业需修正，请重新提交！
+    </div>
+    <div *ngIf="hw.stuhomeworkStatus===3">
+        老师评语：{{hw.score}}
     </div>
     <div class="mine_box">
         <img *ngFor="let item of path" [src]="item|safeUrl" alt="">
     </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
+    <ion-toolbar *ngIf="hw.stuhomeworkStatus!==1&&hw.stuhomeworkStatus!==3">
         <ion-button (click)="toUpload()">修改作业</ion-button>
     </ion-toolbar>
 </ion-footer>

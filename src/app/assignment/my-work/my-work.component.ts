@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { UploadComponent } from '../upload/upload.component';
 import { HomeworkService } from 'app/services/homework.service';
+import { Homework } from 'app/model/homework';
 
 @Component({
     selector: 'app-my-work',
@@ -17,6 +18,8 @@ export class MyWorkComponent implements OnInit {
 
     path: Array<string> = new Array();
 
+    hw: Homework;
+
     constructor(
         private modalCtrl: ModalController,
         private activedRoute: ActivatedRoute,
@@ -29,9 +32,9 @@ export class MyWorkComponent implements OnInit {
             }
         });
         this.hId = this.navParams.data.hId;
-        let hw = this.hwSvr.getHomeworkById(this.hId);
-        if (hw && hw.stuAnsPhoto) {
-            hw.stuAnsPhoto.split(',').forEach(e => {
+        this.hw = this.hwSvr.getHomeworkById(this.hId);
+        if (this.hw && this.hw.stuAnsPhoto) {
+            this.hw.stuAnsPhoto.split(',').forEach(e => {
                 this.path.push(e);
             });
         }
