@@ -168,8 +168,8 @@ export class AuthService extends BaseService {
         }
     }
 
-    updatePwd(pwd: string): Promise<any> {
-        return this.api.updateUserInfo(pwd).toPromise().then(res => {
+    updatePwd(oldPwd, pwd: string, pwd2: string): Promise<any> {
+        return this.api.updateUserInfo(oldPwd, pwd, pwd2).toPromise().then(res => {
             if (res.code === 1) {
                 console.info(res);
             } else {
@@ -180,7 +180,7 @@ export class AuthService extends BaseService {
     }
 
     updateUserPhoto(path: string): Promise<boolean> {
-        return this.api.updateUserInfo(null, path).toPromise().then(res => {
+        return this.api.updateUserInfo(null, null, null, path).toPromise().then(res => {
             if (res.code === 1) {
                 return true;
             } else {

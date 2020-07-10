@@ -12,6 +12,10 @@ export class ModifyPwdComponent implements OnInit {
 
     pwd: string;
 
+    oldPwd: string;
+
+    confirmPwd: string;
+
     constructor(
         private auth: AuthService,
         private alertCtrl: AlertController,
@@ -23,8 +27,12 @@ export class ModifyPwdComponent implements OnInit {
     submit() {
         if (!this.pwd) {
             alert('请输入新密码');
+        } else if (!this.oldPwd) {
+            alert('请输入原密码');
+        } else if (this.pwd !== this.confirmPwd) {
+            alert('请确认新密码两次输入一致');
         } else {
-            this.auth.updatePwd(this.pwd).then(res => {
+            this.auth.updatePwd(this.oldPwd, this.pwd, this.confirmPwd).then(res => {
                 if (res.code === 1) {
                     this.router.navigate(['/mine/settings']);
                 } else {

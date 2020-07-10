@@ -253,11 +253,17 @@ export class ApiService extends BaseService {
      * @param studentPassword 
      * @param photo 
      */
-    updateUserInfo(studentPassword?: string, photo?: string): Observable<any> {
+    updateUserInfo(oldPassword?: string, studentPassword?: string, studentPasswordTwo?: string, photo?: string): Observable<any> {
         let url = this.url(environment.api.updateUserInfo.url);
         let params = new HttpParams();
+        if (oldPassword) {
+            params = params.set('oldPassword', oldPassword);
+        }
         if (studentPassword) {
             params = params.set('studentPassword', studentPassword);
+        }
+        if (studentPasswordTwo) {
+            params = params.set('studentPasswordTwo', studentPasswordTwo);
         }
         if (photo) {
             params = params.set('photo', photo);
