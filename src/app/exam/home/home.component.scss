@@ -11,6 +11,7 @@ ion-button {
 }
 
 .exam_list>ul>li {
+    background: #ffffff;
 
     div.course {
         line-height: 2.8rem;
@@ -37,7 +38,7 @@ ion-button {
     color: #cc0000;
 }
 
-.exam_list>ul>li em {
+.exam_list>ul>li em.close {
     background: url(assets/images/icon_exam_listarrow.png);
     background-size: contain;
     width: 1.6rem;
@@ -46,6 +47,20 @@ ion-button {
     margin-right: .2rem;
     margin-top: .6rem;
     transition: 0.3s linear all;
+}
+
+.exam_list>ul>li em.open {
+    background: url(assets/images/icon_exam_listarrow.png);
+    background-size: contain;
+    width: 1.6rem;
+    height: 1.6rem;
+    float: right;
+    margin-right: .2rem;
+    margin-top: .6rem;
+    transition: 0.3s linear all;
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .exam_list>ul>li.active em {
@@ -58,6 +73,7 @@ ion-button {
 
 .exam_sublist {
     background: #fff;
+    overflow: hidden;
 }
 
 .exam_sublist li {

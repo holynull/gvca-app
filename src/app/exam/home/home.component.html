@@ -12,9 +12,14 @@
     <div class="exam_list">
         <ul>
             <li *ngFor="let item of eSvr.exercisCourses">
-                <div class="course">
-                    {{item.name}}<em></em><span><i>{{item.questionUsedSum}}</i>/{{item.questionSum}}</span></div>
-                <div class="exam_sublist">
+                <div class="course" (click)="toggleOpenClose(item)">
+                    {{item.name}}
+                    <em class="{{item.openState}}"></em>
+                    <span>
+                        <i>{{item.questionUsedSum}}</i>/{{item.questionSum}}
+                    </span>
+                </div>
+                <div class="exam_sublist" [@openClose]="item.openState">
                     <ul>
                         <li *ngFor="let d of item.details">
                             <i></i>

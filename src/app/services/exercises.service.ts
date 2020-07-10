@@ -30,7 +30,7 @@ export class ExercisesService {
         let res1 = await this.api.getEaxmCourseList().toPromise();
         if (res1.code === 1) {
             this.exercisCourses.splice(0, this.exercisCourses.length);
-            res1.info.forEach(async e => {
+            res1.info.forEach(async (e, cIndex, arr) => {
                 let course: ExercisCourse = new ExercisCourse();
                 course.dateline = e.deateline;
                 course.name = e.name;
@@ -39,6 +39,9 @@ export class ExercisesService {
                 course.pid = Number(e.pid);
                 course.questionSum = Number(e.questionSum ? e.questionSum : 0);
                 course.status = Number(e.status);
+                if (cIndex === 0) {
+                    course.openState = "open";
+                }
                 this.exercisCourses.push(course);
                 let res2 = await this.api.getEaxmCourseDetailList(String(course.qcid)).toPromise();
                 if (res2.code === 1) {
@@ -96,7 +99,7 @@ export class ExercisesService {
 
     getQuestions(pid: number, qcid: number): Array<Question> {
         for (let i = 0; i < this.exercisCourses.length; i++) {
-            if (this.exercisCourses[i].pid === Number(pid)) {
+            if (this.exercisCourses[i].qcid === Number(pid)) {
                 let detail = this.exercisCourses[i].getDetailById(qcid);
                 if (detail) {
                     return detail.questions;

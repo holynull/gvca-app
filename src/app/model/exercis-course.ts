@@ -9,6 +9,7 @@ export class ExercisCourse {
     questionSum: number;
     status: number;
     details: Array<ExercisCourseDetail> = new Array();
+    openState: string = 'close';
 
     getDetailById(id: number): ExercisCourseDetail {
         for (let i = 0; i < this.details.length; i++) {
@@ -17,5 +18,13 @@ export class ExercisCourse {
             }
         }
     }
-    
+
+    toggleOpenClose() {
+        if (this.openState === 'close') {
+            this.openState = 'open';
+        } else {
+            this.openState = 'close';
+        }
+    }
+
 }

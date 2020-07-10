@@ -19,6 +19,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiInterceptor } from './services/api.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -32,6 +33,7 @@ import { ApiInterceptor } from './services/api.interceptor';
         AppRoutingModule,
         HttpClientModule,
         IonicStorageModule.forRoot(),
+        BrowserAnimationsModule,
     ],
     providers: [
         StatusBar,
