@@ -134,7 +134,7 @@ export class DownloadComponent implements OnInit {
         // todo: 本地播放，无法实现上传播放时长
         // this.media.playVideo(url, options);
         let url = this.webview.convertFileSrc(task.nativeUrl);
-        this.router.navigate(['/course/play-lesson'], { queryParams: { url: url } });
+        this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
     }
 
     reDownload(item: DownloadTask) {

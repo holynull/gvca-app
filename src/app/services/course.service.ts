@@ -96,8 +96,8 @@ export class CourseService {
         }
     }
 
-    getLesson(pageInfo: PageInfo, courseId: number, callBack?: (arr: Array<Lesson>) => any) {
-        this.api.getLessonList(pageInfo.curPageNum, pageInfo.pageSize, String(courseId)).subscribe(res => {
+    getLesson(pageInfo: PageInfo, courseId: number): Promise<Array<Lesson>> {
+        return this.api.getLessonList(pageInfo.curPageNum, pageInfo.pageSize, String(courseId)).toPromise().then(res => {
             let arr = new Array<Lesson>();
             if (res.code === 1) {
                 res.info.forEach(e => {
@@ -105,7 +105,7 @@ export class CourseService {
                     l.lessonStatus = e.lessonStatus;
                     l.loadState = e.loadState;
                     l.addTime = new Date(e.addTime);
-                    l.lessonId = e.lessonId;
+                    l.lessonId = Number(e.lessonId);
                     l.updateTime = new Date(e.updateTime);
                     l.sort = e.sort;
                     l.lessonName = e.lessonName;
@@ -121,11 +121,9 @@ export class CourseService {
                     arr.push(l);
                 });
             } else {
-                console.error(res, {});
+                console.error("获取课件列表出错", res);
             }
-            if (callBack) {
-                callBack(arr);
-            }
+            return arr;
         });
     }
 
@@ -207,6 +205,18 @@ export class CourseService {
                 console.error('获取听课记录出错', res);
                 return false;
             }
+        });
+    }
+
+    getLessonById(courseId: number, lessonId: number): Promise<Lesson> {
+        let pageInfo = new PageInfo();
+        return this.getLesson(pageInfo, courseId).then(arr => {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].lessonId === lessonId) {
+                    return arr[i];
+                }
+            }
+            return null;
         });
     }
 

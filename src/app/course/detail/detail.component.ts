@@ -134,7 +134,7 @@ export class DetailComponent implements OnInit {
 
     doRefresh(event) {
         this.pageInfo.firstPage();
-        this.courseSvr.getLesson(this.pageInfo, this.course.courseId, (arr) => {
+        this.courseSvr.getLesson(this.pageInfo, this.course.courseId).then((arr) => {
             this.course.lessons = arr;
             event.target.complete();
         });
@@ -142,7 +142,7 @@ export class DetailComponent implements OnInit {
 
     loadData(event) {
         this.pageInfo.nextPage();
-        this.courseSvr.getLesson(this.pageInfo, this.course.courseId, (arr) => {
+        this.courseSvr.getLesson(this.pageInfo, this.course.courseId).then((arr) => {
             arr.forEach(e => {
                 this.course.lessons.push(e);
             });

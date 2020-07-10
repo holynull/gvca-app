@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     }
     confirm() {
         this.presentConfirm(() => {
-            this.courseSvr.selectCourse().subscribe(res=>{
+            this.courseSvr.selectCourse().subscribe(res => {
 
             });
         });
@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
         let course = this.courseSvr.getCourse(id);
         let pageInfo = new PageInfo();
         pageInfo.firstPage();
-        this.courseSvr.getLesson(pageInfo, id, (arr) => {
+        this.courseSvr.getLesson(pageInfo, id).then((arr) => {
             course.lessons = arr;
             this.router.navigate(['/course/detail'], { queryParams: { id: id, tab: tab } });
         });
