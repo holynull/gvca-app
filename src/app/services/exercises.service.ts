@@ -40,7 +40,7 @@ export class ExercisesService {
                 course.questionSum = Number(e.questionSum ? e.questionSum : 0);
                 course.status = Number(e.status);
                 this.exercisCourses.push(course);
-                let res2 = await this.api.getEaxmCourseDetailList(String(course.pid)).toPromise();
+                let res2 = await this.api.getEaxmCourseDetailList(String(course.qcid)).toPromise();
                 if (res2.code === 1) {
                     res2.info.forEach(async e1 => {
                         let detail = new ExercisCourseDetail();
