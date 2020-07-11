@@ -27,7 +27,7 @@
                 <a *ngFor="let item of questions[qIndex].optional"
                     [ngClass]="{active: questions[qIndex].isSelectedOpt(item)}"
                     (click)="questions[qIndex].giveAnswer(item)"><i>{{item.key}}.</i>
-                    <span [innerHtml]="item.description|safeHtml"></span>
+                    <span [innerHtml]="item.description"></span>
                 </a>
             </ng-container>
             <!-- 判断题 -->
