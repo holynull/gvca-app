@@ -69,7 +69,7 @@
 }
 
 /*上传作业*/
-.homework_upload,.homework_mine{
+.homework_upload,.homework_mine,.homework_modify{
   position: absolute;
   background: #fff;
   width: 100%;
@@ -212,4 +212,34 @@ a.btn_modify_mine{
   font-size: .8rem;
   display: block;
   text-align: center;
+}
+
+/*老师评语*/
+.teacher_box{
+  overflow-x: hidden;
+}
+.teacher_box h3{
+  color: #01204f;
+  font-size: .9rem;
+  height: 1.6rem;
+  line-height: 1.7rem;
+}
+.teacher_box h5{
+  color: #cc0000;
+  font-size: .7rem;
+  height: 1.6rem;
+  line-height: 1.7rem;
+}
+.mine_home{
+  text-align: center;
+  padding: .8rem;
+}
+.teacher_box img{
+  width: 17.15rem;
+  height: 10.3rem;
+  border-radius: .4rem;
+}
+.teacher_box1{
+  padding: .8rem;
+  background: #fff;
 }

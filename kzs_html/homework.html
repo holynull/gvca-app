@@ -54,7 +54,7 @@
 			<p class="week">星期日</p>
 			<p class="date">5月17日</p>
 			<div>
-				<h3> 生词写两遍<a href="javascript:;" class="btn_did">A+</a></h3>
+				<h3> 生词写两遍<a href="javascript:;" class="btn_did btn_pi">A+</a></h3>
 				<p>1. 46页课文预习，大声朗读3遍<br>
 2. 45页生词听写两遍</p>				
 			</div>
@@ -121,6 +121,28 @@
 	</div>	
 </div>
 
+<!-- 已批改的作业 -->
+<div class="homework_modify">
+	<div class="top_title homework_title relative">
+			<a href="javascript:;" class="btn_close"></a>
+			我完成的作业
+	</div>	
+	<div class="teacher_box">
+		<div class="mine_home">
+			<img src="images/homework_pic1.jpg" alt="">		
+			<img src="images/homework_pic1.jpg" alt="">
+		</div>			
+		<div class="space"></div>
+		<div class="teacher_box1">
+			<h3>老师评语</h3>
+			<h5>95</h5>
+			<img src="images/homework_pic1.jpg" alt="">	
+		</div>	
+	</div>
+
+	
+</div>
+
 <script>
 $(document).ready(function(){
 
@@ -137,8 +159,11 @@ $(document).ready(function(){
 	$(".btn_modify").click(function(){
 		$(".homework_mine").show();
 	});
+	$(".btn_pi").click(function(){
+		$(".homework_modify").show();
+	});
 	$(".btn_close").click(function(){
-		$(".homework_upload,.homework_mine").hide();
+		$(".homework_upload,.homework_mine,.homework_modify").hide();
 	});
 
 	$(".homework_img").click(function(){
