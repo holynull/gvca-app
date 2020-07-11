@@ -21,3 +21,35 @@
     margin: .4rem;
     box-sizing: border-box;
 }
+
+/*老师评语*/
+.teacher_box{
+  overflow-x: hidden;
+}
+.teacher_box1{
+  padding: .8rem;
+  background: #fff;
+}
+.teacher_box1 h3{
+  color: #01204f;
+  font-size: .9rem;
+  height: 1.6rem;
+  line-height: 1.7rem;
+  margin:0;  
+}
+.teacher_box1 h5{
+  color: #cc0000;
+  font-size: .7rem;
+  height: 1.6rem;
+  line-height: 1.7rem;
+  margin:0;
+}
+.mine_home{
+  text-align: center;
+  padding: .8rem;
+}
+.teacher_box1 img{
+  width: 17.15rem;
+  height: 10.3rem;
+  border-radius: .4rem;
+}

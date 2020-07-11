@@ -8,6 +8,7 @@ ion-header {
         ion-title {
             --color: #ffffff; // 头部字体颜色
             font-weight:normal;
+            font-size:1.1rem;
         }
 
         span.btn_back {
@@ -49,4 +50,8 @@ ion-footer {
 .sc-ion-buttons-md-h{
     position:absolute;
     left:0;
+}
+.sc-ion-buttons-md-h[slot="end"]{    
+    left:auto;
+    right:0;
 }
