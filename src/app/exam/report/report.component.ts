@@ -140,7 +140,10 @@ export class ReportComponent implements OnInit {
                 examId: this.examId,
             }
         });
-        return await modal.present();
+        let acData = await modal.onDidDismiss();
+        if (acData.data.qIndex) {
+            this.qIndex = acData.data.qIndex - 1;
+        }
     }
     getQueType(): string {
         if (this.questions.length > 0 && this.questions[this.qIndex].questionType === QuestionType.MUTI_ANSWER) {

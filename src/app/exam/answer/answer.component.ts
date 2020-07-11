@@ -166,7 +166,11 @@ export class AnswerComponent implements OnInit {
                 examId: this.examId,
             }
         });
-        return await modal.present();
+        await modal.present();
+        let acData = await modal.onDidDismiss();
+        if (acData.data.qIndex) {
+            this.qIndex = acData.data.qIndex - 1;
+        }
     }
 
     ionViewWillLeave() {

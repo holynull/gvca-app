@@ -66,7 +66,9 @@ export class AnswerCardComponent implements OnInit {
     close() {
         this.modalCtrl.dismiss();
     }
-
+    selQindex(index: number) {
+        this.modalCtrl.dismiss({ qIndex: index });
+    }
     async submit() {
         if (this.from && this.from === 'report') {
             this.modalCtrl.dismiss();
