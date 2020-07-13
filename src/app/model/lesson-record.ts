@@ -16,4 +16,5 @@ export class LessonRecord {
     courseId: number;
     lessonType: LessonRecordType;
     videosize: number;
+    checked: boolean;
 }

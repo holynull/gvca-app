@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button [routerLink]="['/course/download']" [queryParams]="backParams" routerDirection="back">
+            <ion-button [routerLink]="[url]" routerDirection="back">
                 <span class="btn_back"></span>
             </ion-button>
         </ion-buttons>
@@ -44,7 +44,7 @@
         <a (click)="selectTab(2)" class="active">介绍<i></i></a>
     </div>
     <div class="detail_panels">
-        <div class="detail_panel2" [hidden]="curTab!==2" [innerHtml]="course.courseDetail|safeHtml">
+        <div class="detail_panel2" [hidden]="curTab!==2" [innerHtml]="(course?course.courseDetail:'')|safeHtml">
 
         </div>
     </div>

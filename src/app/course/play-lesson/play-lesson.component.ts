@@ -45,6 +45,10 @@ export class PlayLessonComponent implements OnInit {
 
     course: Course;
 
+    screen: string;
+
+    url: string;
+
     constructor(
         private activedRoute: ActivatedRoute,
         private courseSvr: CourseService,
@@ -54,13 +58,16 @@ export class PlayLessonComponent implements OnInit {
             this.courseId = Number(params.courseId);
             this.course = this.courseSvr.getCourse(Number(this.courseId));
             this.lessonId = Number(params.lessonId);
-            console.info(this.courseId);
-            console.info(this.lessonId);
-            this.courseSvr.getLessonById(this.courseId, this.lessonId).then(lesson => {
-                this.lesson = lesson;
-                this.videoUrl = params.url;
-                this.initPlayer();
-            });
+            this.videoUrl = params.videoUrl;
+            this.screen = params.screen;
+            this.url = params.url;
+            if (this.courseId && this.lessonId) {
+                this.courseSvr.getLessonById(this.courseId, this.lessonId).then(lesson => {
+                    this.lesson = lesson;
+                    this.videoUrl = params.url;
+                    this.initPlayer();
+                });
+            }
         });
     }
 
@@ -92,6 +99,10 @@ export class PlayLessonComponent implements OnInit {
     playerReady(event) {
         this.vgApi = event;
     }
+
     ngOnInit() { }
 
+    onVideoError(event) {
+        console.error('播放出错', event);
+    }
 }

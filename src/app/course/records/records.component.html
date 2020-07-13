@@ -18,9 +18,10 @@
     </div>
     <div class="panels">
         <div class="panel1" [hidden]="curTab!==1">
-            <div class="list_item down_item clearfix" *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
+            <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
+                *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
                 <div class="cb" [hidden]="!editable">
-                    <input type="checkbox" [hidden]="!editable">
+                    <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
                 </div>
                 <div class="lesson_mask">
                     <!-- todo：接口里没有图 -->
@@ -36,9 +37,10 @@
             </div>
         </div>
         <div class="panel2" [hidden]="curTab!==2">
-            <div class="list_item down_item clearfix" *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
+            <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
+                *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
                 <div class="cb" [hidden]="!editable">
-                    <input type="checkbox" [hidden]="!editable">
+                    <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
                 </div>
                 <div class="lesson_mask">
                     <!-- todo：接口里没有图 -->
@@ -51,12 +53,15 @@
                         <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
-    <div class="bot_btns" style="display: block;" [hidden]="!editable">
-        <a href="javascript:;">全选</a>
-        <em></em>
-        <a href="javascript:;" class="btn_del">删除<i>(1)</i></a>
-    </div>
+
 </ion-content>
+<ion-footer>
+    <div class="bot_btns" style="display: block;" [hidden]="!editable">
+        <a (click)="selectAll()">全选</a>
+        <em></em>
+        <a (click)="del()" class="btn_del">删除<i>(1)</i></a>
+    </div>
+</ion-footer>

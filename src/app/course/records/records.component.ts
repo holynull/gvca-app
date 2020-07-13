@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'app/services/course.service';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
 @Component({
     selector: 'app-course-records',
@@ -13,6 +14,7 @@ export class RecordsComponent implements OnInit {
     curTab: number = 1;
     constructor(
         public courseSvr: CourseService,
+        private media: StreamingMedia,
     ) { }
 
     ngOnInit() { }
@@ -41,6 +43,40 @@ export class RecordsComponent implements OnInit {
         let s = l % 60;
         str = str + s + '秒';
         return str;
+    }
+
+    play(videoUrl: string) {
+        if (!this.editable) {
+            let options: StreamingVideoOptions = {
+                successCallback: () => {
+                    console.log('Video played');
+                },
+                errorCallback: (e) => {
+                    console.log(e, {});
+                },
+                orientation: 'landscape',
+                shouldAutoClose: true,
+                controls: true,
+            };
+            // todo: 本地播放，无法实现上传播放时长
+            this.media.playVideo(videoUrl, options);
+        }
+    }
+
+    selectAll() {
+        if (!this.courseSvr.records.every(e => e.checked)) {
+            this.courseSvr.records.forEach(e => {
+                e.checked = true;
+            });
+        } else {
+            this.courseSvr.records.forEach(e => {
+                e.checked = false;
+            });
+        }
+    }
+
+    del() {
+        this.courseSvr.records = this.courseSvr.records.filter(e => !e.checked);
     }
 
 }
