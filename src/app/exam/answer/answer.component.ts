@@ -128,15 +128,16 @@ export class AnswerComponent implements OnInit {
         }
     }
     ngOnInit() {
-
-        this.getTime(this.seconds);
-        let timer = interval(1000).subscribe(n => {
-            let left = this.seconds - n;
-            if (left === 0) {
-                timer.unsubscribe();
-            }
-            this.getTime(left);
-        });
+        if (this.dataType !== 'exer') {
+            this.getTime(this.seconds);
+            let timer = interval(1000).subscribe(n => {
+                let left = this.seconds - n;
+                if (left === 0) {
+                    timer.unsubscribe();
+                }
+                this.getTime(left);
+            });
+        }
     }
 
     getTime(left) {

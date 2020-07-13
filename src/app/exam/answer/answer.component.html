@@ -17,7 +17,7 @@
     <div style="height: 100%;" #content>
         <div class="detail_tip exam_tip">
             <span><i>第{{qIndex+1}}题</i>|　共{{questions.length}}题</span><em>({{getQueType()}})</em>
-            <span class="countdown">{{h}}:{{m}}:{{s}}</span>
+            <span class="countdown" *ngIf="dataType!=='exer'">{{h}}:{{m}}:{{s}}</span>
         </div>
         <div class="exam_subject" [innerHtml]="(questions.length>0?questions[qIndex].question:'')|safeHtml">
         </div>
