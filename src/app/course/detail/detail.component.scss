@@ -1,4 +1,27 @@
-@import '../../../pub.scss';
+// @import '../../../pub.scss';
+ion-header {
+    height: var(--ion-safe-area-top, 0);
+}
+
+ion-toolbar {
+    position: absolute;
+    top: 0;
+    --background: rgba(255, 255, 255, 0);
+    z-index: 999;
+
+    span.btn_back {
+        width: 1.6rem;
+        height: 1.6rem;
+        background: url(assets/images/icon_back.png) no-repeat;
+        background-size: contain;
+        margin: .75rem auto .75rem 0;
+        color: #ffffff;
+    }
+
+    ion-buttons {
+        z-index: 1000;
+    }
+}
 
 .video-container {
     width: 100%;
@@ -9,21 +32,21 @@
     margin-left: 3px;
     margin-right: 3px;
     font-size: .8rem;
-    height:2rem;
-    line-height:2rem;
+    height: 2rem;
+    line-height: 2rem;
 }
 
 .video-control-voice {
     width: 15%;
     margin-left: 3px;
     margin-right: 3px;
-    height:2rem;
+    height: 2rem;
 }
 
 .video-progress {
     width: 40%;
     margin: 0 1rem;
-    height:2rem;
+    height: 2rem;
 }
 
 /*课程详情*/
@@ -140,7 +163,8 @@ a.btn_alldown i {
     width: 100%;
     margin: 0 auto;
 }
-.detail_list li.current .detail_c h3{
+
+.detail_list li.current .detail_c h3 {
     color: #0d6db9;
     background: url(assets/images/detail_iconlesson_a.png) no-repeat 0 center;
     background-size: .9rem;
@@ -167,21 +191,25 @@ a.detail_btn_play {
     margin-right: .5rem;
 }
 
-a.detail_btn_down, a.detail_btn_downed{
+a.detail_btn_down,
+a.detail_btn_downed {
     width: 1.8rem;
     height: 1.8rem;
     background: url(assets/images/detail_icondown.png);
     background-size: contain;
     display: inline-block;
 }
+
 a.detail_btn_downed {
     background: url(assets/images/detail_icondowned.png);
     background-size: contain;
 }
+
 .detail_list li.current a.detail_btn_play {
     background: url(assets/images/detail_playing.gif);
     background-size: contain;
 }
+
 /*课程详情——课程介绍*/
 .detail_panel2 {
     padding: .6rem .8rem;
@@ -200,6 +228,6 @@ a.detail_btn_downed {
 }
 
 /*播放器样式*/
-vg-controls{
-    height:2rem;
+vg-controls {
+    height: 2rem;
 }

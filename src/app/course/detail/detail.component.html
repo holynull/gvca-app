@@ -1,19 +1,22 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-button [routerLink]="['/tabs/course']" [queryParams]="{tab:tab}" routerDirection="back">
-                <span class="btn_back"></span>
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
+
 </ion-header>
-<ion-content fullscreen="true">
+<ion-content [fullscreen]="true">
     <div class="course_video">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-button [routerLink]="['/tabs/course']" [queryParams]="{tab:tab}" routerDirection="back">
+                    <span class="btn_back"></span>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
         <vg-player class="video-container" (onPlayerReady)="playerReady($event)">
-            <vg-overlay-play></vg-overlay-play>
+            <vg-overlay-play>
+            </vg-overlay-play>
             <vg-buffering></vg-buffering>
             <vg-controls>
-                <vg-play-pause class="video-control-btn"></vg-play-pause>
+
+                <!-- <vg-play-pause class="video-control-btn"></vg-play-pause> -->
                 <!--暂停和恢复播放-->
                 <!-- <vg-playback-button class="video-control-btn"></vg-playback-button>倍速播放 -->
 
@@ -33,10 +36,10 @@
                 <vg-fullscreen class="video-control-btn"></vg-fullscreen>
                 <!--全屏和非全屏之间切换-->
             </vg-controls>
-            <video #myMedia [vgMedia]="myMedia" [VgMaster]="true" id="myMedia" height="200" style="z-index: 100;"
-                crossorigin="true" playsinline="true" webkit-playsinline="true" preload="metadata" autoplay="autoplay"
-                webkit-playsinline="webkit-playsinline" [src]="curLesson.videoUrl" (error)="onVideoError($event)"
-                type="video/mp4">
+            <video #myMedia [vgMedia]="myMedia" [VgMaster]="true" id="myMedia" height="200" crossorigin="true"
+                playsinline="true" webkit-playsinline="true" preload="metadata" autoplay="autoplay"
+                [src]="curLesson.videoUrl" (error)="onVideoError($event)" x5-video-player-type="h5"
+                x5-video-player-fullscreen="true" x5-video-orientation="portraint" type="video/mp4">
             </video>
         </vg-player>
     </div>
