@@ -112,11 +112,11 @@ export class CourseService {
                     l.courseName = e.courseName;
                     l.teacherId = e.teacherId;
                     l.videoUrl = e.videoUrl;
-                    l.lessonLength = e.lessonLength;
+                    l.lessonLength = Number(e.lessonLength);
                     l.transcodeDurtion = e.transcodeDurtion;
                     l.courseId = e.courseId;
                     l.lessonType = e.lessonType;
-                    l.videosize = e.videosize;
+                    l.videosize = Number(e.videosize);
                     l.downLoadTaskId = e.downLoadTaskId;
                     arr.push(l);
                 });

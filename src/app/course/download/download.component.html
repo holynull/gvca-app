@@ -42,10 +42,9 @@
                 <img src="assets/images/course_pic.jpg" alt="">
                 <div (click)="playVideo(item)">
                     <h3>财务舞弊手段（一）—调整手段</h3>
-                    <progress value="{{item.loaded}}" max="{{item.total}}"></progress>
                     <div>
-                        <span class="progress_speed fl">{{item.speedToString()}}/s</span>
-                        <span class="progress_memory fr">{{item.loadedToString()}}/{{item.totalToString()}}</span>
+                        <span class="progress_speed fl">{{item.lessonState}}</span>
+                        <span class="progress_memory fr">{{item.totalToString()}}</span>
                     </div>
                 </div>
             </div>

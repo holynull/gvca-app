@@ -25,7 +25,8 @@ export class DownloadTask {
     fullPath: string;
     targetUrl: string;
     lessonId: number;
-    courseId:number;
+    courseId: number;
+    lessonState: string; // 下载页面显示用户观看状态
 
     constructor(url: string, api: ApiService, platform: Platform, file: File, trans: FileTransfer) {
         this.targetUrl = url;

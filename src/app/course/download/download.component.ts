@@ -8,6 +8,8 @@ import { DownloadTaskStatus } from 'app/model/download-task-status';
 import { CourseDownloadService } from 'app/services/course-download.service';
 import { interval, Subscription } from 'rxjs';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Lesson } from 'app/model/lesson';
+import { CourseService } from 'app/services/course.service';
 
 @Component({
     selector: 'app-download',
@@ -40,6 +42,7 @@ export class DownloadComponent implements OnInit {
         private media: StreamingMedia,
         private activedRoute: ActivatedRoute,
         private webview: WebView,
+        private courseSvr: CourseService,
     ) {
         if (platform.is('cordova')) {
             file.getFreeDiskSpace().then(num => {
@@ -70,7 +73,11 @@ export class DownloadComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.courseDownloadSvr.tasks.forEach(t => {
+            this.getLearnState(t);
+        })
+    }
 
     changeEditStatus() {
         if (this.editable) {
@@ -154,5 +161,20 @@ export class DownloadComponent implements OnInit {
 
     ionViewWillLeave(event) {
         this.timer.unsubscribe();
+    }
+
+    async getLearnState(item: DownloadTask) {
+        let lesson: Lesson = await this.courseSvr.getLessonById(item.courseId, item.lessonId);
+        if (lesson) {
+            let r = 0;
+            if (lesson.videosize && lesson.lessonLength && lesson.videosize !== 0) {
+                r = Math.floor(lesson.lessonLength / lesson.videosize * 100);
+            }
+            if (r === 0) {
+                item.lessonState = '未观看'
+            } else {
+                item.lessonState = '观看至' + r + '%';
+            }
+        }
     }
 }
