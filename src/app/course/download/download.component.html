@@ -50,11 +50,15 @@
                 </div>
             </div>
 
-            <div class="phone_memory">
-                <!-- TODO: 可能取不到总空间/ -->
-                手机存储：剩余&nbsp;&nbsp;&nbsp;{{freeSpace}}
-            </div>
+
         </div>
+    </div>
+
+</ion-content>
+<ion-footer>
+    <div class="phone_memory">
+        <!-- TODO: 可能取不到总空间/ -->
+        手机存储：剩余&nbsp;&nbsp;&nbsp;{{freeSpace}}
     </div>
     <div class="bot_btns" style="display: block;" [hidden]="!editable">
         <a (click)="selectAll()">全选</a>
@@ -62,4 +66,4 @@
         <a (click)="delete(curTab===1?0:1)" class="btn_del">删除<i
                 *ngIf="(courseDownloadSvr.tasks | downloadTasks:(curTab===1?[0,2]:[1]):true).length>0">({{(courseDownloadSvr.tasks | downloadTasks:(curTab===1?[0,2]:[1]):true).length}})</i></a>
     </div>
-</ion-content>
+</ion-footer>

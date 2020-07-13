@@ -134,9 +134,10 @@ progress::-webkit-progress-value {
     background: #fff;
     height: 3rem;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, .1);
-    position: fixed;
-    bottom: var(--ion-safe-area-bottom, 0);
+    // position: fixed;
+    // bottom: var(--ion-safe-area-bottom, 0);
     width: 100%;
+    padding-bottom: var(--ion-safe-area-bottom, 0);
 }
 
 .bot_btns a {
@@ -172,7 +173,8 @@ progress::-webkit-progress-value {
     text-align: center;
     color: #999;
     font-size: .7rem;
-    position: absolute;
-    bottom: var(--ion-safe-area-bottom, 0);
+    // position: absolute;
+    // bottom: var(--ion-safe-area-bottom, 0);
+    padding-bottom: var(--ion-safe-area-bottom, 0);
     width: 100%;
 }
