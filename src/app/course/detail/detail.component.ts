@@ -166,8 +166,21 @@ export class DetailComponent implements OnInit {
             this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
             this.vgApi.play();
         } else {
-            let url = this.webview.convertFileSrc(task.nativeUrl);
-            this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
+            let options: StreamingVideoOptions = {
+                successCallback: () => {
+                    console.log('Video played');
+                },
+                errorCallback: (e) => {
+                    console.log(e, {});
+                },
+                orientation: 'landscape',
+                shouldAutoClose: true,
+                controls: true,
+            };
+            // todo: 本地播放，无法实现上传播放时长
+            this.media.playVideo(task.nativeUrl, options);
+            // let url = this.webview.convertFileSrc(task.nativeUrl);
+            // this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
         }
     }
     async onVideoError(event) {
