@@ -117,12 +117,12 @@ export class AnswerComponent implements OnInit {
     next() {
         if (this.qIndex !== (this.questions.length - 1)) {
             this.qIndex++;
+        } else {
+            this.openAnswerCard();
         }
-        console.log('下一题');
     };
 
     prev() {
-        console.log('上一题');
         if (this.qIndex !== 0) {
             this.qIndex--;
         }
@@ -169,7 +169,7 @@ export class AnswerComponent implements OnInit {
         });
         await modal.present();
         let acData = await modal.onDidDismiss();
-        if (acData.data.qIndex) {
+        if (acData && acData.data && acData.data.qIndex) {
             this.qIndex = acData.data.qIndex - 1;
         }
     }

@@ -15,12 +15,12 @@
         <p>恭喜你，成功完成本次模考！</p>
         <!-- <p>恭喜你，成功完成本次考试！</p> -->
         <div class="exam_score clearfix">
-            <div>
+            <div *ngIf="dataType!=='exer'">
                 <dt><i>{{getScore()}}</i>/{{getTotalScore()}}</dt>
                 <dd>当前得分</dd>
             </div>
-            <em></em>
-            <div>
+            <em *ngIf="dataType!=='exer'"></em>
+            <div [ngStyle]="{width: dataType==='exer'?'100%':''}">
                 <dt><i>{{ranking}}</i>/{{sumPeople}}</dt>
                 <dd>当前排名</dd>
             </div>
