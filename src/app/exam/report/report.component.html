@@ -25,7 +25,7 @@
             <ng-container *ngIf="questions[qIndex].questionType===1||questions[qIndex].questionType===2">
                 <a *ngFor="let item of questions[qIndex].optional"
                     [ngClass]="{right: questions[qIndex].isAnswerSelectedOpt(item)||(questions[qIndex].isSelectedOpt(item)&&questions[qIndex].getState()===1),wrong: !questions[qIndex].isAnswerSelectedOpt(item)&&questions[qIndex].isSelectedOpt(item)&&questions[qIndex].getState()===2}">
-                    <i>{{item.key}}.</i>{{item.description}}<em></em></a>
+                    <i>{{item.key}}.</i><span [innerHtml]="item.description"></span><em></em></a>
             </ng-container>
             <ng-container *ngIf="questions[qIndex].questionType===3">
                 <a
