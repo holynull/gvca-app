@@ -7,8 +7,8 @@ ion-header {
 
         ion-title {
             --color: #ffffff; // 头部字体颜色
-            font-weight:normal;
-            font-size:1.1rem;
+            font-weight: normal;
+            font-size: 1.1rem;
         }
 
         span.btn_back {
@@ -26,15 +26,14 @@ ion-header {
             background-size: contain;
             margin: .75rem auto .75rem 0;
         }
+
+        ion-button:focus {
+            outline: none;
+        }
     }
 }
 
-ion-button {
-    width: 100%;
-    --background: #01204f;
-    --background-activated-opacity: 0.3;
-    --border-radius: 1.5rem;
-}
+
 
 ion-footer {
     ion-toolbar {
@@ -44,14 +43,25 @@ ion-footer {
         --padding-start: .8rem;
         --padding-end: .8rem;
 
+        ion-button {
+            width: 100%;
+            --background: #01204f;
+            --background-activated-opacity: 0.3;
+            --border-radius: 1.5rem;
+        }
 
+        ion-button:focus {
+            outline: none;
+        }
     }
 }
-.sc-ion-buttons-md-h{
-    position:absolute;
-    left:0;
-}
-.sc-ion-buttons-md-h[slot="end"]{    
-    left:auto;
-    right:0;
-}
+
+// .sc-ion-buttons-md-h {
+//     position: absolute;
+//     left: 0;
+// }
+
+// .sc-ion-buttons-md-h[slot="end"] {
+//     left: auto;
+//     right: 0;
+// }
