@@ -16,16 +16,16 @@
 <ion-content>
     <div class="homework_tip" *ngIf="hw.stuhomeworkStatus===2">
         作业需修正，请重新提交！
-    </div>    
+    </div>
     <div class="mine_box">
         <img *ngFor="let item of path" [src]="item|safeUrl" alt="">
     </div>
-    <div class="space"></div>   
+    <div class="space"></div>
     <div class="teacher_box1">
-            <h3 *ngIf="hw.stuhomeworkStatus===3">老师评语</h3>
-            <h5>{{hw.score}}</h5>
-            <img src="images/homework_pic1.jpg" alt="老师批改的图片"> 
-        </div>  
+        <h3 *ngIf="hw.stuhomeworkStatus===3">老师评语</h3>
+        <h5>{{hw.score}}</h5>
+        <img src="assetsimages/homework_pic1.jpg" alt="老师批改的图片">
+    </div>
 </ion-content>
 <ion-footer>
     <ion-toolbar *ngIf="hw.stuhomeworkStatus!==1&&hw.stuhomeworkStatus!==3">
