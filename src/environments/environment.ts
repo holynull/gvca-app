@@ -10,7 +10,7 @@ export const environment = {
             url: 'ws://192.168.0.10/ws',
             reconnectTime: 3000 // 连接失败，重试连接时间间隔
         },
-        apiDomain: 'kzs.7east.cn',
+        apiDomain: '61.178.106.250:9031',
         apiProtocol: 'http',
         default: {
             timeoutMs: 2000, // 接口超时时间
