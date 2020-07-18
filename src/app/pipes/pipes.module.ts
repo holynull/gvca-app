@@ -5,6 +5,7 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { QueFilterPipe } from './que-filter.pipe';
 import { LessonRecordTypePipe } from './lesson-record-type.pipe';
+import { QueDonePipe } from './que-done.pipe';
 
 
 
@@ -15,6 +16,7 @@ import { LessonRecordTypePipe } from './lesson-record-type.pipe';
         SafeHtmlPipe,
         QueFilterPipe,
         LessonRecordTypePipe,
+        QueDonePipe,
     ],
     imports: [
         CommonModule
@@ -25,6 +27,7 @@ import { LessonRecordTypePipe } from './lesson-record-type.pipe';
         SafeHtmlPipe,
         QueFilterPipe,
         LessonRecordTypePipe,
+        QueDonePipe,
     ]
 })
 export class PipesModule { }

@@ -35,8 +35,8 @@ export class RecordsComponent implements OnInit {
     changeTab(tab) {
         this.curTab = tab;
     }
-    toReport(title) {
-        this.router.navigate(['/exam/report'], { queryParams: { title: title, url: '/exam/records' } });
+    goToReport(d:ExercisCourseDetail){
+        this.router.navigate(['/exam/report'],{queryParams:{title:d.name,url:'/exam/records',dataType:'exer',pid:d.pid,qcid:d.qcid}});
     }
 
     goToAnswerExer(detail: ExercisCourseDetail) {

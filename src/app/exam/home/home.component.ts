@@ -6,6 +6,7 @@ import { ExercisesService } from 'app/services/exercises.service';
 import { Router } from '@angular/router';
 import { ExercisCourseDetail } from 'app/model/exercis-course-detail';
 import { ExercisCourse } from 'app/model/exercis-course';
+import { Question } from 'app/model/question';
 
 @Component({
     selector: 'app-home',
@@ -72,5 +73,8 @@ export class HomeComponent implements OnInit {
                 e.openState = 'close';
             }
         });
+    }
+    goToReport(d:ExercisCourseDetail){
+        this.router.navigate(['/exam/report'],{queryParams:{title:d.name,url:'/tabs/exam',dataType:'exer',pid:d.pid,qcid:d.qcid}});
     }
 }

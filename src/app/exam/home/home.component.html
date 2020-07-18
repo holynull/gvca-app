@@ -25,7 +25,7 @@
                             <i></i>
                             {{d.name}}
                             <a *ngIf="d.questionSum===d.questionUsedSum&&d.questionSum!==0;else nodone"
-                                [ngClass]="{done: d.questionSum===d.questionUsedSum}"></a>
+                                [ngClass]="{done: d.questionSum===d.questionUsedSum}" (click)="goToReport(d)"></a>
                             <ng-template #nodone>
                                 <a (click)="goToAnswer(d)"></a>
                             </ng-template>

@@ -18,7 +18,7 @@
         <div class="panel1" [hidden]="curTab!==1">
             <div class="own_count exam_count exam_lx">
                 <div>
-                    <h2>{{exerSvr.stateData.leftStr.split('/')[0]}}<i>/{{exerSvr.stateData.leftStr.split('/')[1]}}</i>
+                    <h2>{{exerSvr.stateData.leftStr.split('/')[0]?exerSvr.stateData.leftStr.split('/')[0]:0}}<i>/{{exerSvr.stateData.leftStr.split('/')[1]?exerSvr.stateData.leftStr.split('/')[1]:0}}</i>
                     </h2>
                     <p>已完成</p>
                 </div>
@@ -27,7 +27,7 @@
                     <p>平均分</p>
                 </div> -->
                 <div>
-                    <h2>{{exerSvr.stateData.rightStr}}<i>%</i></h2>
+                    <h2>{{exerSvr.stateData.rightStr?exerSvr.stateData.rightStr:0}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
@@ -39,11 +39,11 @@
                         </div>
                         <div class="exam_sublist">
                             <ul>
-                                <li *ngFor="let d of item.details">
+                                <li *ngFor="let d of item.details | queDone">
                                     <i></i>
                                     {{d.name}}
                                     <a *ngIf="d.questionSum===d.questionUsedSum&&d.questionSum!==0;else nodone"
-                                        [ngClass]="{done: d.questionSum===d.questionUsedSum}"></a>
+                                        [ngClass]="{done: d.questionSum===d.questionUsedSum}" (click)="goToReport(d)"></a>
                                     <ng-template #nodone>
                                         <a (click)="goToAnswerExer(d)"></a>
                                     </ng-template>
@@ -58,22 +58,22 @@
         <div class="panel1" [hidden]="curTab!==2">
             <div class="own_count exam_count">
                 <div>
-                    <h2>{{simuSvr.stateData.leftStr.split('/')[0]}}<i>/{{simuSvr.stateData.leftStr.split('/')[1]}}</i>
+                    <h2>{{simuSvr.stateData.leftStr.split('/')[0]?simuSvr.stateData.leftStr.split('/')[0]:0}}<i>/{{simuSvr.stateData.leftStr.split('/')[1]?simuSvr.stateData.leftStr.split('/')[1]:0}}</i>
                     </h2>
                     <p>已完成</p>
                 </div>
                 <div>
-                    <h2>{{simuSvr.stateData.middleStr}}</h2>
+                    <h2>{{simuSvr.stateData.middleStr?simuSvr.stateData.middleStr:0}}</h2>
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>{{simuSvr.stateData.rightStr}}<i>%</i></h2>
+                    <h2>{{simuSvr.stateData.rightStr?simuSvr.stateData.rightStr:0}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
             <div class="exam_sublist exam_test" *ngIf="simuSvr.testPapers.length>0 else noData">
                 <ul>
-                    <li *ngFor="let item of simuSvr.testPapers"><i></i>{{item.examName}}<a
+                    <li *ngFor="let item of simuSvr.testPapers | queDone"><i></i>{{item.examName}}<a
                             (click)="goToAnswer(item,'simu')"
                             [ngClass]="{done: item.usedState===1}"></a><span>(<em>{{item.getScore()}}</em>)</span></li>
                 </ul>
@@ -82,22 +82,22 @@
         <div class="panel1" [hidden]="curTab!==3">
             <div class="own_count exam_count">
                 <div>
-                    <h2>{{examSvr.stateData.leftStr.split('/')[0]}}<i>/{{examSvr.stateData.leftStr.split('/')[1]}}</i>
+                    <h2>{{examSvr.stateData.leftStr.split('/')[0]?examSvr.stateData.leftStr.split('/')[0]:0}}<i>/{{examSvr.stateData.leftStr.split('/')[1]?examSvr.stateData.leftStr.split('/')[1]:0}}</i>
                     </h2>
                     <p>已完成</p>
                 </div>
                 <div>
-                    <h2>{{examSvr.stateData.middleStr}}</h2>
+                    <h2>{{examSvr.stateData.middleStr?examSvr.stateData.middleStr:0}}</h2>
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>{{examSvr.stateData.rightStr}}<i>%</i></h2>
+                    <h2>{{examSvr.stateData.rightStr?examSvr.stateData.rightStr:0}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
             <div class="exam_sublist exam_test" *ngIf="examSvr.testPapers.length>0 else noData">
                 <ul>
-                    <li *ngFor="let item of examSvr.testPapers"><i></i>{{item.examName}}<a
+                    <li *ngFor="let item of examSvr.testPapers | queDone"><i></i>{{item.examName}}<a
                             (click)="goToAnswer(item,'exam')"
                             [ngClass]="{done: item.usedState===1}"></a><span>(<em>{{item.getScore()}}</em>)</span></li>
                 </ul>
