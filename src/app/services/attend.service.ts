@@ -23,8 +23,8 @@ export class AttendService {
 
     }
 
-    loadData() {
-        this.api.getSignCompany().toPromise().then(res => {
+    loadData(): Promise<boolean> {
+        let p1 = this.api.getSignCompany().toPromise().then(res => {
             if (res.code === 1) {
                 this.company = new Company();
                 this.company.signStartTime = res.signStartTime;
@@ -39,12 +39,14 @@ export class AttendService {
                 this.company.companyAddress = res.companyAddress;
                 this.company.signEndTime = res.signEndTime;
                 this.company.longitude = Number(res.longitude);
+                return true;
             } else {
                 console.error('获取用户签到公司数据出错', res);
+                return false;
             }
         });
         let year = new Date().getFullYear();
-        this.api.getSignList(String(year)).toPromise().then(res => {
+        let p2 = this.api.getSignList(String(year)).toPromise().then(res => {
             if (res.code === 1) {
                 res.info.forEach(e => {
                     let record = new SignRecord();
@@ -68,9 +70,15 @@ export class AttendService {
                     record.longitude = Number(e.longitude);
                     this.records.push(record);
                 });
+                return true;
             } else {
                 console.error('获取用户签到记录出错', res);
+                return false;
             }
+        });
+        let pArr = [p1, p2];
+       return Promise.all(pArr).then(res => {
+            return res[0] && res[1];
         });
     }
 
@@ -159,11 +167,10 @@ export class AttendService {
         }
         return this.api.insertStuSign(String(lng), String(lat), this.company.companyAddress, status).toPromise().then(res => {
             if (res.code === 1) {
-                this.loadData();
-                return true;
+                return this.loadData().then(res=>res);
             } else {
                 console.error('签到失败', res);
-                return false;
+                return this.loadData().then(res=>res);
             }
         });
     }

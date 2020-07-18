@@ -40,7 +40,7 @@ export class BootService {
             this.exerSvr.loadData();
             this.simuSvr.loadData();
             this.examSvr.loadData();
-            this.attendSvr.loadData();
+            this.attendSvr.loadData().then();
             this.hwSvr.loadCompletedHomeWork().then();
             this.exerSvr.getStateData().then();
             this.simuSvr.getStateData().then();
