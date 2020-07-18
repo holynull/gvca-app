@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalController, Platform, AlertController } from '@ionic/angular';
+import { ModalController, Platform, AlertController, LoadingController } from '@ionic/angular';
 import { AskLeaveComponent } from '../ask-leave/ask-leave.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AttendService } from 'app/services/attend.service';
@@ -33,18 +33,29 @@ export class HomeComponent implements OnInit {
     lng: number;
     lat: number;
 
+    loading;
+
     constructor(
         private modalCtrl: ModalController,
         private geolocation: Geolocation,
         private platform: Platform,
         private alertCtrl: AlertController,
         private attendSvr: AttendService,
+        public loadingCtrl: LoadingController,
     ) {
         this.status = this.attendSvr.signStatus(this.now);
         this.curRecord = this.attendSvr.getRecord(this.now);
     }
 
+    async loadingPresent() {
+        this.loading = await this.loadingCtrl.create({
+            message: "请稍后...",
+            backdropDismiss: false,
+            duration: 10000,
+        });
 
+        await this.loading.present();
+    }
     ngOnInit() { }
     //在进入页面的时候触发
     ionViewDidEnter() {
@@ -107,6 +118,7 @@ export class HomeComponent implements OnInit {
 
     sign() {
         if (this.status === SignStatus.NONE) {
+            this.loadingPresent();
             this.attendSvr.sign(this.lng, this.lat, this.distance).then(success => {
                 if (success) {
                     this.now = new Date();
@@ -115,9 +127,12 @@ export class HomeComponent implements OnInit {
                 } else {
 
                 }
+                this.loading.dismiss();
+                this.loading = null;
             });
         }
     }
+
 
     async toAskForLeave() {
         const modal = await this.modalCtrl.create({

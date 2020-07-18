@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ActionSheetController, NavParams } from '@ionic/angular';
+import { ModalController, ActionSheetController, NavParams, LoadingController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
@@ -21,6 +21,8 @@ export class UploadComponent implements OnInit {
 
     viewUrls: Array<string> = new Array();
 
+    loading;
+
     constructor(
         private modalCtrl: ModalController,
         private actionSheetCtrl: ActionSheetController,
@@ -31,12 +33,22 @@ export class UploadComponent implements OnInit {
         private api: ApiService,
         private auth: AuthService,
         private hwSvr: HomeworkService,
+        public loadingCtrl: LoadingController,
     ) {
         this.hId = this.navParams.data.hId;
     }
 
     ngOnInit() { }
 
+    async loadingPresent() {
+        this.loading = await this.loadingCtrl.create({
+            message: "正在上传...",
+            backdropDismiss: false,
+            duration: 10000,
+        });
+
+        await this.loading.present();
+    }
     close() {
         this.modalCtrl.dismiss();
     }
@@ -104,6 +116,7 @@ export class UploadComponent implements OnInit {
     submit() {
         let hw = this.hwSvr.getHomeworkById(this.hId);
         let pArr: Array<Promise<any>> = new Array<Promise<any>>();
+        this.loadingPresent();
         this.nativeUrls.forEach(nUrl => {
             let fileTransfer = this.transfer.create();
             let options: FileUploadOptions = {
@@ -148,6 +161,8 @@ export class UploadComponent implements OnInit {
                     this.modalCtrl.dismiss();
                 });
             }
+            this.loading.dismiss();
+            this.loading = null;
         });
     }
 

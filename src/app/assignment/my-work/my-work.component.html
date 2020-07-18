@@ -23,7 +23,7 @@
     <div class="space"></div>
     <div class="teacher_box1">
         <h3 *ngIf="hw.stuhomeworkStatus===4">老师评语</h3>
-        <h5>{{hw.score}}</h5>
+        <h5>{{hw.score?hw.score:''}}</h5>
         <div [innerHtml]="hw.checkResult|safeHtml">
         </div>
     </div>
