@@ -17,7 +17,7 @@
         <a (click)="changeTab(2)" [ngClass]="{active: curTab===2}">在线记录<i></i></a>
     </div>
     <div class="panels">
-        <div class="panel1" [hidden]="curTab!==1">
+        <div class="panel1" [hidden]="curTab!==1" *ngIf="(courseSvr.records | lessonRecordType:1).length>0 else noData">
             <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
                 *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
                 <div class="cb" [hidden]="!editable">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel2" [hidden]="curTab!==2">
+        <div class="panel1" [hidden]="curTab!==2" *ngIf="(courseSvr.records | lessonRecordType:2).length>0 else noData">
             <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
                 *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
                 <div class="cb" [hidden]="!editable">
@@ -56,7 +56,11 @@
             </div>
         </div>
     </div>
-
+    <ng-template #noData>
+        <div class="noData">
+            <img src="assets/images/nothing.png">
+        </div>
+    </ng-template>
 </ion-content>
 <ion-footer>
     <div class="bot_btns" style="display: block;" [hidden]="!editable">

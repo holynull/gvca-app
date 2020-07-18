@@ -10,24 +10,23 @@
         <a *ngFor="let item of courseSvr.courseCats" (click)="select(item.courseTypeId)"
             [ngClass]="{active: curTab===item.courseTypeId}">{{item.typeName}}<i></i></a>
     </div>
-    <div class="panels">
-        <div class="panel1" *ngIf="selectState===0; else need">
-            <ng-container *ngIf="courseSvr.courses.length>0 else noData">
-                <div class="list_item clearfix" *ngFor="let item of courseSvr.courses">
-                    <img [src]="item.photo?item.photo:'assets/images/course_pic.jpg'|safeUrl" alt="">
-                    <div>
-                        <h3>{{item.courseName}}</h3>
-                        <p>{{item.teacherName}}</p>
-                        <a (click)="goToDetail(item.courseId,curTab)" routerDirection="forward"
-                            class="btn_study">进入学习</a>
+        <div class="panels">
+            <div class="panel1" *ngIf="selectState===0; else need">
+                <ng-container *ngIf="courseSvr.courses.length>0 else noData">
+                    <div class="list_item clearfix" *ngFor="let item of courseSvr.courses">
+                        <img [src]="item.photo?item.photo:'assets/images/course_pic.jpg'|safeUrl" alt="">
+                        <div>
+                            <h3>{{item.courseName}}</h3>
+                            <p>{{item.teacherName}}</p>
+                            <a (click)="goToDetail(item.courseId,curTab)" routerDirection="forward"
+                                class="btn_study">进入学习</a>
+                        </div>
                     </div>
-                </div>
-            </ng-container>
-        </div>
-        <ng-template #need>
-            <div class="panel3">
-                <ng-template *ngIf="courseSvr.courses.length>0 else noData">
-                    <div class="xx_choose">
+                </ng-container>
+            </div>
+            <ng-template #need>
+                <div class="panel1">
+                    <div class="xx_choose" *ngIf="courseSvr.courses.length>0 else noData">
                         <form action="">
                             <ul>
                                 <li *ngFor="let item of courseSvr.courses;let i=index"><input type="checkbox"
@@ -38,10 +37,9 @@
                             <a href="javascript:;" class="btn_submit" (click)="confirm()">确定</a>
                         </form>
                     </div>
-                </ng-template>
-            </div>
-        </ng-template>
-    </div>
+                </div>
+            </ng-template>
+        </div>
     <ng-template #noData>
         <div class="noData">
             <img src="assets/images/nothing.png">
