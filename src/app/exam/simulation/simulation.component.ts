@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController, LoadingController } from '@ionic/angular';
 import { PopMenuComponent } from '../pop-menu/pop-menu.component';
 import { SimuTipsComponent } from '../simu-tips/simu-tips.component';
 import { SimulationService } from 'app/services/simulation.service';
 import { TestPaper } from 'app/model/test-paper';
 import { Router } from '@angular/router';
 import { UsedState } from 'app/model/used-state.enum';
+import { ConstVal } from 'app/constVal';
 
 @Component({
     selector: 'app-simulation',
@@ -19,6 +20,7 @@ export class SimulationComponent implements OnInit {
         private modalCtrl: ModalController,
         public simuSvr: SimulationService,
         private router: Router,
+        private loadingCtrl: LoadingController,
     ) { }
 
     ngOnInit() {
@@ -65,5 +67,19 @@ export class SimulationComponent implements OnInit {
         } else if (detail.questions.length > 0 && detail.usedState === UsedState.NONE) {
             this.router.navigate(['/exam/answer'], { queryParams: { title: detail.examName, examId: detail.examId, dataType: 'simu', url: '/tabs/exam/simulation' } });
         }
+    }
+
+    async getRandom() {
+        let loading = await this.loadingCtrl.create({
+            message: 'Loading',
+            backdropDismiss: false,
+            duration: ConstVal.LOADING_DURATION_MILLION_SECONDS,
+        });
+        this.simuSvr.getRandomTestPaper().then(res => {
+            if (res === true) {
+                this.router.navigate(['/exam/answer'], { queryParams: { title: '随机组卷', dataType: 'rand', url: '/tabs/exam/simulation' } });
+            }
+            loading.dismiss();
+        });
     }
 }

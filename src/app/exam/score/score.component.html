@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button [routerLink]="['/tabs/exam']" routerDirection="back">
+            <ion-button [routerLink]="[url]" routerDirection="back">
                 <span class="btn_back"></span>
             </ion-button>
         </ion-buttons>
@@ -14,7 +14,7 @@
         <!-- <p>恭喜你，成功完成本次练习！</p> -->
         <p>恭喜你，成功完成本次{{typeStr}}！</p>
         <!-- <p>恭喜你，成功完成本次考试！</p> -->
-        <div class="exam_score clearfix">
+        <div class="exam_score clearfix" *ngIf="auth.userInfo.isScore===1||auth.userInfo.isSort===1">
             <div *ngIf="dataType!=='exer'&&auth.userInfo.isScore===1">
                 <dt><i>{{getScore()}}</i>/{{getTotalScore()}}</dt>
                 <dd>当前得分</dd>

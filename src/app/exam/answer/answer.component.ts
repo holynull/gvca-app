@@ -85,6 +85,9 @@ export class AnswerComponent implements OnInit {
                 case 'exam':
                     this.questions = this.examSvr.getQuestionsById(Number(params.examId));
                     break;
+                case 'rand':
+                    this.questions = this.sSvr.randomTestPaper;
+                    break;
             }
         });
     }

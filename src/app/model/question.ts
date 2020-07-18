@@ -18,7 +18,7 @@ export class Question {
     sort: number;
 
     isSelectedOpt(opt: QuestionOption) {
-        return this.studentAnswer.indexOf(opt.key) !== -1;
+        return this.studentAnswer && this.studentAnswer.indexOf(opt.key) !== -1;
     }
 
     isAnswerSelectedOpt(opt: QuestionOption) {

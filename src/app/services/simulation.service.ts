@@ -20,9 +20,11 @@ export class SimulationService {
      */
     enabled: boolean = true;
 
-    disableMsg:string;
+    disableMsg: string;
 
     testPapers: Array<TestPaper> = new Array();
+
+    randomTestPaper: Array<Question> = new Array();
 
     constructor(
         private api: ApiService,
@@ -89,7 +91,7 @@ export class SimulationService {
             });
         } else if (res1.code === 2) {
             this.enabled = false;
-            this.disableMsg=res1.codeMsg;
+            this.disableMsg = res1.codeMsg;
         } else {
             console.error('获取模拟试题库出错', res1);
         }
@@ -160,6 +162,42 @@ export class SimulationService {
                 return true;
             } else {
                 console.error('获取模拟考试统计数据出错', res);
+                return false;
+            }
+        });
+    }
+
+    getRandomTestPaper(): Promise<boolean> {
+        return this.api.getRandomExamList().toPromise().then(res => {
+            if (res.code === 1) {
+                res.info.forEach((e3, qIndex, arr) => {
+                    let que = new Question();
+                    que.trueAnswer = e3.trueAnswer;
+                    que.questionId = Number(e3.questionId);
+                    que.question = e3.question;
+                    que.addTime = new Date(e3.addTime);
+                    que.questionCategoryId = Number(e3.questionCategoryId);
+                    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    e3.optional.forEach(op => {
+                        for (let i = 0; i < str.length; i++) {
+                            if (op[str[i]]) {
+                                let option = new QuestionOption(str[i], op[str[i]]);
+                                que.optional.push(option);
+                                break;
+                            }
+                        }
+                    });
+                    que.updateTime = new Date(e3.updateTime);
+                    que.studentAnswer = e3.studentAnswer;
+                    que.explains = e3.explains;
+                    que.questionType = e3.questionType;
+                    que.questionStatus = Number(e3.questionStatus);
+                    que.sort = qIndex + 1;
+                    que.score = Number(e3.score);
+                    this.randomTestPaper.push(que);
+                });
+                return true;
+            } else {
                 return false;
             }
         });

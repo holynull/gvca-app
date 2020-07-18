@@ -31,6 +31,8 @@ export class ScoreComponent implements OnInit {
 
     typeStr: string;
 
+    url: string;
+
     constructor(
         private activeRoute: ActivatedRoute,
         public exerSvr: ExercisesService,
@@ -46,6 +48,7 @@ export class ScoreComponent implements OnInit {
             this.examId = params.examId;
             this.sumPeople = params.sumPeople;
             this.ranking = params.ranking;
+            this.url = params.url;
             switch (this.dataType) {
                 case 'exer':
                     this.questions = exerSvr.getQuestions(Number(this.pid), Number(this.qcid));
@@ -58,6 +61,10 @@ export class ScoreComponent implements OnInit {
                 case 'exam':
                     this.questions = this.examSvr.getQuestionsById(Number(this.examId));
                     this.typeStr = '考试';
+                    break;
+                case 'rand':
+                    this.questions = this.simuSvr.randomTestPaper;
+                    this.typeStr = '随机组卷';
                     break;
             }
         });

@@ -1,13 +1,19 @@
 @import '../../../pub.scss';
 
+.btn-edit {
+    --color: #d0e4ff;
+    font-size: .9rem;
+}
+
 ion-button {
     i.popMenu {
         background: url(assets/images/icon_exam_arrow.png) no-repeat;
         background-size: contain;
         width: 1.6rem;
         height: 1.6rem;
-       // transition: 0.3s linear all;
+        // transition: 0.3s linear all;
     }
+
     i.zujuan {
         background: url(assets/images/icon_exam_zujuan.png) no-repeat;
         background-size: contain;

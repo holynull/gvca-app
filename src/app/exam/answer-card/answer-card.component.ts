@@ -59,6 +59,9 @@ export class AnswerCardComponent implements OnInit {
                     this.questions = this.examSvr.getQuestionsById(Number(this.navParams.data.examId));
                 }
                 break;
+            case 'rand':
+                this.questions = this.simuSvr.randomTestPaper;
+                break;
         }
     }
 
@@ -73,39 +76,41 @@ export class AnswerCardComponent implements OnInit {
         if (this.from && this.from === 'report') {
             this.modalCtrl.dismiss();
         } else {
-            let loading = await this.loadingCtrl.create({
-                message: 'Loading',
-                backdropDismiss: false,
-                duration: ConstVal.LOADING_DURATION_MILLION_SECONDS,
-            });
-            await loading.present();
-            if (this.from && this.from === 'report') {
-                this.modalCtrl.dismiss();
-                // this.router.navigate(['/exam/report'], { queryParams: { title: this.title } });
-            } else { // 交卷
-                switch (this.dataType) {
-                    case 'exer':
-                        this.exerSvr.submit(this.pid, this.qcid).then(() => {
-                            this.modalCtrl.dismiss();
-                            loading.dismiss();
-                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, pid: this.pid, qcid: this.qcid, dataType: this.dataType } });
-                        });
-                        break;
-                    case 'simu':
-                        this.simuSvr.submit(this.examId).then((res) => {
-                            this.modalCtrl.dismiss();
-                            loading.dismiss();
-                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType, ranking: res.ranking, sumPeople: res.sumPeople } });
-                        });
-                        break;
-                    case 'exam':
-                        this.examSvr.submit(this.examId).then((res) => {
-                            this.modalCtrl.dismiss();
-                            loading.dismiss();
-                            this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType, ranking: res.ranking, sumPeople: res.sumPeople } });
-                        });
-                        break;
-                }
+            let loading;
+            if (this.dataType !== 'rand') {
+                loading = await this.loadingCtrl.create({
+                    message: 'Loading',
+                    backdropDismiss: false,
+                    duration: ConstVal.LOADING_DURATION_MILLION_SECONDS,
+                });
+                await loading.present();
+            }
+            switch (this.dataType) {
+                case 'exer':
+                    this.exerSvr.submit(this.pid, this.qcid).then(() => {
+                        this.modalCtrl.dismiss();
+                        loading.dismiss();
+                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, pid: this.pid, qcid: this.qcid, dataType: this.dataType, url: '/tabs/exam' } });
+                    });
+                    break;
+                case 'simu':
+                    this.simuSvr.submit(this.examId).then((res) => {
+                        this.modalCtrl.dismiss();
+                        loading.dismiss();
+                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType, ranking: res.ranking, sumPeople: res.sumPeople, url: '/tabs/exam/simulation' } });
+                    });
+                    break;
+                case 'exam':
+                    this.examSvr.submit(this.examId).then((res) => {
+                        this.modalCtrl.dismiss();
+                        loading.dismiss();
+                        this.router.navigate(['/exam/score'], { queryParams: { title: this.title, examId: this.examId, dataType: this.dataType, ranking: res.ranking, sumPeople: res.sumPeople, url: '/tabs/exam/examine' } });
+                    });
+                    break;
+                case 'rand':
+                    this.modalCtrl.dismiss();
+                    this.router.navigate(['/exam/score'], { queryParams: { title: this.title, dataType: this.dataType, url: '/tabs/exam/simulation' } });
+                    break;
             }
         }
     }

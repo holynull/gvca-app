@@ -28,7 +28,6 @@ export class CourseDownloadService extends BaseService {
 
     public initData() {
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
-            console.error("调试")
             if (data) {
                 data.forEach((d, index, arr) => {
                     let task = new DownloadTask(d.targetUrl, this.api, this.platform, this.file, this.transfer);

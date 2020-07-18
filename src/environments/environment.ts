@@ -236,6 +236,13 @@ export const environment = {
             debug: true,
             url: '/front/app/getExamStatistical',
         },
+        getRandomExamList:{
+            id: 31,
+            timeoutMs: 2000,
+            retryTimes: 2,
+            debug: true,
+            url: '/front/app/getRandomExamList', 
+        },
     },
     videoDir: 'course_video',
 };
