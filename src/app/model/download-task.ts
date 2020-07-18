@@ -69,14 +69,8 @@ export class DownloadTask {
         let preLoaded = 0;
         let root = this.fileSystem.dataDirectory;
         let rFileName;
-        if (this.platform.is('ios')) {
-            root = this.fileSystem.documentsDirectory;
-        }
         if (this.fileName) {
             rFileName = environment.videoDir + '/' + this.fileName;
-            if (this.platform.is('android')) {
-                rFileName = 'Documents/' + rFileName;
-            }
             this.fileSystem.checkFile(root, rFileName).then(exists => {
                 if (exists) {// 文件存在，续传
 
@@ -90,10 +84,6 @@ export class DownloadTask {
         } else {
             this.fileName = 'file_' + new Date().getTime() + '.mp4';
             rFileName = environment.videoDir + '/' + this.fileName;
-            if (this.platform.is('android')) {
-                rFileName = 'Documents/' + rFileName;
-            }
-
         }
         const opt = {
             headers: {

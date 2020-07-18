@@ -28,9 +28,10 @@ export class CourseDownloadService extends BaseService {
 
     public initData() {
         this.storage.get(ConstVal.DOWNLOAD_TASKS).then(data => {
+            console.error("调试")
             if (data) {
                 data.forEach((d, index, arr) => {
-                    let task = new DownloadTask(d.urtl, this.api, this.platform, this.file, this.transfer);
+                    let task = new DownloadTask(d.targetUrl, this.api, this.platform, this.file, this.transfer);
                     task.taskId = d.taskId;
                     task.total = Number(d.total);
                     task.loaded = Number(d.loaded);
@@ -61,12 +62,6 @@ export class CourseDownloadService extends BaseService {
         if (this.platform.is('cordova')) {
             let root = this.file.dataDirectory;
             let rFileName = environment.videoDir;
-            if (this.platform.is('ios')) {
-                root = this.file.documentsDirectory;
-            }
-            if (this.platform.is('android')) {
-                rFileName = 'Documents/' + rFileName;
-            }
             this.file.checkDir(root, rFileName).then(exists => {
                 if (!exists) {
                     this.file.createDir(root, rFileName, false).then(entry => {
@@ -120,7 +115,7 @@ export class CourseDownloadService extends BaseService {
                 taskId: e.taskId,
                 total: e.total,
                 loaded: e.loaded,
-                navtiveUrl: e.nativeUrl,
+                nativeUrl: e.nativeUrl,
                 status: e.status,
                 speed: e.speed,
                 checked: e.checked,
@@ -144,12 +139,6 @@ export class CourseDownloadService extends BaseService {
                     if (this.platform.is('cordova')) {
                         let root = this.file.dataDirectory;
                         let rFileName = environment.videoDir;
-                        if (this.platform.is('ios')) {
-                            root = this.file.documentsDirectory;
-                        }
-                        if (this.platform.is('android')) {
-                            rFileName = 'Documents/' + rFileName;
-                        }
                         this.file.removeFile(root, rFileName + '/' + e.fileName).then(data => {
                             console.log('保存文件回调');
                             console.log(data);
