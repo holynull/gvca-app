@@ -159,10 +159,10 @@ export class DetailComponent implements OnInit {
     }
 
     play(lesson: Lesson) {
-        let task = this.isDownloaded(lesson)
+        let task = this.isDownloaded(lesson);
+        this.curLesson = lesson;
         if (!task) {
             this.vgApi.pause();
-            this.curLesson = lesson;
             this.vgApi.getDefaultMedia().currentTime = this.curLesson.lessonLength;
             this.vgApi.play();
         } else {

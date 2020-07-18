@@ -55,7 +55,7 @@
             </div>
             <div class="detail_list">
                 <ul>
-                    <li class="clearfix" *ngFor="let item of course.lessons">
+                    <li class="clearfix" [ngClass]="{current: item.lessonId===curLesson.lessonId}" *ngFor="let item of course.lessons">
                         <div class="detail_c">
                             <h3>{{item.lessonName}}</h3>
                             <p>时长{{item.transcodeDurtion}}</p>
