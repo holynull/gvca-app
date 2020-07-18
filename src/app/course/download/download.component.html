@@ -26,7 +26,7 @@
 
                 <img src="assets/images/course_pic.jpg" alt="">
                 <div (click)="reDownload(item)">
-                    <h3>财务舞弊手段（一）—调整手段</h3>
+                    <h3>{{item.lessonName}}</h3>
                     <progress value="{{item.loaded}}" max="{{item.total}}"></progress>
                     <div>
                         <span class="progress_speed fl">{{item.speedToString()}}/s</span>
@@ -36,12 +36,13 @@
             </div>
         </div>
         <div class="panel2" [hidden]="curTab!==2">
-            <div class="list_item down_item clearfix" *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[1] ">
+            <div (click)="playVideo(item)" class="list_item down_item clearfix"
+                *ngFor="let item of courseDownloadSvr.tasks | downloadTasks:[1] ">
                 <input type="checkbox" [hidden]="!editable" value="{{item.taskId}}" [(ngModel)]="item.checked">
 
                 <img src="assets/images/course_pic.jpg" alt="">
-                <div (click)="playVideo(item)">
-                    <h3>财务舞弊手段（一）—调整手段</h3>
+                <div>
+                    <h3>{{item.lessonName}}</h3>
                     <div>
                         <span class="progress_speed fl">{{item.lessonState}}</span>
                         <span class="progress_memory fr">{{item.totalToString()}}</span>

@@ -42,6 +42,15 @@ export class CourseDownloadService extends BaseService {
                     if (d.lessonId) {
                         task.lessonId = d.lessonId;
                     }
+                    if (d.lessonName) {
+                        task.lessonName = d.lessonName;
+                    }
+                    if (d.videosize) {
+                        task.videosize = Number(d.videosize);
+                    }
+                    if (d.lessonLength) {
+                        task.lessonLength = Number(d.lessonLength);
+                    }
                     if (d.courseId) {
                         task.courseId = d.courseId;
                     }
@@ -91,6 +100,9 @@ export class CourseDownloadService extends BaseService {
             task.taskId = String(new Date().getTime());
             task.api = this.api;
             task.lessonId = lesson.lessonId;
+            task.lessonName = lesson.lessonName;
+            task.lessonLength=lesson.lessonLength;
+            task.videosize=lesson.videosize;
             task.courseId = lesson.courseId;
             this.tasks.push(task);
             this.updateStorage();
@@ -117,6 +129,9 @@ export class CourseDownloadService extends BaseService {
                 targetUrl: e.targetUrl,
                 lessonId: e.lessonId,
                 courseId: e.courseId,
+                lessonName: e.lessonName,
+                lessonLength:e.lessonLength,
+                videosize:e.videosize,
             });
         });
         this.storage.set(ConstVal.DOWNLOAD_TASKS, arr).then();

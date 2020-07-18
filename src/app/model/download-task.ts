@@ -27,6 +27,9 @@ export class DownloadTask {
     lessonId: number;
     courseId: number;
     lessonState: string; // 下载页面显示用户观看状态
+    lessonName: string;
+    lessonLength: number;
+    videosize: number;
 
     constructor(url: string, api: ApiService, platform: Platform, file: File, trans: FileTransfer) {
         this.targetUrl = url;
