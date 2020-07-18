@@ -39,7 +39,7 @@
         <div class="exam_report_c" *ngIf="questions&&questions.length>0">
             <h3>答案</h3>
             <ul>
-                <li>题目分值：{{questions[qIndex].score}}分</li>
+                <li>题目分值：{{questions[qIndex].score?questions[qIndex].score:0}}分</li>
                 <li>我的得分：{{questions[qIndex].getQuestionScore()}}分</li>
             </ul>
             <ul>
