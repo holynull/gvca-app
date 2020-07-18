@@ -13,7 +13,7 @@ export class ExercisCourse {
 
     getDetailById(id: number): ExercisCourseDetail {
         for (let i = 0; i < this.details.length; i++) {
-            if (id === this.details[i].qcid) {
+            if (Number(id) === this.details[i].qcid) {
                 return this.details[i];
             }
         }
