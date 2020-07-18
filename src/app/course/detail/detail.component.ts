@@ -97,7 +97,7 @@ export class DetailComponent implements OnInit {
                 this.curLesson.lessonLength = this.vgApi.getDefaultMedia().currentTime;
             }
         });
-    }
+  }
     ngOnInit() {
         if (this.course.lessons && this.course.lessons.length > 0) {
             this.curLesson = this.course.lessons[0];

@@ -279,10 +279,10 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
         CGRect newValue = [change[NSKeyValueChangeNewKey]CGRectValue];
 
 
-        CGFloat y = newValue.origin.y;
+        CGFloat x = newValue.origin.x;
 
 
-        if (y == 0) {
+        if (x != 0) {
 
 
             NSLog(@"Video Closed");

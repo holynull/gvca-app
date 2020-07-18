@@ -38,7 +38,7 @@
             </vg-controls>
             <video #myMedia [vgMedia]="myMedia" [VgMaster]="true" id="myMedia" height="200" crossorigin="true"
                 playsinline="true" webkit-playsinline="true" preload="metadata" autoplay="autoplay"
-                [src]="curLesson.videoUrl" (error)="onVideoError($event)" x5-video-player-type="h5"
+                [src]="curLesson?curLesson.videoUrl:''" (error)="onVideoError($event)" x5-video-player-type="h5"
                 x5-video-player-fullscreen="true" x5-video-orientation="portraint" type="video/mp4">
             </video>
         </vg-player>

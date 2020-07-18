@@ -131,6 +131,7 @@ export class DownloadComponent implements OnInit {
             let options: StreamingVideoOptions = {
                 successCallback: (data) => {
                     console.log('Video played');
+                    console.log(data);
                     if (data) {
                         let d: string[] = data.split(',');
                         task.videosize = Number(d[1]);
