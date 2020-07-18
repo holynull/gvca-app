@@ -28,6 +28,8 @@ export class ScoreComponent implements OnInit {
 
     ranking: string;
 
+    typeStr:string;
+
     constructor(
         private activeRoute: ActivatedRoute,
         public exerSvr: ExercisesService,
@@ -45,12 +47,15 @@ export class ScoreComponent implements OnInit {
             switch (this.dataType) {
                 case 'exer':
                     this.questions = exerSvr.getQuestions(Number(this.pid), Number(this.qcid));
+                    this.typeStr='练习'
                     break;
                 case 'simu':
                     this.questions = this.simuSvr.getQuestionsById(Number(this.examId));
+                    this.typeStr='模考';
                     break;
                 case 'exam':
                     this.questions = this.examSvr.getQuestionsById(Number(this.examId));
+                    this.typeStr='考试';
                     break;
             }
         });

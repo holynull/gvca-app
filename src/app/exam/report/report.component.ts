@@ -68,7 +68,7 @@ export class ReportComponent implements OnInit {
             this.tab = params.tab;
             switch (this.dataType) {
                 case 'exer':
-                    if (params.qid && params.qcid) {
+                    if (params.pid && params.qcid) {
                         this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
                     }
                     break;

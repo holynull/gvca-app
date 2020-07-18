@@ -12,7 +12,7 @@
     <div class="exam_success">
         <p class="icon_success"></p>
         <!-- <p>恭喜你，成功完成本次练习！</p> -->
-        <p>恭喜你，成功完成本次模考！</p>
+        <p>恭喜你，成功完成本次{{typeStr}}！</p>
         <!-- <p>恭喜你，成功完成本次考试！</p> -->
         <div class="exam_score clearfix">
             <div *ngIf="dataType!=='exer'">
@@ -20,7 +20,7 @@
                 <dd>当前得分</dd>
             </div>
             <em *ngIf="dataType!=='exer'"></em>
-            <div [ngStyle]="{width: dataType==='exer'?'100%':''}">
+            <div *ngIf="dataType!='exer'" [ngStyle]="{width: dataType==='exer'?'100%':''}">
                 <dt><i>{{ranking}}</i>/{{sumPeople}}</dt>
                 <dd>当前排名</dd>
             </div>
