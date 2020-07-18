@@ -49,10 +49,10 @@ export class CourseService {
     }
 
     loadCourse(type: number, pageInfo: PageInfo, callbak?: (state: CourseSelectStates) => any) {
-        if (pageInfo.curPageNum === 1) {
-            this.courses.splice(0, this.courses.length);
-        }
         this.api.getCourseList(type, pageInfo.curPageNum, pageInfo.pageSize).subscribe(res => {
+            if (pageInfo.curPageNum === 1) {
+                this.courses.splice(0, this.courses.length);
+            }
             if (res.code === 1) {
                 if (pageInfo.curPageNum === 1) {
                     this.courses.splice(0, this.courses.length);
