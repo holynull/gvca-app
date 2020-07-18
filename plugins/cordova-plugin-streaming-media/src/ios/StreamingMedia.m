@@ -240,10 +240,21 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     if(@available(iOS 11.0, *)) { [moviePlayer setEntersFullScreenWhenPlaybackBegins:YES]; }
     
     // present modally so we get a close button
-    [self.viewController presentViewController:moviePlayer animated:YES completion:^(void){
-        [moviePlayer.player play];
-    }];
-    
+//    [self.viewController presentViewController:moviePlayer animated:YES completion:^(void){
+//        [moviePlayer.player play];
+//    }];
+    if (moviePlayer) {
+
+
+        [self.viewController presentViewController:moviePlayer animated:YES completion:^{
+
+
+            [moviePlayer.player play];
+
+            [moviePlayer addObserver:self forKeyPath:@"view.frame" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial) context:nil];
+
+        }];
+    }
     // add audio image and background color
     if ([videoType isEqualToString:TYPE_AUDIO]) {
         if (imageView != nil) {
@@ -256,8 +267,39 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     
     // setup listners
     [self handleListeners];
+ 
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+
+
+    if ([keyPath isEqualToString:@"view.frame"]) {
+
+
+        CGRect newValue = [change[NSKeyValueChangeNewKey]CGRectValue];
+
+
+        CGFloat y = newValue.origin.y;
+
+
+        if (y == 0) {
+
+
+            NSLog(@"Video Closed");
+            //[mSyncSeekTimer invalidate];
+             CDVPluginResult* pluginResult;
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:endTimes];
+
+
+             [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+
+        }
+
+
+    }
+
+
+}
 - (void) handleListeners {
     
     // Listen for re-maximize
