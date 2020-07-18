@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { SimulationService } from 'app/services/simulation.service';
 
 @Component({
     selector: 'app-simu-tips',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class SimuTipsComponent implements OnInit {
 
 
-    constructor(private modalCtrl: ModalController, private router: Router) { }
+    constructor(private modalCtrl: ModalController, private router: Router,public simuSvr:SimulationService) { }
 
     ngOnInit() { }
 

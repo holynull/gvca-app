@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ExamService } from 'app/services/exam.service';
 
 @Component({
     selector: 'app-exam-tips',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ExamTipsComponent implements OnInit {
 
-    constructor(private modalCtrl: ModalController, private router: Router) { }
+    constructor(private modalCtrl: ModalController, private router: Router,public examSvr:ExamService) { }
 
     ngOnInit() { }
 

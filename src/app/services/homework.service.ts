@@ -48,6 +48,7 @@ export class HomeworkService {
                     hw.schoolId = e.schoolId;
                     hw.majorName = e.majorName;
                     hw.stuAnsPhoto = e.stuAnsPhoto;
+                    hw.checkResult = e.checkResult;
                     this.homeworks.push(hw);
                 });
             } else {
@@ -87,6 +88,7 @@ export class HomeworkService {
                     hw.schoolId = e.schoolId;
                     hw.majorName = e.majorName;
                     hw.stuAnsPhoto = e.stuAnsPhoto;
+                    hw.checkResult = e.checkResult;
                     this.completed.push(hw);
                 });
                 return true;

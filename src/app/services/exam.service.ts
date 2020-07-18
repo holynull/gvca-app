@@ -20,6 +20,8 @@ export class ExamService {
        */
     enabled: boolean = true;
 
+    disableMsg: string;
+
     testPapers: Array<TestPaper> = new Array();
 
     constructor(
@@ -87,6 +89,7 @@ export class ExamService {
             });
         } else if (res1.code === 2) {
             this.enabled = false;
+            this.disableMsg = res1.codeMsg;
         } else {
             console.error('获取模拟试题库出错', res1);
         }

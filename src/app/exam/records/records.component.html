@@ -27,11 +27,11 @@
                     <p>平均分</p>
                 </div> -->
                 <div>
-                    <h2>{{exerSvr.stateData.leftStr}}<i>%</i></h2>
+                    <h2>{{exerSvr.stateData.rightStr}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
-            <div class="exam_list exam_test">
+            <div class="exam_list exam_test" *ngIf="exerSvr.exercisCourses.length>0 else noData">
                 <ul>
                     <li *ngFor="let item of exerSvr.exercisCourses">
                         <div class="course">
@@ -67,11 +67,11 @@
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>{{simuSvr.stateData.leftStr}}<i>%</i></h2>
+                    <h2>{{simuSvr.stateData.rightStr}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
-            <div class="exam_sublist exam_test">
+            <div class="exam_sublist exam_test" *ngIf="simuSvr.testPapers.length>0 else noData">
                 <ul>
                     <li *ngFor="let item of simuSvr.testPapers"><i></i>{{item.examName}}<a
                             (click)="goToAnswer(item,'simu')"
@@ -91,11 +91,11 @@
                     <p>平均分</p>
                 </div>
                 <div>
-                    <h2>{{examSvr.stateData.leftStr}}<i>%</i></h2>
+                    <h2>{{examSvr.stateData.rightStr}}<i>%</i></h2>
                     <p>正确率</p>
                 </div>
             </div>
-            <div class="exam_sublist exam_test">
+            <div class="exam_sublist exam_test" *ngIf="examSvr.testPapers.length>0 else noData">
                 <ul>
                     <li *ngFor="let item of examSvr.testPapers"><i></i>{{item.examName}}<a
                             (click)="goToAnswer(item,'exam')"
@@ -104,4 +104,9 @@
             </div>
         </div>
     </div>
+    <ng-template #noData>
+        <div class="noData">
+            <img src="assets/images/nothing.png">
+        </div>
+    </ng-template>
 </ion-content>

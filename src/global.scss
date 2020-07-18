@@ -55,7 +55,7 @@ ion-content {
 ul {
     list-style: none;
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
 a:link,
@@ -180,3 +180,13 @@ input[type=checkbox]:checked:after {
 }
 
 @import 'assets/videogular2/fonts/videogular.css';
+
+.noData {
+    display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    // width: 240px;
+    height: 180px;
+}
