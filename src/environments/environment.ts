@@ -15,7 +15,7 @@ export const environment = {
         default: {
             timeoutMs: 2000, // 接口超时时间
             retryTimes: 2, // 接口重试次数，不包含第一次
-            debug: true, // 调试状态，将显示错误信息
+            debug: false, // 调试状态，将显示错误信息
         },
         example: {
             timeoutMs: 2000, // 接口超时时间
