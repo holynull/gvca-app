@@ -4,6 +4,7 @@ import { Question } from 'app/model/question';
 import { ExercisesService } from 'app/services/exercises.service';
 import { SimulationService } from 'app/services/simulation.service';
 import { ExamService } from 'app/services/exam.service';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
     selector: 'app-score',
@@ -28,13 +29,14 @@ export class ScoreComponent implements OnInit {
 
     ranking: string;
 
-    typeStr:string;
+    typeStr: string;
 
     constructor(
         private activeRoute: ActivatedRoute,
         public exerSvr: ExercisesService,
         public simuSvr: SimulationService,
         public examSvr: ExamService,
+        public auth: AuthService,
     ) {
         this.activeRoute.queryParams.subscribe(params => {
             this.title = params.title;
@@ -47,15 +49,15 @@ export class ScoreComponent implements OnInit {
             switch (this.dataType) {
                 case 'exer':
                     this.questions = exerSvr.getQuestions(Number(this.pid), Number(this.qcid));
-                    this.typeStr='练习'
+                    this.typeStr = '练习'
                     break;
                 case 'simu':
                     this.questions = this.simuSvr.getQuestionsById(Number(this.examId));
-                    this.typeStr='模考';
+                    this.typeStr = '模考';
                     break;
                 case 'exam':
                     this.questions = this.examSvr.getQuestionsById(Number(this.examId));
-                    this.typeStr='考试';
+                    this.typeStr = '考试';
                     break;
             }
         });

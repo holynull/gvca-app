@@ -27,4 +27,6 @@ export class UserInfo {
     majorName: string;
     studentNum: string;
     photo: string;
+    isScore:number; // 1允许查看成绩    2不允许
+    isSort:number; // 1允许查看排名    2不允许
 }

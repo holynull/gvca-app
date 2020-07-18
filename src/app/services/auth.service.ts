@@ -76,6 +76,8 @@ export class AuthService extends BaseService {
                 this.userInfo.majorName = studentInfo.majorName;
                 this.userInfo.studentNum = studentInfo.studentNum;
                 this.userInfo.photo = studentInfo.photo;
+                this.userInfo.isScore = Number(studentInfo.isScore);
+                this.userInfo.isSort = Number(studentInfo.isSort);
             }
         });
     }
@@ -154,6 +156,8 @@ export class AuthService extends BaseService {
                     this.userInfo.majorName = res.studentInfo.majorName;
                     this.userInfo.studentNum = res.studentInfo.studentNum;
                     this.userInfo.photo = res.studentInfo.photo;
+                    this.userInfo.isScore = Number(res.studentInfo.isScore);
+                    this.userInfo.isSort = Number(res.studentInfo.isSort);
                     this.storage.set(ConstVal.USER_INFO, this.userInfo).then();
                     this.boot.initData();
                     return { code: 1, msg: '登录成功' };
