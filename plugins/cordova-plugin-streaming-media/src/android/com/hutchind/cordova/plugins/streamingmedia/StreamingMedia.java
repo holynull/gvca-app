@@ -1,6 +1,7 @@
 package com.hutchind.cordova.plugins.streamingmedia;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -94,15 +95,18 @@ public class StreamingMedia extends CordovaPlugin {
 		Log.v(TAG, "onActivityResult: " + requestCode + " " + resultCode);
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (ACTIVITY_CODE_PLAY_MEDIA == requestCode) {
-			if (Activity.RESULT_OK == resultCode) {
-				this.callbackContext.success();
-			} else if (Activity.RESULT_CANCELED == resultCode) {
-				String errMsg = "Error";
-				if (intent != null && intent.hasExtra("message")) {
-					errMsg = intent.getStringExtra("message");
-				}
-				this.callbackContext.error(errMsg);
-			}
+			SharedPreferences sp = cordova.getActivity().getSharedPreferences("infoTimes", this.cordova.getActivity().MODE_PRIVATE);
+			String MsgInfo = sp.getString("data", "");
+			this.callbackContext.success(MsgInfo);
+//			if (Activity.RESULT_OK == resultCode) {
+//				this.callbackContext.success();
+//			} else if (Activity.RESULT_CANCELED == resultCode) {
+//				String errMsg = "Error";
+//				if (intent != null && intent.hasExtra("message")) {
+//					errMsg = intent.getStringExtra("message");
+//				}
+//				this.callbackContext.error(errMsg);
+//			}
 		}
 	}
 }

@@ -27,6 +27,8 @@
     NSString *videoType;
     AVPlayer *movie;
     BOOL controls;
+    NSTimer   *mSyncSeekTimer;
+    NSString *endTimes;
 }
 
 NSString * const TYPE_VIDEO = @"VIDEO";
@@ -222,7 +224,19 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     [moviePlayer setPlayer:movie];
     [moviePlayer setShowsPlaybackControls:controls];
     [moviePlayer setUpdatesNowPlayingInfoCenter:YES];
-    
+   mSyncSeekTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+
+
+                                                      target:self
+
+
+                                                    selector:@selector(syncUIStatus)
+
+
+                                                    userInfo:nil
+
+
+                                                     repeats:YES]; 
     if(@available(iOS 11.0, *)) { [moviePlayer setEntersFullScreenWhenPlaybackBegins:YES]; }
     
     // present modally so we get a close button
@@ -346,31 +360,136 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
     }
 }
 
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
-    NSLog(@"Playback did finish with auto close being %d, and error message being %@", shouldAutoClose, notification.userInfo);
-    NSDictionary *notificationUserInfo = [notification userInfo];
-    NSNumber *errorValue = [notificationUserInfo objectForKey:AVPlayerItemFailedToPlayToEndTimeErrorKey];
-    NSString *errorMsg;
-    if (errorValue) {
-        NSError *mediaPlayerError = [notificationUserInfo objectForKey:@"error"];
-        if (mediaPlayerError) {
-            errorMsg = [mediaPlayerError localizedDescription];
-        } else {
-            errorMsg = @"Unknown error.";
-        }
-        NSLog(@"Playback failed: %@", errorMsg);
-    }
+// - (void) moviePlayBackDidFinish:(NSNotification*)notification {
+//     NSLog(@"Playback did finish with auto close being %d, and error message being %@", shouldAutoClose, notification.userInfo);
+//     NSDictionary *notificationUserInfo = [notification userInfo];
+//     NSNumber *errorValue = [notificationUserInfo objectForKey:AVPlayerItemFailedToPlayToEndTimeErrorKey];
+//     NSString *errorMsg;
+//     if (errorValue) {
+//         NSError *mediaPlayerError = [notificationUserInfo objectForKey:@"error"];
+//         if (mediaPlayerError) {
+//             errorMsg = [mediaPlayerError localizedDescription];
+//         } else {
+//             errorMsg = @"Unknown error.";
+//         }
+//         NSLog(@"Playback failed: %@", errorMsg);
+//     }
     
-    if (shouldAutoClose || [errorMsg length] != 0) {
-        [self cleanup];
-        CDVPluginResult* pluginResult;
-        if ([errorMsg length] != 0) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:errorMsg];
-        } else {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
-        }
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
-    }
+//     if (shouldAutoClose || [errorMsg length] != 0) {
+//         [self cleanup];
+//         CDVPluginResult* pluginResult;
+//         if ([errorMsg length] != 0) {
+//             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:errorMsg];
+//         } else {
+//             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:true];
+//         }
+//         [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+//     }
+// }
+
+
+-(void)syncUIStatus
+{
+
+    
+    CMTime curt = [[moviePlayer player] currentTime];
+    float currentT = CMTimeGetSeconds(curt);
+    
+    CMTime duration =[[moviePlayer player] currentItem].asset.duration;
+    
+    float totalT = CMTimeGetSeconds(duration);
+
+    NSUInteger seconds = (NSUInteger)round(currentT);
+
+
+    NSUInteger tt = (NSUInteger)round(totalT);
+
+
+    endTimes = [NSString stringWithFormat:@"%lu,%lu",(unsigned long)seconds,(unsigned long)tt];
+
+
+}
+
+
+
+
+
+
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+
+
+ NSDictionary *notificationUserInfo = [notification userInfo];
+
+
+ NSNumber *resultValue = [notificationUserInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+
+
+ MPMovieFinishReason reason = [resultValue intValue];
+
+
+ NSString *errorMsg;
+
+
+ if (reason == MPMovieFinishReasonPlaybackError) {
+
+
+  NSError *mediaPlayerError = [notificationUserInfo objectForKey:@"error"];
+
+
+  if (mediaPlayerError) {
+
+
+   errorMsg = [mediaPlayerError localizedDescription];
+
+
+  } else {
+
+
+   errorMsg = @"Unknown error.";
+
+
+  }
+
+
+  NSLog(@"Playback failed: %@", errorMsg);
+
+
+ }
+
+
+    [mSyncSeekTimer invalidate];
+
+
+ if (shouldAutoClose || [errorMsg length] != 0) {
+
+
+  //[self cleanup];
+
+
+  CDVPluginResult* pluginResult;
+
+
+  if ([errorMsg length] != 0) {
+
+
+   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:errorMsg];
+
+
+  } else {
+
+
+   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:endTimes];
+
+
+  }
+
+
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+
+
+ }
+
+
 }
 
 

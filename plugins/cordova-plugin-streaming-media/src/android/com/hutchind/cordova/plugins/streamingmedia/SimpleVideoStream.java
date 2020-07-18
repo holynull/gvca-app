@@ -1,6 +1,7 @@
 package com.hutchind.cordova.plugins.streamingmedia;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -125,6 +126,13 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener {
 
 	private void pause() {
 		Log.d(TAG, "Pausing video.");
+		int pos = mMediaPlayer.getCurrentPosition()/1000;
+		SharedPreferences sp = this.getSharedPreferences("infoTimes", this.MODE_PRIVATE);
+		//获取sp编辑器
+		SharedPreferences.Editor edit = sp.edit();
+		String strinfo = pos+","+mMediaPlayer.getDuration()/1000;
+		edit.putString("data", strinfo);
+		edit.commit();
 		mVideoView.pause();
 	}
 

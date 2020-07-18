@@ -174,5 +174,15 @@ export class DownloadTask {
         //     }
         // }));
     }
-
+    getLearnState() {
+            let r = 0;
+            if (this.videosize && this.lessonLength && this.videosize !== 0) {
+                r = Math.floor(this.lessonLength / this.videosize * 100);
+            }
+            if (r === 0) {
+                return '未观看'
+            } else {
+                return '观看至' + r + '%';
+            }
+    }
 }

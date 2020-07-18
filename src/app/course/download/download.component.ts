@@ -74,9 +74,6 @@ export class DownloadComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.courseDownloadSvr.tasks.forEach(t => {
-            this.getLearnState(t);
-        })
     }
 
     changeEditStatus() {
@@ -127,24 +124,31 @@ export class DownloadComponent implements OnInit {
     }
 
     playVideo(task: DownloadTask) {
-        console.log(task);
-        let url = task.nativeUrl;
-        console.log(url);
-        let options: StreamingVideoOptions = {
-            successCallback: () => {
-                console.log('Video played');
-            },
-            errorCallback: (e) => {
-                console.log(e, {});
-            },
-            orientation: 'landscape',
-            shouldAutoClose: true,
-            controls: true,
-        };
-        // todo: 本地播放，无法实现上传播放时长
-        this.media.playVideo(url, options);
-        // let url = this.webview.convertFileSrc(task.nativeUrl);
-        // this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
+        if (!this.editable) {
+            console.log(task);
+            let url = task.nativeUrl;
+            console.log(url);
+            let options: StreamingVideoOptions = {
+                successCallback: (data) => {
+                    console.log('Video played');
+                    if (data) {
+                        let d: string[] = data.split(',');
+                        task.videosize = Number(d[1]);
+                        task.lessonLength = Number(d[0]);
+                    }
+                },
+                errorCallback: (e) => {
+                    console.log(e, {});
+                },
+                orientation: 'landscape',
+                shouldAutoClose: true,
+                controls: true,
+            };
+            // todo: 本地播放，无法实现上传播放时长
+            this.media.playVideo(url, options);
+            // let url = this.webview.convertFileSrc(task.nativeUrl);
+            // this.router.navigate(['/course/play-lesson'], { queryParams: { url: url, courseId: task.courseId, lessonId: task.lessonId } });
+        }
     }
 
     reDownload(item: DownloadTask) {
@@ -163,18 +167,4 @@ export class DownloadComponent implements OnInit {
         this.timer.unsubscribe();
     }
 
-    async getLearnState(item: DownloadTask) {
-        let lesson: Lesson = await this.courseSvr.getLessonById(item.courseId, item.lessonId);
-        if (lesson) {
-            let r = 0;
-            if (lesson.videosize && lesson.lessonLength && lesson.videosize !== 0) {
-                r = Math.floor(lesson.lessonLength / lesson.videosize * 100);
-            }
-            if (r === 0) {
-                item.lessonState = '未观看'
-            } else {
-                item.lessonState = '观看至' + r + '%';
-            }
-        }
-    }
 }
