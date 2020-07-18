@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'app/services/course.service';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { CourseDownloadService } from 'app/services/course-download.service';
 
 @Component({
     selector: 'app-course-records',
@@ -15,6 +16,7 @@ export class RecordsComponent implements OnInit {
     constructor(
         public courseSvr: CourseService,
         private media: StreamingMedia,
+        public courseDownloadSvr: CourseDownloadService,
     ) { }
 
     ngOnInit() { }
@@ -32,6 +34,8 @@ export class RecordsComponent implements OnInit {
     }
 
     getLongStr(l: number) {
+        l = l ? l : 0;
+        l = Math.floor(l);
         if (l < 60) {
             return l + '秒';
         }

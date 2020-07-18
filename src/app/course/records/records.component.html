@@ -7,7 +7,7 @@
         </ion-buttons>
         <ion-title>听课记录</ion-title>
         <ion-buttons slot="end">
-            <ion-button class="btn-edit" (click)="changeEditStatus()">{{!editable?'编辑':'取消'}}</ion-button>
+            <!-- <ion-button class="btn-edit" (click)="changeEditStatus()">{{!editable?'编辑':'取消'}}</ion-button> -->
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -18,9 +18,9 @@
     </div>
     <div class="panels">
         <div class="panel1" [hidden]="curTab!==1">
-            <ng-container *ngIf="(courseSvr.records | lessonRecordType:1).length>0 else noData">
-                <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
-                    *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
+            <ng-container *ngIf="(courseDownloadSvr.tasks | downloadTasks:[1]).length>0 else noData">
+                <div (click)="play(item.nativeUrl)" class="list_item down_item clearfix"
+                    *ngFor="let item of (courseDownloadSvr.tasks | downloadTasks:[1])">
                     <div class="cb" [hidden]="!editable">
                         <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
                     </div>

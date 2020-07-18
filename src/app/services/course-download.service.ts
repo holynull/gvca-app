@@ -55,6 +55,10 @@ export class CourseDownloadService extends BaseService {
                     if (d.courseId) {
                         task.courseId = d.courseId;
                     }
+                    task.lessonState = d.lessonState; // 下载页面显示用户观看状态
+                    task.lessonName = d.lessonName;
+                    task.lessonLength = d.lessonLength;
+                    task.videosize = d.videosize;
                     this.tasks.push(task);
                 });
             }
@@ -96,8 +100,8 @@ export class CourseDownloadService extends BaseService {
             task.api = this.api;
             task.lessonId = lesson.lessonId;
             task.lessonName = lesson.lessonName;
-            task.lessonLength=lesson.lessonLength;
-            task.videosize=lesson.videosize;
+            task.lessonLength = lesson.lessonLength;
+            task.videosize = lesson.videosize;
             task.courseId = lesson.courseId;
             this.tasks.push(task);
             this.updateStorage();
@@ -125,8 +129,8 @@ export class CourseDownloadService extends BaseService {
                 lessonId: e.lessonId,
                 courseId: e.courseId,
                 lessonName: e.lessonName,
-                lessonLength:e.lessonLength,
-                videosize:e.videosize,
+                lessonLength: e.lessonLength,
+                videosize: e.videosize,
             });
         });
         this.storage.set(ConstVal.DOWNLOAD_TASKS, arr).then();
