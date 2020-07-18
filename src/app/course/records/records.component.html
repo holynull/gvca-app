@@ -17,43 +17,47 @@
         <a (click)="changeTab(2)" [ngClass]="{active: curTab===2}">在线记录<i></i></a>
     </div>
     <div class="panels">
-        <div class="panel1" [hidden]="curTab!==1" *ngIf="(courseSvr.records | lessonRecordType:1).length>0 else noData">
-            <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
-                *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
-                <div class="cb" [hidden]="!editable">
-                    <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
-                </div>
-                <div class="lesson_mask">
-                    <!-- todo：接口里没有图 -->
-                    <img src="assets/images/course_pic.jpg" alt="">
-                    <a href="javascript:;" class="icon_play"></a>
-                </div>
-                <div>
-                    <h3>{{item.lessonName}}</h3>
+        <div class="panel1" [hidden]="curTab!==1">
+            <ng-container *ngIf="(courseSvr.records | lessonRecordType:1).length>0 else noData">
+                <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
+                    *ngFor="let item of (courseSvr.records | lessonRecordType:1)">
+                    <div class="cb" [hidden]="!editable">
+                        <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
+                    </div>
+                    <div class="lesson_mask">
+                        <!-- todo：接口里没有图 -->
+                        <img src="assets/images/course_pic.jpg" alt="">
+                        <a href="javascript:;" class="icon_play"></a>
+                    </div>
                     <div>
-                        <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
+                        <h3>{{item.lessonName}}</h3>
+                        <div>
+                            <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
-        <div class="panel1" [hidden]="curTab!==2" *ngIf="(courseSvr.records | lessonRecordType:2).length>0 else noData">
-            <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
-                *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
-                <div class="cb" [hidden]="!editable">
-                    <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
-                </div>
-                <div class="lesson_mask">
-                    <!-- todo：接口里没有图 -->
-                    <img src="assets/images/course_pic.jpg" alt="">
-                    <a href="javascript:;" class="icon_play"></a>
-                </div>
-                <div>
-                    <h3>{{item.lessonName}}</h3>
+        <div class="panel1" [hidden]="curTab!==2">
+            <ng-container *ngIf="(courseSvr.records | lessonRecordType:2).length>0 else noData">
+                <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
+                    *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
+                    <div class="cb" [hidden]="!editable">
+                        <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
+                    </div>
+                    <div class="lesson_mask">
+                        <!-- todo：接口里没有图 -->
+                        <img src="assets/images/course_pic.jpg" alt="">
+                        <a href="javascript:;" class="icon_play"></a>
+                    </div>
                     <div>
-                        <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
+                        <h3>{{item.lessonName}}</h3>
+                        <div>
+                            <span class="fl"><i></i>已观看至：{{getLongStr(item.lessonLength)}}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
     </div>
     <ng-template #noData>

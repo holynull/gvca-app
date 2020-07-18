@@ -10,10 +10,8 @@
 </ion-header>
 <ion-content>
     <div class="deownload_menu notice_menu">
-        <div>
-            <a *ngFor="let item of noticeSvr.noticeCats" (click)="changeTab(item.noticeCatId,item.name)"
-                [ngClass]="{active: curTab===item.noticeCatId}">{{item.name}}<i></i></a>
-        </div>
+        <a *ngFor="let item of noticeSvr.noticeCats" (click)="changeTab(item.noticeCatId,item.name)"
+            [ngClass]="{active: curTab===item.noticeCatId}">{{item.name}}<i></i></a>
     </div>
     <div class="panels">
         <div class="panel1" *ngFor="let item of noticeSvr.noticeCats" [hidden]="curTab!==item.noticeCatId">
