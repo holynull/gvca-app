@@ -12,31 +12,41 @@
     </div>
     <div class="panels">
         <div class="panel1" *ngIf="selectState===0; else need">
-            <div class="list_item clearfix" *ngFor="let item of courseSvr.courses">
-                <img [src]="item.photo?item.photo:'assets/images/course_pic.jpg'|safeUrl" alt="">
-                <div>
-                    <h3>{{item.courseName}}</h3>
-                    <p>{{item.teacherName}}</p>
-                    <a (click)="goToDetail(item.courseId,curTab)" routerDirection="forward" class="btn_study">进入学习</a>
+            <ng-container *ngIf="courseSvr.courses.length>0 else noData">
+                <div class="list_item clearfix" *ngFor="let item of courseSvr.courses">
+                    <img [src]="item.photo?item.photo:'assets/images/course_pic.jpg'|safeUrl" alt="">
+                    <div>
+                        <h3>{{item.courseName}}</h3>
+                        <p>{{item.teacherName}}</p>
+                        <a (click)="goToDetail(item.courseId,curTab)" routerDirection="forward"
+                            class="btn_study">进入学习</a>
+                    </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
         <ng-template #need>
             <div class="panel3">
-                <div class="xx_choose">
-                    <form action="">
-                        <ul>
-                            <li *ngFor="let item of courseSvr.courses;let i=index"><input type="checkbox"
-                                    [(ngModel)]="item.checked" id="c_{{i}}"><label
-                                    for="c_{{i}}">{{item.courseName}}</label></li>
-                        </ul>
-                        <p class="tip_txt">请在以上选修课中任意选择四个课程</p>
-                        <a href="javascript:;" class="btn_submit" (click)="confirm()">确定</a>
-                    </form>
-                </div>
+                <ng-template *ngIf="courseSvr.courses.length>0 else noData">
+                    <div class="xx_choose">
+                        <form action="">
+                            <ul>
+                                <li *ngFor="let item of courseSvr.courses;let i=index"><input type="checkbox"
+                                        [(ngModel)]="item.checked" id="c_{{i}}"><label
+                                        for="c_{{i}}">{{item.courseName}}</label></li>
+                            </ul>
+                            <p class="tip_txt">请在以上选修课中任意选择四个课程</p>
+                            <a href="javascript:;" class="btn_submit" (click)="confirm()">确定</a>
+                        </form>
+                    </div>
+                </ng-template>
             </div>
         </ng-template>
     </div>
+    <ng-template #noData>
+        <div style="text-align: center;">
+            <img src="assets/images/nothing.png">
+        </div>
+    </ng-template>
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading...">
         </ion-infinite-scroll-content>
