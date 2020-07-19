@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { ApiInterceptor } from './services/api.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 
@@ -51,6 +52,7 @@ import { BrowserTab } from '@ionic-native/browser-tab/ngx';
         Camera,
         WebView,
         BrowserTab,
+        InAppBrowser,
     ],
     bootstrap: [AppComponent]
 })

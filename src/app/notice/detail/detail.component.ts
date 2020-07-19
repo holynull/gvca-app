@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Notice } from 'app/model/notice';
 import { NoticeService } from 'app/services/notice.service';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
     selector: 'app-detail',
@@ -25,6 +26,7 @@ export class DetailComponent implements OnInit {
         private activedRoute: ActivatedRoute,
         private noticeSvr: NoticeService,
         private browserTab: BrowserTab,
+        private inAppBrowser: InAppBrowser,
     ) {
         this.activedRoute.queryParams.subscribe(params => {
             if (params.url) {
@@ -60,6 +62,7 @@ export class DetailComponent implements OnInit {
                     this.browserTab.openUrl(item.dataUrl);
                 } else {
                     console.error('Browser Tab is not available.');
+                    this.inAppBrowser.create(item.dataUrl,'_system');
                 }
             });
     }

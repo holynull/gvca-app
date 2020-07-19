@@ -5,6 +5,7 @@ import { MyWorkComponent } from '../my-work/my-work.component';
 import { HomeworkService } from 'app/services/homework.service';
 import { PageInfo } from 'app/model/pageInfo';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
     selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
         private modalCtrl: ModalController,
         public homeworkSvr: HomeworkService,
         private browserTab: BrowserTab,
+        private inAppBrowser: InAppBrowser,
     ) {
 
     }
@@ -68,6 +70,7 @@ export class HomeComponent implements OnInit {
                 if (isAvailable) {
                     this.browserTab.openUrl(item.dataUrl);
                 } else {
+                    this.inAppBrowser.create(item.dataUrl, '_system');
                     console.error('Browser Tab is not available.');
                 }
             });

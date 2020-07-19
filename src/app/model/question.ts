@@ -52,7 +52,7 @@ export class Question {
      */
     getQuestionScore(): number {
         if (this.getState() === QuestionState.RIGHT) {
-            return this.score;
+            return Number(this.score);
         } else {
             return 0;
         }
