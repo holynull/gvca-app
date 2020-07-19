@@ -4,6 +4,7 @@ import { UploadComponent } from '../upload/upload.component';
 import { MyWorkComponent } from '../my-work/my-work.component';
 import { HomeworkService } from 'app/services/homework.service';
 import { PageInfo } from 'app/model/pageInfo';
+import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 
 @Component({
     selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
     constructor(
         private modalCtrl: ModalController,
         public homeworkSvr: HomeworkService,
+        private browserTab: BrowserTab,
     ) {
 
     }
@@ -58,5 +60,16 @@ export class HomeComponent implements OnInit {
         this.homeworkSvr.getHomeWorks(this.pageInfo, () => {
             event.target.complete();
         });
+    }
+
+    openAttachFile(item) {
+        this.browserTab.isAvailable()
+            .then(isAvailable => {
+                if (isAvailable) {
+                    this.browserTab.openUrl(item.dataUrl);
+                } else {
+                    console.error('Browser Tab is not available.');
+                }
+            });
     }
 }

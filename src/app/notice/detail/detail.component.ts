@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Notice } from 'app/model/notice';
 import { NoticeService } from 'app/services/notice.service';
+import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 
 @Component({
     selector: 'app-detail',
@@ -23,6 +24,7 @@ export class DetailComponent implements OnInit {
     constructor(
         private activedRoute: ActivatedRoute,
         private noticeSvr: NoticeService,
+        private browserTab: BrowserTab,
     ) {
         this.activedRoute.queryParams.subscribe(params => {
             if (params.url) {
@@ -51,4 +53,14 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() { }
 
+    openAttachFile(item) {
+        this.browserTab.isAvailable()
+            .then(isAvailable => {
+                if (isAvailable) {
+                    this.browserTab.openUrl(item.dataUrl);
+                } else {
+                    console.error('Browser Tab is not available.');
+                }
+            });
+    }
 }

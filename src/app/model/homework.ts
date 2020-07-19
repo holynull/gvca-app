@@ -23,7 +23,7 @@ export class Homework {
     schoolId: number;
     majorName: string;
     stuAnsPhoto: string;
-    checkResult:string;
+    checkResult: string;
 
     workTimeToStr(): string {
         return (this.workTime.getMonth() + 1) + '月' + (this.workTime.getDate()) + '日';
@@ -45,6 +45,34 @@ export class Homework {
                 return '星期五';
             case 6:
                 return '星期六';
+        }
+    }
+
+    getAttachFileName() {
+        return this.dataUrl.substring(this.dataUrl.lastIndexOf('/') + 1);
+    }
+
+    getAttachFileTypeCss() {
+        let extname = this.getAttachFileName().substring(this.getAttachFileName().lastIndexOf('.') + 1).toLowerCase();
+        switch (extname) {
+            case 'pdf':
+                return 'file_pdf';
+            case 'ppt':
+                return 'file_ppt';
+            case 'pptx':
+                return 'file_ppt';
+            case 'doc':
+                return 'file_word';
+            case 'docx':
+                return 'file_word';
+            case 'zip':
+                return 'file_zip';
+            case 'rar':
+                return 'file_rar';
+            case 'swf':
+                return 'file_fla';
+            default:
+                return '';
         }
     }
 }

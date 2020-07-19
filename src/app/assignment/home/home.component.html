@@ -20,6 +20,7 @@
                 <div [innerHtml]="item.homeworkDetail|safeHtml">
 
                 </div>
+                <p class="attach-file" *ngIf="item.dataUrl"><a class="{{item.getAttachFileTypeCss()}}" (click)="openAttachFile(item)">{{item.getAttachFileName()}}</a></p>
             </div>
         </div>
     </div>

@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiInterceptor } from './services/api.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 
 
 
@@ -49,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ImagePicker,
         Camera,
         WebView,
+        BrowserTab,
     ],
     bootstrap: [AppComponent]
 })

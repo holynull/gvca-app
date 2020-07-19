@@ -16,5 +16,9 @@
         <div class="notice_detail" [innerHtml]="notice.content | safeHtml">
 
         </div>
+        <div class="attach-file" *ngIf="notice.dataUrl">
+            <a class="{{notice.getAttachFileTypeCss()}}"
+                (click)="openAttachFile(notice)">{{notice.getAttachFileName()}}</a>
+        </div>
     </div>
 </ion-content>

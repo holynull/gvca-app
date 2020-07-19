@@ -190,3 +190,43 @@ input[type=checkbox]:checked:after {
     // width: 240px;
     height: 100%;
 }
+
+
+
+.attach-file :first-child {
+    color: #0d6db9;
+    font-size: .7rem;
+    height: 2.2rem;
+    /*line-height: 2.1rem;
+    overflow: hidden;
+    font-weight: bold;*/
+    padding-left: 1.8rem;
+    margin-bottom: 0.6rem;
+    margin-top: 0;
+    text-decoration: underline;
+}
+
+.attach-file :first-child.file_pdf {
+    background: url(assets/images/icon_pdf.png) no-repeat 0 center;
+    background-size: 1.2rem;
+}
+
+.attach-file :first-child.file_ppt {
+    background: url(assets/images/icon_ppt.png) no-repeat 0 center;
+    background-size: 1.2rem;
+}
+
+.attach-file :first-child.file_word {
+    background: url(assets/images/icon_word.png) no-repeat 0 center;
+    background-size: 1.2rem;
+}
+
+.attach-file :first-child.file_zip {
+    background: url(assets/images/icon_zip.png) no-repeat 0 center;
+    background-size: 1.2rem;
+}
+
+.attach-file :first-child.file_fla {
+    background: url(assets/images/icon_fla.png) no-repeat 0 center;
+    background-size: 1.2rem;
+}
