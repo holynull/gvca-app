@@ -7,6 +7,7 @@ import { ApiService } from './api.service';
 import { Storage } from '@ionic/storage';
 import { ConstVal } from 'app/constVal';
 import { retry } from 'rxjs/operators';
+import { SimulationService } from './simulation.service';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,7 @@ export class ExercisesService {
     constructor(
         private api: ApiService,
         private storage: Storage,
+        private simuSvr:SimulationService,
     ) { }
 
     public async loadData() {
@@ -158,6 +160,7 @@ export class ExercisesService {
         return this.api.insertStuLxQuestion(JSON.stringify(json), String(pid), String(qcid)).toPromise().then(res => {
             if (res.code === 1) {
                 this.loadData().then();
+                this.simuSvr.loadData().then();
             } else {
                 console.error('提交练习试卷出错', res);
             }

@@ -5,6 +5,7 @@ import { Question } from 'app/model/question';
 import { QuestionOption } from 'app/model/que-option';
 import { Storage } from '@ionic/storage';
 import { ConstVal } from 'app/constVal';
+import { ExamService } from './exam.service';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,7 @@ export class SimulationService {
     constructor(
         private api: ApiService,
         private storage: Storage,
+        private examSvr: ExamService,
     ) {
 
     }
@@ -146,10 +148,11 @@ export class SimulationService {
         return this.api.insertStuQuestion(JSON.stringify(json), String(examId)).toPromise().then(res => {
             if (res.code === 1) {
                 this.loadData().then();
+                this.examSvr.loadData().then();
                 return res;
             } else {
-                return res;
                 console.error('提交模拟试卷出错', res);
+                return res;
             }
         });
     }

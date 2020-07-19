@@ -136,6 +136,7 @@ export class DownloadComponent implements OnInit {
                         let d: string[] = data.split(',');
                         task.videosize = Number(d[1]);
                         task.lessonLength = Number(d[0]);
+                        this.courseDownloadSvr.updateStorage();
                     }
                 },
                 errorCallback: (e) => {
