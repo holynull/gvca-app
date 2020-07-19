@@ -9,6 +9,7 @@ import { SimulationService } from './simulation.service';
 import { ExamService } from './exam.service';
 import { AttendService } from './attend.service';
 import { HomeworkService } from './homework.service';
+import { CourseInfo } from 'app/model/course-info';
 
 @Injectable({
     providedIn: 'root'
@@ -46,5 +47,38 @@ export class BootService {
             this.simuSvr.getStateData().then();
             this.examSvr.getStateData().then();
         });
+    }
+
+    clearData(){
+        this.advSrv.advs=new Array();
+        this.noticeSvr.noticeCats=new Array();
+        this.courseSvr.courseCats=new Array();
+        this.courseSvr.courses=new Array();
+        this.courseSvr.info=new CourseInfo();
+        this.courseSvr.records=new Array();
+        this.courseDownloadSvr.tasks=new Array();
+        this.exerSvr.exercisCourses=new Array();
+        this.exerSvr.stateData={
+            rightStr: '',
+            leftStr: ' / ',
+            middleStr: '',
+        };
+        this.simuSvr.disableMsg='';
+        this.simuSvr.enabled=true;
+        this.simuSvr.randomTestPaper=new Array();
+        this.simuSvr.stateData={
+            rightStr: '',
+            leftStr: ' / ',
+            middleStr: '',
+        };
+        this.examSvr.testPapers=new Array();
+        this.examSvr.disableMsg='';
+        this.examSvr.enabled=true;
+        this.examSvr.stateData={
+            rightStr: '',
+            leftStr: ' / ',
+            middleStr: '',
+        };
+        this.examSvr.testPapers=new Array();
     }
 }

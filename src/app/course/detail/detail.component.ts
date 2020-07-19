@@ -1,17 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { AlertController } from '@ionic/angular';
 import { Course } from 'app/model/course';
+import { DownloadTask } from 'app/model/download-task';
 import { Lesson } from 'app/model/lesson';
 import { PageInfo } from 'app/model/pageInfo';
 import { CourseDownloadService } from 'app/services/course-download.service';
 import { CourseService } from 'app/services/course.service';
 import { BitrateOption, VgAPI, VgMedia } from 'videogular2/compiled/core';
-import { AlertController } from '@ionic/angular';
-import { interval } from 'rxjs';
-import { last } from 'rxjs/operators';
-import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
-import { DownloadTask } from 'app/model/download-task';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @Component({
     selector: 'app-detail',
@@ -25,6 +23,7 @@ export class DetailComponent implements OnInit {
     tab: number;
 
     course: Course = new Course();
+
 
     @ViewChild('myMedia', {})
     myMedia: VgMedia;
@@ -111,6 +110,7 @@ export class DetailComponent implements OnInit {
     }
 
     ionViewDidLeave() {
+        this.vgApi.getDefaultMedia().pause();
         this.course = null;
     }
 

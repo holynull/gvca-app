@@ -110,15 +110,16 @@ export class AuthService extends BaseService {
 
 
     public logout() {
-        this.logoutClear();
-        this.router.navigate(['/login']);
+        this.logoutClear().then(res => {
+            this.router.navigate(['/login']);
+        });
     }
 
-    public logoutClear() {
-        this.storage.remove(ConstVal.ACCESS_TOKEN).then();
+    public logoutClear(): Promise<any> {
         localStorage.removeItem(ConstVal.ACCESS_TOKEN);
-        this.storage.remove(ConstVal.USER_INFO).then();
         this.isAuthenticatedStatus = false;
+        this.boot.clearData();
+        return this.storage.clear().then();
     }
 
     public login(userName: string, password: string): Observable<any> {
