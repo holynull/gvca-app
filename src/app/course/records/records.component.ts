@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'app/services/course.service';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 import { CourseDownloadService } from 'app/services/course-download.service';
+import { Lesson } from 'app/model/lesson';
 
 @Component({
     selector: 'app-course-records',
@@ -49,7 +50,7 @@ export class RecordsComponent implements OnInit {
         return str;
     }
 
-    play(videoUrl: string) {
+    play(item:any) {
         if (!this.editable) {
             let options: StreamingVideoOptions = {
                 successCallback: () => {
@@ -62,8 +63,10 @@ export class RecordsComponent implements OnInit {
                 shouldAutoClose: true,
                 controls: true,
             };
+            // 已观看时长 item.lessonLength 在线离线都有这个字段
             // todo: 本地播放，无法实现上传播放时长
-            this.media.playVideo(videoUrl, options);
+            let url=item.nativeUrl?item.nativeUrl:item.videoUrl;
+            this.media.playVideo(url, options);
         }
     }
 

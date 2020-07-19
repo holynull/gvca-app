@@ -19,7 +19,7 @@
     <div class="panels">
         <div class="panel1" [hidden]="curTab!==1">
             <ng-container *ngIf="(courseDownloadSvr.tasks | downloadTasks:[1]).length>0 else noData">
-                <div (click)="play(item.nativeUrl)" class="list_item down_item clearfix"
+                <div (click)="play(item)" class="list_item down_item clearfix"
                     *ngFor="let item of (courseDownloadSvr.tasks | downloadTasks:[1])">
                     <div class="cb" [hidden]="!editable">
                         <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
@@ -40,7 +40,7 @@
         </div>
         <div class="panel1" [hidden]="curTab!==2">
             <ng-container *ngIf="(courseSvr.records | lessonRecordType:2).length>0 else noData">
-                <div (click)="play(item.videoUrl)" class="list_item down_item clearfix"
+                <div (click)="play(item)" class="list_item down_item clearfix"
                     *ngFor="let item of (courseSvr.records | lessonRecordType:2)">
                     <div class="cb" [hidden]="!editable">
                         <input type="checkbox" [(ngModel)]="item.checked" [hidden]="!editable">
