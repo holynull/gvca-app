@@ -68,3 +68,41 @@
   line-height: 1rem;
   margin-bottom: .4rem;
 }
+
+/*附件*/
+/*.notice_file a{
+  font-size: .7rem;
+  color: #0d6db9;
+}*/
+.notice_file a{
+  color: #0d6db9;
+  font-size: .7rem;
+  height: 2.2rem;
+  /*line-height: 2.1rem;
+  overflow: hidden;
+  font-weight: bold;*/
+  padding-left: 1.8rem;
+  margin-bottom: 0.6rem;
+  margin-top: 0;
+  text-decoration: underline;
+}
+.notice_file a.file_pdf{
+  background: url(../images/icon_pdf.png) no-repeat 0 center;
+  background-size: 1.2rem;
+}
+.notice_file a.file_ppt{
+  background: url(../images/icon_ppt.png) no-repeat 0 center;
+  background-size: 1.2rem;
+}
+.notice_file a.file_word{
+  background: url(../images/icon_word.png) no-repeat 0 center;
+  background-size: 1.2rem;
+}
+.notice_file a.file_zip{
+  background: url(../images/icon_zip.png) no-repeat 0 center;
+  background-size: 1.2rem;
+}
+.notice_file a.file_fla{
+  background: url(../images/icon_fla.png) no-repeat 0 center;
+  background-size: 1.2rem;
+}
