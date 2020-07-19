@@ -36,6 +36,7 @@ export class NoticeService {
                                 notice.title = e.title;
                                 notice.noticeId = e.noticeId;
                                 notice.content = e.content;
+                                notice.dataUrl = e.dataUrl;
                                 ncat.notices.push(notice);
                             });
                         } else {
