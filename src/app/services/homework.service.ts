@@ -107,7 +107,14 @@ export class HomeworkService {
         }
         return null;
     }
-
+    getCHomeworkById(hId: number): Homework {
+        for (let i = 0; i < this.completed.length; i++) {
+            if (this.completed[i].homeworkId === hId) {
+                return this.homeworks[i];
+            }
+        }
+        return null;
+    }
     submit(hw: Homework, path: string, txtAnswer: string): Promise<boolean> {
         return this.api.insertStuHome(String(hw.homeworkId), String(hw.teacherId), path, txtAnswer).toPromise().then(res => {
             if (res.code === 1) {

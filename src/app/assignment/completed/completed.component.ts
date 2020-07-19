@@ -31,7 +31,7 @@ export class CompletedComponent implements OnInit {
             component: MyWorkComponent,
             componentProps: {
                 hId: hId,
-                hwType:
+                hwType:'completed',
             }
         });
         await modal.present();

@@ -14,7 +14,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="homework_tip" *ngIf="hw.stuhomeworkStatus===2">
+    <div class="homework_tip" *ngIf="hw&&hw.stuhomeworkStatus===2">
         作业需修正，请重新提交！
     </div>
     <div class="mine_box">
@@ -22,14 +22,14 @@
     </div>
     <div class="space"></div>
     <div class="teacher_box1">
-        <h3 *ngIf="hw.stuhomeworkStatus===4">老师评语</h3>
-        <h5>{{hw.score?hw.score:''}}</h5>
-        <div [innerHtml]="hw.checkResult?hw.checkResult:''|safeHtml">
+        <h3 *ngIf="hw&&hw.stuhomeworkStatus===4">老师评语</h3>
+        <h5>{{hw&&hw.score?hw.score:''}}</h5>
+        <div [innerHtml]="hw&&hw.checkResult?hw.checkResult:''|safeHtml">
         </div>
     </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar *ngIf="hw.stuhomeworkStatus!==1&&hw.stuhomeworkStatus!==4">
+    <ion-toolbar *ngIf="hw&&hw.stuhomeworkStatus!==1&&hw.stuhomeworkStatus!==4">
         <ion-button (click)="toUpload()">修改作业</ion-button>
     </ion-toolbar>
 </ion-footer>

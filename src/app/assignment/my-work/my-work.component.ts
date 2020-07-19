@@ -20,6 +20,8 @@ export class MyWorkComponent implements OnInit {
 
     hw: Homework;
 
+    hwType: string;
+
     constructor(
         private modalCtrl: ModalController,
         private activedRoute: ActivatedRoute,
@@ -32,7 +34,12 @@ export class MyWorkComponent implements OnInit {
             }
         });
         this.hId = this.navParams.data.hId;
-        this.hw = this.hwSvr.getHomeworkById(this.hId);
+        this.hwType = this.navParams.data.hwType;
+        if (this.hwType === 'completed') {
+            this.hw = this.hwSvr.getCHomeworkById(this.hId);
+        } else {
+            this.hw = this.hwSvr.getHomeworkById(this.hId);
+        }
         if (this.hw && this.hw.stuAnsPhoto) {
             this.hw.stuAnsPhoto.split(',').forEach(e => {
                 this.path.push(e);
