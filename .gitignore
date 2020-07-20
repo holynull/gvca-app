@@ -20,6 +20,7 @@ npm-debug.log*
 .versions/
 coverage/
 www/
+!plugins/cordova-*/www/
 node_modules/
 tmp/
 temp/
