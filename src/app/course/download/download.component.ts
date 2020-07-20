@@ -142,7 +142,7 @@ export class DownloadComponent implements OnInit {
                 errorCallback: (e) => {
                     console.log(e, {});
                 },
-                orientation: 'landscape',
+                orientation: task.lessonLength+'',
                 shouldAutoClose: true,
                 controls: true,
             };

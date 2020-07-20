@@ -53,13 +53,19 @@ export class RecordsComponent implements OnInit {
     play(item:any) {
         if (!this.editable) {
             let options: StreamingVideoOptions = {
-                successCallback: () => {
+                successCallback: (data) => {
                     console.log('Video played');
+                    if (data) {
+                        let d: string[] = data.split(',');
+                        item.videosize = Number(d[1]);
+                        item.lessonLength = Number(d[0]);
+                        this.courseDownloadSvr.updateStorage();
+                    }
                 },
                 errorCallback: (e) => {
                     console.log(e, {});
                 },
-                orientation: 'landscape',
+                orientation: item.lessonLength+'',
                 shouldAutoClose: true,
                 controls: true,
             };
