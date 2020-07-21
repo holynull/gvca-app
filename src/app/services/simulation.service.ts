@@ -171,6 +171,7 @@ export class SimulationService {
     }
 
     getRandomTestPaper(): Promise<boolean> {
+        this.randomTestPaper.splice(0, this.randomTestPaper.length);
         return this.api.getRandomExamList().toPromise().then(res => {
             if (res.code === 1) {
                 res.info.forEach((e3, qIndex, arr) => {
