@@ -71,24 +71,20 @@ export class ReportComponent implements OnInit {
                     if (params.pid && params.qcid) {
                         this.questions = eSvr.getQuestions(Number(params.pid), Number(params.qcid));
                     }
-                    this.url = '/tabs/exam';
                     break;
                 case 'simu':
                     if (params.examId) {
                         this.examId = params.examId;
                         this.questions = this.sSvr.getQuestionsById(Number(params.examId));
                     }
-                    this.url = '/tabs/exam/simulation';
                     break;
                 case 'exam':
                     if (params.examId) {
                         this.questions = this.examSvr.getQuestionsById(Number(params.examId));
                     }
-                    this.url = '/tabs/exam/examine';
                     break;
                 case 'rand':
                     this.questions = this.sSvr.randomTestPaper;
-                    this.url = '/tabs/exam/simulation';
                     break;
             }
         });
