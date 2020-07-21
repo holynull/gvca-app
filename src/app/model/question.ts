@@ -38,6 +38,8 @@ export class Question {
                         this.studentAnswer = this.studentAnswer + answer.key;
                     }
                 }
+                this.trueAnswer = Array.from(this.trueAnswer).sort().join('');
+                this.studentAnswer = Array.from(this.studentAnswer).sort().join('');
             } else if (this.questionType === QuestionType.ONE_ANSWER) {
                 this.studentAnswer = answer.key;
             }
@@ -59,10 +61,12 @@ export class Question {
     }
 
     getState(): QuestionState {
+        let gAnswer = Array.from(this.studentAnswer).sort().join('');
+        let tAnswer = Array.from(this.trueAnswer).sort().join('');
         if (!this.studentAnswer || this.studentAnswer === '') {
             return QuestionState.NONE;
         } else {
-            if (this.trueAnswer === this.studentAnswer) {
+            if (tAnswer === gAnswer) {
                 return QuestionState.RIGHT;
             } else {
                 return QuestionState.WRONG;
