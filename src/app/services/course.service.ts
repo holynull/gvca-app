@@ -166,12 +166,12 @@ export class CourseService {
     getUserCourseInfo(): Promise<any> {
         return this.api.getUserInfo().toPromise().then(res => {
             if (res.code === 1) {
-                this.info.questionCount = Number(res.info[0].questionCount);
-                this.info.lessentTime = Number(res.info[0].lessentTime);
-                this.info.examMnCount = Number(res.info[0].examMnCount);
+                this.info.questionCount = Number(res.info[0].questionCount ? res.info[0].questionCount : 0);
+                this.info.lessentTime = Number(res.info[0].lessentTime ? res.info[0].lessentTime : 0);
+                this.info.examMnCount = Number(res.info[0].examMnCount ? res.info[0].examMnCount : 0);
                 this.info.studentName = res.info[0].studentName;
                 this.info.photo = res.info[0].photo;
-                this.info.examCount = Number(res.info[0].examCount);
+                this.info.examCount = Number(res.info[0].examCount ? res.info[0].examCount : 0);
                 return this.info;
             } else {
                 console.error('获取用户的学习统计数据出错', res);
