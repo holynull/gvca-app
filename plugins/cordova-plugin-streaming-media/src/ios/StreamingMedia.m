@@ -251,6 +251,10 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
 
             [moviePlayer.player play];
 
+            int initTime = [mOrientation intValue];
+
+            [moviePlayer.player seekToTime:CMTimeMake(initTime,1)];
+
             [moviePlayer addObserver:self forKeyPath:@"view.frame" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial) context:nil];
 
         }];
@@ -373,6 +377,8 @@ NSString * const DEFAULT_IMAGE_SCALE = @"center";
 
 - (void) handleOrientation {
     // hnadle the subclassing of the view based on the orientation variable
+    moviePlayer            =  [[LandscapeAVPlayerViewController alloc] init];
+    return;
     if ([mOrientation isEqualToString:@"landscape"]) {
         moviePlayer            =  [[LandscapeAVPlayerViewController alloc] init];
     } else if ([mOrientation isEqualToString:@"portrait"]) {
