@@ -6,28 +6,34 @@
             </ion-button>
         </ion-buttons>
         <ion-title>我的作业</ion-title>
-        </ion-toolbar>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div class="homework_list">
+    <div class="homework_list" style="height: 100%;">
+        <ng-container *ngIf="homeworkSvr.completed.length>0 else noData">
+            <div class="list_item clearfix" *ngFor="let item of homeworkSvr.completed">
+                <p class="week">{{item.workTimeToWeekDayStr()}}</p>
+                <p class="date">{{item.workTimeToStr()}}</p>
+                <div>
+                    <h3 [ngSwitch]="item.stuhomeworkStatus">{{item.homeworkName}}
+                        <a *ngSwitchCase="0" (click)="toUpload(item.homeworkId)" class="btn_do btn_todo">去完成</a>
+                        <a *ngSwitchCase="1" (click)="toMyWork(item.homeworkId)" class="btn_did">待批改</a>
+                        <a *ngSwitchCase="2" (click)="toMyWork(item.homeworkId)" class="btn_do btn_modify">去修正</a>
+                        <a *ngSwitchCase="3" (click)="toMyWork(item.homeworkId)" class="btn_do btn_modify">去修正</a>
+                        <a *ngSwitchCase="4" (click)="toMyWork(item.homeworkId)" class="btn_did">{{item.score}}</a>
+                    </h3>
+                    <div [innerHtml]="item.homeworkDetail|safeHtml">
 
-        <div class="list_item clearfix" *ngFor="let item of homeworkSvr.completed">
-            <p class="week">{{item.workTimeToWeekDayStr()}}</p>
-            <p class="date">{{item.workTimeToStr()}}</p>
-            <div>
-                <h3 [ngSwitch]="item.stuhomeworkStatus">{{item.homeworkName}}
-                    <a *ngSwitchCase="0" (click)="toUpload(item.homeworkId)" class="btn_do btn_todo">去完成</a>
-                    <a *ngSwitchCase="1" (click)="toMyWork(item.homeworkId)" class="btn_did">待批改</a>
-                    <a *ngSwitchCase="2" (click)="toMyWork(item.homeworkId)" class="btn_do btn_modify">去修正</a>
-                    <a *ngSwitchCase="3" (click)="toMyWork(item.homeworkId)" class="btn_do btn_modify">去修正</a>
-                    <a *ngSwitchCase="4" (click)="toMyWork(item.homeworkId)" class="btn_did">{{item.score}}</a>
-                </h3>
-                <div [innerHtml]="item.homeworkDetail|safeHtml">
-
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
     </div>
+    <ng-template #noData>
+        <div class="noData">
+            <img src="assets/images/nothing.png">
+        </div>
+    </ng-template>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
