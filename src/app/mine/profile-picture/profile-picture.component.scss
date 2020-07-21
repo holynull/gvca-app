@@ -1,6 +1,6 @@
 @import '../../../pub.scss';
 
-.profile-picture{
+.profile-picture {
     width: 10rem;
     height: 10rem;
     // border: 1px solid #cccccc;
@@ -10,6 +10,17 @@
     // background-size: contain;
 }
 
-.btn_container{
+.btn_container {
     margin: 0 5rem;
+}
+
+ion-button {
+    width: 100%;
+    --background: #01204f;
+    --background-activated-opacity: 0.3;
+    --border-radius: 1.5rem;
+}
+
+ion-button:focus {
+    outline: none;
 }
