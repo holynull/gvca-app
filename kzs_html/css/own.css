@@ -443,3 +443,42 @@ input[type=radio]:checked:after  {
   margin-top: .1rem;
   float: right;
 }
+/* 成绩管理 */
+.score_bg{
+  background: url(../images/score_bg.jpg) no-repeat center center;
+  background-size: 100%;
+  margin:1rem auto;
+  width: 16.8rem;
+  height: 26rem;
+}
+.score_bg h3{
+  font-size: 1.2rem;
+  color: #01204f;
+  padding-top: 5rem;
+  text-align:center;
+}
+.score_bg p{
+  font-size: .8rem;
+  color: #333;
+  margin: 2rem 0;
+  text-align:center;
+}
+.score_list{
+  width: 13rem;
+  box-shadow: none;
+  background: transparent;
+}
+.score_list li a span{
+  color: #cc0000;
+  font-size: 1rem;
+  font-family: "DIN Alternate";
+}
+.cer_bot{
+  text-align: center;
+}
+.cer_download{
+  background: url(../images/cer_download.png) no-repeat left center;
+  background-size: 1rem;
+  padding-left:1rem;
+  color:#01204f;
+}

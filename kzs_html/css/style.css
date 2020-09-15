@@ -238,6 +238,10 @@ input[type=checkbox]:checked:after  {
   background: url(../images/bot_menu5_a.png);
   background-size: contain;
 }
+.index_box a i.index_icon6{
+  background: url(../images/index_icon06.png);
+  background-size: contain;
+}
 
 /*顶部*/
 .top_title{
