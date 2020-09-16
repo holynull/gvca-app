@@ -26,4 +26,5 @@
         <p>签到地址：{{curRecord.signAddress}}</p>
     </div>
     <a (click)="sign()" class="btn_clockin" [ngClass]="{btn_clockined: status!==0}">{{status!==0?'已签到':'签到'}}</a>
+    <!-- <span>{{this.address?this.address:'aaaa'}}</span> -->
 </ion-content>

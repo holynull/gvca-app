@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
 
     lng: number;
     lat: number;
+    address: string;
 
     loading;
 
@@ -95,8 +96,13 @@ export class HomeComponent implements OnInit {
                             this.lat = rPoint.lat;
                             // 初始化地图，设置中心点坐标和地图级别
                             map.centerAndZoom(point, 17);
-                            var marker = new BMap.Marker(point, { icon: myIcon });        // 创建标注   
+                            let marker = new BMap.Marker(point, { icon: myIcon });        // 创建标注   
                             map.addOverlay(marker);
+                            let geoc = new BMap.Geocoder();
+                            geoc.getLocation(point, rs => {
+                                let addComp = rs.addressComponents;
+                                this.address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+                            });
                             this.distance = map.getDistance(cPoint, point);
                         }
                     }
@@ -119,7 +125,7 @@ export class HomeComponent implements OnInit {
     sign() {
         if (this.status === SignStatus.NONE) {
             this.loadingPresent();
-            this.attendSvr.sign(this.lng, this.lat, this.distance).then(success => {
+            this.attendSvr.sign(this.lng, this.lat, this.distance, this.address?this.address:'地址不详').then(success => {
                 if (success) {
                     this.now = new Date();
                     this.curRecord = this.attendSvr.getRecord(this.now);

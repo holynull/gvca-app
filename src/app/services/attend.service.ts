@@ -77,7 +77,7 @@ export class AttendService {
             }
         });
         let pArr = [p1, p2];
-       return Promise.all(pArr).then(res => {
+        return Promise.all(pArr).then(res => {
             return res[0] && res[1];
         });
     }
@@ -148,7 +148,7 @@ export class AttendService {
         });
     }
 
-    sign(lng: number, lat: number, distance: number): Promise<boolean> {
+    sign(lng: number, lat: number, distance: number, address: string): Promise<boolean> {
         let now = new Date();
         let dWrong: boolean = distance > 500; // 距离大于500米
         let sta = new Date().setHours(Number(this.company.signStartTime.split(':')[0]), Number(this.company.signStartTime.split(':')[1]), 0, 0);
@@ -165,12 +165,12 @@ export class AttendService {
         } else if (tWrong) {
             status = SignType.TIME_WRONG;
         }
-        return this.api.insertStuSign(String(lng), String(lat), this.company.companyAddress, status).toPromise().then(res => {
+        return this.api.insertStuSign(String(lng), String(lat), address, status).toPromise().then(res => {
             if (res.code === 1) {
-                return this.loadData().then(res=>res);
+                return this.loadData().then(res => res);
             } else {
                 console.error('签到失败', res);
-                return this.loadData().then(res=>res);
+                return this.loadData().then(res => res);
             }
         });
     }
