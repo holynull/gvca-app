@@ -36,7 +36,7 @@
     "@ionic-native/streaming-media": "^5.26.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.2.0",
-    "cordova-android": "8.1.0",
+    "cordova-android": "9.0.0",
     "cordova-ios": "5.1.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-browsertab": "^0.2.0",
@@ -121,8 +121,8 @@
       "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }
