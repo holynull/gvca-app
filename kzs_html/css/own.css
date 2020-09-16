@@ -454,13 +454,20 @@ input[type=radio]:checked:after  {
 .score_bg h3{
   font-size: 1.2rem;
   color: #01204f;
-  padding-top: 5rem;
+  padding-top: 5.5rem;
   text-align:center;
+}
+.score_bg h4{
+  font-size: 1rem;
+  color: #01204f;
+  text-align:center;
+  font-weight: normal;
+  margin-top: .5rem;
 }
 .score_bg p{
   font-size: .8rem;
   color: #333;
-  margin: 2rem 0;
+  margin: 1.2rem 0;
   text-align:center;
 }
 .score_list{
