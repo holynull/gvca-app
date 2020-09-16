@@ -14,6 +14,7 @@ import { ReportComponent } from './report/report.component';
 import { AnswerCardComponent } from './answer-card/answer-card.component';
 import { RecordsComponent } from './records/records.component';
 import { PipesModule } from 'app/pipes/pipes.module';
+import { CertComponent } from './cert/cert.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { PipesModule } from 'app/pipes/pipes.module';
         ReportComponent,
         AnswerCardComponent,
         RecordsComponent,
+        CertComponent,
     ],
     imports: [
         CommonModule,

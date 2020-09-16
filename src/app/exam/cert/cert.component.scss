@@ -1,0 +1,85 @@
+@import '../../../pub.scss';
+
+.score_bg {
+    background: url(assets/images/score_bg.jpg) no-repeat center center;
+    background-size: 100%;
+    margin: 1rem auto;
+    width: 20rem;
+    height: 30rem;
+}
+
+.score_bg h3 {
+    font-size: 1.2rem;
+    color: #01204f;
+    padding-top: 6rem;
+    text-align: center;
+}
+
+.score_bg p {
+    font-size: 1rem;
+    color: #333;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.score_list li a span {
+    color: #cc0000;
+    font-size: 1rem;
+    font-family: "DIN Alternate";
+}
+
+.cer_bot {
+    text-align: center;
+}
+
+.cer_download {
+    background: url(assets/images/cer_download.png) no-repeat left center;
+    background-size: 1rem;
+    padding-left: 1rem;
+    color: #01204f;
+}
+
+.own_list {
+    width: 13rem;
+    box-shadow: none;
+    background: transparent;
+    border-radius: .6rem;
+    margin: 1.2rem auto .6rem;
+    padding: .2rem .6rem;
+    box-sizing: border-box;
+}
+
+.own_list li a {
+    border-bottom: 1px solid #ebebeb;
+    height: 2.1rem;
+    line-height: 2.1rem;
+    color: #333;
+    font-size: .8rem;
+    display: block;
+}
+
+.own_list li:last-child a {
+    border-bottom: none;
+}
+
+.own_list li a i {
+    width: 1.2rem;
+    height: 1.2rem;
+    float: left;
+    margin-top: .4rem;
+    margin-right: .4rem;
+}
+
+.own_list li.own_lesson a i {
+    background: url(assets/images/own_lesson.png);
+    background-size: contain;
+}
+
+.own_list li a span {
+    float: right;
+    color: #cc0000;
+    // font-size: .5rem;
+    /*background: url(../images/own_arrow.png) no-repeat right;
+    background-size: 1rem;
+    padding-right: 1rem;*/
+}

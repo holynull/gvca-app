@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/tabs/home']" routerDirection="back">
+                <span class="btn_back"></span>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>成绩管理</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="score_bg clearfix">
+        <h3>张三</h3>
+        <p>您的成绩如下，再接再厉！</p>
+        <div class="own_list score_list">
+            <ul>
+                <li class="own_lesson">
+                    <a href="javascript:;">
+                        学习时长 <span>{{courseSvr.info.lessentTime}}</span>
+                    </a>
+                </li>
+                <li class="own_lesson">
+                    <a href="javascript:;">
+                        完成练习 <span>{{courseSvr.info.questionCount}}</span>
+                    </a>
+                </li>
+                <li class="own_lesson">
+                    <a href="javascript:;">
+                        模拟测试 <span>{{courseSvr.info.examMnCount}}</span>
+                    </a>
+                </li>
+                <li class="own_lesson">
+                    <a href="javascript:;">
+                        在线考试 <span>{{courseSvr.info.examCount}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="cer_bot">
+        <a href="javascript:;" class="cer_download">下载证书</a>
+    </div> -->
+</ion-content>

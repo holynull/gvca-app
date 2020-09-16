@@ -8,6 +8,7 @@ import { ScoreComponent } from './score/score.component';
 import { ReportComponent } from './report/report.component';
 import { RecordsComponent } from './records/records.component';
 import { AuthGuard } from 'app/services/guard/auth.guard';
+import { CertComponent } from './cert/cert.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'score', component: ScoreComponent, canActivate: [AuthGuard] },
     { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
     { path: 'records', component: RecordsComponent, canActivate: [AuthGuard] },
+    { path: 'cert', component: CertComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
